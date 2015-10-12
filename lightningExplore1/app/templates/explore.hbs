@@ -1,0 +1,108 @@
+<div class="slds">
+    <div>
+        FORM ELEMENTS
+        <br/>
+        <div>
+            Native Select
+            {{#sf-form-element label="" labelFor=""}}
+                {{view "select" class="slds-select" content=picklistSimplerThings value=selectedPicklistSimplerThing}}
+            {{/sf-form-element}}
+        </div>
+        <div>
+            SF Picklist
+            {{sf-picklist content=picklistThings optionValuePath="content.value" optionLabelPath="content.label" value=selectedPicklistThing}}
+            {{selectedPicklistThing}}
+
+            {{sf-picklist content=picklistSimplerThings value=selectedPicklistSimplerThing}}
+            {{selectedPicklistSimplerThing}}
+        </div>
+    </div>
+    <div>
+        BUTTON STUFF - they all toggle a selected state when clicked<br/>
+        {{#each thing in things}}
+            {{!-- Specifying icon markup. Should we limit what the user can do? --}}
+            {{#sf-button class="slds-button--neutral" selectedWhen=thing.isSelected disabledWhen=thing.isDisabled action="doThis" param1=thing.id param2=thing.name param3=thing}}
+                <svg aria-hidden="true" class="slds-button__icon slds-button__icon--left">
+                    <use {{bind-attr xlink:href="thing.iconUrl"}}></use>
+                </svg>
+                {{thing.name}} - this gets disabled/enabled when a button with another name is clicked
+                <svg aria-hidden="true" class="slds-button__icon slds-button__icon--right">
+                    <use {{bind-attr xlink:href="thing.iconUrl"}}></use>
+                </svg>
+            {{/sf-button}}
+
+            {{!-- Keeping it one line --}}
+            {{sf-button class="slds-button--neutral" iconLeft="download" buttonLabel=thing.name selectedWhen=thing.isSelected action="doThat" param1=thing.id param2=thing.name param3=thing}}
+                
+        {{/each}}
+    </div>
+    <div>
+        MODAL STUFF
+        <br/>
+
+        {{sf-button class="slds-button--neutral" iconLeft="apps" buttonLabel="open modal 1" selectedWhen=modalOpened data-open-modal="modal1"}}
+
+        Or type $('#modal1').modal('open'); in the console<br/>
+
+        {{sf-button class="slds-button--neutral" iconLeft="apps" buttonLabel="open modal 2" selectedWhen=modalOpened data-open-modal="modal2"}}
+
+
+        {{#sf-modal modalId="modal1" openFunction="sayHi" directionalFooter="true" class="slds-modal--large custom-class"}}
+            <modalHeader>
+                <h2 class="slds-text-heading--medium">Modal 1, directional footer</h2>
+            </modalHeader>
+            <modalBody>
+                <p>You can close this by clicking the background. Except for when it's "Large" because the container takes up the vertical space, we need to work around this somehow.</p>
+            </modalBody>
+            <modalFooter>
+                {{sf-button class="slds-button--neutral" buttonLabel="Cancel on the left" data-close-modal="modal1"}}
+                {{sf-button class="slds-button--neutral slds-button--brand" buttonLabel="Save on the right" data-close-modal="modal1"}}
+            </modalFooter>
+        {{/sf-modal}}
+
+        {{#sf-modal modalId="modal2" preventBgClose="true" openFunction="sayHi" param1="dude2"}}
+            <modalHeader>
+                <h2 class="slds-text-heading--medium">Modal 2</h2>
+                <p>Here’s a tagline if you need it. It is allowed to extend across mulitple lines, so I’m making up content to show that to you. It is allowed to <a href="#">contain links or be a link</a>.</p>
+            </modalHeader>
+            <modalBody>
+                <p>You can <strong>NOT</strong> close this by clicking the background</p>
+            </modalBody>
+            <modalFooter>
+                {{sf-button class="slds-button--neutral" buttonLabel="Cancel 2" data-close-modal="modal2"}}
+                {{sf-button class="slds-button--neutral slds-button--brand" buttonLabel="Save 2" data-close-modal="modal2"}}
+                {{sf-button class="slds-button--neutral" buttonLabel="A third button 2 - won't close it" action="sayBye"}}
+            </modalFooter>
+        {{/sf-modal}}
+    </div>
+
+    <div>
+        DATEPICKER
+        {{sf-datepicker selectedDate=selectedDate}}
+    </div>
+
+    <div>
+        TOOLTIPS
+        <br/>
+        {{#sf-button class="slds-button--neutral" sf-tooltip="top" title="Test LA LA LA LA LA LA L AL A LA LAL AL LAL AL LA"}}
+            <div>Hover for tooltip</div>
+        {{/sf-button}}
+    </div>
+    
+    <div>
+        POPOVERS
+        <br/>
+        {{#sf-button class="slds-button--neutral" data-toggle-popover="popover1"}}
+            <div>Click for popover</div>
+        {{/sf-button}}
+
+        {{#sf-popover popoverId="popover1" position="right"}}
+            <popoverHeader>
+                <p class="slds-text-heading--small">Hi</p>
+            </popoverHeader>
+            <popoverBody>
+                Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href="#">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.
+            </popoverBody>
+        {{/sf-popover}}
+    
+</div>

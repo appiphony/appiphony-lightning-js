@@ -1,0 +1,24 @@
+{
+  "name": "salesforce-lightning-javascript-toolkit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://kevinberonilla@github.com/appiphony/salesforce-lightning-javascript-toolkit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/appiphony/salesforce-lightning-javascript-toolkit/issues"
+  },
+  "homepage": "https://github.com/appiphony/salesforce-lightning-javascript-toolkit#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.4.2"
+  }
+}

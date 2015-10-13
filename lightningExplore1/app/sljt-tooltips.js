@@ -1,17 +1,19 @@
-(function() {
-    var showTooltip = function(e) {
-        var target = $(e.target).closest('[sf-tooltip]')[0];
+if (typeof jQuery === "undefined") { throw new Error("The Salesforce Lightning JavaScript Toolkit requires jQuery") }
 
-        if (!target.getAttribute('sf-title')) {
-            target.setAttribute('sf-title', target.getAttribute('title'));
-            target.setAttribute('title', ''); 
-            target.style['position'] = 'relative';
+(function($) {
+    var showTooltip = function(e) {
+        var $target = $(e.target).closest('[data-sljt="tooltip"]');
+
+        if (!$target.attr('data-sljt-title')) {
+            $target.attr('data-sljt-title', $target.attr('title'));
+            $target.attr('title', ''); 
+            $target.css('position', 'relative');
         }
-        var targetId = target.getAttribute('sljt-id') || 'sljt-' + (new Date()).valueOf();
+        var toolkitId = $target.attr('data-sljt-id') || 'sljt-' + (new Date()).valueOf();
         var nubbinHeight = 15;
         var nubbinWidth = 15;
-        var tooltipContent = target.getAttribute('sf-title');
-        var tooltipPosition = target.getAttribute('sf-tooltip') || 'top';
+        var tooltipContent = $target.attr('data-sljt-title');
+        var tooltipPosition = $target.attr('data-placement') || 'top';
         var tooltipNubbins = {
             top: 'bottom',
             bottom: 'top',
@@ -28,34 +30,51 @@
                                 '</div>' +
                             '</div>';
 
-        if (target.querySelector('.slds-tooltip') === null) {
-            target.insertAdjacentHTML('beforeend', tooltipMarkup);
-            var tooltipNode = target.querySelector('.slds-tooltip');
+        if (Ember.isEmpty($target.find('.slds-tooltip'))) {
+            $target.append(tooltipMarkup);
+            var $tooltipNode = $target.find('.slds-tooltip');
 
-            tooltipNode.style['width'] = tooltipNode.offsetWidth + 'px';
-            tooltipNode.style['position'] = 'absolute';
+            $tooltipNode.css('width', $tooltipNode.innerWidth() + 'px');
+            $tooltipNode.css('position', 'absolute');
 
             if (tooltipPosition === 'top' || tooltipPosition === 'bottom') {
-                tooltipNode.style[tooltipPosition] = '-' + (tooltipNode.offsetHeight + nubbinHeight) + 'px';
-                tooltipNode.style['left'] = (target.offsetWidth / 2) - (tooltipNode.offsetWidth / 2) + 'px'; 
+                $tooltipNode.css(tooltipPosition, '-' + ($tooltipNode.innerHeight() + nubbinHeight) + 'px');
+                $tooltipNode.css('left', ($target.innerWidth() / 2) - ($tooltipNode.innerWidth() / 2) + 'px'); 
             } else if (tooltipPosition === 'left' || tooltipPosition === 'right') {
-                tooltipNode.style['top'] = (target.offsetHeight / 2) - (tooltipNode.offsetHeight / 2) + 'px'; 
-                tooltipNode.style[tooltipPosition] = '-' + (tooltipNode.offsetWidth + nubbinWidth) + 'px';
+                $tooltipNode.css('top', ($target.innerHeight() / 2) - ($tooltipNode.innerHeight() / 2) + 'px'); 
+                $tooltipNode.css(tooltipPosition, '-' + ($tooltipNode.innerWidth() + nubbinWidth) + 'px');
             }
         } 
     };
 
     var hideTooltip = function(e) {
-        var target = e.target.closest('[sf-tooltip]');
-        var tooltipNode = target.querySelector('.slds-tooltip');
+        var $target = $(e.target).closest('[data-sljt="tooltip"]');
+        var $tooltipNode = $target.find('.slds-tooltip');
 
-        if (tooltipNode !== null) {
-            tooltipNode.remove();
+        if ($tooltipNode !== null) {
+            $tooltipNode.remove();
         }
     };
 
-    $('body').on('mouseenter', '[sf-tooltip]', showTooltip);
-    $('body').on('focusin', '[sf-tooltip]', showTooltip);
-    $('body').on('mouseleave', '[sf-tooltip]', hideTooltip);
-    $('body').on('focusout', '[sf-tooltip]', hideTooltip);
-}());
+    $.fn.tooltip = function(options) {
+    
+        var settings = $.extend({
+            // These are the defaults.
+            
+        }, options );
+
+        if (settings.selector && this.length === 1) {
+            return this.on('mouseenter', settings.selector, showTooltip)
+                .on('focusin', settings.selector, showTooltip)
+                .on('mouseleave', settings.selector, hideTooltip)
+                .on('focusout', settings.selector, hideTooltip);
+        } else {
+            return this.each(function() {
+                $(this).on('mouseenter', showTooltip)
+                       .on('focusin', showTooltip)
+                       .on('mouseleave', hideTooltip)
+                       .on('focusout', hideTooltip);
+            });
+        }
+    };
+}(jQuery));

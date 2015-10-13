@@ -1,148 +1,5 @@
 var localeString = 'MM/DD/YYYY';
 
-// JQUERY TOOLTIPS
-
-(function() {
-    var showTooltip = function(e) {
-        var target = $(e.target).closest('[sf-tooltip]')[0];
-
-        if (!target.getAttribute('sf-title')) {
-            target.setAttribute('sf-title', target.getAttribute('title'));
-            target.setAttribute('title', ''); 
-            target.style['position'] = 'relative';
-        }
-
-        var nubbinHeight = 15;
-        var nubbinWidth = 15;
-        var tooltipContent = target.getAttribute('sf-title');
-        var tooltipPosition = target.getAttribute('sf-tooltip') || 'top';
-        var tooltipNubbins = {
-            top: 'bottom',
-            bottom: 'top',
-            left: 'right',
-            right: 'left'
-        };
-        var tooltipPositioningCSS = 'overflow: visible;';
-
-        var tooltipMarkup = '<div class="slds-tooltip slds-nubbin--' + (tooltipNubbins[tooltipPosition] || 'top') + '" role="tooltip" style="' + tooltipPositioningCSS +'">' +
-                                '<div class="slds-tooltip__content">' +
-                                    '<div class="slds-tooltip__body">' +
-                                    tooltipContent +
-                                    '</div>' +
-                                '</div>' +
-                            '</div>';
-
-        if (target.querySelector('.slds-tooltip') === null) {
-            target.insertAdjacentHTML('beforeend', tooltipMarkup);
-            var tooltipNode = target.querySelector('.slds-tooltip');
-
-            tooltipNode.style['width'] = tooltipNode.offsetWidth + 'px';
-            tooltipNode.style['position'] = 'absolute';
-
-            if (tooltipPosition === 'top' || tooltipPosition === 'bottom') {
-                tooltipNode.style[tooltipPosition] = '-' + (tooltipNode.offsetHeight + nubbinHeight) + 'px';
-                tooltipNode.style['left'] = (target.offsetWidth / 2) - (tooltipNode.offsetWidth / 2) + 'px'; 
-            } else if (tooltipPosition === 'left' || tooltipPosition === 'right') {
-                tooltipNode.style['top'] = (target.offsetHeight / 2) - (tooltipNode.offsetHeight / 2) + 'px'; 
-                tooltipNode.style[tooltipPosition] = '-' + (tooltipNode.offsetWidth + nubbinWidth) + 'px';
-            }
-        } 
-    };
-
-    var hideTooltip = function(e) {
-        var target = e.target.closest('[sf-tooltip]');
-        var tooltipNode = target.querySelector('.slds-tooltip');
-
-        if (tooltipNode !== null) {
-            tooltipNode.remove();
-        }
-    };
-
-    $('body').on('mouseenter', '[sf-tooltip]', showTooltip);
-    $('body').on('focusin', '[sf-tooltip]', showTooltip);
-    $('body').on('mouseleave', '[sf-tooltip]', hideTooltip);
-    $('body').on('focusout', '[sf-tooltip]', hideTooltip);
-}());
-
-/*document.addEventListener("DOMContentLoaded", function() {
-    Array.prototype.forEach.call(document.querySelectorAll('[sf-tooltip]'), function(el) { 
-        el.setAttribute('sf-title', el.getAttribute('title'));
-        el.setAttribute('title', ''); 
-        el.style['position'] = 'relative';
-
-        var getTooltipElement = function(target) {
-            if (target === null) {
-                return null;
-            } else if (target.getAttribute('sf-tooltip') !== null) {
-                return target;
-            } else {
-                getTooltipElement(target.parentElement);
-            }
-        };
-
-        var showTooltip = function(e) {
-            var nubbinHeight = 15;
-            var nubbinWidth = 15;
-            var target = getTooltipElement(e.target);
-            var tooltipContent = target.getAttribute('sf-title');
-            var tooltipPosition = target.getAttribute('sf-tooltip') || 'top';
-            var tooltipNubbins = {
-                top: 'bottom',
-                bottom: 'top',
-                left: 'right',
-                right: 'left'
-            };
-            var tooltipPositioningCSS = 'overflow: visible;';
-
-            var tooltipMarkup = '<div class="slds-tooltip slds-nubbin--' + (tooltipNubbins[tooltipPosition] || 'top') + '" role="tooltip" style="' + tooltipPositioningCSS +'">' +
-                                    '<div class="slds-tooltip__content">' +
-                                        '<div class="slds-tooltip__body">' +
-                                        tooltipContent +
-                                        '</div>' +
-                                    '</div>' +
-                                '</div>';
-
-            if (target.querySelector('.slds-tooltip') === null) {
-                target.insertAdjacentHTML('beforeend', tooltipMarkup);
-                var tooltipNode = target.querySelector('.slds-tooltip');
-
-                tooltipNode.style['width'] = tooltipNode.offsetWidth + 'px';
-                tooltipNode.style['position'] = 'absolute';
-
-                if (tooltipPosition === 'top' || tooltipPosition === 'bottom') {
-                    tooltipNode.style[tooltipPosition] = '-' + (tooltipNode.offsetHeight + nubbinHeight) + 'px';
-                    tooltipNode.style['left'] = (target.offsetWidth / 2) - (tooltipNode.offsetWidth / 2) + 'px'; 
-                } else if (tooltipPosition === 'left' || tooltipPosition === 'right') {
-                    tooltipNode.style['top'] = (target.offsetHeight / 2) - (tooltipNode.offsetHeight / 2) + 'px'; 
-                    tooltipNode.style[tooltipPosition] = '-' + (tooltipNode.offsetWidth + nubbinWidth) + 'px';
-                }
-            } 
-        };
-
-        var hideTooltip = function(e) {
-            var target = e.target.closest('[sf-tooltip]');
-            var tooltipNode = target.querySelector('.slds-tooltip');
-
-            if (tooltipNode !== null) {
-                tooltipNode.remove();
-            }
-        };
-
-        if (el.addEventListener) {
-            el.addEventListener('mouseenter', showTooltip);
-            el.addEventListener('focusin', showTooltip);
-            el.addEventListener('mouseleave', hideTooltip);
-            el.addEventListener('focusout', hideTooltip);
-        } else {
-            el.attachEvent('mouseenter', showTooltip);
-            el.attachEvent('focusin', showTooltip);
-            el.attachEvent('mouseleave', hideTooltip);
-            el.attachEvent('focusout', hideTooltip);
-        }
-        
-    });
-});*/
-
 // Kick off Ember
 App = Ember.Application.create({
     rootElement: '#application'
@@ -155,7 +12,7 @@ Ember.Object.reopen({
 Ember.Component.reopen({
     attributeBindings: ['data-qa-button', 'data-open-modal', 'data-close-modal', 
                         'data-open-popover', 'data-close-popover', 'data-toggle-popover',
-                        'disabled', 'title', 'sf-tooltip', 'sf-title']
+                        'disabled', 'title', 'data-sljt', 'data-placement', 'sf-title']
 });
 
 App.ExploreView = Ember.View.extend({
@@ -756,7 +613,6 @@ App.SfPopoverComponent = Ember.Component.extend({
     classNames: 'slds-popover',
     classNameBindings: ['positionClass', 'slds-hide'],
     attributeBindings: ['role', 'style'],
-    //style: 'position: absolute;',
     role: 'dialog',
     nubbinHeight: 15,
     nubbinWidth: 15,

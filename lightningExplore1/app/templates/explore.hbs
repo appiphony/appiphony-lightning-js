@@ -77,20 +77,26 @@
     </div>
 
     <div>
-        DATEPICKER
+        Datepicker - Ember
         {{sf-datepicker selectedDate=selectedDate}}
     </div>
 
     <div>
-        TOOLTIPS
+        Datepicker - jQuery
+
+        {{partial "datepicker"}}
+    </div>
+
+    <div>
+        TOOLTIPS - JQUERY - initialize with $('[data-sljt="tooltip"]').tooltip(); or $('body').tooltip({ selector: '[data-sljt="tooltip"]'});
         <br/>
-        {{#sf-button class="slds-button--neutral" sf-tooltip="top" title="Test LA LA LA LA LA LA L AL A LA LAL AL LAL AL LA"}}
+        {{#sf-button class="slds-button--neutral" data-sljt="tooltip" data-placement="top" title="Test LA LA LA LA LA LA L AL A LA LAL AL LAL AL LA"}}
             <div>Hover for tooltip</div>
         {{/sf-button}}
     </div>
     
     <div>
-        POPOVERS
+        POPOVERS - EMBER
         <br/>
         {{#sf-button class="slds-button--neutral" data-toggle-popover="popover1"}}
             <div>Click for popover</div>
@@ -104,5 +110,32 @@
                 Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href="#">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.
             </popoverBody>
         {{/sf-popover}}
-    
+        <div>
+            POPOVERS - JQUERY - initialize with $('[data-sljt="popover"]').popover();
+            <div>
+                <button class="slds-button slds-button--neutral slds-button--small" data-sljt="popover" data-placement="right">Click for popover
+                </button>
+                <div class="slds-popover slds-nubbin--left" role="dialog">
+                    <div class="slds-popover__content">
+                        <div class="slds-popover__header">
+                            <p class="slds-text-heading--small">Popover Heading</p>
+                        </div>
+                        <div class="slds-popover__body">Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href="#">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="slds-button slds-button--neutral slds-button--small" data-sljt="popover" data-placement="right">Click for popover 2
+                </button>
+                <div class="slds-popover slds-nubbin--left" role="dialog">
+                    <div class="slds-popover__content">
+                        <div class="slds-popover__header">
+                            <p class="slds-text-heading--small">Popover Heading 2</p>
+                        </div>
+                        <div class="slds-popover__body">2 Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href="#">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

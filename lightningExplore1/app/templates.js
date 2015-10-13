@@ -1,3 +1,18 @@
+Ember.TEMPLATES["_datepicker"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("<div class=\"slds-form--stacked\">\n	<div class=\"slds-form-element\">\n		<label class=\"slds-form-element__label\" for=\"date\">Date Picker Label</label>\n		<div class=\"slds-form-element__control\">\n			<div class=\"slds-input-has-icon slds-input-has-icon--right\">\n				<svg aria-hidden=\"true\" class=\"slds-input__icon slds-icon-text-default\">\n					<use xlink:href=\"");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "sldsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("/assets/icons/utility-sprite/svg/symbols.svg#event\"></use>\n				</svg>\n				<input id=\"date\" class=\"slds-input\" type=\"text\" placeholder=\"Pick a Date\" label=\"Date Picker Label\" />\n			</div>\n		</div>\n	</div>\n</div>");
+  return buffer;
+  
+});
+
 Ember.TEMPLATES["components/sf-button"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -683,24 +698,30 @@ function program14(depth0,data) {
   },inverse:self.noop,fn:self.program(8, program8, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   stack2 = ((stack1 = helpers['sf-modal'] || (depth0 && depth0['sf-modal'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "sf-modal", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n    </div>\n\n    <div>\n        DATEPICKER\n        ");
+  data.buffer.push("\n    </div>\n\n    <div>\n        Datepicker - Ember\n        ");
   hashContexts = {'selectedDate': depth0};
   hashTypes = {'selectedDate': "ID"};
   options = {hash:{
     'selectedDate': ("selectedDate")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers['sf-datepicker'] || (depth0 && depth0['sf-datepicker'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "sf-datepicker", options))));
-  data.buffer.push("\n    </div>\n\n    <div>\n        TOOLTIPS\n        <br/>\n        ");
-  hashContexts = {'class': depth0,'sf-tooltip': depth0,'title': depth0};
-  hashTypes = {'class': "STRING",'sf-tooltip': "STRING",'title': "STRING"};
+  data.buffer.push("\n    </div>\n\n    <div>\n        Datepicker - jQuery\n\n        ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.partial || (depth0 && depth0.partial)),stack1 ? stack1.call(depth0, "datepicker", options) : helperMissing.call(depth0, "partial", "datepicker", options))));
+  data.buffer.push("\n    </div>\n\n    <div>\n        TOOLTIPS - JQUERY - initialize with $('[data-sljt=\"tooltip\"]').tooltip(); or $('body').tooltip({ selector: '[data-sljt=\"tooltip\"]'});\n        <br/>\n        ");
+  hashContexts = {'class': depth0,'data-sljt': depth0,'data-placement': depth0,'title': depth0};
+  hashTypes = {'class': "STRING",'data-sljt': "STRING",'data-placement': "STRING",'title': "STRING"};
   options = {hash:{
     'class': ("slds-button--neutral"),
-    'sf-tooltip': ("top"),
+    'data-sljt': ("tooltip"),
+    'data-placement': ("top"),
     'title': ("Test LA LA LA LA LA LA L AL A LA LAL AL LAL AL LA")
   },inverse:self.noop,fn:self.program(10, program10, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   stack2 = ((stack1 = helpers['sf-button'] || (depth0 && depth0['sf-button'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "sf-button", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n    </div>\n    \n    <div>\n        POPOVERS\n        <br/>\n        ");
+  data.buffer.push("\n    </div>\n    \n    <div>\n        POPOVERS - EMBER\n        <br/>\n        ");
   hashContexts = {'class': depth0,'data-toggle-popover': depth0};
   hashTypes = {'class': "STRING",'data-toggle-popover': "STRING"};
   options = {hash:{
@@ -718,7 +739,7 @@ function program14(depth0,data) {
   },inverse:self.noop,fn:self.program(14, program14, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   stack2 = ((stack1 = helpers['sf-popover'] || (depth0 && depth0['sf-popover'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "sf-popover", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n    \n</div>");
+  data.buffer.push("\n        <div>\n            POPOVERS - JQUERY - initialize with $('[data-sljt=\"popover\"]').popover();\n            <div>\n                <button class=\"slds-button slds-button--neutral slds-button--small\" data-sljt=\"popover\" data-placement=\"right\">Click for popover\n                </button>\n                <div class=\"slds-popover slds-nubbin--left\" role=\"dialog\">\n                    <div class=\"slds-popover__content\">\n                        <div class=\"slds-popover__header\">\n                            <p class=\"slds-text-heading--small\">Popover Heading</p>\n                        </div>\n                        <div class=\"slds-popover__body\">Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href=\"#\">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>\n                    </div>\n                </div>\n            </div>\n            <div>\n                <button class=\"slds-button slds-button--neutral slds-button--small\" data-sljt=\"popover\" data-placement=\"right\">Click for popover 2\n                </button>\n                <div class=\"slds-popover slds-nubbin--left\" role=\"dialog\">\n                    <div class=\"slds-popover__content\">\n                        <div class=\"slds-popover__header\">\n                            <p class=\"slds-text-heading--small\">Popover Heading 2</p>\n                        </div>\n                        <div class=\"slds-popover__body\">2 Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href=\"#\">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>");
   return buffer;
   
 });

@@ -82,7 +82,7 @@
     </div>
 
     <div>
-        Datepicker - jQuery
+        Datepicker - jQuery - initalize with $('#date').datepicker({assetsLocation: sldsUrl});
 
         {{partial "datepicker"}}
     </div>
@@ -90,7 +90,7 @@
     <div>
         TOOLTIPS - JQUERY - initialize with $('[data-sljt="tooltip"]').tooltip(); or $('body').tooltip({ selector: '[data-sljt="tooltip"]'});
         <br/>
-        {{#sf-button class="slds-button--neutral" data-sljt="tooltip" data-placement="top" title="Test LA LA LA LA LA LA L AL A LA LAL AL LAL AL LA"}}
+        {{#sf-button class="slds-button--neutral" data-sljs="tooltip" data-placement="top" title="Test LA LA LA LA LA LA L AL A LA LAL AL LAL AL LA"}}
             <div>Hover for tooltip</div>
         {{/sf-button}}
     </div>
@@ -111,9 +111,9 @@
             </popoverBody>
         {{/sf-popover}}
         <div>
-            POPOVERS - JQUERY - initialize with $('[data-sljt="popover"]').popover();
+            POPOVERS - JQUERY - initialize with $('[data-sljs="popover"]').popover();
             <div>
-                <button class="slds-button slds-button--neutral slds-button--small" data-sljt="popover" data-placement="right">Click for popover
+                <button class="slds-button slds-button--neutral slds-button--small" data-sljs="popover" data-placement="right">Click for popover
                 </button>
                 <div class="slds-popover slds-nubbin--left" role="dialog">
                     <div class="slds-popover__content">

@@ -2,17 +2,17 @@ if (typeof jQuery === "undefined") { throw new Error("The Salesforce Lightning J
 
 (function($) {
     var showTooltip = function(e) {
-        var $target = $(e.target).closest('[data-sljt="tooltip"]');
+        var $target = $(e.target).closest('[data-sljs="tooltip"]');
 
-        if (!$target.attr('data-sljt-title')) {
-            $target.attr('data-sljt-title', $target.attr('title'));
+        if (!$target.attr('data-sljs-title')) {
+            $target.attr('data-sljs-title', $target.attr('title'));
             $target.attr('title', ''); 
             $target.css('position', 'relative');
         }
-        var toolkitId = $target.attr('data-sljt-id') || 'sljt-' + (new Date()).valueOf();
+        var toolkitId = $target.attr('data-sljs-id') || 'sljs-' + (new Date()).valueOf();
         var nubbinHeight = 15;
         var nubbinWidth = 15;
-        var tooltipContent = $target.attr('data-sljt-title');
+        var tooltipContent = $target.attr('data-sljs-title');
         var tooltipPosition = $target.attr('data-placement') || 'top';
         var tooltipNubbins = {
             top: 'bottom',
@@ -30,7 +30,7 @@ if (typeof jQuery === "undefined") { throw new Error("The Salesforce Lightning J
                                 '</div>' +
                             '</div>';
 
-        if (Ember.isEmpty($target.find('.slds-tooltip'))) {
+        if ($target.find('.slds-tooltip').length === 0) {
             $target.append(tooltipMarkup);
             var $tooltipNode = $target.find('.slds-tooltip');
 
@@ -48,7 +48,7 @@ if (typeof jQuery === "undefined") { throw new Error("The Salesforce Lightning J
     };
 
     var hideTooltip = function(e) {
-        var $target = $(e.target).closest('[data-sljt="tooltip"]');
+        var $target = $(e.target).closest('[data-sljs="tooltip"]');
         var $tooltipNode = $target.find('.slds-tooltip');
 
         if ($tooltipNode !== null) {

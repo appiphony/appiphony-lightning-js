@@ -1,5 +1,5 @@
-require('app/sljt-popover');
-require('app/sljt-tooltips');
-require('app/sljt-datepicker');
+require('app/jquery.sljs-popover');
+require('app/jquery.sljs-tooltips');
+require('app/jquery.sljs-datepicker');
 require('app/templates');
 require('app/explore1');

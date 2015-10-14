@@ -27,6 +27,7 @@
                 </div>
             </div>
         </div>
+        <br>
         <div class="slds-form-element">
             <div aria-expanded="true" class="slds-picklist" data-sljs="picklist">
                 <button class="slds-button slds-button--neutral slds-picklist__label" aria-haspopup="true">
@@ -50,7 +51,9 @@
     <script src="../src/jquery.sljs-picklist.js"></script>
     <script>
         $(document).ready(function() {
-            $('[data-sljs="picklist"]').picklist();
+            $('[data-sljs="picklist"]').picklist({
+                assetsLocation: '.'
+            });
         });
     </script>
 </body>

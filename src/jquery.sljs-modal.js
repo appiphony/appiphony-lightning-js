@@ -2,17 +2,15 @@
     $.fn.modal = function(args, options) {
         var modals = $('.slds-modal');
         var self = this;
-        
-        modals.hide(); // Hide any currently visible modals
+        var bodyTag = $('body');
+        var ariaTarget = $('> *:not(.sljs-modal-container, script, link, meta)', bodyTag);
         
         if (args !== null && typeof args === 'string') { // If calling an action
-            var settings = $.extend({ // Extend the default settings established below
+            var settings = $.extend({
                     dismissModalSelector: '[data-dismiss="modal"]',
-                    appendBackdropTo: '.slds',
                     onShow: function() {},
                     onDismiss: function() {}
                 }, options);
-            var bodyTag = $('body');
             var dismissModalElement = $(settings.dismissModalSelector);
             var modalElements = $('.slds-modal__header, .slds-modal__content, .slds-modal__footer');
             
@@ -29,8 +27,8 @@
             
             switch (args) {
                 case 'show':
-                    $('.slds-modal-backdrop').remove(); // Remove any existing backdrops; safety net
-                    $(settings.appendBackdropTo).append('<div class="slds-modal-backdrop"></div>'); // Append backdrop
+                    $('.slds-modal-backdrop').remove(); // Remove any existing backdrops
+                    $('.sljs-modal-container').append('<div class="slds-modal-backdrop"></div>');
                     
                     bodyTag.keyup(keyUpCheck);
                     self.removeClass('slds-fade-in-open')
@@ -47,6 +45,8 @@
                         e.preventDefault();
                         dismissModal();
                     });
+                    
+                    ariaTarget.attr('aria-hidden', 'true');
                     break;
                     
                 case 'dismiss':
@@ -57,8 +57,10 @@
                     setTimeout(function() {
                         $('.slds-modal-backdrop').remove();
                         self.hide()
-                            .trigger('sljs.modaldismiss');
+                            .trigger('sljs.modaldismiss'); // Custom SLJS event
                     }, 400);
+                    
+                    ariaTarget.attr('aria-hidden', 'false');
                     break;
                     
                 case 'trigger':
@@ -72,7 +74,14 @@
                     console.error('The action you entered does not exist.');
             }
         } else { // If initializing plugin with options
-            $('.slds-modal-backdrop').remove(); // Remove any existing backdrops; safety net
+            $('.slds-modal-backdrop').remove(); // Remove any existing backdrops
+            bodyTag.append('<div class="slds sljs-modal-container"></div>');
+            
+            var modalContainer = $('.sljs-modal-container');
+            
+            modals.appendTo(modalContainer)
+                .append('<div class="slds-modal-backdrop"></div>')
+                .hide();
             
             self.click(function(e) {
                 e.preventDefault();

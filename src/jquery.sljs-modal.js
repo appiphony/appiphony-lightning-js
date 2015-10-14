@@ -39,9 +39,7 @@
                     setTimeout(function() { // Ensure elements are displayed and rendered before adding classes
                         $('.slds-modal-backdrop').addClass('slds-modal-backdrop--open');
                         self.addClass('slds-fade-in-open')
-                            .click(dismissModal) // Allows for dismiss on click away
                             .trigger('sljs.modalshow'); // Custom SLJS event
-                        modalElements.click(function(e) { e.stopPropagation(); }); // Don't trigger dismiss on click away
                         settings.onShow.call(self);
                     }, 25);
                     

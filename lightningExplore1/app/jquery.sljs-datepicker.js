@@ -83,11 +83,50 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
             this.setSelectedFullDate(initDate);
         }
 
-        this.bindInteractivity();  
+        this.initInteractivity();  
     };
 
     Datepicker.prototype = {
         constructor: Datepicker,
+        initInteractivity: function() {
+            var self = this;
+            var $datepickerEl = this.$datepickerEl;
+            var $el = this.$el;
+
+            // Opening datepicker
+            $el.on('focus', function(e) {
+                var initDate = self.selectedFullDate || moment();
+                self.viewedMonth = initDate.month();
+                self.viewedYear = initDate.year();
+                self.fillMonth();
+
+                if ($el.closest('.slds-form-element').next($datepickerEl).length > 0) {
+                    $datepickerEl.show();
+                } else {
+                    $el.closest('.slds-form-element').after($datepickerEl);   
+                    $([$el, $datepickerEl]).each(function() {
+                        $(this).on('click', self.blockClose);
+                    });         
+                }   
+            });
+
+            $datepickerEl.on('click', this, this.processClick);
+
+            $('body').on('click', function(e) {
+                self.closeDatepicker();
+            });
+
+            /* focus out?
+            $([$el, $datepickerEl.find('button')]).each(function() {
+                $(this).on('blur', function(e) {
+                    if ($(e.relatedTarget).closest('.slds-form--stacked').find($el).length === 0) {
+                        self.closeDatepicker();
+                    }
+                    //self.closeDatepicker();
+                });
+            });
+            */
+        },
         fillMonth: function() {
             var self = this;
             var dayLabels = this.options.dayLabels;
@@ -235,33 +274,6 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
         setSelectedFullDate: function(selectedFullDate) {
             this.selectedFullDate = selectedFullDate;
             this.$el.val(selectedFullDate.format(this.options.format));
-        },
-        bindInteractivity: function() {
-            var self = this;
-            var $datepickerEl = this.$datepickerEl;
-            var $el = this.$el;
-
-            // Opening datepicker
-            $el.on('focus', function(e) {
-                var initDate = self.selectedFullDate || moment();
-                self.viewedMonth = initDate.month();
-                self.viewedYear = initDate.year();
-                self.fillMonth();
-
-                if ($el.closest('.slds-form-element').next($datepickerEl).length > 0) {
-                    $datepickerEl.show();
-                } else {
-                    $el.closest('.slds-form-element').after($datepickerEl);   
-                    $([$el, $datepickerEl]).each(function() {
-                        $(this).on('click', self.blockClose);
-                    });         
-                }   
-            });
-
-            $datepickerEl.on('click', this, this.processClick);
-            $('body').on('click', function(e) {
-                self.closeDatepicker();
-            });
         },
         processClick: function(e) {
             e.preventDefault();

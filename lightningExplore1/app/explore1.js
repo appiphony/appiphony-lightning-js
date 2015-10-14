@@ -12,7 +12,7 @@ Ember.Object.reopen({
 Ember.Component.reopen({
     attributeBindings: ['data-qa-button', 'data-open-modal', 'data-close-modal', 
                         'data-open-popover', 'data-close-popover', 'data-toggle-popover',
-                        'disabled', 'title', 'data-sljt', 'data-placement', 'sf-title']
+                        'disabled', 'title', 'data-sljs', 'data-placement', 'sf-title']
 });
 
 App.ExploreView = Ember.View.extend({

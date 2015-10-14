@@ -20,8 +20,12 @@ if (typeof jQuery === "undefined") { throw new Error("The Salesforce Lightning J
 
             // kill other popovers
             otherPopovers.each(function() {
-                $(this).unwrap();
-                $(this).remove();
+                $el = $(this);
+                
+                if (!($el.hasClass('slds-hide'))) {
+                    $(this).unwrap();
+                    $(this).remove();
+                } 
             });
 
             $target.after(popoverElement);

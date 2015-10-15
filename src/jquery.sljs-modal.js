@@ -1,13 +1,36 @@
-(function($) {    
+(function($) {
+    var sljsBodyTag = $('body');
+    var sljsModals = $('.slds-modal');
+    
+    function initModals(element) {
+        $('.slds-modal-backdrop').remove(); // Remove any existing backdrops
+        sljsBodyTag.append('<div class="slds sljs-modal-container"></div>');
+        
+        var modalContainer = $('.sljs-modal-container');
+        
+        sljsModals.appendTo(modalContainer)
+            .append('<div class="slds-modal-backdrop"></div>')
+            .hide();
+    }
+    
+    function bindClick(obj, args) {
+        var modalId = obj.data('sljs-show');
+        var targetModal = $('#' + modalId);
+        
+        if (modalId === undefined) console.error('No "data-sljs--show" attribute has been set.');
+        else targetModal.modal('show', args);
+    }
+    
     $.fn.modal = function(args, options) {
-        var modals = $('.slds-modal');
         var self = this;
-        var bodyTag = $('body');
-        var ariaTarget = $('> *:not(.sljs-modal-container, script, link, meta)', bodyTag);
+        var ariaTarget = $('> *:not(.sljs-modal-container, script, link, meta)', sljsBodyTag);
+        var hasSelector = (args && args.hasOwnProperty('selector')) ? true : false;
         
         if (args !== null && typeof args === 'string') { // If calling an action
             var settings = $.extend({
-                    dismissModalSelector: '[data-dismiss="modal"]',
+                    selector: null,
+                    dismissModalSelector: '[data-sljs-dismiss="modal"]',
+                    backdropDismiss: false,
                     onShow: function() {},
                     onDismiss: function() {}
                 }, options);
@@ -15,13 +38,13 @@
             var modalElements = $('.slds-modal__header, .slds-modal__content, .slds-modal__footer');
             
             function keyUpCheck(e) {
-                if (e.keyCode == 27 && modals.is(':visible')) dismissModal(); // Esc key
+                if (e.keyCode == 27 && sljsModals.is(':visible')) dismissModal(); // Esc key
             }
             
             function dismissModal() {
                 self.modal('dismiss', settings)
                     .unbind('click');
-                bodyTag.unbind('keyup', keyUpCheck);
+                sljsBodyTag.unbind('keyup', keyUpCheck);
                 dismissModalElement.unbind('click');
             }
             
@@ -30,7 +53,7 @@
                     $('.slds-modal-backdrop').remove(); // Remove any existing backdrops
                     $('.sljs-modal-container').append('<div class="slds-modal-backdrop"></div>');
                     
-                    bodyTag.keyup(keyUpCheck);
+                    sljsBodyTag.keyup(keyUpCheck);
                     self.removeClass('slds-fade-in-open')
                         .show();
                     
@@ -47,6 +70,7 @@
                     });
                     
                     ariaTarget.attr('aria-hidden', 'true');
+                    console.log('show');
                     break;
                     
                 case 'dismiss':
@@ -61,10 +85,11 @@
                     }, 400);
                     
                     ariaTarget.attr('aria-hidden', 'false');
+                    console.log('dismiss');
                     break;
                     
                 case 'trigger':
-                    var modalId = self.data('show');
+                    var modalId = self.data('sljs-show');
                     var targetModal = $('#' + modalId);
                     
                     targetModal.modal('show', settings);
@@ -73,25 +98,14 @@
                 default:
                     console.error('The action you entered does not exist.');
             }
+        } else if (hasSelector && this.length === 1) { // If allowing for selector to trigger post-init
+            function clickEvent(e) { bindClick($(e.target), args); }
+            
+            initModals($(args.selector));
+            this.on('click', args.selector, clickEvent);
         } else { // If initializing plugin with options
-            $('.slds-modal-backdrop').remove(); // Remove any existing backdrops
-            bodyTag.append('<div class="slds sljs-modal-container"></div>');
-            
-            var modalContainer = $('.sljs-modal-container');
-            
-            modals.appendTo(modalContainer)
-                .append('<div class="slds-modal-backdrop"></div>')
-                .hide();
-            
-            self.click(function(e) {
-                e.preventDefault();
-                
-                var modalId = $(this).data('show');
-                var targetModal = $('#' + modalId);
-                
-                if (modalId === undefined) console.error('No "data-show" attribute has been set.');
-                else targetModal.modal('show', args);
-            });
+            initModals(self);
+            self.click(function() { bindClick($(this), args); });
         }
         
         return this;

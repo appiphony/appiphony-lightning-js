@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tootip Demo 1 | Salesforce Lightning jQuery Swag</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles/salesforce-lightning-design-system-vf.css">
+</head>
+
+<body>
+    <div class="slds">
+    	<div style="padding-top: 50px; padding-left:100px;">
+    		<button class="slds-button slds-button--neutral slds-button--small" data-sljs="tooltip" data-placement="top" title="Up top!">Top</button>
+	        <button class="slds-button slds-button--neutral slds-button--small" data-sljs="tooltip" data-placement="right" title="Right here!">Right</button>
+	        <button class="slds-button slds-button--neutral slds-button--small" data-sljs="tooltip" data-placement="bottom" title="Down low!">Bottom</button>
+	        <button class="slds-button slds-button--neutral slds-button--small" data-sljs="tooltip" data-placement="left" title="To the left, to the left.">Left</button>
+        <div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../src/jquery.sljs-tooltip.js"></script>
+    <script type="text/javascript">
+    	$('body').tooltip({selector: '[data-sljs="tooltip"]'});
+    </script>
+</body>
+
+</html>

@@ -20,7 +20,7 @@ if (typeof jQuery === "undefined") { throw new Error("The Salesforce Lightning J
             left: 'right',
             right: 'left'
         };
-        var tooltipPositioningCSS = 'overflow: visible;';
+        var tooltipPositioningCSS = 'overflow: visible; display: inline-block;';
 
         var tooltipMarkup = '<div id="' + toolkitId + '" aria-describedby="' + toolkitId + '" class="slds-tooltip slds-nubbin--' + (tooltipNubbins[tooltipPosition] || 'top') + '" role="tooltip" style="' + tooltipPositioningCSS +'">' +
                                 '<div class="slds-tooltip__content">' +
@@ -30,12 +30,11 @@ if (typeof jQuery === "undefined") { throw new Error("The Salesforce Lightning J
                                 '</div>' +
                             '</div>';
 
-        if ($target.find('.slds-tooltip').length === 0) {
-            $target.append(tooltipMarkup);
-            var $tooltipNode = $target.find('.slds-tooltip');
+        if ($target.next('.slds-tooltip').length === 0) {
+            $target.after(tooltipMarkup);
+            var $tooltipNode = $target.next('.slds-tooltip');
 
-            $tooltipNode.css('width', $tooltipNode.innerWidth() + 'px');
-            $tooltipNode.css('position', 'absolute');
+            $tooltipNode.css('width', ($tooltipNode.innerWidth() + 1) + 'px'); // Adding one, as a buffer since widths are rounded down.
 
             if (tooltipPosition === 'top' || tooltipPosition === 'bottom') {
                 $tooltipNode.css(tooltipPosition, '-' + ($tooltipNode.innerHeight() + nubbinHeight) + 'px');
@@ -44,15 +43,22 @@ if (typeof jQuery === "undefined") { throw new Error("The Salesforce Lightning J
                 $tooltipNode.css('top', ($target.innerHeight() / 2) - ($tooltipNode.innerHeight() / 2) + 'px'); 
                 $tooltipNode.css(tooltipPosition, '-' + ($tooltipNode.innerWidth() + nubbinWidth) + 'px');
             }
+            $([$target[0], $tooltipNode[0]]).wrapAll('<span data-sljs="tooltip-container" style="position: relative; display: inline-block;"></span>');
+            $tooltipNode.css('position', 'absolute');
+
+            if (e.type === 'focusin') {
+                $target.focus();
+            }
         } 
     };
 
     var hideTooltip = function(e) {
         var $target = $(e.target).closest('[data-sljs="tooltip"]');
-        var $tooltipNode = $target.find('.slds-tooltip');
+        var $tooltipNode = $target.next('.slds-tooltip');
 
-        if ($tooltipNode !== null) {
+        if ($tooltipNode.length > 0 && $target.parent().data('sljs') === 'tooltip-container') {
             $tooltipNode.remove();
+            $target.unwrap();
         }
     };
 
@@ -67,13 +73,13 @@ if (typeof jQuery === "undefined") { throw new Error("The Salesforce Lightning J
             return this.on('mouseenter', settings.selector, showTooltip)
                 .on('focusin', settings.selector, showTooltip)
                 .on('mouseleave', settings.selector, hideTooltip)
-                .on('focusout', settings.selector, hideTooltip);
+                .on('blur', settings.selector, hideTooltip);
         } else {
             return this.each(function() {
                 $(this).on('mouseenter', showTooltip)
                        .on('focusin', showTooltip)
                        .on('mouseleave', hideTooltip)
-                       .on('focusout', hideTooltip);
+                       .on('blur', hideTooltip);
             });
         }
     };

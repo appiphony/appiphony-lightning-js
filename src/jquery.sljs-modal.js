@@ -1,6 +1,7 @@
 (function($) {
     var sljsBodyTag = $('body');
     var sljsModals = $('.slds-modal');
+    var sljsRefocusTarget = null; // Element to refocus on modal dismiss
     
     function initModals(element) {
         $('.slds-modal-backdrop').remove(); // Remove any existing backdrops
@@ -13,28 +14,33 @@
             .hide();
     }
     
-    function bindClick(obj, args) {
+    function showModal(obj, args) {
         var modalId = obj.data('sljs-show');
         var targetModal = $('#' + modalId);
         
-        if (modalId === undefined) console.error('No "data-sljs--show" attribute has been set.');
-        else targetModal.modal('show', args);
+        if (modalId === undefined) console.error('No "data-sljs-show" attribute has been set.');
+        else {
+            targetModal.modal('show', args);
+            obj.blur();
+            sljsRefocusTarget = obj;
+        }
     }
     
     $.fn.modal = function(args, options) {
         var self = this;
         var ariaTarget = $('> *:not(.sljs-modal-container, script, link, meta)', sljsBodyTag);
+        var tabTarget = $('[href], [contentEditable="true"], button, a, input, textarea', ariaTarget);
         var hasSelector = (args && args.hasOwnProperty('selector')) ? true : false;
         
         if (args !== null && typeof args === 'string') { // If calling an action
             var settings = $.extend({
                     selector: null,
-                    dismissModalSelector: '[data-sljs-dismiss="modal"]',
+                    dismissSelector: '[data-sljs-dismiss="modal"]',
                     backdropDismiss: false,
                     onShow: function() {},
                     onDismiss: function() {}
                 }, options);
-            var dismissModalElement = $(settings.dismissModalSelector);
+            var dismissModalElement = $(settings.dismissSelector);
             var modalElements = $('.slds-modal__header, .slds-modal__content, .slds-modal__footer');
             
             function keyUpCheck(e) {
@@ -45,6 +51,7 @@
                 self.modal('dismiss', settings)
                     .unbind('click');
                 sljsBodyTag.unbind('keyup', keyUpCheck);
+                sljsModals.unbind('click');
                 dismissModalElement.unbind('click');
             }
             
@@ -57,35 +64,42 @@
                     self.removeClass('slds-fade-in-open')
                         .show();
                     
+                    dismissModalElement.click(function(e) { // Bind events based on options
+                        e.preventDefault();
+                        dismissModal();
+                    });
+                    
+                    if (settings.backdropDismiss) {
+                        sljsModals.click(dismissModal);
+                        modalElements.click(function(e) { e.stopPropagation(); });
+                    }
+                    
+                    ariaTarget.attr('aria-hidden', 'true');
+                    tabTarget.attr('tabindex', '-1');
+                    
                     setTimeout(function() { // Ensure elements are displayed and rendered before adding classes
                         $('.slds-modal-backdrop').addClass('slds-modal-backdrop--open');
                         self.addClass('slds-fade-in-open')
                             .trigger('sljs.modalshow'); // Custom SLJS event
                         settings.onShow.call(self);
                     }, 25);
-                    
-                    dismissModalElement.click(function(e) { // Bind events based on options
-                        e.preventDefault();
-                        dismissModal();
-                    });
-                    
-                    ariaTarget.attr('aria-hidden', 'true');
-                    console.log('show');
                     break;
                     
                 case 'dismiss':
                     $('.slds-modal-backdrop').removeClass('slds-modal-backdrop--open');
                     self.removeClass('slds-fade-in-open');
                     settings.onDismiss.call(self);
+                    ariaTarget.attr('aria-hidden', 'false');
+                    tabTarget.removeAttr('tabindex');
+                    
+                    if (sljsRefocusTarget !== null) sljsRefocusTarget.focus();
                     
                     setTimeout(function() {
                         $('.slds-modal-backdrop').remove();
+                        sljsRefocusTarget = null;
                         self.hide()
                             .trigger('sljs.modaldismiss'); // Custom SLJS event
                     }, 400);
-                    
-                    ariaTarget.attr('aria-hidden', 'false');
-                    console.log('dismiss');
                     break;
                     
                 case 'trigger':
@@ -98,14 +112,14 @@
                 default:
                     console.error('The action you entered does not exist.');
             }
-        } else if (hasSelector && this.length === 1) { // If allowing for selector to trigger post-init
-            function clickEvent(e) { bindClick($(e.target), args); }
+        } else if (hasSelector && this.length === 1) { // If allowing for selector to trigger modals post-init
+            function clickEvent(e) { showModal($(e.target), args); }
             
             initModals($(args.selector));
             this.on('click', args.selector, clickEvent);
         } else { // If initializing plugin with options
             initModals(self);
-            self.click(function() { bindClick($(this), args); });
+            self.click(function() { showModal($(this), args); });
         }
         
         return this;

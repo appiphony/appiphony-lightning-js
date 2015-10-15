@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Modal Demo 1 | Salesforce Lightning jQuery System</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles/salesforce-lightning-design-system-vf.css">
+</head>
+
+<body>
+    <div class="slds">
+        <div class="slds-button slds-button--neutral" data-sljs="modal" data-show="modal-1">Modal 1</div>
+        <div class="slds-button slds-button--neutral" data-sljs="modal" data-show="modal-2">Modal 2</div>
+
+        <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open" id="modal-1">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <h2 class="slds-text-heading--medium">Modal Header</h2>
+                    <button class="slds-button slds-modal__close" data-dismiss="modal">
+                        <svg aria-hidden="true" class="slds-button__icon slds-button__icon--inverse slds-button__icon--large">
+                            <use xlink:href="assets/icons/action-sprite/svg/symbols.svg#close"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                </div>
+                <div class="slds-modal__content">
+                    <div>
+                        <p>Sit nulla est ex deserunt exercitation anim occaecat. Nostrud ullamco deserunt aute id consequat veniam incididunt duis in sint irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit officia tempor esse quis. Cillum sunt ad dolore quis aute consequat ipsum magna exercitation reprehenderit magna. Tempor cupidatat consequat elit dolor adipisicing.</p>
+                        <p>Dolor eiusmod sunt ex incididunt cillum quis nostrud velit duis sit officia. Lorem aliqua enim laboris do dolor eiusmod officia. Mollit incididunt nisi consectetur esse laborum eiusmod pariatur proident. Eiusmod et adipisicing culpa deserunt nostrud ad veniam nulla aute est. Labore esse esse cupidatat amet velit id elit consequat minim ullamco mollit enim excepteur ea.</p>
+                    </div>
+                </div>
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button--neutral" data-dismiss="modal">Cancel</button>
+                    <button class="slds-button slds-button--neutral slds-button--brand" data-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open" id="modal-2">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        <h2 class="slds-text-heading--medium">Modal Header</h2>
+                        <button class="slds-button slds-modal__close" data-dismiss="modal">
+                            <svg aria-hidden="true" class="slds-button__icon slds-button__icon--inverse slds-button__icon--large">
+                                <use xlink:href="assets/icons/action-sprite/svg/symbols.svg#close"></use>
+                            </svg>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                    </div>
+                    <div class="slds-modal__content">
+                        <div>
+                            <p>Sit nulla est ex deserunt exercitation anim occaecat. Nostrud ullamco deserunt aute id consequat veniam incididunt duis in sint irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit officia tempor esse quis. Cillum sunt ad dolore quis aute consequat ipsum magna exercitation reprehenderit magna. Tempor cupidatat consequat elit dolor adipisicing.</p>
+                            <p>Dolor eiusmod sunt ex incididunt cillum quis nostrud velit duis sit officia. Lorem aliqua enim laboris do dolor eiusmod officia. Mollit incididunt nisi consectetur esse laborum eiusmod pariatur proident. Eiusmod et adipisicing culpa deserunt nostrud ad veniam nulla aute est. Labore esse esse cupidatat amet velit id elit consequat minim ullamco mollit enim excepteur ea.</p>
+                        </div>
+                    </div>
+                    <div class="slds-modal__footer slds-modal__footer--directional">
+                        <button class="slds-button slds-button--neutral" data-dismiss="modal">Skip This Step</button>
+                        <button class="slds-button slds-button--brand" data-dismiss="modal">Save &amp; Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../src/jquery.sljs-modal.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('[data-sljs="modal"]').modal();
+        });
+    </script>
+</body>
+
+</html>

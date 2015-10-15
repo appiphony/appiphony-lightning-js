@@ -1,9 +1,11 @@
+if (typeof jQuery === "undefined") { throw new Error("The Appiphony Lightning JavaScript modal plugin requires jQuery") }
+
 (function($) {
     var sljsBodyTag = $('body');
     var sljsModals = $('.slds-modal');
     var sljsRefocusTarget = null; // Element to refocus on modal dismiss
     
-    function initModals(element) {
+    function initModals() {
         $('.slds-modal-backdrop').remove(); // Remove any existing backdrops
         sljsBodyTag.append('<div class="slds sljs-modal-container"></div>');
         
@@ -11,6 +13,7 @@
         
         sljsModals.appendTo(modalContainer)
             .append('<div class="slds-modal-backdrop"></div>')
+            .attr('aria-hidden', 'true')
             .hide();
     }
     
@@ -18,7 +21,7 @@
         var modalId = obj.data('sljs-show');
         var targetModal = $('#' + modalId);
         
-        if (modalId === undefined) console.error('No "data-sljs-show" attribute has been set.');
+        if (modalId === undefined) console.error('No "data-sljs-show" attribute has been set');
         else {
             targetModal.modal('show', args);
             obj.blur();
@@ -62,6 +65,7 @@
                     
                     sljsBodyTag.keyup(keyUpCheck);
                     self.removeClass('slds-fade-in-open')
+                        .attr('aria-hidden', 'false')
                         .show();
                     
                     dismissModalElement.click(function(e) { // Bind events based on options
@@ -87,10 +91,11 @@
                     
                 case 'dismiss':
                     $('.slds-modal-backdrop').removeClass('slds-modal-backdrop--open');
-                    self.removeClass('slds-fade-in-open');
                     settings.onDismiss.call(self);
                     ariaTarget.attr('aria-hidden', 'false');
                     tabTarget.removeAttr('tabindex');
+                    self.removeClass('slds-fade-in-open')
+                        .attr('aria-hidden', 'true');
                     
                     if (sljsRefocusTarget !== null) sljsRefocusTarget.focus();
                     
@@ -110,15 +115,15 @@
                     break;
                     
                 default:
-                    console.error('The action you entered does not exist.');
+                    console.error('The action you entered does not exist');
             }
         } else if (hasSelector && this.length === 1) { // If allowing for selector to trigger modals post-init
             function clickEvent(e) { showModal($(e.target), args); }
             
-            initModals($(args.selector));
+            initModals();
             this.on('click', args.selector, clickEvent);
         } else { // If initializing plugin with options
-            initModals(self);
+            initModals();
             self.click(function() { showModal($(this), args); });
         }
         

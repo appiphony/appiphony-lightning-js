@@ -63,9 +63,30 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../src/jquery.sljs-modal.js"></script>
-    <!--<script>
+    <script>
         $(document).ready(function() {
             $('[data-sljs="modal"]').modal();
+        });
+    </script>
+    <!--<script>
+        $(document).ready(function() {
+            $('[data-sljs="modal"]').modal({
+                backdropDismiss: true,
+                dismissSelector: '.dismiss'
+            });
+        });
+    </script>-->
+    <!--<script>
+        $(document).ready(function() {
+            $('body').modal({ selector: '[data-sljs="modal"]' })
+        });
+    </script>-->
+    <!--<script>
+        $(document).ready(function() {
+            $('body').modal({
+                selector: '[data-sljs="modal"]',
+                backdropDismiss: true
+            })
         });
     </script>-->
 </body>

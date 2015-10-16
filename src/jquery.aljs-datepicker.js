@@ -1,6 +1,18 @@
 if (typeof jQuery === "undefined") { throw new Error("The Salesforce Lightning JavaScript Toolkit requires jQuery") }
 if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning JavaScript Toolkit requires momentjs") }
 
+(function($) {
+    if (typeof $._aljs === 'undefined') {
+        $._aljs = {
+            assetsLocation: ''
+        };
+
+        $._aljsInit = function(options) {
+            $._aljs = options;
+        }
+    }
+})(jQuery);
+
 // based on bootstrap-datepicker.js 
 
 
@@ -11,7 +23,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
         '<div class="slds-datepicker__filter slds-grid">' +
             '<div class="slds-datepicker__filter--month slds-grid slds-grid--align-spread slds-size--3-of-4">' +
                 '<div class="slds-align-middle">' +
-                    '<button id="sljs-prevButton" class="slds-button slds-button--icon-container">' +
+                    '<button id="aljs-prevButton" class="slds-button slds-button--icon-container">' +
                         '<svg aria-hidden="true" class="slds-button__icon slds-button__icon--small">' +
                             '<use xlink:href="{{sldsUrl}}/assets/icons/utility-sprite/svg/symbols.svg#left"></use>' +
                         '</svg>' +
@@ -20,7 +32,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
                 '</div>' +
                 '<h2 id="month" class="slds-align-middle" aria-live="assertive" aria-atomic="true"></h2>' +
                 '<div class="slds-align-middle">' +
-                    '<button id="sljs-nextButton" class="slds-button slds-button--icon-container">' +
+                    '<button id="aljs-nextButton" class="slds-button slds-button--icon-container">' +
                         '<svg aria-hidden="true" class="slds-button__icon slds-button__icon--small">' +
                             '<use xlink:href="{{sldsUrl}}/assets/icons/utility-sprite/svg/symbols.svg#right"></use>' +
                         '</svg>' +
@@ -31,7 +43,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
             '<div class="slds-form-element"><div class="slds-form-element__control">' +
                 '<div class="slds-picklist datepicker__filter--year slds-shrink-none">' +
                 // '<button id="year" class="slds-button slds-button--neutral slds-picklist__label" aria-haspopup="true">' +
-                //     '<span id="sljs-year"></span>' +
+                //     '<span id="aljs-year"></span>' +
                 //     '<svg aria-hidden="true" class="slds-icon slds-icon--small">' +
                 //         '<use xlink:href="{{sldsUrl}}/assets/icons/utility-sprite/svg/symbols.svg#down"></use>' +
                 //     '</svg>' +
@@ -77,7 +89,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
         this.$el = $(el);
 
         var initDate = moment(options.initDate) || moment();
-        var endDateId = this.$el.data('sljs-end-date');
+        var endDateId = this.$el.data('aljs-end-date');
 
         this.$datepickerEl = $(datepickerMenuMarkup.replace(/{{sldsUrl}}/g, options.assetsLocation) + datepickerTableMarkup);
         this.options = options;
@@ -154,6 +166,8 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
             var monthArray = this.getMonthArray();
             var $monthTableBody = $('<tbody>');
             var isMultiSelect = this.$elEndDate && this.$elEndDate.length > 0;
+            var selectedFullDate = this.selectedFullDate;
+            var selectedEndDate = this.selectedEndDate;
             
             monthArray.forEach(function(rows) {
                 var $weekRow = $('<tr>').appendTo($monthTableBody);
@@ -163,7 +177,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
                 }
 
                 rows.data.forEach(function(col, colIndex) {
-                    var $dayCol = $('<td data-sljs-date="' + col.dateValue + '">').appendTo($weekRow);
+                    var $dayCol = $('<td data-aljs-date="' + col.dateValue + '">').appendTo($weekRow);
 
                     $dayCol.prop({
                         headers: dayLabels[colIndex].full,
@@ -177,7 +191,9 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
                         $dayCol.prop('aria-disabled', 'true');
                     }
 
-                    if (col.isSelected || col.isSelectedEndDate || col.isSelectedMulti) {
+                    if (col.isSelected || col.isSelectedEndDate || col.isSelectedMulti || 
+                                (!isMultiSelect && !selectedFullDate && col.isToday) ||
+                                (isMultiSelect && !selectedEndDate && col.isToday)) {
                         $dayCol.prop('aria-selected', 'true');
                         $dayCol.addClass(isMultiSelect ? 'slds-is-selected-multi slds-is-selected' : 'slds-is-selected');
                     } else {
@@ -193,7 +209,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
 
             this.$datepickerEl.find('tbody').replaceWith($monthTableBody);
             this.$datepickerEl.find('#month').text(this.options.monthLabels[this.viewedMonth].full);
-            this.$datepickerEl.find('#sljs-year').text(this.viewedYear);
+            this.$datepickerEl.find('#aljs-year').text(this.viewedYear);
         },
         initYearDropdown: function() {
             var self = this;
@@ -208,7 +224,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
 
                 $yearSelect = $('<select class="slds-select select picklist__label">').appendTo($yearDropdown);
 
-             //   var $yearContainer = $('<div id="sljs-yearDropdown" class="slds-dropdown slds-dropdown--menu">');
+             //   var $yearContainer = $('<div id="aljs-yearDropdown" class="slds-dropdown slds-dropdown--menu">');
              //   var $yearDropdown = $('<ul class="slds-dropdown__list" style="max-height: 13.5rem; overflow-y:auto;"></ul>').appendTo($yearContainer);
                 var currentYear = moment().year();
                 // var selectedIconMarkup = ('<svg aria-hidden="true" class="slds-icon slds-icon--small slds-icon--left">' +
@@ -328,19 +344,19 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
             var self = e.data;
             var $target = $(e.target);
 
-            if ($target.closest('#sljs-prevButton').length > 0) {
+            if ($target.closest('#aljs-prevButton').length > 0) {
                 self.clickPrev(e);
             }
 
-            if ($target.closest('#sljs-nextButton').length > 0) {
+            if ($target.closest('#aljs-nextButton').length > 0) {
                 self.clickNext(e);
             }
 
-            if ($target.closest('td[data-sljs-date]').length > 0) {
+            if ($target.closest('td[data-aljs-date]').length > 0) {
                 self.clickDate(e);
             }
 
-            if ($target.closest('li[data-sljs-year]').length > 0) {
+            if ($target.closest('li[data-aljs-year]').length > 0) {
                 self.clickYear(e);
             }
 
@@ -376,14 +392,14 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
         clickYear: function(e) {
             var self = e.data;
 
-            var $clickedYear = $(e.target).closest('li[data-sljs-year]');
-            self.viewedYear = parseInt($clickedYear.data('sljs-year'));
+            var $clickedYear = $(e.target).closest('li[data-aljs-year]');
+            self.viewedYear = parseInt($clickedYear.data('aljs-year'));
             self.fillMonth();
         },
         clickYearDropdown: function(e) {
             var self = e.data;
 
-            if (self.$datepickerEl.find('#sljs-yearDropdown').length > 0) {
+            if (self.$datepickerEl.find('#aljs-yearDropdown').length > 0) {
                 self.hideYearDropdown();
             } else {
                 self.showYearDropdown();
@@ -391,10 +407,10 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
         },
         clickDate: function(e) {
             var self = e.data;
-            var $clickedDate = $(e.target).closest('td[data-sljs-date]');
+            var $clickedDate = $(e.target).closest('td[data-aljs-date]');
 
             if (!($clickedDate.hasClass('slds-disabled-text'))) {
-                var selectedDate = $clickedDate.data('sljs-date');
+                var selectedDate = $clickedDate.data('aljs-date');
 
                 if (self.$elEndDate && self.$elEndDate.length > 0 && self.$elEndDate[0] === self.$selectedInput[0]) {
                     self.setSelectedEndDate(moment(selectedDate, 'MM/DD/YYYY'));
@@ -435,7 +451,9 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
     $.fn.datepicker = function(options, val) {
     
         var settings = $.extend({
-            assetsLocation: '',
+            // These are the defaults.
+
+            assetsLocation: $._aljs.assetsLocation,
             numYearsBefore: 50,
             numYearsAfter: 10,
             format: 'MM/DD/YYYY',
@@ -519,7 +537,6 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
                     abbv: ''
                 }
             ]
-            // These are the defaults.
             
         }, typeof options === 'object' ? options : {});
 
@@ -527,7 +544,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
         return this.each(function() {
             var $this = $(this),
                 data = $this.data('datepicker'),
-                endDateId = $this.data('sljs-end-date');
+                endDateId = $this.data('aljs-end-date');
 
             if (!data) {
                 $this.data('datepicker', (data = new Datepicker(this, settings)));

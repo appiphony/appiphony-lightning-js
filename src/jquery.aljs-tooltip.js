@@ -2,17 +2,17 @@ if (typeof jQuery === "undefined") { throw new Error("The Appiphony Lightning Ja
 
 (function($) {
     var showTooltip = function(e) {
-        var $target = $(e.target).closest('[data-sljs="tooltip"]');
+        var $target = $(e.target).closest('[data-aljs="tooltip"]');
         
-        if (!$target.attr('data-sljs-title')) {
-            $target.attr('data-sljs-title', $target.attr('title'));
+        if (!$target.attr('data-aljs-title')) {
+            $target.attr('data-aljs-title', $target.attr('title'));
             $target.attr('title', ''); 
             $target.css('position', 'relative');
         }
-        var toolkitId = $target.attr('data-sljs-id') || 'sljs-' + (new Date()).valueOf();
+        var toolkitId = $target.attr('data-aljs-id') || 'aljs-' + (new Date()).valueOf();
         var nubbinHeight = 15;
         var nubbinWidth = 15;
-        var tooltipContent = $target.attr('data-sljs-title');
+        var tooltipContent = $target.attr('data-aljs-title');
         var tooltipPosition = $target.attr('data-placement') || 'top';
         var tooltipNubbins = {
             top: 'bottom',
@@ -43,7 +43,7 @@ if (typeof jQuery === "undefined") { throw new Error("The Appiphony Lightning Ja
                 $tooltipNode.css('top', ($target.innerHeight() / 2) - ($tooltipNode.innerHeight() / 2) + 'px'); 
                 $tooltipNode.css(tooltipPosition, '-' + ($tooltipNode.innerWidth() + nubbinWidth) + 'px');
             }
-            $([$target[0], $tooltipNode[0]]).wrapAll('<span data-sljs="tooltip-container" style="position: relative; display: inline-block;"></span>');
+            $([$target[0], $tooltipNode[0]]).wrapAll('<span data-aljs="tooltip-container" style="position: relative; display: inline-block;"></span>');
             $tooltipNode.css('position', 'absolute');
             
             if (e.type === 'focusin') {
@@ -53,10 +53,10 @@ if (typeof jQuery === "undefined") { throw new Error("The Appiphony Lightning Ja
     };
     
     var hideTooltip = function(e) {
-        var $target = $(e.target).closest('[data-sljs="tooltip"]');
+        var $target = $(e.target).closest('[data-aljs="tooltip"]');
         var $tooltipNode = $target.next('.slds-tooltip');
         
-        if ($tooltipNode.length > 0 && $target.parent().data('sljs') === 'tooltip-container') {
+        if ($tooltipNode.length > 0 && $target.parent().data('aljs') === 'tooltip-container') {
             $tooltipNode.remove();
             $target.unwrap();
         }

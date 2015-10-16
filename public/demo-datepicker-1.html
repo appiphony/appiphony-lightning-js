@@ -30,7 +30,7 @@
 		        		<svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
 		          			<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#event"></use>
 		        		</svg>
-		        		<input id="startDate" data-sljs-end-date="endDate" class="slds-input" type="text" placeholder="Pick a Date" label="Date Picker Label" />
+		        		<input id="startDate" data-aljs-end-date="endDate" class="slds-input" type="text" placeholder="Pick a Date" label="Date Picker Label" />
 		      		</div>
 		    	</div>
 		  	</div>
@@ -48,10 +48,14 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../lib/moment/moment.js"></script>
-    <script src="../src/jquery.sljs-datepicker.js"></script>
+    <script src="../src/jquery.aljs-datepicker.js"></script>
     <script type="text/javascript">
-    	$('#date').datepicker({assetsLocation: ''});
-    	$('#startDate').datepicker({assetsLocation: ''});
+    	$._aljsInit({
+    		assetsLocation: '.'
+    	});
+
+    	$('#date').datepicker();
+    	$('#startDate').datepicker();
     </script>
 </body>
 

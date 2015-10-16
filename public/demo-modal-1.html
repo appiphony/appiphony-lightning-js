@@ -9,14 +9,14 @@
 
 <body>
     <div class="slds">
-        <div class="slds-button slds-button--neutral" data-sljs="modal" data-show="modal-1">Modal 1</div>
-        <div class="slds-button slds-button--neutral" data-sljs="modal" data-show="modal-2">Modal 2</div>
+        <button class="slds-button slds-button--neutral" data-sljs="modal" data-sljs-show="modal-1">Modal 1</button>
+        <button class="slds-button slds-button--neutral" data-sljs="modal" data-sljs-show="modal-2">Modal 2</button>
 
         <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open" id="modal-1">
             <div class="slds-modal__container">
                 <div class="slds-modal__header">
                     <h2 class="slds-text-heading--medium">Modal Header</h2>
-                    <button class="slds-button slds-modal__close" data-dismiss="modal">
+                    <button class="slds-button slds-modal__close" data-sljs-dismiss="modal">
                         <svg aria-hidden="true" class="slds-button__icon slds-button__icon--inverse slds-button__icon--large">
                             <use xlink:href="assets/icons/action-sprite/svg/symbols.svg#close"></use>
                         </svg>
@@ -30,8 +30,8 @@
                     </div>
                 </div>
                 <div class="slds-modal__footer">
-                    <button class="slds-button slds-button--neutral" data-dismiss="modal">Cancel</button>
-                    <button class="slds-button slds-button--neutral slds-button--brand" data-dismiss="modal">Save</button>
+                    <button class="slds-button slds-button--neutral" data-sljs-dismiss="modal">Cancel</button>
+                    <button class="slds-button slds-button--neutral slds-button--brand" data-sljs-dismiss="modal">Save</button>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
                 <div class="slds-modal__container">
                     <div class="slds-modal__header">
                         <h2 class="slds-text-heading--medium">Modal Header</h2>
-                        <button class="slds-button slds-modal__close" data-dismiss="modal">
+                        <button class="slds-button slds-modal__close" data-sljs-dismiss="modal">
                             <svg aria-hidden="true" class="slds-button__icon slds-button__icon--inverse slds-button__icon--large">
                                 <use xlink:href="assets/icons/action-sprite/svg/symbols.svg#close"></use>
                             </svg>
@@ -54,8 +54,8 @@
                         </div>
                     </div>
                     <div class="slds-modal__footer slds-modal__footer--directional">
-                        <button class="slds-button slds-button--neutral" data-dismiss="modal">Skip This Step</button>
-                        <button class="slds-button slds-button--brand" data-dismiss="modal">Save &amp; Next</button>
+                        <button class="slds-button slds-button--neutral" data-sljs-dismiss="modal">Skip This Step</button>
+                        <button class="slds-button slds-button--brand" data-sljs-dismiss="modal">Save &amp; Next</button>
                     </div>
                 </div>
             </div>
@@ -68,6 +68,27 @@
             $('[data-sljs="modal"]').modal();
         });
     </script>
+    <!--<script>
+        $(document).ready(function() {
+            $('[data-sljs="modal"]').modal({
+                backdropDismiss: true,
+                dismissSelector: '.dismiss'
+            });
+        });
+    </script>-->
+    <!--<script>
+        $(document).ready(function() {
+            $('body').modal({ selector: '[data-sljs="modal"]' })
+        });
+    </script>-->
+    <!--<script>
+        $(document).ready(function() {
+            $('body').modal({
+                selector: '[data-sljs="modal"]',
+                backdropDismiss: true
+            })
+        });
+    </script>-->
 </body>
 
 </html>

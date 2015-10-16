@@ -22,12 +22,36 @@
 		    	</div>
 		  	</div>
 		</div>
+		<div class="slds-form--stacked slds-float--left">
+		  	<div class="slds-form-element">
+		    	<label class="slds-form-element__label" for="date">Multi Select Date Picker Label</label>
+		    	<div class="slds-form-element__control">
+		      		<div class="slds-input-has-icon slds-input-has-icon--right">
+		        		<svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
+		          			<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#event"></use>
+		        		</svg>
+		        		<input id="startDate" data-sljs-end-date="endDate" class="slds-input" type="text" placeholder="Pick a Date" label="Date Picker Label" />
+		      		</div>
+		    	</div>
+		  	</div>
+		  	<div class="slds-form-element">
+		    	<div class="slds-form-element__control">
+		      		<div class="slds-input-has-icon slds-input-has-icon--right">
+		        		<svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
+		          			<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#event"></use>
+		        		</svg>
+		        		<input id="endDate" class="slds-input" type="text" placeholder="Pick a Date" label="Date Picker Label" />
+		      		</div>
+		    	</div>
+		  	</div>
+		</div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../lib/moment/moment.js"></script>
     <script src="../src/jquery.sljs-datepicker.js"></script>
     <script type="text/javascript">
-    	$('#date').datepicker({assetsLocation: '.'});
+    	$('#date').datepicker({assetsLocation: ''});
+    	$('#startDate').datepicker({assetsLocation: ''});
     </script>
 </body>
 

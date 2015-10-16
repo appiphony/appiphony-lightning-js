@@ -2,7 +2,7 @@
     $.fn.picklist = function(options) {
         var settings = $.extend({
             assetsLocation: '',
-            callback: function() {}
+            onChange: function() {}
         }, options);
         var dropdowns = $('.slds-picklist .slds-dropdown');
         var bodyTag = $('body');
@@ -46,7 +46,7 @@
                 
                     var value = $(this).html();
                 
-                    settings.callback.call(this);
+                    settings.onChange.call(obj);
                     target.hide();
                     trigger.trigger('sljs.picklistchange') // Custom SLJS event
                         .focus();

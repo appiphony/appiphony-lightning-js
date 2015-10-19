@@ -140,7 +140,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
                         });         
                         $datepickerEl.on('click', self, self.processClick);
                     //}  
-                    if ()
+                    //if ()
                     self.$selectedInput.blur();
                     $('body').on('click', self, self.closeDatepicker); 
                 }    
@@ -460,7 +460,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
     };
 
     $.fn.datepicker = function(options, val) {
-    
+        var internalReturn;
         var settings = $.extend({
             // These are the defaults.
 
@@ -552,7 +552,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
         }, typeof options === 'object' ? options : {});
 
 
-        return this.each(function() {
+        this.each(function() {
             var $this = $(this),
                 data = $this.data('datepicker'),
                 endDateId = $this.data('aljs-end-date');
@@ -561,8 +561,20 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
                 var datepickerData = new Datepicker(this, settings);
                 $this.data('datepicker', (data = datepickerData));
             }
-            
-            if (typeof options === 'string') data[options](val);
+
+            if (typeof options === 'string') {
+                internalReturn = data[options](val);
+            }
         });
+
+        if (internalReturn === undefined || internalReturn instanceof Datepicker) {
+            return this;
+        }
+
+        if (this.length > 1) {
+            throw new Error('Using only allowed for the collection of a single element (' + option + ' function)');
+        } else {
+            return internalReturn;
+        }
     };
 })(jQuery);

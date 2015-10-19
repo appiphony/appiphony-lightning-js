@@ -105,11 +105,15 @@
                 this.settings.onChange(this.obj);
             }
 
+        },
+        getValueId: function() {
+            return this.obj.valueId;
         }
     };
 
     $.fn.picklist = function(options) {
         var picklistArguments = arguments;
+        var internalReturn;
        // var arguments = arguments;
 
         var settings = $.extend({
@@ -121,7 +125,7 @@
             }
         }, typeof options === 'object' ? options : {});
 
-        return this.each(function() {
+        this.each(function() {
             var $this = $(this),
                 data = $this.data('aljs-picklist');
 
@@ -130,7 +134,19 @@
                 $this.data('aljs-picklist', (data = picklistData));
             }
             
-            if (typeof options === 'string') data[options](picklistArguments[1], picklistArguments[2]);
+            if (typeof options === 'string') {
+                internalReturn = data[options](picklistArguments[1], picklistArguments[2]);
+            }
         });
+
+        if (internalReturn === undefined || internalReturn instanceof Picklist) {
+            return this;
+        }
+
+        if (this.length > 1) {
+            throw new Error('Using only allowed for the collection of a single element (' + option + ' function)');
+        } else {
+            return internalReturn;
+        }
     }
 }(jQuery));

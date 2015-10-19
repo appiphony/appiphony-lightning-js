@@ -1,6 +1,6 @@
 // Kick off Ember
 App = Ember.Application.create({
-    rootElement: '#application'
+    rootElement: '#app'
 });
 
 
@@ -11,7 +11,7 @@ App.AljsController = Ember.ObjectController.extend({
 App.AljsRoute = Ember.Route.extend({
     model: function (){
         return {
-        	
+
         };
     }
 });

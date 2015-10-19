@@ -7,7 +7,7 @@ var gulp = require('gulp'),
 
 gulp.task('emberTemplates', function() {
 	gulp.src('./aljs-ember-app/templates/**/*.hbs')
-    .pipe(emberTemplates())
+    .pipe(emberTemplates({type: 'browser'}))
     .pipe(concat('templates.js'))
     .pipe(gulp.dest('./aljs-ember-app/'));
 });

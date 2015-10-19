@@ -10,8 +10,8 @@
 <body>
     <div class="slds">
         <div class="slds-form-element">
-            <div aria-expanded="true" class="slds-picklist" data-sljs="picklist">
-                <button class="slds-button slds-button--neutral slds-picklist__label" aria-haspopup="true">
+            <div aria-expanded="true" class="slds-picklist" data-aljs="picklist">
+                <button class="slds-button slds-button--neutral slds-picklist__label" aria-haspopup="true" id="test1">
                     <span class="slds-truncate">Select an Option</span>
                     <svg aria-hidden="true" class="slds-icon">
                         <use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#down"></use>
@@ -29,8 +29,8 @@
         </div>
         <br>
         <div class="slds-form-element">
-            <div aria-expanded="true" class="slds-picklist" data-sljs="picklist">
-                <button class="slds-button slds-button--neutral slds-picklist__label" aria-haspopup="true">
+            <div aria-expanded="true" class="slds-picklist" data-aljs="picklist">
+                <button class="slds-button slds-button--neutral slds-picklist__label" aria-haspopup="true" id="test2">
                     <span class="slds-truncate">Select an Option</span>
                     <svg aria-hidden="true" class="slds-icon">
                         <use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#down"></use>
@@ -48,19 +48,26 @@
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../src/jquery.sljs-picklist.js"></script>
+    <script src="../src/jquery.aljs-picklist.js"></script>
     <script>
         $(document).ready(function() {
-            $('[data-sljs="picklist"]').picklist({
-                assetsLocation: '.'
+            $('[data-aljs="picklist"]').picklist({
+                assetsLocation: '.',
+                onChange: function(x) {
+                    console.log(x);
+                }
             });
         });
     </script>
     <!--<script>
         $(document).ready(function() {
             $('body').picklist({
-                selector: '[data-sljs="picklist"]',
-                assetsLocation: '.'
+                selector: '[data-aljs="picklist"]',
+                assetsLocation: '.',
+                onChange: function(x) {
+                    console.log(x);
+                    console.log(x.triggerElement[0].id)
+                }
             });
         });
     </script>-->

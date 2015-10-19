@@ -1,44 +1,44 @@
 if (typeof jQuery === "undefined") { throw new Error("The Appiphony Lightning JavaScript modal plugin requires jQuery") }
 
 (function($) {
-    var sljsBodyTag = $('body');
-    var sljsModals = $('.slds-modal');
-    var sljsRefocusTarget = null; // Element to refocus on modal dismiss
+    var aljsBodyTag = $('body');
+    var aljsModals = $('.slds-modal');
+    var aljsRefocusTarget = null; // Element to refocus on modal dismiss
     
     function initModals() {
         $('.slds-modal-backdrop').remove(); // Remove any existing backdrops
-        sljsBodyTag.append('<div class="slds sljs-modal-container"></div>');
+        aljsBodyTag.append('<div class="slds aljs-modal-container"></div>');
         
-        var modalContainer = $('.sljs-modal-container');
+        var modalContainer = $('.aljs-modal-container');
         
-        sljsModals.appendTo(modalContainer)
+        aljsModals.appendTo(modalContainer)
             .append('<div class="slds-modal-backdrop"></div>')
             .attr('aria-hidden', 'true')
             .hide();
     }
     
     function showModal(obj, args) {
-        var modalId = obj.data('sljs-show');
+        var modalId = obj.data('aljs-show');
         var targetModal = $('#' + modalId);
         
-        if (modalId === undefined) console.error('No "data-sljs-show" attribute has been set');
+        if (modalId === undefined) console.error('No "data-aljs-show" attribute has been set');
         else {
             targetModal.modal('show', args);
             obj.blur();
-            sljsRefocusTarget = obj;
+            aljsRefocusTarget = obj;
         }
     }
     
     $.fn.modal = function(args, options) {
         var self = this;
-        var ariaTarget = $('> *:not(.sljs-modal-container, script, link, meta)', sljsBodyTag);
+        var ariaTarget = $('> *:not(.aljs-modal-container, script, link, meta)', aljsBodyTag);
         var tabTarget = $('[href], [contentEditable="true"], button, a, input, textarea', ariaTarget);
         var hasSelector = (args && args.hasOwnProperty('selector')) ? true : false;
         
         if (args !== null && typeof args === 'string') { // If calling an action
             var settings = $.extend({
                     selector: null,
-                    dismissSelector: '[data-sljs-dismiss="modal"]',
+                    dismissSelector: '[data-aljs-dismiss="modal"]',
                     backdropDismiss: false,
                     onShow: function() {},
                     onDismiss: function() {}
@@ -47,23 +47,23 @@ if (typeof jQuery === "undefined") { throw new Error("The Appiphony Lightning Ja
             var modalElements = $('.slds-modal__header, .slds-modal__content, .slds-modal__footer');
             
             function keyUpCheck(e) {
-                if (e.keyCode == 27 && sljsModals.is(':visible')) dismissModal(); // Esc key
+                if (e.keyCode == 27 && aljsModals.is(':visible')) dismissModal(); // Esc key
             }
             
             function dismissModal() {
                 self.modal('dismiss', settings)
                     .unbind('click');
-                sljsBodyTag.unbind('keyup', keyUpCheck);
-                sljsModals.unbind('click');
+                aljsBodyTag.unbind('keyup', keyUpCheck);
+                aljsModals.unbind('click');
                 dismissModalElement.unbind('click');
             }
             
             switch (args) {
                 case 'show':
                     $('.slds-modal-backdrop').remove(); // Remove any existing backdrops
-                    $('.sljs-modal-container').append('<div class="slds-modal-backdrop"></div>');
+                    $('.aljs-modal-container').append('<div class="slds-modal-backdrop"></div>');
                     
-                    sljsBodyTag.keyup(keyUpCheck);
+                    aljsBodyTag.keyup(keyUpCheck);
                     self.removeClass('slds-fade-in-open')
                         .attr('aria-hidden', 'false')
                         .show();
@@ -74,7 +74,7 @@ if (typeof jQuery === "undefined") { throw new Error("The Appiphony Lightning Ja
                     });
                     
                     if (settings.backdropDismiss) {
-                        sljsModals.click(dismissModal);
+                        aljsModals.click(dismissModal);
                         modalElements.click(function(e) { e.stopPropagation(); });
                     }
                     
@@ -84,7 +84,7 @@ if (typeof jQuery === "undefined") { throw new Error("The Appiphony Lightning Ja
                     setTimeout(function() { // Ensure elements are displayed and rendered before adding classes
                         $('.slds-modal-backdrop').addClass('slds-modal-backdrop--open');
                         self.addClass('slds-fade-in-open')
-                            .trigger('sljs.modalshow'); // Custom SLJS event
+                            .trigger('aljs.modalshow'); // Custom aljs event
                         settings.onShow.call(self);
                     }, 25);
                     break;
@@ -97,18 +97,18 @@ if (typeof jQuery === "undefined") { throw new Error("The Appiphony Lightning Ja
                     self.removeClass('slds-fade-in-open')
                         .attr('aria-hidden', 'true');
                     
-                    if (sljsRefocusTarget !== null) sljsRefocusTarget.focus();
+                    if (aljsRefocusTarget !== null) aljsRefocusTarget.focus();
                     
                     setTimeout(function() {
                         $('.slds-modal-backdrop').remove();
-                        sljsRefocusTarget = null;
+                        aljsRefocusTarget = null;
                         self.hide()
-                            .trigger('sljs.modaldismiss'); // Custom SLJS event
+                            .trigger('aljs.modaldismiss'); // Custom aljs event
                     }, 400);
                     break;
                     
                 case 'trigger':
-                    var modalId = self.data('sljs-show');
+                    var modalId = self.data('aljs-show');
                     var targetModal = $('#' + modalId);
                     
                     targetModal.modal('show', settings);

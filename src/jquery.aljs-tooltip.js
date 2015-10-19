@@ -1,6 +1,18 @@
 if (typeof jQuery === "undefined") { throw new Error("The Appiphony Lightning JavaScript tooltip plugin requires jQuery") }
 
 (function($) {
+    if (typeof $._aljs === 'undefined') {
+        $._aljs = {
+            assetsLocation: ''
+        };
+
+        $._aljsInit = function(options) {
+            $._aljs = options;
+        }
+    }
+})(jQuery);
+
+(function($) {
     var showTooltip = function(e) {
         var $target = $(e.target).closest('[data-aljs="tooltip"]');
         

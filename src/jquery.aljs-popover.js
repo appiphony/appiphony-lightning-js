@@ -1,6 +1,18 @@
 if (typeof jQuery === "undefined") { throw new Error("The Salesforce Lightning JavaScript Toolkit requires jQuery") }
 
 (function($) {
+    if (typeof $._aljs === 'undefined') {
+        $._aljs = {
+            assetsLocation: ''
+        };
+
+        $._aljsInit = function(options) {
+            $._aljs = options;
+        }
+    }
+})(jQuery);
+
+(function($) {
 
     var togglePopover = function(e) {
         var $target = $(e.target);

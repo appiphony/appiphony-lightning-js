@@ -130,16 +130,17 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
                     self.fillMonth();
                     self.$selectedInput = $(e.target);
 
-                    if ($el.closest('.slds-form-element').next('.slds-datepicker').length > 0) {
-                        $datepickerEl.show();
-                    } else {
+                    // if ($el.closest('.slds-form-element').next('.slds-datepicker').length > 0) {
+                    //     $datepickerEl.show();
+                    // } else {
                         self.$selectedInput.closest('.slds-form-element').append($datepickerEl);   
                         self.initYearDropdown();
                         $([$el, $datepickerEl, $elEndDate]).each(function() {
                             $(this).on('click', self.blockClose);
                         });         
                         $datepickerEl.on('click', self, self.processClick);
-                    }  
+                    //}  
+                    if ()
                     self.$selectedInput.blur();
                     $('body').on('click', self, self.closeDatepicker); 
                 }    
@@ -445,7 +446,17 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
         },
         setDate: function(date) {
             this.setSelectedFullDate(moment(date));
-        }
+        },
+        getEndDate: function(format) {
+            if (this.$elEndDate && this.selectedEndDate) {
+                return format ? this.selectedEndDate.format(format) : this.selectedEndDate;
+            }
+        },
+        setEndDate: function(date) {
+            if (this.$elEndDate) {
+                this.setSelectedEndDate(moment(date));
+            }
+        } 
     };
 
     $.fn.datepicker = function(options, val) {
@@ -547,126 +558,11 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
                 endDateId = $this.data('aljs-end-date');
 
             if (!data) {
-                $this.data('datepicker', (data = new Datepicker(this, settings)));
+                var datepickerData = new Datepicker(this, settings);
+                $this.data('datepicker', (data = datepickerData));
             }
+            
             if (typeof options === 'string') data[options](val);
         });
     };
 })(jQuery);
-/*
-<tr>
-    <td class="slds-disabled-text" headers="Sunday" role="gridcell" aria-disabled="true">
-        <span class="slds-day">31</span>
-    </td>
-    <td headers="Monday" role="gridcell" aria-selected="false">
-        <span class="slds-day">1</span>
-    </td>
-    <td headers="Tuesday" role="gridcell" aria-selected="false">
-        <span class="slds-day">2</span>
-    </td>
-    <td headers="Wednesday" role="gridcell" aria-selected="false">
-        <span class="slds-day">3</span>
-    </td>
-    <td headers="Thursday" role="gridcell" aria-selected="false">
-        <span class="slds-day">4</span>
-    </td>
-    <td headers="Friday" role="gridcell" aria-selected="false">
-        <span class="slds-day">5</span>
-    </td>
-    <td headers="Saturday" role="gridcell" aria-selected="false">
-        <span class="slds-day">6</span>
-    </td>
-</tr>
-<tr>
-    <td headers="Sunday" role="gridcell" aria-selected="false">
-        <span class="slds-day">7</span>
-    </td>
-    <td headers="Monday" role="gridcell" aria-selected="false">
-        <span class="slds-day">8</span>
-    </td>
-    <td headers="Tuesday" role="gridcell" aria-selected="false">
-        <span class="slds-day">9</span>
-    </td>
-    <td headers="Wednesday" role="gridcell" aria-selected="false">
-        <span class="slds-day">10</span>
-    </td>
-    <td headers="Thursday" role="gridcell" aria-selected="false">
-        <span class="slds-day">11</span>
-    </td>
-    <td headers="Friday" role="gridcell" aria-selected="false">
-        <span class="slds-day">12</span>
-    </td>
-    <td headers="Saturday" role="gridcell" aria-selected="false">
-        <span class="slds-day">13</span>
-    </td>
-</tr>
-<tr>
-    <td headers="Sunday" role="gridcell" aria-selected="false">
-        <span class="slds-day">14</span>
-    </td>
-    <td headers="Monday" role="gridcell" aria-selected="false">
-        <span class="slds-day">15</span>
-    </td>
-    <td headers="Tuesday" role="gridcell" aria-selected="false">
-        <span class="slds-day">16</span>
-    </td>
-    <td headers="Wednesday" role="gridcell" aria-selected="false">
-        <span class="slds-day">17</span>
-    </td>
-    <td class="slds-is-today" headers="Thursday" role="gridcell" aria-selected="false">
-        <span class="slds-day">18</span>
-    </td>
-    <td headers="Friday" role="gridcell" aria-selected="false">
-        <span class="slds-day">19</span>
-    </td>
-    <td headers="Saturday" role="gridcell" aria-selected="false">
-        <span class="slds-day">20</span>
-    </td>
-</tr>
-<tr>
-    <td headers="Sunday" role="gridcell" aria-selected="false">
-        <span class="slds-day">21</span>
-    </td>
-    <td headers="Monday" role="gridcell" aria-selected="false">
-        <span class="slds-day">22</span>
-    </td>
-    <td class="slds-is-selected" headers="Tuesday" role="gridcell" aria-selected="true">
-        <span class="slds-day">23</span>
-    </td>
-    <td headers="Wednesday" role="gridcell" aria-selected="false">
-        <span class="slds-day">24</span>
-    </td>
-    <td headers="Thursday" role="gridcell" aria-selected="false">
-        <span class="slds-day">25</span>
-    </td>
-    <td headers="Friday" role="gridcell" aria-selected="false">
-        <span class="slds-day">26</span>
-    </td>
-    <td headers="Saturday" role="gridcell" aria-selected="false">
-        <span class="slds-day">27</span>
-    </td>
-</tr>
-<tr>
-    <td headers="Sunday" role="gridcell" aria-selected="false">
-        <span class="slds-day">28</span>
-    </td>
-    <td headers="Monday" role="gridcell" aria-selected="false">
-        <span class="slds-day">29</span>
-    </td>
-    <td headers="Tuesday" role="gridcell" aria-selected="false">
-        <span class="slds-day">30</span>
-    </td>
-    <td class="slds-disabled-text" headers="Wednesday" role="gridcell" aria-disabled="true">
-        <span class="slds-day">1</span>
-    </td>
-    <td class="slds-disabled-text" headers="Thursday" role="gridcell" aria-disabled="true">
-        <span class="slds-day">2</span>
-    </td>
-    <td class="slds-disabled-text" headers="Friday" role="gridcell" aria-disabled="true">
-        <span class="slds-day">3</span>
-    </td>
-    <td class="slds-disabled-text" headers="Saturday" role="gridcell" aria-disabled="true">
-        <span class="slds-day">4</span>
-    </td>
-</tr>
-*/

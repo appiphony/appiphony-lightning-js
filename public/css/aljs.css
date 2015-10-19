@@ -1,6 +1,27 @@
+.aljs-home-header {
+    min-height: 50vh;
+    position: relative;
+}
+
 .site-masthead {
     background-color: #29739d;
 }
+
+/*.aljs-home-header:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: -moz-linear-gradient(-45deg, rgba(0, 161, 223, 0) 0%, rgba(0, 161, 223, 1) 150%);
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(0, 161, 223, 0)), color-stop(150%, rgba(0, 161, 223, 1)));
+    background: -webkit-linear-gradient(-45deg, rgba(0, 161, 223, 0) 0%, rgba(0, 161, 223, 1) 150%);
+    background: -o-linear-gradient(-45deg, rgba(0, 161, 223, 0) 0%, rgba(0, 161, 223, 1) 150%);
+    background: -ms-linear-gradient(-45deg, rgba(0, 161, 223, 0) 0%, rgba(0, 161, 223, 1) 150%);
+    background: linear-gradient(135deg, rgba(0, 161, 223, 0) 0%, rgba(0, 161, 223, 1) 150%);
+}*/
 
 @media (min-width: 48em) {
     .site-banner {
@@ -11,5 +32,8 @@
     }
     .site-navigation {
         width: 20rem;
+    }
+    .site-contentinfo {
+        margin-left: 20rem;
     }
 }

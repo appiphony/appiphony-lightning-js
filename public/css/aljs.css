@@ -1,0 +1,15 @@
+.site-masthead {
+    background-color: #29739d;
+}
+
+@media (min-width: 48em) {
+    .site-banner {
+        width: 20rem;
+    }
+    .site-main {
+        margin-left: 20rem;
+    }
+    .site-navigation {
+        width: 20rem;
+    }
+}

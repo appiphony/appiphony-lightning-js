@@ -11,32 +11,15 @@
             </div>
         </header>
         <div class="site-content slds-p-around--xx-large site-design site-design-layout">
-            <footer class="site-resources--landing slds-p-vertical--small">
-                <ul class="slds-grid slds-wrap slds-grid--align-spread slds-grid--pull-padded-large">
-                    <li class="slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2">
-                        <div class="grid-card">
-                            <div class="slds-grid slds-grid--align-spread">
-                                <h3 class="site-text-heading--label-weak-large slds-align-middle" id="downloads-header">jQuery</h3></div>
-                            <hr class="hr hr--pink">
-                            <p>Blah blah blah</p><a class="slds-button slds-button--neutral slds-m-top--large" href="#">Download</a></div>
-                    </li>
-                    <li class="slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2">
-                        <div class="grid-card">
-                            <div class="slds-grid slds-grid--align-spread">
-                                <h3 class="site-text-heading--label-weak-large slds-align-middle" id="tutorials-header">Ember (Coming Soon)</h3></div>
-                            <hr class="hr hr--orange">
-                            <p>Blah blah blah</p>
-                        </div>
-                    </li>
-                </ul>
-            </footer>
+            {{outlet}}
         </div>
     </div>
 </main>
 <nav id="navigation" class="site-navigation" role="navigation">
     <ul class="slds-list--vertical slds-has-block-links">
-        <li class="slds-list__item"><a class="" href="#">Demo 2</a></li>
-        <li class="slds-list__item"><a href="#">Demo 2</a></li>
+        {{#each section in sections}}
+            <li class="slds-list__item">{{#link-to section.path}}{{section.name}}{{/link-to}}</li>
+        {{/each}}
     </ul>
 </nav>
 <footer class="site-contentinfo slds-wrap site-text-longform slds-text-body--small" role="contentinfo">

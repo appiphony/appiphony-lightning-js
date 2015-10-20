@@ -15,7 +15,15 @@ gulp.task('emberTemplates', function() {
 gulp.task('neuter', function() {
 	gulp.src('./aljs-ember-app/aljs-compiler.js')
 		.pipe(neuter('aljs.pck.js'))
-		.pipe(gulp.dest('./src/'));
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(uglify())
+		.pipe(gulp.dest('./public/js'));
+});
+
+gulp.task('neuterDev', function() {
+    gulp.src('./aljs-ember-app/aljs-compiler.js')
+        .pipe(neuter('aljs.pck.js', 'aljs.map.js'))
+        .pipe(gulp.dest('./public/js'));
 });
 
 gulp.task('uglify', function() {
@@ -31,4 +39,11 @@ gulp.task('watch', function() {
     gulp.watch('./aljs-ember-app/**/*.js', ['neuter']);
 });
 
+gulp.task('watchDev', function() {
+    gulp.watch(['src/**/*.js', '!src/**/*.min.js'], ['uglify']);
+    gulp.watch('./aljs-ember-app/templates/**/*.hbs', ['emberTemplates']);
+    gulp.watch('./aljs-ember-app/**/*.js', ['neuterDev']);
+});
+
 gulp.task('default', ['emberTemplates', 'neuter', 'uglify', 'watch']);
+gulp.task('dev', ['emberTemplates', 'neuterDev', 'uglify', 'watchDev']);

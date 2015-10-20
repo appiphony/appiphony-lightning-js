@@ -1,3 +1,5 @@
+(function() {
+
 Ember.TEMPLATES["aljs"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -95,3 +97,68 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   data.buffer.push("<header class=\"site-masthead slds-grid\">\n    <div class=\"site-masthead-title slds-col slds-has-flexi-truncate slds-align-middle\">\n        <div class=\"slds-media__body\">\n            <div class=\"slds-grid\">\n                <h1 title=\"Appiphony Lightning JS\" class=\"slds-p-left--large\">Tooltips</h1></div>\n        </div>\n    </div>\n</header>\n<div class=\"site-content slds-p-around--xx-large site-design site-design-layout\">\nTest\n</div>\n<div class=\"site-resources--landing slds-p-vertical--small\">\n    <ul class=\"slds-grid slds-wrap slds-grid--align-spread slds-grid--pull-padded-large\">\n        <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n            <div class=\"grid-card\">\n                <div class=\"slds-grid slds-grid--align-spread\">\n                    <h3 class=\"site-text-heading--label-weak-large slds-align-middle\" id=\"downloads-header\">jQuery</h3>\n                </div>\n                <hr class=\"hr hr--pink\">\n                <iframe src=\"./demo-tooltip-1.html\"></iframe>\n            </div>\n        </li>\n        <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n            <div class=\"grid-card\">\n                <div class=\"slds-grid slds-grid--align-spread\">\n                    <h3 class=\"site-text-heading--label-weak-large slds-align-middle\" id=\"tutorials-header\">Ember (Coming Soon)</h3></div>\n                <hr class=\"hr hr--orange\">\n                <p>Blah blah blah</p>\n            </div>\n        </li>\n    </ul>\n</div>");
   
 });
+
+})();
+
+(function() {
+
+// Kick off Ember
+App = Ember.Application.create({
+    rootElement: '#app'
+});
+
+
+App.AljsController = Ember.ObjectController.extend({
+    
+});
+
+App.AljsRoute = Ember.Route.extend({
+    model: function (){
+        return {
+            sections: [
+                {
+                    path: 'modals',
+                    name: 'Modals'
+                },
+                {
+                    path: 'picklists',
+                    name: 'Picklists'
+                },
+                {
+                    path: 'tooltips',
+                    name: 'Tooltips'
+                },
+                {
+                    path: 'popovers',
+                    name: 'Popovers'
+                },
+                {
+                    path: 'datepickers',
+                    name: 'Datepickers'
+                }
+            ]
+        };
+    }
+});
+
+// Router
+App.Router.map(function() {
+    this.resource('aljs', { path: '/' }, function() {
+        this.resource('home', { path: '/' });
+    	this.resource('modals');
+    	this.resource('picklists');
+    	this.resource('tooltips');
+    	this.resource('popovers');
+    	this.resource('datepickers');
+    });
+});
+
+
+// // This setting disables the detail routing from showing up in the navbar.
+App.Router.reopen( {
+    location: 'none'
+});
+
+
+
+})();//@ sourceMappingURL=../../public/js/aljs.map.js

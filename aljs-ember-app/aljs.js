@@ -40,6 +40,7 @@ App.AljsRoute = Ember.Route.extend({
 // Router
 App.Router.map(function() {
     this.resource('aljs', { path: '/' }, function() {
+        this.resource('home', { path: '/' });
     	this.resource('modals');
     	this.resource('picklists');
     	this.resource('tooltips');

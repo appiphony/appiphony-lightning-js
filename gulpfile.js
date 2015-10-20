@@ -21,8 +21,10 @@ gulp.task('neuter', function() {
 });
 
 gulp.task('neuterDev', function() {
-    gulp.src('./aljs-ember-app/aljs-compiler.js')
-        .pipe(neuter('aljs.pck.js', 'aljs.map.js'))
+    gulp.src('aljs-ember-app/aljs-compiler.js')
+        .pipe(neuter('aljs.pck.js', 'aljs.map', {
+            basePath: 'aljs-ember-app/'
+        }))
         .pipe(gulp.dest('./public/js'));
 });
 

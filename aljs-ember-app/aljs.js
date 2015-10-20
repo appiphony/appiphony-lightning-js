@@ -3,6 +3,11 @@ App = Ember.Application.create({
     rootElement: '#app'
 });
 
+App.AljsView = Ember.View.extend({
+    didInsertElement: function() {
+        // insert jQuery code here
+    }
+});
 
 App.AljsController = Ember.ObjectController.extend({
     

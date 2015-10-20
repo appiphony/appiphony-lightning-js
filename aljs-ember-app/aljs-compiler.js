@@ -1,2 +1,2 @@
-require('aljs-ember-app/templates');
-require('aljs-ember-app/aljs');
+require('templates');
+require('aljs');

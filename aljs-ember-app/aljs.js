@@ -12,7 +12,7 @@ App.PreContainer = Ember.Component.extend({
 
 App.AljsView = Ember.View.extend({
     didInsertElement: function() {
-        // insert jQuery code here
+        $('pre').prettyPre();
     }
 });
 

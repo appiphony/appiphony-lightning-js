@@ -1,9 +1,59 @@
-.slds .aljs-home-header {
-    min-height: 50vh;
+.aljs-home-header {
+    height: 60vh;
     background-color: #1c4c67;
+    min-height: 400px;
 }
 
-.slds .aljs-home-header:before {
+pre {
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    background-color: #d8dde6;
+    margin-bottom: 0;
+    margin-top: 0;
+    position: relative;
+    padding: 1rem;
+}
+
+pre[type]:before {
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 10px;
+    display: block;
+    content: 'HTML';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem;
+    background-color: #16325c;
+    color: #fff;
+    text-align: center;
+    min-width: 100px;
+}
+
+pre[type="html"]:before {
+    content: 'HTML';
+}
+
+pre[type="js"]:before {
+    content: 'JS';
+}
+
+pre + pre {
+    margin-top: 1rem;
+}
+
+#app {
+    color: #5876a3;
+}
+a.aljs-home-link {
+    color: #16325c;
+}
+
+.site-main-content {
+    margin-top: inherit;
+    margin-bottom: inherit;
+}
+
+.aljs-home-header:before {
     display: block;
     content: '';
     position: absolute;
@@ -17,41 +67,45 @@
     opacity: 0.1;
 }
 
-.slds .site-resources--landing .grid-card {
+.site-resources--landing .grid-card {
     min-height: initial;
 }
 
-.slds .ember-logo, .slds .jquery-logo {
+.ember-logo, .jquery-logo {
     max-height: 50px;
     width: auto;
     margin-bottom: 30px;
 }
 
-.slds .jquery-logo {
+.grid-card > img {
+    max-height: 50px;
+}
+
+.jquery-logo {
     margin-top: 10px;
     margin-bottom: 20px;
 }
 
-.slds .aljs-home-header .slds-media__body {
+.aljs-home-header .slds-media__body {
     position: relative;
     z-index: 2;
 }
 
-.slds .aljs-logo {
+.aljs-logo {
     max-width: 600px;
 }
 
-.slds .slds-has-divider {
+.slds-has-divider {
     margin-top: 0;
     padding-top: 0;
 }
 
-.slds .slds-has-divider:last-child {
+.slds-has-divider:last-child {
     border-bottom: 1px solid #d8dde6;
 }
 
-.slds .aljs-icon {
-    max-width: 20px;
+.aljs-icon {
+    max-width: 18px;
     height: auto;
     display: inline-block;
     margin-right: 2px;
@@ -70,7 +124,7 @@
 @media only screen and (min-width: 1024px) {}
 
 @media only screen and (max-width: 768px) {
-    .slds .aljs-header-container {
+    .aljs-header-container {
         padding-left: inherit;
     }
 }

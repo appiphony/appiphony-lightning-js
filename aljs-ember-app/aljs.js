@@ -60,6 +60,10 @@ App.TooltipsController = Ember.ObjectController.extend(App.SelectedSectionMixin,
     routeName: 'tooltips'
 });
 
+App.ModalsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
+    routeName: 'modals'
+});
+
 App.AljsController = Ember.ObjectController.extend({
     init: function() {
         this._super();

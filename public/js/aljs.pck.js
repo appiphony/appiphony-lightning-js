@@ -1,6 +1,7 @@
 (function() {
 
-Ember.TEMPLATES["_modalsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["_modalsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
@@ -31,7 +32,8 @@ function program3(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["_modalsJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["_modalsJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
@@ -62,7 +64,8 @@ function program3(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["_picklistsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["_picklistsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
@@ -93,7 +96,8 @@ function program3(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["_picklistsJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["_picklistsJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
@@ -120,11 +124,12 @@ function program3(depth0,data) {
     'type': ("js")
   },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(3, program3, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n\n    </div>\n</div>");
+  data.buffer.push("\n        \n        <h4 class=\"site-text-heading--large\">Component Overview</h4>\n        <p>This table gives you a quick overview of the SLDS CSS classes that can be applied to this component.</p>\n        <div class=\"slds-scrollable--x\">\n            <table class=\"slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium\">\n                <thead>\n                    <tr class=\"site-text-heading--label\">\n                        <th scope=\"col\"><span>SLDS</span><span> class</span></th>\n                        <th scope=\"col\">Outcome</th>\n                        <th scope=\"col\">Required</th>\n                        <th scope=\"col\">Applied to</th>\n                        <th scope=\"col\">Comments</th>\n                    </tr>\n                </thead>\n                <tbody>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-table</code></th>\n                        <td data-label=\"Outcome\">Initializes data table</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\">\n                            <svg aria-hidden=\"true\" class=\"slds-icon slds-icon--x-small slds-icon-text-default\">\n                                <use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"assets/icons/utility-sprite/svg/symbols.svg#check\"></use>\n                            </svg><span class=\"slds-assistive-text\">Required</span></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>&lt;table&gt;</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-table--bordered</code></th>\n                        <td data-label=\"Outcome\">Adds borders to the table</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>.slds-table</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-table--striped</code></th>\n                        <td data-label=\"Outcome\">Adds stripes to alternating rows</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>.slds-table</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-is-selected</code></th>\n                        <td data-label=\"Outcome\">Changes row to selected state</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>&lt;tr&gt;</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-is-sortable</code></th>\n                        <td data-label=\"Outcome\">Enables user interactions for sorting a column</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>&lt;th&gt;</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-cell-wrap</code></th>\n                        <td data-label=\"Outcome\">Forces text to wrap in a cell</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>&lt;td&gt;</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-cell-shrink</code></th>\n                        <td data-label=\"Outcome\">Shrinks cell to width of content</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>&lt;th&gt;</code>, <code>&lt;td&gt;</code></td>\n                        <td data-label=\"Comments\">Use if cell contains a checkbox or action menu</td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-no-row-hover</code></th>\n                        <td data-label=\"Outcome\">Removes hover state on row</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>.slds-table</code></td>\n                        <td data-label=\"Comments\">Rows have a hover state by default</td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-scrollable--x</code></th>\n                        <td data-label=\"Outcome\">Creates a scrollable container for a table on smaller viewports</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\">parent <code>div</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-max-medium-table--stacked</code></th>\n                        <td data-label=\"Outcome\">Modifies table layout by stacking cells to accommodate smaller viewports</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>.slds-table</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-max-medium-table--stacked-horizontal</code></th>\n                        <td data-label=\"Outcome\">Modifies table layout by displaying the header and row data side by side for smaller viewports</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>.slds-table</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-hint-parent</code></th>\n                        <td data-label=\"Outcome\">Highlights action overflow ribbons on row hover</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>&lt;tr&gt;</code></td>\n                        <td data-label=\"Comments\">When you have an overflow action menu</td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n\n    </div>\n</div>");
   return buffer;
   
 });
-Ember.TEMPLATES["_tooltipsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["_tooltipsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
@@ -155,7 +160,8 @@ function program3(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["_tooltipsJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["_tooltipsJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
@@ -186,7 +192,8 @@ function program3(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["aljs-code-container"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["aljs-code-container"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', helper, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
@@ -210,7 +217,8 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   return buffer;
   
 });
-Ember.TEMPLATES["aljs"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["aljs"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
@@ -260,7 +268,8 @@ function program4(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["datepickers"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["datepickers"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
@@ -269,7 +278,32 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   data.buffer.push("<header class=\"site-masthead slds-grid\">\n    <div class=\"site-masthead-title slds-col slds-has-flexi-truncate slds-align-middle\">\n        <div class=\"slds-media__body\">\n            <div class=\"slds-grid\">\n                <h1 title=\"Appiphony Lightning JS\" class=\"slds-p-left--large\">Datepickers</h1></div>\n        </div>\n    </div>\n</header>\n<div class=\"site-content slds-p-around--xx-large site-design site-design-layout\">\nTest\n</div>\n<div class=\"site-resources--landing slds-p-vertical--small\">\n    <ul class=\"slds-grid slds-wrap slds-grid--align-spread slds-grid--pull-padded-large\">\n        <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n            <div class=\"grid-card\">\n                <div class=\"slds-grid slds-grid--align-spread\">\n                    <h3 class=\"site-text-heading--label-weak-large slds-align-middle\" id=\"downloads-header\">jQuery</h3></div>\n                <hr class=\"hr hr--pink\">\n                <iframe src=\"./demo-datepicker-1.html\"></iframe>\n        </li>\n        <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n            <div class=\"grid-card\">\n                <div class=\"slds-grid slds-grid--align-spread\">\n                    <h3 class=\"site-text-heading--label-weak-large slds-align-middle\" id=\"tutorials-header\">Ember (Coming Soon)</h3></div>\n                <hr class=\"hr hr--orange\">\n                <p>Blah blah blah</p>\n            </div>\n        </li>\n    </ul>\n</div>");
   
 });
-Ember.TEMPLATES["home"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["gettingStarted"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  
+  data.buffer.push("\n    <p class=\"site-text-introduction\">Intro paragraph.</p>\n    <p>Paragraph.</p>\n    <h4 class=\"site-text-heading--label\">Subhead</h4>\n    <p>Paragraph.</p>\n");
+  }
+
+  data.buffer.push(escapeExpression((helper = helpers['aljs-header'] || (depth0 && depth0['aljs-header']),options={hash:{
+    'label': ("Getting Started")
+  },hashTypes:{'label': "STRING"},hashContexts:{'label': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
+  data.buffer.push("\n");
+  options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}
+  if (helper = helpers['aljs-main-content']) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0['aljs-main-content']); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers['aljs-main-content']) { stack1 = blockHelperMissing.call(depth0, 'aljs-main-content', {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}); }
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  return buffer;
+  
+});
+Ember.TEMPLATES["home"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
@@ -278,7 +312,8 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   data.buffer.push("<header class=\"site-masthead slds-grid aljs-home-header\">\n    <div class=\"site-masthead-title slds-col slds-has-flexi-truncate slds-align-middle\">\n        <div class=\"slds-media__body aljs-header-container\">\n            <img src=\"images/aljs-logo.svg\" class=\"aljs-logo\">\n            <h2 class=\"slds-p-top--large slds-text-heading--medium\">Your JS Solution for the Lightning Design System</h2>\n            <p class=\"slds-p-top--xx-large\"><a class=\"slds-button slds-button--inverse\" href=\"#\">Download Latest</a> <a class=\"slds-button slds-button--inverse\" href=\"#\">Fork on GitHub</a></p>\n            <p class=\"slds-p-top--medium\"><strong>Current release:</strong> 0.0.1</p>\n        </div>\n    </div>\n</header>\n<div class=\"site-content slds-p-around--xx-large site-design site-design-layout\">\n    <div class=\"slds-grid slds-wrap\">\n        <div class=\"slds-col slds-p-right--xx-large slds-size--1-of-1 slds-large-size--1-of-4\">\n            <h2 class=\"slds-text-heading--medium slds-m-top--xx-small\">Available in Two Flavors</h2>\n            <p class=\"slds-p-vertical--medium\">Appiphony Lightning JS (ALJS) harnesses the power of jQuery and Ember to deliver a rich JavaScript experience to the <a href=\"http://www.lightningdesignsystem.com\" target=\"_blank\">Lightning Design System</a>.</p>\n        </div>\n        <div class=\"slds-col slds-size--1-of-1 slds-large-size--3-of-4\">\n            <div class=\"site-resources--landing slds-p-vertical--xx-small\">\n                <ul class=\"slds-grid slds-wrap slds-grid--align-spread slds-grid--pull-padded-large\">\n                    <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n                        <div class=\"grid-card\">\n                            <img src=\"images/jquery-logo.svg\" class=\"jquery-logo\">\n                            <hr class=\"hr hr--blue\">\n                            <p>jQuery is a fast, small, and feature-rich JavaScript library. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript.</p>\n                        </div>\n                    </li>\n                    <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n                        <div class=\"grid-card\">\n                            <img src=\"images/ember-logo.svg\" class=\"ember-logo\">\n                            <hr class=\"hr hr--orange\">\n                            <p>Ember.js helps developers be more productive out of the box. Designed with developer ergonomics in mind, its friendly APIs help you get your job done—fast.</p>\n                        </div>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n</div>");
   
 });
-Ember.TEMPLATES["modals"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["modals"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing;
@@ -310,7 +345,8 @@ function program1(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["picklists"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["picklists"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing;
@@ -342,7 +378,8 @@ function program1(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["popovers"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["popovers"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
@@ -351,7 +388,8 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   data.buffer.push("<header class=\"site-masthead slds-grid\">\n    <div class=\"site-masthead-title slds-col slds-has-flexi-truncate slds-align-middle\">\n        <div class=\"slds-media__body\">\n            <div class=\"slds-grid\">\n                <h1 title=\"Appiphony Lightning JS\" class=\"slds-p-left--large\">Popovers</h1></div>\n        </div>\n    </div>\n</header>\n<div class=\"site-content slds-p-around--xx-large site-design site-design-layout\">\nTest\n</div>\n<div class=\"site-resources--landing slds-p-vertical--small\">\n    <ul class=\"slds-grid slds-wrap slds-grid--align-spread slds-grid--pull-padded-large\">\n        <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n            <div class=\"grid-card\">\n                <div class=\"slds-grid slds-grid--align-spread\">\n                    <h3 class=\"site-text-heading--label-weak-large slds-align-middle\" id=\"downloads-header\">jQuery</h3></div>\n                <hr class=\"hr hr--pink\">\n                <p>Blah blah blah</p><a class=\"slds-button slds-button--neutral slds-m-top--large\" href=\"#\">Download</a></div>\n        </li>\n        <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n            <div class=\"grid-card\">\n                <div class=\"slds-grid slds-grid--align-spread\">\n                    <h3 class=\"site-text-heading--label-weak-large slds-align-middle\" id=\"tutorials-header\">Ember (Coming Soon)</h3></div>\n                <hr class=\"hr hr--orange\">\n                <p>Blah blah blah</p>\n            </div>\n        </li>\n    </ul>\n</div>");
   
 });
-Ember.TEMPLATES["tooltips"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["tooltips"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing;
@@ -383,7 +421,8 @@ function program1(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["components/aljs-demo-container"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["components/aljs-demo-container"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, self=this, escapeExpression=this.escapeExpression;
@@ -412,7 +451,8 @@ function program1(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["components/aljs-header"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["components/aljs-header"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1;
@@ -425,7 +465,8 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   return buffer;
   
 });
-Ember.TEMPLATES["components/aljs-main-content"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["components/aljs-main-content"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1;
@@ -438,7 +479,8 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   return buffer;
   
 });
-Ember.TEMPLATES["components/aljs-pre-container"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["components/aljs-pre-container"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, escapeExpression=this.escapeExpression;
@@ -537,6 +579,10 @@ App.AljsRoute = Ember.Route.extend({
         return {
             sections: [
                 {
+                    path: 'gettingStarted',
+                    name: 'Getting Started'
+                },
+                {
                     path: 'modals',
                     name: 'Modals'
                 },
@@ -577,7 +623,7 @@ App.AljsRoute = Ember.Route.extend({
 App.Router.map(function() {
     this.resource('aljs', { path: '/' }, function() {
         this.resource('home', { path: '/' });
-    	this.resource('getting-started');
+    	this.resource('gettingStarted');
     	this.resource('modals');
     	this.resource('picklists');
     	this.resource('tooltips');

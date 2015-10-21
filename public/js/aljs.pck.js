@@ -154,6 +154,7 @@ App.AljsView = Ember.View.extend({
 
 App.AljsPreContainerComponent = Ember.Component.extend({
     layoutName: 'components/aljs-pre-container',
+    classNames: 'aljs-pre-container',
     didInsertElement: function() {
         //this.$().prettyPre();
         var $this = this.$();

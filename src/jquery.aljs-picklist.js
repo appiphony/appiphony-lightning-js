@@ -1,87 +1,152 @@
 (function($) {
-    $.fn.picklist = function(options) {
-        obj = {};
-        
-        obj.settings = $.extend({
-            assetsLocation: '',
-            onChange: function() {}
-        }, options);
-        obj.dropdowns = $('.slds-picklist .slds-dropdown');
-        obj.bodyTag = $('body');
-        obj.checkmarkIcon = '<svg aria-hidden="true" class="slds-icon slds-icon--small slds-icon--left"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="' + obj.settings.assetsLocation + '/assets/icons/standard-sprite/svg/symbols.svg#task2"></use></svg>';
-        
-        obj.dropdowns.hide();
-        
-        function bindTrigger(element) {
-            obj.triggerElement = $('.slds-button', element);
-            obj.target = $('.slds-dropdown', element);
-            obj.choices = $('.slds-dropdown__item a', element);
-            
-            obj.target.hide();
-            
-            obj.triggerElement.unbind() // Prevent multiple bindings
+
+    var Picklist = function(el, options) {
+        this.$el = $(el);
+        this.obj = {
+            checkmarkIcon: '<svg aria-hidden="true" class="slds-icon slds-icon--small slds-icon--left"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="' + options.assetsLocation + '/assets/icons/standard-sprite/svg/symbols.svg#task2"></use></svg>'
+        };
+        this.settings = options;
+
+        this.bindTrigger();
+        this.bindChoices();  
+    };
+
+    Picklist.prototype = {
+        constructor: Picklist,
+        bindTrigger: function() {
+            var self = this;
+            var $el = this.$el;
+
+            this.obj.$trigger = $('.slds-button', $el);
+            this.obj.$dropdown = $('.slds-dropdown', $el);
+            this.obj.$choices = $('.slds-dropdown__item a', $el);
+                        
+            this.obj.$trigger.unbind() // Prevent multiple bindings
                 .click(function(e) {
                     e.stopPropagation();
                 
-                    obj.id = $(this).attr('id');
+                    self.obj.id = $(this).attr('id');
                 
-                    if (obj.target.is(':hidden')) {
-                        obj.dropdowns.hide(); // Close all dropdowns before opening
-                        obj.target.show();
-                        obj.choices.first()
-                            .focus();
+                    if (self.obj.$dropdown.is(':hidden')) {
+                        self.obj.$dropdown.show();
+
+                        if (self.obj.valueId === null || typeof self.obj.valueId === 'undefined') {
+                            self.focusedIndex = 0;
+                        } else {
+                            self.focusedIndex = self.obj.$dropdown.find('li').index(self.obj.$dropdown.find('#' + self.obj.valueId));
+                        }
+                        
+                        self.focusOnElement();
+                        self.obj.$dropdown.on('keyup', self, self.processKeypress);
                     } else {
-                        obj.target.hide();
+                        self.obj.$dropdown.hide();
+                        self.obj.$dropdown.unbind('keyup', self.processKeypress);
                     }
                 });
             
-            obj.bodyTag.click(function() { obj.target.hide(); });
-        }
-        
-        function bindChoices(element) {
-            obj.triggerElement = $('.slds-button', element);
-            obj.target = $('.slds-dropdown', element);
-            obj.choices = $('.slds-dropdown__item a', element);
-            obj.valueContainer = $('> span', obj.triggerElement);
+            $('body').click(function() { 
+                self.obj.$dropdown.hide();
+                self.obj.$dropdown.unbind('keyup', self.processKeypress);
+            });
+
+        },
+        processKeypress: function(e) {
+            var self = e.data;
+            var optionsLength = self.obj.$choices.length;
+            console.log('click');
+            if (e.keyCode === 40) {
+                self.focusedIndex = self.focusedIndex === optionsLength - 1 ? 0 : self.focusedIndex + 1;
+                self.focusOnElement();
+            } else if (e.keyCode === 38) {
+                self.focusedIndex = self.focusedIndex === 0 ? optionsLength - 1 : self.focusedIndex - 1;
+                self.focusOnElement();
+            }
+        },
+        focusOnElement: function() {
+            this.obj.$choices.eq(this.focusedIndex).focus();
+        },
+        bindChoices: function() {
+            var self = this;
+            this.obj.$valueContainer = $('> span', this.obj.$trigger);
             
-            obj.choices.unbind() // Prevent multiple bindings
+            this.obj.$choices.unbind() // Prevent multiple bindings
                 .click(function(e) {
                     e.stopPropagation();
                 
-                    obj.value = $(this).html();
-                    obj.settings.onChange(obj);
-                    obj.target.hide();
-                    obj.triggerElement.trigger('aljs.picklistchange') // Custom aljs event
-                        .focus();
-                
-                    obj.valueContainer.html(obj.value);
-                    obj.choices.parent()
-                        .removeClass('slds-is-selected')
-                        .find('.slds-icon')
-                        .remove();
-                
-                    $(this).append(obj.checkmarkIcon)
-                        .parent()
-                        .addClass('slds-is-selected');
+                    var optionId = $(this).closest('li').attr('id');
+
+                    self.setValueAndUpdateDom(optionId);
+                    self.settings.onChange(self.obj);
                 });
-        }
+        },
+        setValueAndUpdateDom: function(optionId) {
+            var $li = this.$el.find('#' + optionId);
+            this.obj.value = $li.find('a').html();
+            this.obj.valueId = optionId;
+            //self.settings.onChange(self.obj);
+            this.obj.$dropdown.hide();
+            this.obj.$dropdown.unbind('keyup', this.processKeypress);
+
+            this.obj.$trigger.trigger('aljs.picklistchange') // Custom aljs event
+                .focus();
         
-        if (obj.settings.selector && this.length === 1) { // If allowing for selector to trigger modals post-init
-            return this.on('click', obj.settings.selector, function(e) {
-                obj.elements = $(obj.settings.selector);
-                
-                obj.elements.each(function() {
-                    bindTrigger(this);
-                    bindChoices(this);
-                });
-                
-//                $(e.target).click();
-            });
+            this.obj.$valueContainer.html(this.obj.value);
+            this.obj.$choices.parent()
+                .removeClass('slds-is-selected')
+                .find('.slds-icon')
+                .remove();
+        
+            $li.addClass('slds-is-selected')
+                .find('a').append(this.obj.checkmarkIcon);
+        },
+        setValue: function(optionId, callOnChange) {
+            this.setValueAndUpdateDom(optionId);
+            if (callOnChange) {
+                this.settings.onChange(this.obj);
+            }
+
+        },
+        getValueId: function() {
+            return this.obj.valueId;
+        }
+    };
+
+    $.fn.picklist = function(options) {
+        var picklistArguments = arguments;
+        var internalReturn;
+       // var arguments = arguments;
+
+        var settings = $.extend({
+            // These are the defaults.
+
+            assetsLocation: '',
+            onChange: function(obj) {
+
+            }
+        }, typeof options === 'object' ? options : {});
+
+        this.each(function() {
+            var $this = $(this),
+                data = $this.data('aljs-picklist');
+
+            if (!data) {
+                var picklistData = new Picklist(this, settings);
+                $this.data('aljs-picklist', (data = picklistData));
+            }
+            
+            if (typeof options === 'string') {
+                internalReturn = data[options](picklistArguments[1], picklistArguments[2]);
+            }
+        });
+
+        if (internalReturn === undefined || internalReturn instanceof Picklist) {
+            return this;
+        }
+
+        if (this.length > 1) {
+            throw new Error('Using only allowed for the collection of a single element (' + option + ' function)');
         } else {
-            return this.each(function() {
-                bindTrigger(this);
-                bindChoices(this);
-            });
+            return internalReturn;
         }
     }
 }(jQuery));

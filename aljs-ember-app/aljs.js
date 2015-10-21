@@ -64,6 +64,14 @@ App.ModalsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
     routeName: 'modals'
 });
 
+App.PopoversController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
+    routeName: 'popovers'
+});
+
+App.DatepickersController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
+    routeName: 'datepickers'
+});
+
 App.AljsController = Ember.ObjectController.extend({
     init: function() {
         this._super();

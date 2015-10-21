@@ -3,6 +3,13 @@ App = Ember.Application.create({
     rootElement: '#app'
 });
 
+App.PreContainer = Ember.Component.extend({
+    layout: 'components/pre-container',
+    didInsertElement: function() {
+
+    }
+});
+
 App.AljsView = Ember.View.extend({
     didInsertElement: function() {
         // insert jQuery code here

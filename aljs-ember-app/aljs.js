@@ -28,19 +28,20 @@ App.AljsPreContainerComponent = Ember.Component.extend({
     classNames: 'aljs-pre-container',
     didInsertElement: function() {
         var $this = this.$();
-        console.log($this.find('[data-aljs="yield"]').html().trim());
         var markup = $this.find('[data-aljs="yield"]').remove().html().trim()
                             .replace(/<\/{0,1}([^\/highlight].*)>/g, '&lt;$1&gt;')
                             .replace(/<highlight>/g, '<span class="highlight">')
                             .replace(/<\/highlight>/g, '<\/span>');
-                            console.log(markup);
         $this.find('pre:first').append(markup);
-        //$this.find('pre:first').prettyPre();
     }
 });
 
 App.PicklistsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
     routeName: 'picklists'
+});
+
+App.TooltipsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
+    routeName: 'tooltips'
 });
 
 App.AljsController = Ember.ObjectController.extend({
@@ -83,6 +84,9 @@ App.AljsRoute = Ember.Route.extend({
     actions: {
         clickSection: function(section) {
             this.controllerFor('aljs').set('selectedSection', section);
+        },
+        didTransition: function() {
+            $(window).scrollTop(0,0);
         }
     }
 });

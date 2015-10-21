@@ -14,6 +14,7 @@ pre {
     position: relative;
     padding: 1rem;
 }
+
 pre {
     font-family: Consolas, Monaco, 'Andale Mono', monospace;
     white-space: pre;
@@ -45,10 +46,12 @@ pre[type="html"]:before {
 pre[type="js"]:before {
     content: 'JS';
 }
+
 pre .highlight {
     color: #ef7ead;
     font-weight: bold;
 }
+
 .aljs-pre-container + .aljs-pre-container {
     margin-top: 1rem;
 }
@@ -109,15 +112,6 @@ a.aljs-home-link {
     max-width: 600px;
 }
 
-.slds-has-divider {
-    margin-top: 0;
-    padding-top: 0;
-}
-
-.slds-has-divider:last-child {
-    border-bottom: 1px solid #d8dde6;
-}
-
 .aljs-icon {
     max-width: 18px;
     height: auto;
@@ -125,24 +119,15 @@ a.aljs-home-link {
     margin-right: 2px;
 }
 
-.site-navigation {
-    background-color: #f4f6f9;
-}
-
-.site-navigation a:hover {
-    background-color: #eceff5;
+#navigation a {
+    color: #16325c;
 }
 
 @media only screen and (max-width: 1024px) {}
 
 @media only screen and (min-width: 1024px) {}
 
-@media only screen and (max-width: 768px) {
-    /*.aljs-header-container {
-        padding-left: inherit;
-    }*/
-    
-}
+@media only screen and (max-width: 768px) {}
 
 @media only screen and (min-width: 768px) {}
 

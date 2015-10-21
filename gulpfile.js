@@ -22,7 +22,7 @@ gulp.task('neuter', function() {
 
 gulp.task('neuterDev', function() {
     gulp.src('aljs-ember-app/aljs-compiler.js')
-        .pipe(neuter('aljs.pck.js', 'aljs.map', {
+        .pipe(neuter('aljs.pck.js', null, {
             basePath: 'aljs-ember-app/'
         }))
         .pipe(gulp.dest('./public/js'));

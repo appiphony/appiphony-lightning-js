@@ -119,6 +119,11 @@ a.aljs-home-link {
     margin-right: 2px;
 }
 
+.slds-is-selected,
+.slds-is-active {
+    background-color: #f4f6f9;
+}
+
 #navigation a {
     color: #16325c;
 }

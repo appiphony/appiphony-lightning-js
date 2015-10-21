@@ -37,7 +37,7 @@ pre[type="js"]:before {
     content: 'JS';
 }
 
-.slds-tabs__content pre:not(:first-child) {
+.aljs-pre-container + .aljs-pre-container {
     margin-top: 1rem;
 }
 

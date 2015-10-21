@@ -1,7 +1,7 @@
 .aljs-home-header {
-    height: 60vh;
+    height: 55vh;
     background-color: #1c4c67;
-    min-height: 400px;
+    min-height: 460px;
 }
 
 pre {
@@ -37,7 +37,7 @@ pre[type="js"]:before {
     content: 'JS';
 }
 
-pre + pre {
+.slds-tabs__content pre:not(:first-child) {
     margin-top: 1rem;
 }
 

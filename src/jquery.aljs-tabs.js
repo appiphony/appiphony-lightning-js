@@ -1,4 +1,4 @@
-if (typeof jQuery === "undefined") { throw new Error("The Salesforce Lightning JavaScript Toolkit requires jQuery") }
+if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the ALJS initializer file") }
 
 (function($) {
 
@@ -42,7 +42,7 @@ if (typeof jQuery === "undefined") { throw new Error("The Salesforce Lightning J
         var settings = $.extend({
             // These are the defaults.
             initialTabId: '',
-            assetsLocation: '',
+            assetsLocation: $.aljs.assetsLocation,
             onChange: function(obj) {
 
             }

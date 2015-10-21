@@ -1,17 +1,5 @@
-if (typeof jQuery === "undefined") { throw new Error("The Salesforce Lightning JavaScript Toolkit requires jQuery") }
+if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the ALJS initializer file") }
 if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning JavaScript Toolkit requires momentjs") }
-
-(function($) {
-    if (typeof $._aljs === 'undefined') {
-        $._aljs = {
-            assetsLocation: ''
-        };
-
-        $._aljsInit = function(options) {
-            $._aljs = options;
-        }
-    }
-})(jQuery);
 
 // based on bootstrap-datepicker.js 
 
@@ -464,7 +452,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
         var settings = $.extend({
             // These are the defaults.
 
-            assetsLocation: $._aljs.assetsLocation,
+            assetsLocation: $.aljs.assetsLocation,
             numYearsBefore: 50,
             numYearsAfter: 10,
             format: 'MM/DD/YYYY',

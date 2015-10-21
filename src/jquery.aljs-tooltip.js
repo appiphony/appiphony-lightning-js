@@ -1,16 +1,4 @@
-if (typeof jQuery === "undefined") { throw new Error("The Appiphony Lightning JavaScript tooltip plugin requires jQuery") }
-
-(function($) {
-    if (typeof $._aljs === 'undefined') {
-        $._aljs = {
-            assetsLocation: ''
-        };
-
-        $._aljsInit = function(options) {
-            $._aljs = options;
-        }
-    }
-})(jQuery);
+if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the ALJS initializer file") }
 
 (function($) {
     var showTooltip = function(e) {
@@ -76,6 +64,7 @@ if (typeof jQuery === "undefined") { throw new Error("The Appiphony Lightning Ja
     
     $.fn.tooltip = function(options) {
         var settings = $.extend({
+            assetsLocation: $.aljs.assetsLocation
             // These are the defaults.
             
         }, options );

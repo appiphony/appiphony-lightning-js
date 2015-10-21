@@ -1,16 +1,4 @@
-if (typeof jQuery === "undefined") { throw new Error("The Salesforce Lightning JavaScript Toolkit requires jQuery") }
-
-(function($) {
-    if (typeof $._aljs === 'undefined') {
-        $._aljs = {
-            assetsLocation: ''
-        };
-
-        $._aljsInit = function(options) {
-            $._aljs = options;
-        }
-    }
-})(jQuery);
+if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the ALJS initializer file") }
 
 (function($) {
 
@@ -63,6 +51,7 @@ if (typeof jQuery === "undefined") { throw new Error("The Salesforce Lightning J
     $.fn.popover = function(options) {
     
         var settings = $.extend({
+            assetsLocation: $.aljs.assetsLocation,
             closeOthers: true
             // These are the defaults.
             

@@ -1,3 +1,5 @@
+if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the ALJS initializer file") }
+
 (function($) {
 
     var Picklist = function(el, options) {
@@ -119,7 +121,7 @@
         var settings = $.extend({
             // These are the defaults.
 
-            assetsLocation: '',
+            assetsLocation: $.aljs.assetsLocation,
             onChange: function(obj) {
 
             }

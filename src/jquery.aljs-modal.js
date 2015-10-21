@@ -1,4 +1,4 @@
-if (typeof jQuery === "undefined") { throw new Error("The Appiphony Lightning JavaScript modal plugin requires jQuery") }
+if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the ALJS initializer file") }
 
 (function($) {
     var aljsBodyTag = $('body');

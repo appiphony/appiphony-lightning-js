@@ -3,16 +3,21 @@ App = Ember.Application.create({
     rootElement: '#app'
 });
 
-App.PreContainer = Ember.Component.extend({
-    layout: 'components/pre-container',
+App.AljsView = Ember.View.extend({
     didInsertElement: function() {
-
+        
     }
 });
 
-App.AljsView = Ember.View.extend({
+App.AljsPreContainerComponent = Ember.Component.extend({
+    layoutName: 'components/aljs-pre-container',
     didInsertElement: function() {
-        $('pre').prettyPre();
+        //this.$().prettyPre();
+        var $this = this.$();
+        var markup = $this.find('[data-aljs="yield"]').remove().html().replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        $this.find('pre:first').append(markup);
+        $this.find('pre:first').prettyPre();
+        //console.log(this.$().html())
     }
 });
 

@@ -5,7 +5,7 @@ App = Ember.Application.create({
 
 App.AljsView = Ember.View.extend({
     didInsertElement: function() {
-        // insert jQuery code here
+        $('pre').prettyPre();
     }
 });
 

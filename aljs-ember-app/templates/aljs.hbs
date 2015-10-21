@@ -8,7 +8,7 @@
 <nav id="navigation" class="site-navigation" role="navigation">
     <ul class="slds-list--vertical slds-has-block-links">
         {{#each section in sections}}
-        	{{#link-to section.path tagName="li" class="slds-list__item slds-has-divider" activeClass="slds-is-selected slds-is-active"}}<a href="#">{{section.name}}</a>{{/link-to}}
+        	{{#link-to section.path tagName="li" class="slds-list__item" activeClass="slds-is-selected slds-is-active"}}<a href="#">{{section.name}}</a>{{/link-to}}
         {{/each}}
     </ul>
 </nav>

@@ -1,0 +1,15 @@
+<div class="slds-tabs--default">
+    <ul class="slds-tabs--default__nav" role="tablist">
+        <li {{bind-attr class=":slds-tabs__item :slds-text-heading--label isJQuery:slds-active"}} aria-controls="markup-1" aria-describedby="components-picklists-base" content="[object Object]" role="presentation" {{action "clickSection" "jQuery"}}>
+            <a tabindex="0" aria-selected="true">
+                jQuery
+            </a>
+        </li>
+        <li {{bind-attr class=":slds-tabs__item :slds-text-heading--label isEmber:slds-active"}} aria-controls="markup-2" aria-describedby="components-picklists-base" content="[object Object]" role="presentation" {{action "clickSection" "ember"}}>
+            <a tabindex="0" aria-selected="true">
+                Ember
+            </a>
+        </li>
+    </ul>
+    {{partial sectionPartial}}
+</div>

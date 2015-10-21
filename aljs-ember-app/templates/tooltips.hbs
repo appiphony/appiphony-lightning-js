@@ -1,45 +1,10 @@
-<header class="site-masthead slds-grid">
-    <div class="site-masthead-title slds-col slds-has-flexi-truncate slds-align-middle">
-        <div class="slds-media__body">
-            <div class="slds-grid">
-                <h1 title="Appiphony Lightning JS" class="slds-p-left--large">Tooltips</h1></div>
-        </div>
-    </div>
-</header>
-<div class="site-main-content slds-p-around--xx-large site-design site-design-layout">
+{{aljs-header label="Tooltips"}}
+{{#aljs-main-content}}
     <p class="site-text-introduction">Intro paragraph.</p>
     <p>Paragraph.</p>
     <h4 class="site-text-heading--label">Subhead</h4>
     <p>Paragraph.</p>
-    <h2 class="slds-p-top--xx-large site-text-heading--large site-text-heading--callout site-jump-anchor__container slds-m-bottom--medium" type="h2"><span id="base" class="site-text-heading--large site-text-heading--callout">Base</span><span class="slds-badge slds-m-left--medium slds-shrink-none slds-align-middle">prototype</span></h2>
-    <div class="slds-tabs--default">
-        <ul class="slds-tabs--default__nav" role="tablist">
-            <li class="slds-tabs__item slds-text-heading--label slds-active" aria-controls="iframe-1" aria-describedby="components-picklists-base" content="[object Object]" role="presentation">
-                <a tabindex="0" aria-selected="true">
-                    <svg aria-hidden="true" class="slds-icon icon__svg icon-utility-desktop slds-icon--x-small slds-icon-text-default slds-m-right--x-small">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#desktop"></use>
-                    </svg>
-                    Large
-                </a>
-            </li>
-        </ul>
-        <div id="iframe-1" class="site-example--content slds-m-bottom--xx-large slds-scrollable--x slds-tabs__content slds-show" role="tabpanel">
-            <iframe src="./demo-tooltip-1.html" height="272" name="components-picklists-base" data-form-factor="desktop" scrolling="no" class="slds-p-horizontal--medium"></iframe>
-        </div>
-    </div>
-    <div class="slds-tabs--default">
-        <ul class="slds-tabs--default__nav" role="tablist">
-            <li {{bind-attr class=":slds-tabs__item :slds-text-heading--label isJQuery:slds-active"}} aria-controls="markup-1" aria-describedby="components-picklists-base" content="[object Object]" role="presentation" {{action "clickSection" "jQuery"}}>
-                <a tabindex="0" aria-selected="true">
-                    jQuery
-                </a>
-            </li>
-            <li {{bind-attr class=":slds-tabs__item :slds-text-heading--label isEmber:slds-active"}} aria-controls="markup-2" aria-describedby="components-picklists-base" content="[object Object]" role="presentation" {{action "clickSection" "ember"}}>
-                <a tabindex="0" aria-selected="true">
-                    Ember
-                </a>
-            </li>
-        </ul>
-        {{partial sectionPartial}}
-    </div>
-</div>
+    {{aljs-demo-container label="Base" status="prototype" url="./demo-tooltip-1.html"}}
+    
+    {{view "aljs-code-container"}}
+{{/aljs-main-content}}

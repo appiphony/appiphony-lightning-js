@@ -23,6 +23,22 @@ App.SelectedSectionMixin = Ember.Mixin.create({
     }.property('selectedSection')
 });
 
+App.AljsHeaderComponent = Ember.Component.extend({
+    layoutName: 'components/aljs-header'
+});
+
+App.AljsMainContentComponent = Ember.Component.extend({
+    layoutName: 'components/aljs-main-content'
+});
+
+App.AljsDemoContainerComponent = Ember.Component.extend({
+    layoutName: 'components/aljs-demo-container'
+});
+
+App.AljsCodeContainerView = Ember.View.extend({
+    layoutName: 'aljs-code-container'
+});
+
 App.AljsPreContainerComponent = Ember.Component.extend({
     layoutName: 'components/aljs-pre-container',
     classNames: 'aljs-pre-container',

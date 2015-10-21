@@ -14,7 +14,13 @@ App.SelectedSectionMixin = Ember.Mixin.create({
     selectedSectionBinding: 'controllers.aljs.selectedSection',
     sectionPartial: function() {
         return (this.get('routeName') + ' ' + this.get('selectedSection')).camelize();
-    }.property('selectedSection', 'routeName')
+    }.property('selectedSection', 'routeName'),
+    isJQuery: function() {
+        return this.get('selectedSection') === 'jQuery';
+    }.property('selectedSection'),
+    isEmber: function() {
+        return this.get('selectedSection') === 'ember';
+    }.property('selectedSection')
 });
 
 App.AljsPreContainerComponent = Ember.Component.extend({
@@ -22,19 +28,19 @@ App.AljsPreContainerComponent = Ember.Component.extend({
     classNames: 'aljs-pre-container',
     didInsertElement: function() {
         var $this = this.$();
-        console.log($this.find('[data-aljs="yield"]').html());
-        var markup = $this.find('[data-aljs="yield"]').remove().html()
+        console.log($this.find('[data-aljs="yield"]').html().trim());
+        var markup = $this.find('[data-aljs="yield"]').remove().html().trim()
                             .replace(/<\/{0,1}([^\/highlight].*)>/g, '&lt;$1&gt;')
                             .replace(/<highlight>/g, '<span class="highlight">')
                             .replace(/<\/highlight>/g, '<\/span>');
                             console.log(markup);
-        $this.find('code:first').append(markup);
+        $this.find('pre:first').append(markup);
         //$this.find('pre:first').prettyPre();
     }
 });
 
 App.PicklistsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
-    routeName: 'picklist'
+    routeName: 'picklists'
 });
 
 App.AljsController = Ember.ObjectController.extend({

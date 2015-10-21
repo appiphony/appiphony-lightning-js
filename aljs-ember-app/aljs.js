@@ -83,6 +83,10 @@ App.AljsRoute = Ember.Route.extend({
         return {
             sections: [
                 {
+                    path: 'gettingStarted',
+                    name: 'Getting Started'
+                },
+                {
                     path: 'modals',
                     name: 'Modals'
                 },
@@ -123,6 +127,7 @@ App.AljsRoute = Ember.Route.extend({
 App.Router.map(function() {
     this.resource('aljs', { path: '/' }, function() {
         this.resource('home', { path: '/' });
+    	this.resource('gettingStarted');
     	this.resource('modals');
     	this.resource('picklists');
     	this.resource('tooltips');

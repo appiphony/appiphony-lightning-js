@@ -1,4 +1,4 @@
-<header class="site-banner" role="banner">{{#link-to 'home' class="active"}}<img src="images/aljs-logo.svg">{{/link-to}}
+<header class="site-banner" role="banner">{{#link-to 'home' class="home-link"}}<img src="images/aljs-icon.svg" class="aljs-icon"> Appiphony Lightning JS{{/link-to}}
 </header>
 <main class="site-main" role="main">
     <div class="site-content">
@@ -8,10 +8,10 @@
 <nav id="navigation" class="site-navigation" role="navigation">
     <ul class="slds-list--vertical slds-has-block-links">
         {{#each section in sections}}
-            <li class="slds-list__item">{{#link-to section.path}}{{section.name}}{{/link-to}}</li>
+            <li class="slds-list__item slds-has-divider">{{#link-to section.path}}{{section.name}}{{/link-to}}</li>
         {{/each}}
     </ul>
 </nav>
 <footer class="site-contentinfo slds-wrap site-text-longform slds-text-body--small" role="contentinfo">
-    <p class="slds-col--padded slds-size--1-of-1 slds-shrink-none slds-large-size--2-of-3"><span>Copyright © 2015 </span><span class="site-name"><span >Sales</span><i>f</i><span>orce</span></span><span>. </span><a href="http://salesforce.com/company/legal/intellectual.jsp">All rights reserved</a><span>. </span><span>Version 0.9.2. Last Updated on October 5th 2015, 8:40 pm. Travis build 193.1.</span></p>
+    <p class="slds-col--padded slds-p-right--large">&copy; 2015 <a href="http://appiphony.com" target="_blank">Appiphony, LLC</a>. All rights reserved. The Salesforce Sans Font is used under license from Salesforce.com, Inc.</p>
 </footer>

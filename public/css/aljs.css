@@ -1,39 +1,86 @@
-.aljs-home-header {
+.slds .aljs-home-header {
     min-height: 50vh;
-    position: relative;
+    background-color: #1c4c67;
 }
 
-.site-masthead {
-    background-color: #29739d;
-}
-
-/*.aljs-home-header:before {
-    content: '';
+.slds .aljs-home-header:before {
     display: block;
+    content: '';
     position: absolute;
+    z-index: 0;
     width: 100%;
     height: 100%;
-    left: 0;
     top: 0;
-    background: -moz-linear-gradient(-45deg, rgba(0, 161, 223, 0) 0%, rgba(0, 161, 223, 1) 150%);
-    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(0, 161, 223, 0)), color-stop(150%, rgba(0, 161, 223, 1)));
-    background: -webkit-linear-gradient(-45deg, rgba(0, 161, 223, 0) 0%, rgba(0, 161, 223, 1) 150%);
-    background: -o-linear-gradient(-45deg, rgba(0, 161, 223, 0) 0%, rgba(0, 161, 223, 1) 150%);
-    background: -ms-linear-gradient(-45deg, rgba(0, 161, 223, 0) 0%, rgba(0, 161, 223, 1) 150%);
-    background: linear-gradient(135deg, rgba(0, 161, 223, 0) 0%, rgba(0, 161, 223, 1) 150%);
-}*/
+    left: 0;
+    background: no-repeat center center url(../images/home-hero-bg.jpg);
+    background-size: cover;
+    opacity: 0.1;
+}
 
-@media (min-width: 48em) {
-    .site-banner {
-        width: 20rem;
-    }
-    .site-main {
-        margin-left: 20rem;
-    }
-    .site-navigation {
-        width: 20rem;
-    }
-    .site-contentinfo {
-        margin-left: 20rem;
+.slds .site-resources--landing .grid-card {
+    min-height: initial;
+}
+
+.slds .ember-logo, .slds .jquery-logo {
+    max-height: 50px;
+    width: auto;
+    margin-bottom: 30px;
+}
+
+.slds .jquery-logo {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.slds .aljs-home-header .slds-media__body {
+    position: relative;
+    z-index: 2;
+}
+
+.slds .aljs-logo {
+    max-width: 600px;
+}
+
+.slds .slds-has-divider {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.slds .slds-has-divider:last-child {
+    border-bottom: 1px solid #d8dde6;
+}
+
+.slds .aljs-icon {
+    max-width: 20px;
+    height: auto;
+    display: inline-block;
+    margin-right: 2px;
+}
+
+.site-navigation {
+    background-color: #f4f6f9;
+}
+
+.site-navigation a:hover {
+    background-color: #eceff5;
+}
+
+@media only screen and (max-width: 1024px) {}
+
+@media only screen and (min-width: 1024px) {}
+
+@media only screen and (max-width: 768px) {
+    .slds .aljs-header-container {
+        padding-left: inherit;
     }
 }
+
+@media only screen and (min-width: 768px) {}
+
+@media only screen and (max-width: 480px) {}
+
+@media only screen and (min-width: 480px) {}
+
+@media only screen and (max-width: 320px) {}
+
+@media only screen and (min-width: 320px) {}

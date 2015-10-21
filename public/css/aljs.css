@@ -1,16 +1,24 @@
 .aljs-home-header {
-    height: 55vh;
     background-color: #1c4c67;
-    min-height: 460px;
+    height: auto;
+}
+
+.aljs-header-container {
+    padding: 8vw;
 }
 
 pre {
-    font-family: Consolas, Monaco, 'Andale Mono', monospace;
-    background-color: #d8dde6;
+    background-color: #eef1f6;
     margin-bottom: 0;
     margin-top: 0;
     position: relative;
     padding: 1rem;
+}
+pre, code {
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    white-space: pre;
+    text-align: left;
+    word-spacing: normal;
 }
 
 pre[type]:before {
@@ -36,7 +44,10 @@ pre[type="html"]:before {
 pre[type="js"]:before {
     content: 'JS';
 }
-
+pre .highlight {
+    color: #7f8de1;
+    font-weight: bold;
+}
 .aljs-pre-container + .aljs-pre-container {
     margin-top: 1rem;
 }
@@ -44,6 +55,7 @@ pre[type="js"]:before {
 #app {
     color: #5876a3;
 }
+
 a.aljs-home-link {
     color: #16325c;
 }
@@ -71,7 +83,8 @@ a.aljs-home-link {
     min-height: initial;
 }
 
-.ember-logo, .jquery-logo {
+.ember-logo,
+.jquery-logo {
     max-height: 50px;
     width: auto;
     margin-bottom: 30px;
@@ -124,9 +137,10 @@ a.aljs-home-link {
 @media only screen and (min-width: 1024px) {}
 
 @media only screen and (max-width: 768px) {
-    .aljs-header-container {
+    /*.aljs-header-container {
         padding-left: inherit;
-    }
+    }*/
+    
 }
 
 @media only screen and (min-width: 768px) {}

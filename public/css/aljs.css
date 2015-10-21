@@ -14,11 +14,12 @@ pre {
     position: relative;
     padding: 1rem;
 }
-pre, code {
+pre {
     font-family: Consolas, Monaco, 'Andale Mono', monospace;
     white-space: pre;
     text-align: left;
     word-spacing: normal;
+    font-weight: normal;
 }
 
 pre[type]:before {
@@ -45,7 +46,7 @@ pre[type="js"]:before {
     content: 'JS';
 }
 pre .highlight {
-    color: #7f8de1;
+    color: #ef7ead;
     font-weight: bold;
 }
 .aljs-pre-container + .aljs-pre-container {

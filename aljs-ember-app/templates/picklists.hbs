@@ -29,18 +29,36 @@
     </div>
     <div class="slds-tabs--default">
         <ul class="slds-tabs--default__nav" role="tablist">
-            <li class="slds-tabs__item slds-text-heading--label slds-active" aria-controls="markup-1" aria-describedby="components-picklists-base" content="[object Object]" role="presentation">
+            <li class="slds-tabs__item slds-text-heading--label slds-active" aria-controls="markup-1" aria-describedby="components-picklists-base" content="[object Object]" role="presentation" {{action "clickSection" "jQuery"}}>
                 <a tabindex="0" aria-selected="true">
                     jQuery
                 </a>
             </li>
-            <li class="slds-tabs__item slds-text-heading--label" aria-controls="markup-2" aria-describedby="components-picklists-base" content="[object Object]" role="presentation">
+            <li class="slds-tabs__item slds-text-heading--label" aria-controls="markup-2" aria-describedby="components-picklists-base" content="[object Object]" role="presentation" {{action "clickSection" "ember"}}>
                 <a tabindex="0" aria-selected="true">
                     Ember
                 </a>
             </li>
         </ul>
+        Test
+        {{selectedSection}}
+        {{sectionPartial}}
         <div id="markup-1" class="site-example--content slds-m-bottom--xx-large slds-scrollable--x slds-tabs__content slds-show" role="tabpanel">
+            <div class="slds-p-horizontal--medium">
+                {{#aljs-pre-container type="html"}}
+                    <div>
+                        afasdsa
+                    </div>
+                    <highlight><div>
+                        afsaasassa
+                    </div></highlight>
+                {{/aljs-pre-container}}
+                {{#aljs-pre-container type="js"}}
+                    falkfjalsf
+                {{/aljs-pre-container}}
+            </div>
+        </div>
+        <div id="markup-2" class="site-example--content slds-m-bottom--xx-large slds-scrollable--x slds-tabs__content slds-show" role="tabpanel">
             <div class="slds-p-horizontal--medium">
                 {{#aljs-pre-container type="html"}}
                     <div>

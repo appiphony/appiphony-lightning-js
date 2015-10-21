@@ -12,7 +12,7 @@ Ember.Object.reopen({
 Ember.Component.reopen({
     attributeBindings: ['data-qa-button', 'data-open-modal', 'data-close-modal', 
                         'data-open-popover', 'data-close-popover', 'data-toggle-popover',
-                        'disabled', 'title', 'data-sljs', 'data-placement', 'sf-title']
+                        'disabled', 'title', 'data-aljs', 'data-placement', 'sf-title']
 });
 
 App.ExploreView = Ember.View.extend({
@@ -24,6 +24,29 @@ App.ExploreView = Ember.View.extend({
         $('#modal2').on('closed', function() {
             console.log('modal 2 closed');
         });
+    }
+});
+
+App.AljsSimpleTabsComponent = Ember.Component.extend({
+    layoutName: 'components/aljs-simple-tabs',
+    attributeBindings: ['tabObjects'],
+    tabLinks: function() {
+        return this.get('tabObjects').map(function(tab, index) {
+            return Ember.Object.create({
+                label: tab.label,
+                partial: tab.partial,
+                isActive: index === 0 ? true : false
+            });
+        });
+    }.property('tabObjects'),
+    activeTab: function() {
+        return this.get('tabLinks').findBy('isActive', true);
+    }.property('tabLinks.@each.isActive'),
+    actions: {
+        clickTab: function(tabLink) {
+            this.get('tabLinks').setEach('isActive', false);
+            tabLink.set('isActive', true);
+        }
     }
 });
 
@@ -701,6 +724,16 @@ App.SfPopoverComponent = Ember.Component.extend({
 });
 
 App.ExploreController = Ember.ObjectController.extend({
+    tabs: [
+        {
+            label: 'Tab 1',
+            partial: 'tabOne'
+        },
+        {
+            label: 'Tab 2',
+            partial: 'tabTwo'
+        }
+    ],
     selectedDate: function() {
         return moment().add(5, 'days');
     }.property(),

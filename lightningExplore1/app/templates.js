@@ -13,6 +13,70 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
 });
 
+Ember.TEMPLATES["_tabOne"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  
+
+
+  data.buffer.push("Tab 1!!");
+  
+});
+
+Ember.TEMPLATES["_tabTwo"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  
+
+
+  data.buffer.push("Tab 2!!");
+  
+});
+
+Ember.TEMPLATES["components/aljs-simple-tabs"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n			<li ");
+  hashContexts = {'class': depth0,'title': depth0,'tabindex': depth0};
+  hashTypes = {'class': "STRING",'title': "STRING",'tabindex': "STRING"};
+  options = {hash:{
+    'class': (":slds-tabs__item :slds-text-heading--label tabLink.isActive:slds-active"),
+    'title': ("tabLink.label"),
+    'tabindex': ("tabLink.index")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || (depth0 && depth0['bind-attr'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push(" role=\"presentation\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clickTab", "tabLink", {hash:{},contexts:[depth0,depth0],types:["STRING","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("><a href=\"#\" role=\"tab\" aria-selected=\"true\" aria-controls=\"tab-default-1\">");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "tabLink.label", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</a></li>\n		");
+  return buffer;
+  }
+
+  data.buffer.push("<div class=\"slds-tabs--default\">\n	<ul class=\"slds-tabs--default__nav\" role=\"tablist\">\n		");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "tabLink", "in", "tabLinks", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n	</ul>\n	<div class=\"slds-tabs__content\" role=\"tabpanel\">\n		");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.partial || (depth0 && depth0.partial)),stack1 ? stack1.call(depth0, "activeTab.partial", options) : helperMissing.call(depth0, "partial", "activeTab.partial", options))));
+  data.buffer.push("\n	</div>\n</div>");
+  return buffer;
+  
+});
+
 Ember.TEMPLATES["components/sf-button"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -710,12 +774,12 @@ function program14(depth0,data) {
   hashContexts = {};
   options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.partial || (depth0 && depth0.partial)),stack1 ? stack1.call(depth0, "datepicker", options) : helperMissing.call(depth0, "partial", "datepicker", options))));
-  data.buffer.push("\n    </div>\n\n    <div>\n        TOOLTIPS - JQUERY - initialize with $('[data-sljs=\"tooltip\"]').tooltip(); or $('body').tooltip({ selector: '[data-sljs=\"tooltip\"]'});\n        <br/>\n        ");
-  hashContexts = {'class': depth0,'data-sljs': depth0,'data-placement': depth0,'title': depth0};
-  hashTypes = {'class': "STRING",'data-sljs': "STRING",'data-placement': "STRING",'title': "STRING"};
+  data.buffer.push("\n    </div>\n\n    <div>\n        TOOLTIPS - JQUERY - initialize with $('[data-aljs=\"tooltip\"]').tooltip(); or $('body').tooltip({ selector: '[data-aljs=\"tooltip\"]'});\n        <br/>\n        ");
+  hashContexts = {'class': depth0,'data-aljs': depth0,'data-placement': depth0,'title': depth0};
+  hashTypes = {'class': "STRING",'data-aljs': "STRING",'data-placement': "STRING",'title': "STRING"};
   options = {hash:{
     'class': ("slds-button--neutral"),
-    'data-sljs': ("tooltip"),
+    'data-aljs': ("tooltip"),
     'data-placement': ("top"),
     'title': ("Test LA LA LA LA LA LA L AL A LA LAL AL LAL AL LA")
   },inverse:self.noop,fn:self.program(10, program10, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
@@ -739,7 +803,14 @@ function program14(depth0,data) {
   },inverse:self.noop,fn:self.program(14, program14, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   stack2 = ((stack1 = helpers['sf-popover'] || (depth0 && depth0['sf-popover'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "sf-popover", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n        <div>\n            POPOVERS - JQUERY - initialize with $('[data-sljs=\"popover\"]').popover();\n            <div>\n                <button class=\"slds-button slds-button--neutral slds-button--small\" data-sljs=\"popover\" data-placement=\"right\">Click for popover\n                </button>\n                <div class=\"slds-popover slds-nubbin--left\" role=\"dialog\">\n                    <div class=\"slds-popover__content\">\n                        <div class=\"slds-popover__header\">\n                            <p class=\"slds-text-heading--small\">Popover Heading</p>\n                        </div>\n                        <div class=\"slds-popover__body\">Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href=\"#\">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>\n                    </div>\n                </div>\n            </div>\n            <div>\n                <button class=\"slds-button slds-button--neutral slds-button--small\" data-sljs=\"popover\" data-placement=\"right\">Click for popover 2\n                </button>\n                <div class=\"slds-popover slds-nubbin--left\" role=\"dialog\">\n                    <div class=\"slds-popover__content\">\n                        <div class=\"slds-popover__header\">\n                            <p class=\"slds-text-heading--small\">Popover Heading 2</p>\n                        </div>\n                        <div class=\"slds-popover__body\">2 Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href=\"#\">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>");
+  data.buffer.push("\n        <div>\n            POPOVERS - JQUERY - initialize with $('[data-aljs=\"popover\"]').popover();\n            <div>\n                <button class=\"slds-button slds-button--neutral slds-button--small\" data-aljs=\"popover\" data-placement=\"right\">Click for popover\n                </button>\n                <div class=\"slds-popover slds-nubbin--left\" role=\"dialog\">\n                    <div class=\"slds-popover__content\">\n                        <div class=\"slds-popover__header\">\n                            <p class=\"slds-text-heading--small\">Popover Heading</p>\n                        </div>\n                        <div class=\"slds-popover__body\">Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href=\"#\">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>\n                    </div>\n                </div>\n            </div>\n            <div>\n                <button class=\"slds-button slds-button--neutral slds-button--small\" data-aljs=\"popover\" data-placement=\"right\">Click for popover 2\n                </button>\n                <div class=\"slds-popover slds-nubbin--left\" role=\"dialog\">\n                    <div class=\"slds-popover__content\">\n                        <div class=\"slds-popover__header\">\n                            <p class=\"slds-text-heading--small\">Popover Heading 2</p>\n                        </div>\n                        <div class=\"slds-popover__body\">2 Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href=\"#\">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div>\n    TABS\n    <br/>\n    ");
+  hashContexts = {'tabObjects': depth0};
+  hashTypes = {'tabObjects': "ID"};
+  options = {hash:{
+    'tabObjects': ("tabs")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['aljs-simple-tabs'] || (depth0 && depth0['aljs-simple-tabs'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "aljs-simple-tabs", options))));
+  data.buffer.push("\n    </div>\n</div>");
   return buffer;
   
 });

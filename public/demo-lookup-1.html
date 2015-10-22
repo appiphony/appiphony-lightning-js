@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Single Lookup Demo 1 | Appiphony Lightning JS</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles/salesforce-lightning-design-system-vf.css">
+</head>
+
+<body>
+    <div class="slds">
+        <div class="slds-lookup" data-select="multi" data-scope="single" data-typeahead="true">
+			<div class="slds-form-element">
+				<label class="slds-form-element__label" for="lookup">Accounts</label>
+				<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+					<svg aria-hidden="true" class="slds-input__icon">
+						<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+					</svg>
+					<input id="lookup" class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" />
+				</div>
+			</div>	
+		</div>
+		<div class="slds-lookup" data-select="multi" data-scope="single" data-typeahead="true">
+			<div class="slds-form-element">
+				<label class="slds-form-element__label" for="lookup">Accounts</label>
+				<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+					<svg aria-hidden="true" class="slds-input__icon">
+						<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+					</svg>
+					<input id="lookup2" class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" />
+				</div>
+			</div>	
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../src/jquery.aljs-init.js"></script>
+    <script src="../src/jquery.aljs-lookup.js"></script>
+    <script>
+    	var results = [
+        				{
+        					id: 1,
+        					label: 'ajaxResult1'
+        				},
+        				{
+        					id: 2,
+        					label: 'ajaxResult2'
+        				}
+        			];
+        $(document).ready(function() {
+        	$('#lookup').lookup({
+        		items: [
+        			{
+        				id: 1,
+        				label: 'Result 1'
+        			},
+        			{
+        				id: 2,
+        				label: 'Result 2'
+        			}
+        		]
+        	});
+
+        	$('#lookup2').lookup({
+        		itemLookupPluralLabel: 'Things',
+        		itemLookupLabel: 'Thing',
+        		emptySearchTermQuery: function(callback) {
+        			callback(results);
+        		},
+        		filledSearchTermQuery: function(searchTerm, callback) {
+        			callback(results.filter(function(result) {
+        				return result.label.match(searchTerm) !== null;
+        			}));
+        		}
+        	});
+            /*$('#pl1').multipicklist({
+                onChange: function(obj) {
+                    console.log('picklist 1');
+                    console.log(obj);
+                }
+            });*/
+        });
+    </script>
+</body>

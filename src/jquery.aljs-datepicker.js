@@ -13,7 +13,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
                 '<div class="slds-align-middle">' +
                     '<button id="aljs-prevButton" class="slds-button slds-button--icon-container">' +
                         '<svg aria-hidden="true" class="slds-button__icon slds-button__icon--small">' +
-                            '<use xlink:href="{{sldsUrl}}/assets/icons/utility-sprite/svg/symbols.svg#left"></use>' +
+                            '<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#left"></use>' +
                         '</svg>' +
                         '<span class="slds-assistive-text">Previous Month</span>' +
                     '</button>' +
@@ -22,7 +22,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
                 '<div class="slds-align-middle">' +
                     '<button id="aljs-nextButton" class="slds-button slds-button--icon-container">' +
                         '<svg aria-hidden="true" class="slds-button__icon slds-button__icon--small">' +
-                            '<use xlink:href="{{sldsUrl}}/assets/icons/utility-sprite/svg/symbols.svg#right"></use>' +
+                            '<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#right"></use>' +
                         '</svg>' +
                         '<span class="slds-assistive-text">Next Month</span>' +
                     '</button>' +
@@ -33,7 +33,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
                 // '<button id="year" class="slds-button slds-button--neutral slds-picklist__label" aria-haspopup="true">' +
                 //     '<span id="aljs-year"></span>' +
                 //     '<svg aria-hidden="true" class="slds-icon slds-icon--small">' +
-                //         '<use xlink:href="{{sldsUrl}}/assets/icons/utility-sprite/svg/symbols.svg#down"></use>' +
+                //         '<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#down"></use>' +
                 //     '</svg>' +
                 // '</button>' +
             '</div></div>' +
@@ -79,7 +79,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
         var initDate = moment(options.initDate) || moment();
         var endDateId = this.$el.data('aljs-end-date');
 
-        this.$datepickerEl = $(datepickerMenuMarkup.replace(/{{sldsUrl}}/g, options.assetsLocation) + datepickerTableMarkup);
+        this.$datepickerEl = $(datepickerMenuMarkup.replace(/{{assetsLocation}}/g, options.assetsLocation) + datepickerTableMarkup);
         this.options = options;
 
         if (options.initDate) {
@@ -217,8 +217,8 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
              //   var $yearDropdown = $('<ul class="slds-dropdown__list" style="max-height: 13.5rem; overflow-y:auto;"></ul>').appendTo($yearContainer);
                 var currentYear = moment().year();
                 // var selectedIconMarkup = ('<svg aria-hidden="true" class="slds-icon slds-icon--small slds-icon--left">' +
-                //                         '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{sldsUrl}}/assets/icons/standard-sprite/svg/symbols.svg#task2" data-reactid=".46.0.0.1:$=10:0.0.$=11:0.0.0.0"></use>' +
-                //                     '</svg>').replace(/{{sldsUrl}}/g, this.options.assetsLocation);
+                //                         '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{assetsLocation}}/assets/icons/standard-sprite/svg/symbols.svg#task2" data-reactid=".46.0.0.1:$=10:0.0.$=11:0.0.0.0"></use>' +
+                //                     '</svg>').replace(/{{assetsLocation}}/g, this.options.assetsLocation);
 
                 for (var i = currentYear - this.options.numYearsBefore; i <= currentYear + this.options.numYearsAfter; i++) {
                     var $yearOption = $('<option value="' + i + '">' + i + '</option>').appendTo($yearSelect);

@@ -5,7 +5,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     var Picklist = function(el, options) {
         this.$el = $(el);
         this.obj = {
-            checkmarkIcon: '<svg aria-hidden="true" class="slds-icon slds-icon--small slds-icon--left"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="' + options.assetsLocation + '/assets/icons/standard-sprite/svg/symbols.svg#task2"></use></svg>'
+            checkmarkIcon: '<svg aria-hidden="true" class="slds-icon slds-icon--small slds-icon--left"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="' + $.aljs.assetsLocation + '/assets/icons/standard-sprite/svg/symbols.svg#task2"></use></svg>'
         };
         this.settings = options;
 
@@ -30,6 +30,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     self.obj.id = $(this).attr('id');
                 
                     if (self.obj.$dropdown.is(':hidden')) {
+                        // Close other picklists
+                        $('[data-aljs="picklist"]').not(self.$el).picklist('close');
+
                         self.obj.$dropdown.show();
 
                         if (self.obj.valueId === null || typeof self.obj.valueId === 'undefined') {
@@ -55,7 +58,6 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         processKeypress: function(e) {
             var self = e.data;
             var optionsLength = self.obj.$choices.length;
-            console.log('click');
             if (e.keyCode === 40) {
                 self.focusedIndex = self.focusedIndex === optionsLength - 1 ? 0 : self.focusedIndex + 1;
                 self.focusOnElement();
@@ -110,6 +112,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         },
         getValueId: function() {
             return this.obj.valueId;
+        },
+        close: function() {
+            this.obj.$dropdown.hide();
+            this.obj.$dropdown.unbind('keyup', this.processKeypress);
         }
     };
 

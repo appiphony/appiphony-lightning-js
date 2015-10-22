@@ -175,7 +175,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  data.buffer.push("\n    falkfjalsf\n");
+  data.buffer.push("\n$(document).ready(function() {\n    $('[data-aljs=\"picklist\"]').picklist();\n});\n");
   }
 
   data.buffer.push("<div id=\"markup-1\" class=\"site-example--content slds-m-bottom--xx-large slds-scrollable--x slds-tabs__content slds-show\" role=\"tabpanel\">\n    <div class=\"slds-p-horizontal--medium\">\n\n");
@@ -183,12 +183,12 @@ function program3(depth0,data) {
     'type': ("html")
   },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n");
+  data.buffer.push("\n        \n");
   stack1 = (helper = helpers['aljs-pre-container'] || (depth0 && depth0['aljs-pre-container']),options={hash:{
     'type': ("js")
   },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(3, program3, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n        \n        <h4 class=\"site-text-heading--large\">Component Overview</h4>\n        <p>This table gives you a quick overview of the SLDS CSS classes that can be applied to this component.</p>\n        <div class=\"slds-scrollable--x\">\n            <table class=\"slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium\">\n                <thead>\n                    <tr class=\"site-text-heading--label\">\n                        <th scope=\"col\"><span>SLDS</span><span> class</span></th>\n                        <th scope=\"col\">Outcome</th>\n                        <th scope=\"col\">Required</th>\n                        <th scope=\"col\">Applied to</th>\n                        <th scope=\"col\">Comments</th>\n                    </tr>\n                </thead>\n                <tbody>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-table</code></th>\n                        <td data-label=\"Outcome\">Initializes data table</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\">\n                            <svg aria-hidden=\"true\" class=\"slds-icon slds-icon--x-small slds-icon-text-default\">\n                                <use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"assets/icons/utility-sprite/svg/symbols.svg#check\"></use>\n                            </svg><span class=\"slds-assistive-text\">Required</span></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>&lt;table&gt;</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-table--bordered</code></th>\n                        <td data-label=\"Outcome\">Adds borders to the table</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>.slds-table</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-table--striped</code></th>\n                        <td data-label=\"Outcome\">Adds stripes to alternating rows</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>.slds-table</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-is-selected</code></th>\n                        <td data-label=\"Outcome\">Changes row to selected state</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>&lt;tr&gt;</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-is-sortable</code></th>\n                        <td data-label=\"Outcome\">Enables user interactions for sorting a column</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>&lt;th&gt;</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-cell-wrap</code></th>\n                        <td data-label=\"Outcome\">Forces text to wrap in a cell</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>&lt;td&gt;</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-cell-shrink</code></th>\n                        <td data-label=\"Outcome\">Shrinks cell to width of content</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>&lt;th&gt;</code>, <code>&lt;td&gt;</code></td>\n                        <td data-label=\"Comments\">Use if cell contains a checkbox or action menu</td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-no-row-hover</code></th>\n                        <td data-label=\"Outcome\">Removes hover state on row</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>.slds-table</code></td>\n                        <td data-label=\"Comments\">Rows have a hover state by default</td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-scrollable--x</code></th>\n                        <td data-label=\"Outcome\">Creates a scrollable container for a table on smaller viewports</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\">parent <code>div</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-max-medium-table--stacked</code></th>\n                        <td data-label=\"Outcome\">Modifies table layout by stacking cells to accommodate smaller viewports</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>.slds-table</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-max-medium-table--stacked-horizontal</code></th>\n                        <td data-label=\"Outcome\">Modifies table layout by displaying the header and row data side by side for smaller viewports</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>.slds-table</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-hint-parent</code></th>\n                        <td data-label=\"Outcome\">Highlights action overflow ribbons on row hover</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>&lt;tr&gt;</code></td>\n                        <td data-label=\"Comments\">When you have an overflow action menu</td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n\n    </div>\n</div>");
+  data.buffer.push("\n        \n        <h4 class=\"site-text-heading--large\">Overview</h4>\n        <p>This table gives you a quick overview of ALJS-specific markup that can be applied to SLDS components.</p>\n        <div class=\"slds-scrollable--x\">\n            <table class=\"slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium\">\n                <thead>\n                    <tr class=\"site-text-heading--label\">\n                        <th scope=\"col\"><span>ALDS</span><span> Markup</span></th>\n                        <th scope=\"col\">Outcome</th>\n                        <th scope=\"col\">Required</th>\n                        <th scope=\"col\">Applied to</th>\n                        <th scope=\"col\">Comments</th>\n                    </tr>\n                </thead>\n                <tbody>\n                    <tr>\n                        <th scope=\"row\"><code>data-aljs=\"picklist\"</code></th>\n                        <td data-label=\"Outcome\">Initializes data table</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\">\n                            <svg aria-hidden=\"true\" class=\"slds-icon slds-icon--x-small slds-icon-text-default\">\n                                <use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"assets/icons/utility-sprite/svg/symbols.svg#check\"></use>\n                            </svg><span class=\"slds-assistive-text\">Required</span></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>&lt;table&gt;</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-table--bordered</code></th>\n                        <td data-label=\"Outcome\">Adds borders to the table</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>.slds-table</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                    <tr>\n                        <th scope=\"row\"><code>.slds-table--striped</code></th>\n                        <td data-label=\"Outcome\">Adds stripes to alternating rows</td>\n                        <td data-label=\"Required\" class=\"slds-cell-shrink\"></td>\n                        <td data-label=\"Applied to\" class=\"slds-cell-shrink\"><code>.slds-table</code></td>\n                        <td data-label=\"Comments\"></td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n\n    </div>\n</div>");
   return buffer;
   
 });
@@ -225,6 +225,70 @@ function program3(depth0,data) {
   
 });
 Ember.TEMPLATES["_popoversJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
+  
+  
+  data.buffer.push("\n<div>\n    afasdsa\n</div>\n");
+  }
+
+function program3(depth0,data) {
+  
+  
+  data.buffer.push("\nfalkfjalsf\n");
+  }
+
+  data.buffer.push("<div id=\"markup-2\" class=\"site-example--content slds-m-bottom--xx-large slds-scrollable--x slds-tabs__content slds-show\" role=\"tabpanel\">\n    <div class=\"slds-p-horizontal--medium\">\n");
+  stack1 = (helper = helpers['aljs-pre-container'] || (depth0 && depth0['aljs-pre-container']),options={hash:{
+    'type': ("html")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n");
+  stack1 = (helper = helpers['aljs-pre-container'] || (depth0 && depth0['aljs-pre-container']),options={hash:{
+    'type': ("js")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(3, program3, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    </div>\n</div>");
+  return buffer;
+  
+});
+Ember.TEMPLATES["_tabsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
+  
+  
+  data.buffer.push("\n<div>\n    afasdsa\n</div>\n");
+  }
+
+function program3(depth0,data) {
+  
+  
+  data.buffer.push("\nfalkfjalsf\n");
+  }
+
+  data.buffer.push("<div id=\"markup-2\" class=\"site-example--content slds-m-bottom--xx-large slds-scrollable--x slds-tabs__content slds-show\" role=\"tabpanel\">\n    <div class=\"slds-p-horizontal--medium\">\n");
+  stack1 = (helper = helpers['aljs-pre-container'] || (depth0 && depth0['aljs-pre-container']),options={hash:{
+    'type': ("html")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n");
+  stack1 = (helper = helpers['aljs-pre-container'] || (depth0 && depth0['aljs-pre-container']),options={hash:{
+    'type': ("js")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(3, program3, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    </div>\n</div>");
+  return buffer;
+  
+});
+Ember.TEMPLATES["_tabsJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
 /**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -410,7 +474,7 @@ function program1(depth0,data) {
     'label': ("Base"),
     'status': ("prototype"),
     'url': ("./demo-datepicker-1.html"),
-    'iframeHeight': ("600")
+    'iframeHeight': ("400")
   },hashTypes:{'label': "STRING",'status': "STRING",'url': "STRING",'iframeHeight': "STRING"},hashContexts:{'label': depth0,'status': depth0,'url': depth0,'iframeHeight': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-demo-container", options))));
   data.buffer.push("\n\n    ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "aljs-code-container", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
@@ -515,7 +579,7 @@ function program1(depth0,data) {
     'label': ("Base"),
     'status': ("prototype"),
     'url': ("./demo-picklist-1.html"),
-    'iframeHeight': ("300")
+    'iframeHeight': ("200")
   },hashTypes:{'label': "STRING",'status': "STRING",'url': "STRING",'iframeHeight': "STRING"},hashContexts:{'label': depth0,'status': depth0,'url': depth0,'iframeHeight': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-demo-container", options))));
   data.buffer.push("\n\n    ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "aljs-code-container", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
@@ -562,6 +626,40 @@ function program1(depth0,data) {
     'label': ("Popovers"),
     'icon': ("images/icon-popover.svg")
   },hashTypes:{'label': "STRING",'icon': "STRING"},hashContexts:{'label': depth0,'icon': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
+  data.buffer.push("\n");
+  options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}
+  if (helper = helpers['aljs-main-content']) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0['aljs-main-content']); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers['aljs-main-content']) { stack1 = blockHelperMissing.call(depth0, 'aljs-main-content', {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}); }
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  return buffer;
+  
+});
+Ember.TEMPLATES["tabs"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = '', helper, options;
+  data.buffer.push("\n    <p class=\"site-text-introduction\">Intro paragraph.</p>\n    <p>Paragraph.</p>\n    <h4 class=\"site-text-heading--label\">Subhead</h4>\n    <p>Paragraph.</p>\n    ");
+  data.buffer.push(escapeExpression((helper = helpers['aljs-demo-container'] || (depth0 && depth0['aljs-demo-container']),options={hash:{
+    'label': ("Base"),
+    'status': ("prototype"),
+    'url': ("./demo-tabs-1.html"),
+    'iframeHeight': ("400")
+  },hashTypes:{'label': "STRING",'status': "STRING",'url': "STRING",'iframeHeight': "STRING"},hashContexts:{'label': depth0,'status': depth0,'url': depth0,'iframeHeight': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-demo-container", options))));
+  data.buffer.push("\n\n    ");
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "aljs-code-container", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push("\n");
+  return buffer;
+  }
+
+  data.buffer.push(escapeExpression((helper = helpers['aljs-header'] || (depth0 && depth0['aljs-header']),options={hash:{
+    'label': ("Tabs")
+  },hashTypes:{'label': "STRING"},hashContexts:{'label': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
   data.buffer.push("\n");
   options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}
   if (helper = helpers['aljs-main-content']) { stack1 = helper.call(depth0, options); }
@@ -775,6 +873,10 @@ App.DatepickersController = Ember.ObjectController.extend(App.SelectedSectionMix
     routeName: 'datepickers'
 });
 
+App.TabsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
+    routeName: 'tabs'
+});
+
 App.AljsController = Ember.ObjectController.extend({
     init: function() {
         this._super();
@@ -808,6 +910,10 @@ App.AljsRoute = Ember.Route.extend({
                 {
                     path: 'datepickers',
                     name: 'Datepickers'
+                },
+                {
+                    path: 'tabs',
+                    name: 'Tabs'
                 }
             ]
         };
@@ -836,6 +942,7 @@ App.Router.map(function() {
     	this.resource('tooltips');
     	this.resource('popovers');
     	this.resource('datepickers');
+        this.resource('tabs');
     });
 });
 

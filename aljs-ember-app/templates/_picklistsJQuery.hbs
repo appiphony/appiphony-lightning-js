@@ -42,17 +42,20 @@
     </div>
 </div>
 {{/aljs-pre-container}}
+        
 {{#aljs-pre-container type="js"}}
-    falkfjalsf
+$(document).ready(function() {
+    $('[data-aljs="picklist"]').picklist();
+});
 {{/aljs-pre-container}}
         
-        <h4 class="site-text-heading--large">Component Overview</h4>
-        <p>This table gives you a quick overview of the SLDS CSS classes that can be applied to this component.</p>
+        <h4 class="site-text-heading--large">Overview</h4>
+        <p>This table gives you a quick overview of ALJS-specific markup that can be applied to SLDS components.</p>
         <div class="slds-scrollable--x">
             <table class="slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium">
                 <thead>
                     <tr class="site-text-heading--label">
-                        <th scope="col"><span>SLDS</span><span> class</span></th>
+                        <th scope="col"><span>ALDS</span><span> Markup</span></th>
                         <th scope="col">Outcome</th>
                         <th scope="col">Required</th>
                         <th scope="col">Applied to</th>
@@ -61,7 +64,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row"><code>.slds-table</code></th>
+                        <th scope="row"><code>data-aljs="picklist"</code></th>
                         <td data-label="Outcome">Initializes data table</td>
                         <td data-label="Required" class="slds-cell-shrink">
                             <svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
@@ -83,69 +86,6 @@
                         <td data-label="Required" class="slds-cell-shrink"></td>
                         <td data-label="Applied to" class="slds-cell-shrink"><code>.slds-table</code></td>
                         <td data-label="Comments"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><code>.slds-is-selected</code></th>
-                        <td data-label="Outcome">Changes row to selected state</td>
-                        <td data-label="Required" class="slds-cell-shrink"></td>
-                        <td data-label="Applied to" class="slds-cell-shrink"><code>&lt;tr&gt;</code></td>
-                        <td data-label="Comments"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><code>.slds-is-sortable</code></th>
-                        <td data-label="Outcome">Enables user interactions for sorting a column</td>
-                        <td data-label="Required" class="slds-cell-shrink"></td>
-                        <td data-label="Applied to" class="slds-cell-shrink"><code>&lt;th&gt;</code></td>
-                        <td data-label="Comments"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><code>.slds-cell-wrap</code></th>
-                        <td data-label="Outcome">Forces text to wrap in a cell</td>
-                        <td data-label="Required" class="slds-cell-shrink"></td>
-                        <td data-label="Applied to" class="slds-cell-shrink"><code>&lt;td&gt;</code></td>
-                        <td data-label="Comments"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><code>.slds-cell-shrink</code></th>
-                        <td data-label="Outcome">Shrinks cell to width of content</td>
-                        <td data-label="Required" class="slds-cell-shrink"></td>
-                        <td data-label="Applied to" class="slds-cell-shrink"><code>&lt;th&gt;</code>, <code>&lt;td&gt;</code></td>
-                        <td data-label="Comments">Use if cell contains a checkbox or action menu</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><code>.slds-no-row-hover</code></th>
-                        <td data-label="Outcome">Removes hover state on row</td>
-                        <td data-label="Required" class="slds-cell-shrink"></td>
-                        <td data-label="Applied to" class="slds-cell-shrink"><code>.slds-table</code></td>
-                        <td data-label="Comments">Rows have a hover state by default</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><code>.slds-scrollable--x</code></th>
-                        <td data-label="Outcome">Creates a scrollable container for a table on smaller viewports</td>
-                        <td data-label="Required" class="slds-cell-shrink"></td>
-                        <td data-label="Applied to" class="slds-cell-shrink">parent <code>div</code></td>
-                        <td data-label="Comments"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><code>.slds-max-medium-table--stacked</code></th>
-                        <td data-label="Outcome">Modifies table layout by stacking cells to accommodate smaller viewports</td>
-                        <td data-label="Required" class="slds-cell-shrink"></td>
-                        <td data-label="Applied to" class="slds-cell-shrink"><code>.slds-table</code></td>
-                        <td data-label="Comments"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><code>.slds-max-medium-table--stacked-horizontal</code></th>
-                        <td data-label="Outcome">Modifies table layout by displaying the header and row data side by side for smaller viewports</td>
-                        <td data-label="Required" class="slds-cell-shrink"></td>
-                        <td data-label="Applied to" class="slds-cell-shrink"><code>.slds-table</code></td>
-                        <td data-label="Comments"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><code>.slds-hint-parent</code></th>
-                        <td data-label="Outcome">Highlights action overflow ribbons on row hover</td>
-                        <td data-label="Required" class="slds-cell-shrink"></td>
-                        <td data-label="Applied to" class="slds-cell-shrink"><code>&lt;tr&gt;</code></td>
-                        <td data-label="Comments">When you have an overflow action menu</td>
                     </tr>
                 </tbody>
             </table>

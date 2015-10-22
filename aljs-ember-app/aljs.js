@@ -44,10 +44,13 @@ App.AljsPreContainerComponent = Ember.Component.extend({
     classNames: 'aljs-pre-container',
     didInsertElement: function() {
         var $this = this.$();
+        // var markup = $this.find('[data-aljs="yield"]').remove().html().trim()
+        //                     .replace(/<((?!\/?highlight)[^>]+)>/g, '&lt;$1&gt;')
+        //                     .replace(/<highlight>/g, '<span class="highlight">')
+        //                     .replace(/<\/highlight>/g, '<\/span>');
         var markup = $this.find('[data-aljs="yield"]').remove().html().trim()
-                            .replace(/<\/{0,1}([^\/highlight].*)>/g, '&lt;$1&gt;')
-                            .replace(/<highlight>/g, '<span class="highlight">')
-                            .replace(/<\/highlight>/g, '<\/span>');
+                                .replace(/<([^>]+)>/g, '&lt;$1&gt;')
+                                .replace(/(data-aljs[\S]+")/g, '<span class="highlight">$1</span>');
         $this.find('pre:first').append(markup);
     }
 });

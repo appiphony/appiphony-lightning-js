@@ -20,7 +20,7 @@
         <div class="slds-grid">
             <div class="slds-col slds-no-flex slds-sizing--1-of-2 slds-m-right--medium">
                 <div class="slds-form-element">
-                    <div aria-expanded="true" class="slds-picklist" data-aljs="picklist" id="pl1">
+                    <div aria-expanded="true" class="slds-picklist" data-aljs="picklist">
                         <button class="slds-button slds-button--neutral slds-picklist__label" aria-haspopup="true" id="test1">
                             <span class="slds-truncate">Select an Option</span>
                             <svg aria-hidden="true" class="slds-icon">
@@ -40,7 +40,7 @@
             </div>
             <div class="slds-col slds-no-flex slds-sizing--1-of-2">
                 <div class="slds-form-element">
-                    <div aria-expanded="true" class="slds-picklist" data-aljs="picklist" id="pl2">
+                    <div aria-expanded="true" class="slds-picklist" data-aljs="picklist">
                         <button class="slds-button slds-button--neutral slds-picklist__label" aria-haspopup="true" id="test2">
                             <span class="slds-truncate">Select an Option</span>
                             <svg aria-hidden="true" class="slds-icon">
@@ -65,31 +65,30 @@
     <script src="../src/jquery.aljs-picklist.js"></script>
     <script>
         $.aljsInit({
-            assetsLocation: ''
+            assetsLocation: '.'
         });
 
         $(document).ready(function() {
-            $('#pl1').picklist({
+            $('[data-aljs="picklist"]').picklist({
                 onChange: function(obj) {
                     console.log('picklist 1');
                     console.log(obj);
                 }
             });
-
-            $('#pl2').picklist({
-                onChange: function(obj) {
-                    console.log('picklist 2');
-                    console.log(obj);
-                }
-            });
-            /*$('[data-aljs="picklist"]').picklist({
+        });
+    </script>
+    <!--<script>
+        $.aljsInit({
+            assetsLocation: '.'
+        });
+            $('[data-aljs="picklist"]').picklist({
                 assetsLocation: '.',
                 onChange: function(x) {
                     console.log(x);
                 }
-            });*/
+            });
         });
-    </script>
+    </script>-->
     <!--<script>
         $(document).ready(function() {
             $('body').picklist({

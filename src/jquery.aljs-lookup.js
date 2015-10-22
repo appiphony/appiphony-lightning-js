@@ -86,6 +86,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         runSearch: function(e) {
         	var self = e.data;
         	var searchTerm = self.$el.val();
+        	
         	if (!self.isStringEmpty(searchTerm)) {
         		self.getSearchTermResults(searchTerm);
         	} else {

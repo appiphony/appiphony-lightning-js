@@ -5,17 +5,27 @@
     <meta charset="UTF-8">
     <title>Modal Demo 1 | Appiphony Lightning JS</title>
     <link rel="stylesheet" type="text/css" href="assets/styles/salesforce-lightning-design-system-vf.css">
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body>
     <div class="slds">
-        <button class="slds-button slds-button--neutral" data-aljs="modal" data-aljs-show="modal-1">Modal 1</button>
-        <button class="slds-button slds-button--neutral" data-aljs="modal" data-aljs-show="modal-2">Modal 2</button>
+        <div class="slds-m-around--xx-large slds-p-around--xx-large slds-text-align--center">
+            <button class="slds-button slds-button--neutral" data-aljs="modal" data-aljs-show="modal-1">Open Modal 1</button>
+            <button class="slds-button slds-button--neutral" data-aljs="modal" data-aljs-show="modal-2">Open Modal 2</button>
+        </div>
 
         <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open" id="modal-1">
             <div class="slds-modal__container">
                 <div class="slds-modal__header">
-                    <h2 class="slds-text-heading--medium">Modal Header</h2>
+                    <h2 class="slds-text-heading--medium">Modal 1</h2>
                     <button class="slds-button slds-modal__close" data-aljs-dismiss="modal">
                         <svg aria-hidden="true" class="slds-button__icon slds-button__icon--inverse slds-button__icon--large">
                             <use xlink:href="assets/icons/action-sprite/svg/symbols.svg#close"></use>
@@ -39,7 +49,7 @@
             <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open" id="modal-2">
                 <div class="slds-modal__container">
                     <div class="slds-modal__header">
-                        <h2 class="slds-text-heading--medium">Modal Header</h2>
+                        <h2 class="slds-text-heading--medium">Modal 2</h2>
                         <button class="slds-button slds-modal__close" data-aljs-dismiss="modal">
                             <svg aria-hidden="true" class="slds-button__icon slds-button__icon--inverse slds-button__icon--large">
                                 <use xlink:href="assets/icons/action-sprite/svg/symbols.svg#close"></use>

@@ -144,6 +144,13 @@ a.aljs-home-link {
     background-color: #f4f6f9;
 }
 
+#app .slds-is-selected:focus,
+#app .slds-is-selected:hover,
+#app .slds-is-active:focus,
+#app .slds-is-active:hover {
+    background-color: #eceff5;
+}
+
 #navigation a {
     color: #16325c;
 }

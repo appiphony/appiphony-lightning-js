@@ -79,6 +79,10 @@ App.TabsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
     routeName: 'tabs'
 });
 
+App.LookupsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
+    routeName: 'lookups'
+});
+
 App.AljsController = Ember.ObjectController.extend({
     init: function() {
         this._super();
@@ -116,6 +120,10 @@ App.AljsRoute = Ember.Route.extend({
                 {
                     path: 'tabs',
                     name: 'Tabs'
+                },
+                {
+                    path: 'lookups',
+                    name: 'Lookups'
                 }
             ]
         };
@@ -145,6 +153,7 @@ App.Router.map(function() {
     	this.resource('popovers');
     	this.resource('datepickers');
         this.resource('tabs');
+        this.resource('lookups');
     });
 });
 

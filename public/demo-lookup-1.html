@@ -10,8 +10,9 @@
 <body>
     <div class="slds">
         <div class="slds-lookup" data-select="multi" data-scope="single" data-typeahead="true">
+        	Passing in an items list
 			<div class="slds-form-element">
-				<label class="slds-form-element__label" for="lookup">Accounts</label>
+				<label class="slds-form-element__label" for="lookup">Stuffs</label>
 				<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
 					<svg aria-hidden="true" class="slds-input__icon">
 						<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
@@ -21,8 +22,9 @@
 			</div>	
 		</div>
 		<div class="slds-lookup" data-select="multi" data-scope="single" data-typeahead="true">
+			Passing in functions to get items
 			<div class="slds-form-element">
-				<label class="slds-form-element__label" for="lookup">Accounts</label>
+				<label class="slds-form-element__label" for="lookup">Things</label>
 				<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
 					<svg aria-hidden="true" class="slds-input__icon">
 						<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
@@ -70,6 +72,9 @@
         			callback(results.filter(function(result) {
         				return result.label.match(searchTerm) !== null;
         			}));
+        		},
+        		clickAddFunction: function() {
+        			console.log('redirect or do something to add something');
         		}
         	});
             /*$('#pl1').multipicklist({

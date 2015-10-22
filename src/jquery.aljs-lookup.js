@@ -119,8 +119,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         														.replace('{{resultId}}', result.id));
         	});
 
-        	if (this.settings.allowAdd) {
-        		
+        	if (this.settings.clickAddFunction) {
+        		var $addItem = $(addItemMarkup.replace('{{itemLookupLabel}}', this.settings.itemLookupLabel)).appendTo($resultsListContainer);
         	}
 
         	$resultsListContainer.on('click', 'a', this, this.clickResult);

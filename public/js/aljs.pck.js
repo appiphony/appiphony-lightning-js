@@ -62,6 +62,68 @@ function program3(depth0,data) {
   return buffer;
   
 });
+Ember.TEMPLATES["_lookupsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
+  
+  
+  data.buffer.push("\n<div>\n    afasdsa\n</div>\n");
+  }
+
+function program3(depth0,data) {
+  
+  
+  data.buffer.push("\nfalkfjalsf\n");
+  }
+
+  data.buffer.push("<div id=\"markup-2\" class=\"site-example--content slds-m-bottom--xx-large slds-scrollable--x slds-tabs__content slds-show\" role=\"tabpanel\">\n    <div class=\"slds-p-horizontal--medium\">\n");
+  stack1 = (helper = helpers['aljs-pre-container'] || (depth0 && depth0['aljs-pre-container']),options={hash:{
+    'type': ("html")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n");
+  stack1 = (helper = helpers['aljs-pre-container'] || (depth0 && depth0['aljs-pre-container']),options={hash:{
+    'type': ("js")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(3, program3, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    </div>\n</div>");
+  return buffer;
+  
+});
+Ember.TEMPLATES["_lookupsJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
+  
+  
+  data.buffer.push("\n<div>\n    afasdsa\n</div>\n");
+  }
+
+function program3(depth0,data) {
+  
+  
+  data.buffer.push("\nfalkfjalsf\n");
+  }
+
+  data.buffer.push("<div id=\"markup-2\" class=\"site-example--content slds-m-bottom--xx-large slds-scrollable--x slds-tabs__content slds-show\" role=\"tabpanel\">\n    <div class=\"slds-p-horizontal--medium\">\n");
+  stack1 = (helper = helpers['aljs-pre-container'] || (depth0 && depth0['aljs-pre-container']),options={hash:{
+    'type': ("html")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n");
+  stack1 = (helper = helpers['aljs-pre-container'] || (depth0 && depth0['aljs-pre-container']),options={hash:{
+    'type': ("js")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(3, program3, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    </div>\n</div>");
+  return buffer;
+  
+});
 Ember.TEMPLATES["_modalsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -513,6 +575,40 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   data.buffer.push("<header class=\"site-masthead slds-grid aljs-home-header\">\n    <div class=\"site-masthead-title slds-col slds-has-flexi-truncate slds-align-middle\">\n        <div class=\"slds-media__body aljs-header-container\">\n            <img src=\"images/aljs-logo.svg\" class=\"aljs-logo\">\n            <h2 class=\"slds-p-top--large slds-text-heading--medium\">Your JS Solution for the Lightning Design System</h2>\n            <p class=\"slds-p-top--xx-large\"><a class=\"slds-button slds-button--inverse\" href=\"#\">Download Latest</a> <a class=\"slds-button slds-button--inverse\" href=\"#\">Fork on GitHub</a></p>\n            <p class=\"slds-p-top--medium\"><strong>Current release:</strong> 0.0.1</p>\n        </div>\n    </div>\n</header>\n<div class=\"site-content slds-p-around--xx-large site-design site-design-layout\">\n    <div class=\"slds-grid slds-wrap\">\n        <div class=\"slds-col slds-p-right--xx-large slds-size--1-of-1 slds-large-size--1-of-4\">\n            <h2 class=\"slds-text-heading--medium slds-m-top--xx-small\">Available in Two Flavors</h2>\n            <p class=\"slds-p-vertical--medium\">Appiphony Lightning JS (ALJS) harnesses the power of jQuery and Ember to deliver a rich JavaScript experience to the <a href=\"http://www.lightningdesignsystem.com/\" target=\"_blank\">Lightning Design System</a>.</p>\n        </div>\n        <div class=\"slds-col slds-size--1-of-1 slds-large-size--3-of-4\">\n            <div class=\"site-resources--landing slds-p-vertical--xx-small\">\n                <ul class=\"slds-grid slds-wrap slds-grid--align-spread slds-grid--pull-padded-large\">\n                    <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n                        <div class=\"grid-card\">\n                            <a href=\"http://jquery.com/\" target=\"_blank\"><img src=\"images/jquery-logo.svg\" class=\"jquery-logo\"></a>\n                            <hr class=\"hr hr--blue\">\n                            <p>jQuery is a fast, small, and feature-rich JavaScript library. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript.</p>\n                        </div>\n                    </li>\n                    <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n                        <div class=\"grid-card\">\n                            <a href=\"http://emberjs.com/\" target=\"_blank\"><img src=\"images/ember-logo.svg\" class=\"ember-logo\"></a>\n                            <hr class=\"hr hr--orange\">\n                            <p>Ember.js helps developers be more productive out of the box. Designed with developer ergonomics in mind, its friendly APIs help you get your job done—fast.</p>\n                        </div>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n</div>");
   
 });
+Ember.TEMPLATES["lookups"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = '', helper, options;
+  data.buffer.push("\n    <p class=\"site-text-introduction\">Intro paragraph.</p>\n    <p>Paragraph.</p>\n    <h4 class=\"site-text-heading--label\">Subhead</h4>\n    <p>Paragraph.</p>\n    ");
+  data.buffer.push(escapeExpression((helper = helpers['aljs-demo-container'] || (depth0 && depth0['aljs-demo-container']),options={hash:{
+    'label': ("Base"),
+    'status': ("prototype"),
+    'url': ("./demo-lookup-1.html"),
+    'iframeHeight': ("400")
+  },hashTypes:{'label': "STRING",'status': "STRING",'url': "STRING",'iframeHeight': "STRING"},hashContexts:{'label': depth0,'status': depth0,'url': depth0,'iframeHeight': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-demo-container", options))));
+  data.buffer.push("\n\n    ");
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "aljs-code-container", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push("\n");
+  return buffer;
+  }
+
+  data.buffer.push(escapeExpression((helper = helpers['aljs-header'] || (depth0 && depth0['aljs-header']),options={hash:{
+    'label': ("Lookups"),
+    'icon': ("images/icon-datepicker.svg")
+  },hashTypes:{'label': "STRING",'icon': "STRING"},hashContexts:{'label': depth0,'icon': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
+  data.buffer.push("\n");
+  options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}
+  if (helper = helpers['aljs-main-content']) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0['aljs-main-content']); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers['aljs-main-content']) { stack1 = blockHelperMissing.call(depth0, 'aljs-main-content', {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}); }
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  return buffer;
+  
+});
 Ember.TEMPLATES["modals"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -854,6 +950,10 @@ App.TabsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
     routeName: 'tabs'
 });
 
+App.LookupsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
+    routeName: 'lookups'
+});
+
 App.AljsController = Ember.ObjectController.extend({
     init: function() {
         this._super();
@@ -891,6 +991,10 @@ App.AljsRoute = Ember.Route.extend({
                 {
                     path: 'tabs',
                     name: 'Tabs'
+                },
+                {
+                    path: 'lookups',
+                    name: 'Lookups'
                 }
             ]
         };
@@ -920,6 +1024,7 @@ App.Router.map(function() {
     	this.resource('popovers');
     	this.resource('datepickers');
         this.resource('tabs');
+        this.resource('lookups');
     });
 });
 

@@ -419,8 +419,9 @@ function program1(depth0,data) {
   }
 
   data.buffer.push(escapeExpression((helper = helpers['aljs-header'] || (depth0 && depth0['aljs-header']),options={hash:{
-    'label': ("Datepickers")
-  },hashTypes:{'label': "STRING"},hashContexts:{'label': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
+    'label': ("Datepickers"),
+    'icon': ("images/icon-datepicker.svg")
+  },hashTypes:{'label': "STRING",'icon': "STRING"},hashContexts:{'label': depth0,'icon': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
   data.buffer.push("\n");
   options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}
   if (helper = helpers['aljs-main-content']) { stack1 = helper.call(depth0, options); }
@@ -443,8 +444,9 @@ function program1(depth0,data) {
   }
 
   data.buffer.push(escapeExpression((helper = helpers['aljs-header'] || (depth0 && depth0['aljs-header']),options={hash:{
-    'label': ("Getting Started")
-  },hashTypes:{'label': "STRING"},hashContexts:{'label': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
+    'label': ("Getting Started"),
+    'icon': ("images/icon-getting-started.svg")
+  },hashTypes:{'label': "STRING",'icon': "STRING"},hashContexts:{'label': depth0,'icon': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
   data.buffer.push("\n");
   options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}
   if (helper = helpers['aljs-main-content']) { stack1 = helper.call(depth0, options); }
@@ -461,7 +463,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
 
 
-  data.buffer.push("<header class=\"site-masthead slds-grid aljs-home-header\">\n    <div class=\"site-masthead-title slds-col slds-has-flexi-truncate slds-align-middle\">\n        <div class=\"slds-media__body aljs-header-container\">\n            <img src=\"images/aljs-logo.svg\" class=\"aljs-logo\">\n            <h2 class=\"slds-p-top--large slds-text-heading--medium\">Your JS Solution for the Lightning Design System</h2>\n            <p class=\"slds-p-top--xx-large\"><a class=\"slds-button slds-button--inverse\" href=\"#\">Download Latest</a> <a class=\"slds-button slds-button--inverse\" href=\"#\">Fork on GitHub</a></p>\n            <p class=\"slds-p-top--medium\"><strong>Current release:</strong> 0.0.1</p>\n        </div>\n    </div>\n</header>\n<div class=\"site-content slds-p-around--xx-large site-design site-design-layout\">\n    <div class=\"slds-grid slds-wrap\">\n        <div class=\"slds-col slds-p-right--xx-large slds-size--1-of-1 slds-large-size--1-of-4\">\n            <h2 class=\"slds-text-heading--medium slds-m-top--xx-small\">Available in Two Flavors</h2>\n            <p class=\"slds-p-vertical--medium\">Appiphony Lightning JS (ALJS) harnesses the power of jQuery and Ember to deliver a rich JavaScript experience to the <a href=\"http://www.lightningdesignsystem.com\" target=\"_blank\">Lightning Design System</a>.</p>\n        </div>\n        <div class=\"slds-col slds-size--1-of-1 slds-large-size--3-of-4\">\n            <div class=\"site-resources--landing slds-p-vertical--xx-small\">\n                <ul class=\"slds-grid slds-wrap slds-grid--align-spread slds-grid--pull-padded-large\">\n                    <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n                        <div class=\"grid-card\">\n                            <img src=\"images/jquery-logo.svg\" class=\"jquery-logo\">\n                            <hr class=\"hr hr--blue\">\n                            <p>jQuery is a fast, small, and feature-rich JavaScript library. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript.</p>\n                        </div>\n                    </li>\n                    <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n                        <div class=\"grid-card\">\n                            <img src=\"images/ember-logo.svg\" class=\"ember-logo\">\n                            <hr class=\"hr hr--orange\">\n                            <p>Ember.js helps developers be more productive out of the box. Designed with developer ergonomics in mind, its friendly APIs help you get your job done—fast.</p>\n                        </div>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n</div>");
+  data.buffer.push("<header class=\"site-masthead slds-grid aljs-home-header\">\n    <div class=\"site-masthead-title slds-col slds-has-flexi-truncate slds-align-middle\">\n        <div class=\"slds-media__body aljs-header-container\">\n            <img src=\"images/aljs-logo.svg\" class=\"aljs-logo\">\n            <h2 class=\"slds-p-top--large slds-text-heading--medium\">Your JS Solution for the Lightning Design System</h2>\n            <p class=\"slds-p-top--xx-large\"><a class=\"slds-button slds-button--inverse\" href=\"#\">Download Latest</a> <a class=\"slds-button slds-button--inverse\" href=\"#\">Fork on GitHub</a></p>\n            <p class=\"slds-p-top--medium\"><strong>Current release:</strong> 0.0.1</p>\n        </div>\n    </div>\n</header>\n<div class=\"site-content slds-p-around--xx-large site-design site-design-layout\">\n    <div class=\"slds-grid slds-wrap\">\n        <div class=\"slds-col slds-p-right--xx-large slds-size--1-of-1 slds-large-size--1-of-4\">\n            <h2 class=\"slds-text-heading--medium slds-m-top--xx-small\">Available in Two Flavors</h2>\n            <p class=\"slds-p-vertical--medium\">Appiphony Lightning JS (ALJS) harnesses the power of jQuery and Ember to deliver a rich JavaScript experience to the <a href=\"http://www.lightningdesignsystem.com/\" target=\"_blank\">Lightning Design System</a>.</p>\n        </div>\n        <div class=\"slds-col slds-size--1-of-1 slds-large-size--3-of-4\">\n            <div class=\"site-resources--landing slds-p-vertical--xx-small\">\n                <ul class=\"slds-grid slds-wrap slds-grid--align-spread slds-grid--pull-padded-large\">\n                    <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n                        <div class=\"grid-card\">\n                            <a href=\"http://jquery.com/\" target=\"_blank\"><img src=\"images/jquery-logo.svg\" class=\"jquery-logo\"></a>\n                            <hr class=\"hr hr--blue\">\n                            <p>jQuery is a fast, small, and feature-rich JavaScript library. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript.</p>\n                        </div>\n                    </li>\n                    <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n                        <div class=\"grid-card\">\n                            <a href=\"http://emberjs.com/\" target=\"_blank\"><img src=\"images/ember-logo.svg\" class=\"ember-logo\"></a>\n                            <hr class=\"hr hr--orange\">\n                            <p>Ember.js helps developers be more productive out of the box. Designed with developer ergonomics in mind, its friendly APIs help you get your job done—fast.</p>\n                        </div>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n</div>");
   
 });
 Ember.TEMPLATES["modals"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
@@ -487,8 +489,9 @@ function program1(depth0,data) {
   }
 
   data.buffer.push(escapeExpression((helper = helpers['aljs-header'] || (depth0 && depth0['aljs-header']),options={hash:{
-    'label': ("Modals")
-  },hashTypes:{'label': "STRING"},hashContexts:{'label': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
+    'label': ("Modals"),
+    'icon': ("images/icon-modal.svg")
+  },hashTypes:{'label': "STRING",'icon': "STRING"},hashContexts:{'label': depth0,'icon': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
   data.buffer.push("\n");
   options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}
   if (helper = helpers['aljs-main-content']) { stack1 = helper.call(depth0, options); }
@@ -521,8 +524,9 @@ function program1(depth0,data) {
   }
 
   data.buffer.push(escapeExpression((helper = helpers['aljs-header'] || (depth0 && depth0['aljs-header']),options={hash:{
-    'label': ("Picklists")
-  },hashTypes:{'label': "STRING"},hashContexts:{'label': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
+    'label': ("Picklists"),
+    'icon': ("images/icon-picklist.svg")
+  },hashTypes:{'label': "STRING",'icon': "STRING"},hashContexts:{'label': depth0,'icon': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
   data.buffer.push("\n");
   options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}
   if (helper = helpers['aljs-main-content']) { stack1 = helper.call(depth0, options); }
@@ -555,8 +559,9 @@ function program1(depth0,data) {
   }
 
   data.buffer.push(escapeExpression((helper = helpers['aljs-header'] || (depth0 && depth0['aljs-header']),options={hash:{
-    'label': ("Popovers")
-  },hashTypes:{'label': "STRING"},hashContexts:{'label': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
+    'label': ("Popovers"),
+    'icon': ("images/icon-popover.svg")
+  },hashTypes:{'label': "STRING",'icon': "STRING"},hashContexts:{'label': depth0,'icon': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
   data.buffer.push("\n");
   options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}
   if (helper = helpers['aljs-main-content']) { stack1 = helper.call(depth0, options); }
@@ -589,8 +594,9 @@ function program1(depth0,data) {
   }
 
   data.buffer.push(escapeExpression((helper = helpers['aljs-header'] || (depth0 && depth0['aljs-header']),options={hash:{
-    'label': ("Tooltips")
-  },hashTypes:{'label': "STRING"},hashContexts:{'label': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
+    'label': ("Tooltips"),
+    'icon': ("images/icon-tooltip.svg")
+  },hashTypes:{'label': "STRING",'icon': "STRING"},hashContexts:{'label': depth0,'icon': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
   data.buffer.push("\n");
   options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}
   if (helper = helpers['aljs-main-content']) { stack1 = helper.call(depth0, options); }
@@ -635,13 +641,26 @@ Ember.TEMPLATES["components/aljs-header"] = Ember.Handlebars.template(function a
 /**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1;
+  var buffer = '', stack1, escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data) {
+  
+  var buffer = '';
+  data.buffer.push("<img ");
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
+    'src': ("icon")
+  },hashTypes:{'src': "STRING"},hashContexts:{'src': depth0},contexts:[],types:[],data:data})));
+  data.buffer.push(" class=\"aljs-section-icon\">");
+  return buffer;
+  }
 
-  data.buffer.push("<header class=\"site-masthead slds-grid\">\n    <div class=\"site-masthead-title slds-col slds-has-flexi-truncate slds-align-middle\">\n        <div class=\"slds-media__body\">\n            <div class=\"slds-grid\">\n                <h1 title=\"Appiphony Lightning JS\" class=\"slds-p-left--large\">");
+  data.buffer.push("<header class=\"site-masthead slds-grid\">\n    <div class=\"site-masthead-title slds-col slds-no-flex slds-align-middle\">\n        <div class=\"slds-media__body\">\n            <div class=\"slds-grid\">\n                <h1 title=\"Appiphony Lightning JS\" class=\"slds-p-left--large\">");
+  stack1 = helpers['if'].call(depth0, "icon", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("<span class=\"aljs-section-title\">");
   stack1 = helpers._triageMustache.call(depth0, "label", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</h1></div>\n        </div>\n    </div>\n</header>");
+  data.buffer.push("</span></h1></div>\n        </div>\n    </div>\n</header>");
   return buffer;
   
 });

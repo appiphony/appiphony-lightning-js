@@ -1,4 +1,5 @@
-Ember.TEMPLATES["_datepickersEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["_datepickersEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
@@ -29,7 +30,8 @@ function program3(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["_datepickersJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["_datepickersJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
@@ -60,7 +62,8 @@ function program3(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["_modalsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["_modalsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
@@ -91,7 +94,40 @@ function program3(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["_modalsJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["_modalsJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
+  
+  
+  data.buffer.push("\n<div class=\"slds\">\n    <div class=\"slds-m-around--xx-large slds-p-around--xx-large slds-text-align--center\">\n        <button class=\"slds-button slds-button--neutral\" data-aljs=\"modal\" data-aljs-show=\"modal-1\">Open Modal 1</button>\n        <button class=\"slds-button slds-button--neutral\" data-aljs=\"modal\" data-aljs-show=\"modal-2\">Open Modal 2</button>\n    </div>\n\n    <div aria-hidden=\"false\" role=\"dialog\" class=\"slds-modal slds-fade-in-open\" id=\"modal-1\">\n        <div class=\"slds-modal__container\">\n            <div class=\"slds-modal__header\">\n                <h2 class=\"slds-text-heading--medium\">Modal 1</h2>\n                <button class=\"slds-button slds-modal__close\" data-aljs-dismiss=\"modal\">\n                    <svg aria-hidden=\"true\" class=\"slds-button__icon slds-button__icon--inverse slds-button__icon--large\">\n                        <use xlink:href=\"assets/icons/action-sprite/svg/symbols.svg#close\"></use>\n                    </svg>\n                    <span class=\"slds-assistive-text\">Close</span>\n                </button>\n            </div>\n            <div class=\"slds-modal__content\">\n                <div>\n                    <p>Sit nulla est ex deserunt exercitation anim occaecat. Nostrud ullamco deserunt aute id consequat veniam incididunt duis in sint irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit officia tempor esse quis. Cillum sunt ad dolore quis aute consequat ipsum magna exercitation reprehenderit magna. Tempor cupidatat consequat elit dolor adipisicing.</p>\n                    <p>Dolor eiusmod sunt ex incididunt cillum quis nostrud velit duis sit officia. Lorem aliqua enim laboris do dolor eiusmod officia. Mollit incididunt nisi consectetur esse laborum eiusmod pariatur proident. Eiusmod et adipisicing culpa deserunt nostrud ad veniam nulla aute est. Labore esse esse cupidatat amet velit id elit consequat minim ullamco mollit enim excepteur ea.</p>\n                </div>\n            </div>\n            <div class=\"slds-modal__footer\">\n                <button class=\"slds-button slds-button--neutral\" data-aljs-dismiss=\"modal\">Cancel</button>\n                <button class=\"slds-button slds-button--neutral slds-button--brand\" data-aljs-dismiss=\"modal\">Save</button>\n            </div>\n        </div>\n    </div>\n    <div>\n        <div aria-hidden=\"false\" role=\"dialog\" class=\"slds-modal slds-fade-in-open\" id=\"modal-2\">\n            <div class=\"slds-modal__container\">\n                <div class=\"slds-modal__header\">\n                    <h2 class=\"slds-text-heading--medium\">Modal 2</h2>\n                    <button class=\"slds-button slds-modal__close\" data-aljs-dismiss=\"modal\">\n                        <svg aria-hidden=\"true\" class=\"slds-button__icon slds-button__icon--inverse slds-button__icon--large\">\n                            <use xlink:href=\"assets/icons/action-sprite/svg/symbols.svg#close\"></use>\n                        </svg>\n                        <span class=\"slds-assistive-text\">Close</span>\n                    </button>\n                </div>\n                <div class=\"slds-modal__content\">\n                    <div>\n                        <p>Sit nulla est ex deserunt exercitation anim occaecat. Nostrud ullamco deserunt aute id consequat veniam incididunt duis in sint irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit officia tempor esse quis. Cillum sunt ad dolore quis aute consequat ipsum magna exercitation reprehenderit magna. Tempor cupidatat consequat elit dolor adipisicing.</p>\n                        <p>Dolor eiusmod sunt ex incididunt cillum quis nostrud velit duis sit officia. Lorem aliqua enim laboris do dolor eiusmod officia. Mollit incididunt nisi consectetur esse laborum eiusmod pariatur proident. Eiusmod et adipisicing culpa deserunt nostrud ad veniam nulla aute est. Labore esse esse cupidatat amet velit id elit consequat minim ullamco mollit enim excepteur ea.</p>\n                    </div>\n                </div>\n                <div class=\"slds-modal__footer slds-modal__footer--directional\">\n                    <button class=\"slds-button slds-button--neutral\" data-aljs-dismiss=\"modal\">Skip This Step</button>\n                    <button class=\"slds-button slds-button--brand\" data-aljs-dismiss=\"modal\">Save &amp; Next</button>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n");
+  }
+
+function program3(depth0,data) {
+  
+  
+  data.buffer.push("\nfalkfjalsf\n");
+  }
+
+  data.buffer.push("<div id=\"markup-2\" class=\"site-example--content slds-m-bottom--xx-large slds-scrollable--x slds-tabs__content slds-show\" role=\"tabpanel\">\n    <div class=\"slds-p-horizontal--medium\">\n");
+  stack1 = (helper = helpers['aljs-pre-container'] || (depth0 && depth0['aljs-pre-container']),options={hash:{
+    'type': ("html")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n");
+  stack1 = (helper = helpers['aljs-pre-container'] || (depth0 && depth0['aljs-pre-container']),options={hash:{
+    'type': ("js")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(3, program3, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    </div>\n</div>");
+  return buffer;
+  
+});
+Ember.TEMPLATES["_picklistsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
@@ -122,7 +158,8 @@ function program3(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["_picklistsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["_picklistsJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
@@ -130,38 +167,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  data.buffer.push("\n<div>\n    afasdsa\n</div>\n");
-  }
-
-function program3(depth0,data) {
-  
-  
-  data.buffer.push("\nfalkfjalsf\n");
-  }
-
-  data.buffer.push("<div id=\"markup-2\" class=\"site-example--content slds-m-bottom--xx-large slds-scrollable--x slds-tabs__content slds-show\" role=\"tabpanel\">\n    <div class=\"slds-p-horizontal--medium\">\n");
-  stack1 = (helper = helpers['aljs-pre-container'] || (depth0 && depth0['aljs-pre-container']),options={hash:{
-    'type': ("html")
-  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n");
-  stack1 = (helper = helpers['aljs-pre-container'] || (depth0 && depth0['aljs-pre-container']),options={hash:{
-    'type': ("js")
-  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(3, program3, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n    </div>\n</div>");
-  return buffer;
-  
-});
-Ember.TEMPLATES["_picklistsJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
-this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
-
-function program1(depth0,data) {
-  
-  
-  data.buffer.push("\n<div>\n    afasdsa\n</div>\n<highlight><div>\n    afsaasassa\n</div></highlight>\n");
+  data.buffer.push("\n<div class=\"slds\">\n    <div class=\"slds-form-element\">\n        <div aria-expanded=\"true\" class=\"slds-picklist\" data-aljs=\"picklist\" id=\"pl1\">\n            <button class=\"slds-button slds-button--neutral slds-picklist__label\" aria-haspopup=\"true\" id=\"test1\">\n                <span class=\"slds-truncate\">Select an Option</span>\n                <svg aria-hidden=\"true\" class=\"slds-icon\">\n                    <use xlink:href=\"assets/icons/utility-sprite/svg/symbols.svg#down\"></use>\n                </svg>\n            </button>\n            <div class=\"slds-dropdown slds-dropdown--left slds-dropdown--small slds-dropdown--menu slds-hide\">\n                <ul class=\"slds-dropdown__list\" role=\"menu\">\n                    <li id=\"menu-0-0\" href=\"#\" class=\"slds-dropdown__item slds-has-icon--left\"><a href=\"#\" class=\"slds-truncate\" role=\"menuitemradio\">Option One</a></li>\n                    <li id=\"menu-1-1\" href=\"#\" class=\"slds-dropdown__item slds-has-icon--left\"><a href=\"#\" class=\"slds-truncate\" role=\"menuitemradio\">Option Two</a></li>\n                    <li id=\"menu-2-2\" href=\"#\" class=\"slds-dropdown__item slds-has-icon--left\"><a href=\"#\" class=\"slds-truncate\" role=\"menuitemradio\">Option Three</a></li>\n                    <li id=\"menu-3-3\" href=\"#\" class=\"slds-dropdown__item slds-has-icon--left\"><a href=\"#\" class=\"slds-truncate\" role=\"menuitemradio\">Option Four</a></li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <br>\n    <div class=\"slds-form-element\">\n        <div aria-expanded=\"true\" class=\"slds-picklist\" data-aljs=\"picklist\" id=\"pl2\">\n            <button class=\"slds-button slds-button--neutral slds-picklist__label\" aria-haspopup=\"true\" id=\"test2\">\n                <span class=\"slds-truncate\">Select an Option</span>\n                <svg aria-hidden=\"true\" class=\"slds-icon\">\n                    <use xlink:href=\"assets/icons/utility-sprite/svg/symbols.svg#down\"></use>\n                </svg>\n            </button>\n            <div class=\"slds-dropdown slds-dropdown--left slds-dropdown--small slds-dropdown--menu slds-hide\">\n                <ul class=\"slds-dropdown__list\" role=\"menu\">\n                    <li id=\"menu-0-0\" href=\"#\" class=\"slds-dropdown__item slds-has-icon--left\"><a href=\"#\" class=\"slds-truncate\" role=\"menuitemradio\">Option One</a></li>\n                    <li id=\"menu-1-1\" href=\"#\" class=\"slds-dropdown__item slds-has-icon--left\"><a href=\"#\" class=\"slds-truncate\" role=\"menuitemradio\">Option Two</a></li>\n                    <li id=\"menu-2-2\" href=\"#\" class=\"slds-dropdown__item slds-has-icon--left\"><a href=\"#\" class=\"slds-truncate\" role=\"menuitemradio\">Option Three</a></li>\n                    <li id=\"menu-3-3\" href=\"#\" class=\"slds-dropdown__item slds-has-icon--left\"><a href=\"#\" class=\"slds-truncate\" role=\"menuitemradio\">Option Four</a></li>\n                </ul>\n            </div>\n        </div>\n    </div>\n</div>\n");
   }
 
 function program3(depth0,data) {
@@ -184,7 +190,8 @@ function program3(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["_popoversEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["_popoversEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
@@ -215,7 +222,8 @@ function program3(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["_popoversJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["_popoversJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
@@ -246,6 +254,7 @@ function program3(depth0,data) {
   return buffer;
   
 });
+<<<<<<< HEAD
 Ember.TEMPLATES["_tabsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -309,6 +318,10 @@ function program3(depth0,data) {
   
 });
 Ember.TEMPLATES["_tooltipsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+=======
+Ember.TEMPLATES["_tooltipsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
+>>>>>>> 7f319cfedc70b42b688a15c0923a52b6da6f9d72
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
@@ -339,7 +352,8 @@ function program3(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["_tooltipsJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["_tooltipsJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
@@ -370,7 +384,8 @@ function program3(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["aljs-code-container"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["aljs-code-container"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', helper, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
@@ -394,7 +409,8 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   return buffer;
   
 });
-Ember.TEMPLATES["aljs"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["aljs"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
@@ -444,7 +460,8 @@ function program4(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["datepickers"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["datepickers"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing;
@@ -466,8 +483,9 @@ function program1(depth0,data) {
   }
 
   data.buffer.push(escapeExpression((helper = helpers['aljs-header'] || (depth0 && depth0['aljs-header']),options={hash:{
-    'label': ("Datepickers")
-  },hashTypes:{'label': "STRING"},hashContexts:{'label': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
+    'label': ("Datepickers"),
+    'icon': ("images/icon-datepicker.svg")
+  },hashTypes:{'label': "STRING",'icon': "STRING"},hashContexts:{'label': depth0,'icon': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
   data.buffer.push("\n");
   options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}
   if (helper = helpers['aljs-main-content']) { stack1 = helper.call(depth0, options); }
@@ -477,7 +495,8 @@ function program1(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["gettingStarted"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["gettingStarted"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing;
@@ -489,8 +508,9 @@ function program1(depth0,data) {
   }
 
   data.buffer.push(escapeExpression((helper = helpers['aljs-header'] || (depth0 && depth0['aljs-header']),options={hash:{
-    'label': ("Getting Started")
-  },hashTypes:{'label': "STRING"},hashContexts:{'label': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
+    'label': ("Getting Started"),
+    'icon': ("images/icon-getting-started.svg")
+  },hashTypes:{'label': "STRING",'icon': "STRING"},hashContexts:{'label': depth0,'icon': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
   data.buffer.push("\n");
   options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}
   if (helper = helpers['aljs-main-content']) { stack1 = helper.call(depth0, options); }
@@ -500,16 +520,18 @@ function program1(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["home"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["home"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
 
 
-  data.buffer.push("<header class=\"site-masthead slds-grid aljs-home-header\">\n    <div class=\"site-masthead-title slds-col slds-has-flexi-truncate slds-align-middle\">\n        <div class=\"slds-media__body aljs-header-container\">\n            <img src=\"images/aljs-logo.svg\" class=\"aljs-logo\">\n            <h2 class=\"slds-p-top--large slds-text-heading--medium\">Your JS Solution for the Lightning Design System</h2>\n            <p class=\"slds-p-top--xx-large\"><a class=\"slds-button slds-button--inverse\" href=\"#\">Download Latest</a> <a class=\"slds-button slds-button--inverse\" href=\"#\">Fork on GitHub</a></p>\n            <p class=\"slds-p-top--medium\"><strong>Current release:</strong> 0.0.1</p>\n        </div>\n    </div>\n</header>\n<div class=\"site-content slds-p-around--xx-large site-design site-design-layout\">\n    <div class=\"slds-grid slds-wrap\">\n        <div class=\"slds-col slds-p-right--xx-large slds-size--1-of-1 slds-large-size--1-of-4\">\n            <h2 class=\"slds-text-heading--medium slds-m-top--xx-small\">Available in Two Flavors</h2>\n            <p class=\"slds-p-vertical--medium\">Appiphony Lightning JS (ALJS) harnesses the power of jQuery and Ember to deliver a rich JavaScript experience to the <a href=\"http://www.lightningdesignsystem.com\" target=\"_blank\">Lightning Design System</a>.</p>\n        </div>\n        <div class=\"slds-col slds-size--1-of-1 slds-large-size--3-of-4\">\n            <div class=\"site-resources--landing slds-p-vertical--xx-small\">\n                <ul class=\"slds-grid slds-wrap slds-grid--align-spread slds-grid--pull-padded-large\">\n                    <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n                        <div class=\"grid-card\">\n                            <img src=\"images/jquery-logo.svg\" class=\"jquery-logo\">\n                            <hr class=\"hr hr--blue\">\n                            <p>jQuery is a fast, small, and feature-rich JavaScript library. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript.</p>\n                        </div>\n                    </li>\n                    <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n                        <div class=\"grid-card\">\n                            <img src=\"images/ember-logo.svg\" class=\"ember-logo\">\n                            <hr class=\"hr hr--orange\">\n                            <p>Ember.js helps developers be more productive out of the box. Designed with developer ergonomics in mind, its friendly APIs help you get your job done—fast.</p>\n                        </div>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n</div>");
+  data.buffer.push("<header class=\"site-masthead slds-grid aljs-home-header\">\n    <div class=\"site-masthead-title slds-col slds-has-flexi-truncate slds-align-middle\">\n        <div class=\"slds-media__body aljs-header-container\">\n            <img src=\"images/aljs-logo.svg\" class=\"aljs-logo\">\n            <h2 class=\"slds-p-top--large slds-text-heading--medium\">Your JS Solution for the Lightning Design System</h2>\n            <p class=\"slds-p-top--xx-large\"><a class=\"slds-button slds-button--inverse\" href=\"#\">Download Latest</a> <a class=\"slds-button slds-button--inverse\" href=\"#\">Fork on GitHub</a></p>\n            <p class=\"slds-p-top--medium\"><strong>Current release:</strong> 0.0.1</p>\n        </div>\n    </div>\n</header>\n<div class=\"site-content slds-p-around--xx-large site-design site-design-layout\">\n    <div class=\"slds-grid slds-wrap\">\n        <div class=\"slds-col slds-p-right--xx-large slds-size--1-of-1 slds-large-size--1-of-4\">\n            <h2 class=\"slds-text-heading--medium slds-m-top--xx-small\">Available in Two Flavors</h2>\n            <p class=\"slds-p-vertical--medium\">Appiphony Lightning JS (ALJS) harnesses the power of jQuery and Ember to deliver a rich JavaScript experience to the <a href=\"http://www.lightningdesignsystem.com/\" target=\"_blank\">Lightning Design System</a>.</p>\n        </div>\n        <div class=\"slds-col slds-size--1-of-1 slds-large-size--3-of-4\">\n            <div class=\"site-resources--landing slds-p-vertical--xx-small\">\n                <ul class=\"slds-grid slds-wrap slds-grid--align-spread slds-grid--pull-padded-large\">\n                    <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n                        <div class=\"grid-card\">\n                            <a href=\"http://jquery.com/\" target=\"_blank\"><img src=\"images/jquery-logo.svg\" class=\"jquery-logo\"></a>\n                            <hr class=\"hr hr--blue\">\n                            <p>jQuery is a fast, small, and feature-rich JavaScript library. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript.</p>\n                        </div>\n                    </li>\n                    <li class=\"slds-col--padded-large slds-size--1-of-1 slds-large-size--1-of-2\">\n                        <div class=\"grid-card\">\n                            <a href=\"http://emberjs.com/\" target=\"_blank\"><img src=\"images/ember-logo.svg\" class=\"ember-logo\"></a>\n                            <hr class=\"hr hr--orange\">\n                            <p>Ember.js helps developers be more productive out of the box. Designed with developer ergonomics in mind, its friendly APIs help you get your job done—fast.</p>\n                        </div>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n</div>");
   
 });
-Ember.TEMPLATES["modals"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["modals"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing;
@@ -522,7 +544,7 @@ function program1(depth0,data) {
     'label': ("Base"),
     'status': ("prototype"),
     'url': ("./demo-modal-1.html"),
-    'iframeHeight': ("600")
+    'iframeHeight': ("520")
   },hashTypes:{'label': "STRING",'status': "STRING",'url': "STRING",'iframeHeight': "STRING"},hashContexts:{'label': depth0,'status': depth0,'url': depth0,'iframeHeight': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-demo-container", options))));
   data.buffer.push("\n\n    ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "aljs-code-container", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
@@ -531,8 +553,9 @@ function program1(depth0,data) {
   }
 
   data.buffer.push(escapeExpression((helper = helpers['aljs-header'] || (depth0 && depth0['aljs-header']),options={hash:{
-    'label': ("Modals")
-  },hashTypes:{'label': "STRING"},hashContexts:{'label': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
+    'label': ("Modals"),
+    'icon': ("images/icon-modal.svg")
+  },hashTypes:{'label': "STRING",'icon': "STRING"},hashContexts:{'label': depth0,'icon': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
   data.buffer.push("\n");
   options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}
   if (helper = helpers['aljs-main-content']) { stack1 = helper.call(depth0, options); }
@@ -542,7 +565,8 @@ function program1(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["picklists"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["picklists"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing;
@@ -564,8 +588,9 @@ function program1(depth0,data) {
   }
 
   data.buffer.push(escapeExpression((helper = helpers['aljs-header'] || (depth0 && depth0['aljs-header']),options={hash:{
-    'label': ("Picklists")
-  },hashTypes:{'label': "STRING"},hashContexts:{'label': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
+    'label': ("Picklists"),
+    'icon': ("images/icon-picklist.svg")
+  },hashTypes:{'label': "STRING",'icon': "STRING"},hashContexts:{'label': depth0,'icon': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
   data.buffer.push("\n");
   options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}
   if (helper = helpers['aljs-main-content']) { stack1 = helper.call(depth0, options); }
@@ -575,7 +600,8 @@ function program1(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["popovers"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["popovers"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing;
@@ -597,8 +623,9 @@ function program1(depth0,data) {
   }
 
   data.buffer.push(escapeExpression((helper = helpers['aljs-header'] || (depth0 && depth0['aljs-header']),options={hash:{
-    'label': ("Popovers")
-  },hashTypes:{'label': "STRING"},hashContexts:{'label': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
+    'label': ("Popovers"),
+    'icon': ("images/icon-popover.svg")
+  },hashTypes:{'label': "STRING",'icon': "STRING"},hashContexts:{'label': depth0,'icon': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
   data.buffer.push("\n");
   options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}
   if (helper = helpers['aljs-main-content']) { stack1 = helper.call(depth0, options); }
@@ -608,6 +635,7 @@ function program1(depth0,data) {
   return buffer;
   
 });
+<<<<<<< HEAD
 Ember.TEMPLATES["tabs"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -642,6 +670,10 @@ function program1(depth0,data) {
   
 });
 Ember.TEMPLATES["tooltips"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+=======
+Ember.TEMPLATES["tooltips"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
+>>>>>>> 7f319cfedc70b42b688a15c0923a52b6da6f9d72
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing;
@@ -663,8 +695,9 @@ function program1(depth0,data) {
   }
 
   data.buffer.push(escapeExpression((helper = helpers['aljs-header'] || (depth0 && depth0['aljs-header']),options={hash:{
-    'label': ("Tooltips")
-  },hashTypes:{'label': "STRING"},hashContexts:{'label': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
+    'label': ("Tooltips"),
+    'icon': ("images/icon-tooltip.svg")
+  },hashTypes:{'label': "STRING",'icon': "STRING"},hashContexts:{'label': depth0,'icon': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
   data.buffer.push("\n");
   options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}
   if (helper = helpers['aljs-main-content']) { stack1 = helper.call(depth0, options); }
@@ -674,7 +707,8 @@ function program1(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["components/aljs-demo-container"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["components/aljs-demo-container"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, self=this, escapeExpression=this.escapeExpression;
@@ -704,20 +738,35 @@ function program1(depth0,data) {
   return buffer;
   
 });
-Ember.TEMPLATES["components/aljs-header"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["components/aljs-header"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1;
+  var buffer = '', stack1, escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data) {
+  
+  var buffer = '';
+  data.buffer.push("<img ");
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
+    'src': ("icon")
+  },hashTypes:{'src': "STRING"},hashContexts:{'src': depth0},contexts:[],types:[],data:data})));
+  data.buffer.push(" class=\"aljs-section-icon\">");
+  return buffer;
+  }
 
-  data.buffer.push("<header class=\"site-masthead slds-grid\">\n    <div class=\"site-masthead-title slds-col slds-has-flexi-truncate slds-align-middle\">\n        <div class=\"slds-media__body\">\n            <div class=\"slds-grid\">\n                <h1 title=\"Appiphony Lightning JS\" class=\"slds-p-left--large\">");
+  data.buffer.push("<header class=\"site-masthead slds-grid\">\n    <div class=\"site-masthead-title slds-col slds-no-flex slds-align-middle\">\n        <div class=\"slds-media__body\">\n            <div class=\"slds-grid\">\n                <h1 title=\"Appiphony Lightning JS\" class=\"slds-p-left--large\">");
+  stack1 = helpers['if'].call(depth0, "icon", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("<span class=\"aljs-section-title\">");
   stack1 = helpers._triageMustache.call(depth0, "label", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</h1></div>\n        </div>\n    </div>\n</header>");
+  data.buffer.push("</span></h1></div>\n        </div>\n    </div>\n</header>");
   return buffer;
   
 });
-Ember.TEMPLATES["components/aljs-main-content"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["components/aljs-main-content"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1;
@@ -730,7 +779,8 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   return buffer;
   
 });
-Ember.TEMPLATES["components/aljs-pre-container"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["components/aljs-pre-container"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, escapeExpression=this.escapeExpression;

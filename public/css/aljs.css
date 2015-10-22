@@ -7,6 +7,26 @@
     padding: 8vw;
 }
 
+.aljs-section-icon {
+    display: inline-block;
+    max-height: 60px;
+    max-width: 60px;
+    height: auto;
+    width: auto;
+    position: absolute;
+    left: 20px;
+    top: -2px;
+}
+
+.aljs-section-title {
+    display: inline-block;
+}
+
+.aljs-section-icon + .aljs-section-title {
+    position: relative;
+    left: 80px;
+}
+
 pre {
     background-color: #eef1f6;
     margin-bottom: 0;
@@ -122,6 +142,13 @@ a.aljs-home-link {
 .slds-is-selected,
 .slds-is-active {
     background-color: #f4f6f9;
+}
+
+#app .slds-is-selected:focus,
+#app .slds-is-selected:hover,
+#app .slds-is-active:focus,
+#app .slds-is-active:hover {
+    background-color: #eceff5;
 }
 
 #navigation a {

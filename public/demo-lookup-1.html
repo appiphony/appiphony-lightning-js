@@ -15,7 +15,7 @@
 				<label class="slds-form-element__label" for="lookup">Stuffs</label>
 				<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
 					<svg aria-hidden="true" class="slds-input__icon">
-						<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+						<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#search"></use>
 					</svg>
 					<input id="lookup" class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" />
 				</div>
@@ -27,7 +27,7 @@
 				<label class="slds-form-element__label" for="lookup">Things</label>
 				<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
 					<svg aria-hidden="true" class="slds-input__icon">
-						<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+						<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#search"></use>
 					</svg>
 					<input id="lookup2" class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" />
 				</div>
@@ -38,6 +38,10 @@
     <script src="../src/jquery.aljs-init.js"></script>
     <script src="../src/jquery.aljs-lookup.js"></script>
     <script>
+    	$.aljsInit({
+            assetsLocation: '.'
+        });
+
     	var results = [
         				{
         					id: 1,
@@ -63,8 +67,9 @@
         	});
 
         	$('#lookup2').lookup({
-        		itemLookupPluralLabel: 'Things',
-        		itemLookupLabel: 'Thing',
+        		objectPluralLabel: 'Things',
+        		objectLabel: 'Thing',
+        		objectIconUrl: 'assets/icons/standard-sprite/svg/symbols.svg#record',
         		emptySearchTermQuery: function(callback) {
         			callback(results);
         		},

@@ -12,8 +12,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 		'<div class="slds-lookup__item">' +
 			'<button class="slds-button">' +
 				'<svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--small">' +
-					'<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>' +
-				'</svg>&quot;{{searchTerm}}&quot; in {{itemLookupPluralLabel}}' +
+					'<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#search"></use>' +
+				'</svg>&quot;{{searchTerm}}&quot; in {{objectPluralLabel}}' +
 			'</button>' +
 		'</div>';
 
@@ -21,8 +21,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 		'<div class="slds-lookup__item">' +
 			'<button class="slds-button">' +
 				'<svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--small">' +
-					'<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#add"></use>' +
-				'</svg>Add {{itemLookupLabel}}' +
+					'<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#add"></use>' +
+				'</svg>Add {{objectLabel}}' +
 			'</button>' +
 		'</div>';
 
@@ -30,7 +30,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 		'<li class="slds-lookup__item">' +
 			'<a id="{{resultId}}" href="#" role="option">' +
 				'<svg aria-hidden="true" class="slds-icon slds-icon-standard-account slds-icon--small">' +
-					'<use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#account"></use>' +
+					'<use xlink:href="{{objectIconUrl}}"></use>' +
 				'</svg>{{resultLabel}}' +
 			'</a>' +
 		'</li>';
@@ -107,20 +107,25 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	var $lookupSearchContainer = $(lookupSearchContainerMarkup);
         	var $resultsListContainer = $lookupSearchContainer.find('ul.slds-lookup__list');
         	var searchTerm = this.$el.val();
+        	var self = this;
 
         	if (!this.isStringEmpty(searchTerm) && searchTerm.length > 1) {
         		$resultsListContainer.append(useMarkup.replace('{{searchTerm}}', searchTerm)
-        											  .replace('{{itemLookupPluralLabel}}', this.settings.itemLookupPluralLabel));
+        											  .replace('{{objectPluralLabel}}', this.settings.objectPluralLabel)
+        											  .replace('{{assetsLocation}}', $.aljs.assetsLocation));
         	}
 
         	this.searchResults.forEach(function(result) {
         		var $lookupResultItem = $resultsListContainer.append(lookupResultItemMarkup
         														.replace('{{resultLabel}}', result.label)
-        														.replace('{{resultId}}', result.id));
+        														.replace('{{resultId}}', result.id)
+        														.replace('{{objectIconUrl}}', self.settings.objectIconUrl));
         	});
 
         	if (this.settings.clickAddFunction) {
-        		var $addItem = $(addItemMarkup.replace('{{itemLookupLabel}}', this.settings.itemLookupLabel)).appendTo($resultsListContainer);
+        		var $addItem = $resultsListContainer.append(addItemMarkup
+        									.replace('{{objectLabel}}', this.settings.objectLabel)
+        								 	.replace('{{assetsLocation}}', $.aljs.assetsLocation));
         	}
 
         	$resultsListContainer.on('click', 'a', this, this.clickResult);
@@ -163,8 +168,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         var settings = $.extend({
             // These are the defaults.
             assetsLocation: $.aljs.assetsLocation,
-            itemLookupPluralLabel: 'Stuffs',
-            itemLookupLabel: 'Stuff',
+            objectPluralLabel: 'Stuffs',
+            objectLabel: 'Stuff',
+            objectIconUrl: 'assets/icons/standard-sprite/svg/symbols.svg#account',
             searchTerm: '',
             items: [],
             emptySearchTermQuery: function () { callback([]); },

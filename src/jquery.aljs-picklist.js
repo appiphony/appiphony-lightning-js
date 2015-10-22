@@ -5,7 +5,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     var Picklist = function(el, options) {
         this.$el = $(el);
         this.obj = {
-            checkmarkIcon: '<svg aria-hidden="true" class="slds-icon slds-icon--small slds-icon--left"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="' + options.assetsLocation + '/assets/icons/standard-sprite/svg/symbols.svg#task2"></use></svg>'
+            checkmarkIcon: '<svg aria-hidden="true" class="slds-icon slds-icon--small slds-icon--left"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="' + $.aljs.assetsLocation + '/assets/icons/standard-sprite/svg/symbols.svg#task2"></use></svg>'
         };
         this.settings = options;
 

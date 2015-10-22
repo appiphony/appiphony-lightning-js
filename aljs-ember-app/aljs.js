@@ -72,6 +72,10 @@ App.DatepickersController = Ember.ObjectController.extend(App.SelectedSectionMix
     routeName: 'datepickers'
 });
 
+App.TabsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
+    routeName: 'tabs'
+});
+
 App.AljsController = Ember.ObjectController.extend({
     init: function() {
         this._super();
@@ -105,6 +109,10 @@ App.AljsRoute = Ember.Route.extend({
                 {
                     path: 'datepickers',
                     name: 'Datepickers'
+                },
+                {
+                    path: 'tabs',
+                    name: 'Tabs'
                 }
             ]
         };
@@ -133,6 +141,7 @@ App.Router.map(function() {
     	this.resource('tooltips');
     	this.resource('popovers');
     	this.resource('datepickers');
+        this.resource('tabs');
     });
 });
 

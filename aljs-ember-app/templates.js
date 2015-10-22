@@ -246,6 +246,68 @@ function program3(depth0,data) {
   return buffer;
   
 });
+Ember.TEMPLATES["_tabsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
+  
+  
+  data.buffer.push("\n<div>\n    afasdsa\n</div>\n");
+  }
+
+function program3(depth0,data) {
+  
+  
+  data.buffer.push("\nfalkfjalsf\n");
+  }
+
+  data.buffer.push("<div id=\"markup-2\" class=\"site-example--content slds-m-bottom--xx-large slds-scrollable--x slds-tabs__content slds-show\" role=\"tabpanel\">\n    <div class=\"slds-p-horizontal--medium\">\n");
+  stack1 = (helper = helpers['aljs-pre-container'] || (depth0 && depth0['aljs-pre-container']),options={hash:{
+    'type': ("html")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n");
+  stack1 = (helper = helpers['aljs-pre-container'] || (depth0 && depth0['aljs-pre-container']),options={hash:{
+    'type': ("js")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(3, program3, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    </div>\n</div>");
+  return buffer;
+  
+});
+Ember.TEMPLATES["_tabsJQuery"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
+  
+  
+  data.buffer.push("\n<div>\n    afasdsa\n</div>\n");
+  }
+
+function program3(depth0,data) {
+  
+  
+  data.buffer.push("\nfalkfjalsf\n");
+  }
+
+  data.buffer.push("<div id=\"markup-2\" class=\"site-example--content slds-m-bottom--xx-large slds-scrollable--x slds-tabs__content slds-show\" role=\"tabpanel\">\n    <div class=\"slds-p-horizontal--medium\">\n");
+  stack1 = (helper = helpers['aljs-pre-container'] || (depth0 && depth0['aljs-pre-container']),options={hash:{
+    'type': ("html")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n");
+  stack1 = (helper = helpers['aljs-pre-container'] || (depth0 && depth0['aljs-pre-container']),options={hash:{
+    'type': ("js")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.noop,fn:self.program(3, program3, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-pre-container", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    </div>\n</div>");
+  return buffer;
+  
+});
 Ember.TEMPLATES["_tooltipsEmber"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -395,7 +457,7 @@ function program1(depth0,data) {
     'label': ("Base"),
     'status': ("prototype"),
     'url': ("./demo-datepicker-1.html"),
-    'iframeHeight': ("600")
+    'iframeHeight': ("400")
   },hashTypes:{'label': "STRING",'status': "STRING",'url': "STRING",'iframeHeight': "STRING"},hashContexts:{'label': depth0,'status': depth0,'url': depth0,'iframeHeight': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-demo-container", options))));
   data.buffer.push("\n\n    ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "aljs-code-container", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
@@ -536,6 +598,39 @@ function program1(depth0,data) {
 
   data.buffer.push(escapeExpression((helper = helpers['aljs-header'] || (depth0 && depth0['aljs-header']),options={hash:{
     'label': ("Popovers")
+  },hashTypes:{'label': "STRING"},hashContexts:{'label': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
+  data.buffer.push("\n");
+  options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}
+  if (helper = helpers['aljs-main-content']) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0['aljs-main-content']); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers['aljs-main-content']) { stack1 = blockHelperMissing.call(depth0, 'aljs-main-content', {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}); }
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  return buffer;
+  
+});
+Ember.TEMPLATES["tabs"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = '', helper, options;
+  data.buffer.push("\n    <p class=\"site-text-introduction\">Intro paragraph.</p>\n    <p>Paragraph.</p>\n    <h4 class=\"site-text-heading--label\">Subhead</h4>\n    <p>Paragraph.</p>\n    ");
+  data.buffer.push(escapeExpression((helper = helpers['aljs-demo-container'] || (depth0 && depth0['aljs-demo-container']),options={hash:{
+    'label': ("Base"),
+    'status': ("prototype"),
+    'url': ("./demo-tabs-1.html"),
+    'iframeHeight': ("400")
+  },hashTypes:{'label': "STRING",'status': "STRING",'url': "STRING",'iframeHeight': "STRING"},hashContexts:{'label': depth0,'status': depth0,'url': depth0,'iframeHeight': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-demo-container", options))));
+  data.buffer.push("\n\n    ");
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "aljs-code-container", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push("\n");
+  return buffer;
+  }
+
+  data.buffer.push(escapeExpression((helper = helpers['aljs-header'] || (depth0 && depth0['aljs-header']),options={hash:{
+    'label': ("Tabs")
   },hashTypes:{'label': "STRING"},hashContexts:{'label': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "aljs-header", options))));
   data.buffer.push("\n");
   options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data}

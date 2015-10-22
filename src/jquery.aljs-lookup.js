@@ -1,8 +1,8 @@
 if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the ALJS initializer file") }
 
 (function($) {
-	var singleSelectContainerMarkup = '<div class="slds-pill-container slds-hide"></div>';
-	var singleSelectMarkup = 
+	var selectContainerMarkup = '<div class="slds-pill-container slds-hide"></div>';
+	var pillMarkup = 
     	'<span class="slds-pill slds-pill--bare">' +
       		'<a href="#" class="slds-pill__label">' +
         		'<svg aria-hidden="true" class="slds-icon slds-icon-standard-account slds-icon--small">' +
@@ -53,9 +53,15 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     var Lookup = function(el, options) {
         this.$el = $(el);
         this.$lookupContainer = this.$el.closest('.slds-lookup');
+        this.isSingle = this.$lookupContainer.data('select') === 'single';
         this.settings = options;
        
-       	this.$singleSelect = $(singleSelectContainerMarkup).insertBefore(this.$el);
+       	if (this.isSingle) {
+       		this.$singleSelect = $(selectContainerMarkup).insertBefore(this.$el);
+       	} else {
+       		this.$multiSelect = $(selectContainerMarkup).appendTo(this.$lookupContainer.find('.slds-form-element'));
+       		this.selectedResults = []; // We'll have to initialize.
+       	}
 
         if (!this.isStringEmpty(options.searchTerm)) {
     		this.$el.val(options.searchTerm);
@@ -86,11 +92,37 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         		self.getDefaultResults();
         	}
         },
+        setMultiSelect: function(selectedResults) {
+        	var self = this;
+        	var $multiSelect = this.$multiSelect.html('');
+        	var $lookupContainer = this.$lookupContainer;
+
+        	if (selectedResults.length > 0) {
+        		selectedResults.forEach(function(result) {
+        			var $pill = $(pillMarkup.replace('{{objectIconUrl}}', self.settings.objectIconUrl)
+    												  .replace('{{assetsLocation}}', self.settings.assetsLocation)
+    												  .replace('{{selectedResultLabel}}', result.label));
+
+        			$pill.attr('id', result.id);
+        			$pill.on('click', 'a, button', self, self.clearMultiSelectResult);
+        			$multiSelect.append($pill);
+        		});
+
+        		$multiSelect.addClass('slds-show')
+        					.removeClass('slds-hide');
+        		$lookupContainer.addClass('slds-has-selection');
+        	} else {
+        		$multiSelect.html('');
+        		$multiSelect.addClass('slds-hide')
+        					.removeClass('slds-show');
+        		$lookupContainer.removeClass('slds-has-selection');
+        	}
+        },
         setSingleSelect: function(selectedResultLabel) {
         	var self = this;
         	var newResultLabel = selectedResultLabel || '';
 
-        	this.$singleSelect.html(singleSelectMarkup.replace('{{objectIconUrl}}', this.settings.objectIconUrl)
+        	this.$singleSelect.html(pillMarkup.replace('{{objectIconUrl}}', this.settings.objectIconUrl)
     												  .replace('{{assetsLocation}}', this.settings.assetsLocation)
     												  .replace('{{selectedResultLabel}}', newResultLabel));
 
@@ -99,7 +131,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     						  	  .removeClass('slds-hide');
 
     			this.$el.addClass('slds-hide')
-        				.closest('.slds-lookup').addClass('slds-has-selection');
+        		this.$lookupContainer.addClass('slds-has-selection');
 
         		this.$singleSelect.one('click', 'a, button', this, this.clearSingleSelect);
         	} else {
@@ -108,7 +140,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         		this.$el.val('')
         			.removeClass('slds-hide')
-        			.closest('.slds-lookup').removeClass('slds-has-selection');
+        		this.$lookupContainer.removeClass('slds-has-selection');
 
         		window.setTimeout(function() {
         			self.$el.focus();
@@ -162,10 +194,22 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	}
 
         	this.searchResults.forEach(function(result) {
-        		var $lookupResultItem = $resultsListContainer.append(lookupResultItemMarkup
+        		if (self.isSingle) {
+        			$resultsListContainer.append(lookupResultItemMarkup
         														.replace('{{resultLabel}}', result.label)
         														.replace('{{resultId}}', result.id)
         														.replace('{{objectIconUrl}}', self.settings.objectIconUrl));
+        		} else if (self.selectedResults) {
+        			var selectedResultsIds = self.selectedResults.map(function(result) { return result.id; });
+
+        			if (selectedResultsIds.length === 0 || selectedResultsIds.indexOf(result.id) === -1) {
+        				$resultsListContainer.append(lookupResultItemMarkup
+        														.replace('{{resultLabel}}', result.label)
+        														.replace('{{resultId}}', result.id)
+        														.replace('{{objectIconUrl}}', self.settings.objectIconUrl));
+        			}
+        		}
+        		
         	});
 
         	if (this.settings.clickAddFunction) {
@@ -174,7 +218,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         								 	.replace('{{assetsLocation}}', $.aljs.assetsLocation));
         	}
 
-        	$resultsListContainer.on('click', 'a', this, this.clickResult);
+        	$resultsListContainer.one('click', 'a', this, this.clickResult);
 
         	this.$lookupSearchContainer = $lookupSearchContainer;
         	$lookupSearchContainer.appendTo(this.$lookupContainer);
@@ -203,16 +247,38 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         		return result.id == selectedId;
         	});
 
-        	this.selectedResult = selectedResultArray.length > 0 ? selectedResultArray[0] : null;
-
         	this.closeSearchDropdown();
 
-        	this.setSingleSelect(this.selectedResult.label);
+        	if (this.isSingle) {
+        		this.selectedResult = selectedResultArray.length > 0 ? selectedResultArray[0] : null;
+        		this.setSingleSelect(this.selectedResult.label);
+        	} else if (selectedResultArray.length > 0) {
+        		this.selectedResults.push(selectedResultArray[0]);
+        		this.setMultiSelect(this.selectedResults);
+        	}
         },
         clearSingleSelect: function(e) {
         	var self = e.data;
 
         	self.setSingleSelect();
+        },
+        clearMultiSelectResult: function(e) {
+        	var self = e.data;
+        	var $clickedPill = $(this).closest('span.slds-pill');
+        	var resultId = $clickedPill.attr('id');
+        	var indexToRemove;
+
+        	self.selectedResults.forEach(function(result, index) {
+        		if (result.id == resultId) {
+        			indexToRemove = index;
+        		}
+        	});
+
+        	if (typeof indexToRemove !== 'undefined' && indexToRemove !== null) {
+        		self.selectedResults.splice(indexToRemove, 1);
+
+        		self.setMultiSelect(self.selectedResults);
+        	}
         }
     };
 

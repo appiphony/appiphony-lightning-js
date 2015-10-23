@@ -1,5 +1,5 @@
 .aljs-home-header {
-    background-color: #1c4c67;
+    /*background-color: #1c4c67;*/
     height: auto;
 }
 
@@ -100,7 +100,7 @@ a.aljs-home-link {
     left: 0;
     background: no-repeat center center url(../images/home-hero-bg.jpg);
     background-size: cover;
-    opacity: 0.1;
+    opacity: 0.06;
 }
 
 .site-resources--landing .grid-card {

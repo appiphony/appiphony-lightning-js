@@ -5,7 +5,7 @@
         {{outlet}}
     </div>
 </main>
-<nav id="navigation" class="site-navigation" role="navigation">
+<nav id="navigation" class="site-navigation slds-p-top--medium" role="navigation">
     <ul class="slds-list--vertical slds-has-block-links">
         {{#each section in sections}}
         	{{#link-to section.path tagName="li" class="slds-list__item" activeClass="slds-is-selected slds-is-active"}}<a href="#">{{section.name}}</a>{{/link-to}}
@@ -13,5 +13,5 @@
     </ul>
 </nav>
 <footer class="site-contentinfo slds-wrap site-text-longform slds-text-body--small" role="contentinfo">
-    <p class="slds-col--padded slds-p-right--large">&copy; 2015 <a href="http://appiphony.com" target="_blank">Appiphony, LLC</a>. All rights reserved. The Salesforce Sans Font is used under license from Salesforce.com, Inc.</p>
+    <p class="slds-col--padded slds-p-right--large">&copy; 2015 <a href="http://appiphony.com/" target="_blank">Appiphony, LLC</a>. All rights reserved. The Salesforce Sans Font is used under license from Salesforce.com, Inc.</p>
 </footer>

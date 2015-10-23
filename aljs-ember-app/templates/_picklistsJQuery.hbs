@@ -52,7 +52,7 @@ $(document).ready(function() {
 {{/aljs-pre-container}}
         
         <h4 class="site-text-heading--large">Markup</h4>
-        <p>This table gives you a quick overview of ALJS-specific markup applied to SLDS components.</p>
+        <p>This table gives you a quick overview of ALJS-specific markup applied to the SLDS component.</p>
         <div class="slds-scrollable--x">
             <table class="slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium">
                 <thead>
@@ -85,20 +85,17 @@ $(document).ready(function() {
                 <thead>
                     <tr class="site-text-heading--label">
                         <th scope="col">Option</th>
-                        <th scope="col">Outcome</th>
-                        <th scope="col">Required</th>
+                        <th scope="col">Behavior</th>
+                        <th scope="col">Values</th>
+                        <th scope="col">Default value</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row"><code>data-aljs="picklist"</code></th>
-                        <td data-label="Outcome">Provides a unique identifier for the plugin</td>
-                        <td data-label="Required" class="slds-cell-shrink">
-                            <svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
-                            </svg><span class="slds-assistive-text">Required</span></td>
-                        <td data-label="Applied to" class="slds-cell-shrink"><code>.slds-picklist</code></td>
-                        <td data-label="Comments"></td>
+                        <th scope="row"><code>onChange</code></th>
+                        <td data-label="Behavior">Calls a function when a picklist value changes</td>
+                        <td data-label="Accepted values">Any callback function</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>function(obj) {}</code></td>
                     </tr>
                 </tbody>
             </table>

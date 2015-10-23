@@ -7,7 +7,7 @@
         <button class="slds-button slds-button--neutral" data-aljs="modal" data-aljs-show="modal-2">Open Modal 2</button>
     </div>
 
-    <div aria-hidden="false" *role="dialog"* class="slds-modal slds-fade-in-open" id="modal-1">
+    <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open" id="modal-1">
         <div class="slds-modal__container">
             <div class="slds-modal__header">
                 <h2 class="slds-text-heading--medium">Modal 1</h2>
@@ -58,7 +58,103 @@
 </div>
 {{/aljs-pre-container}}
 {{#aljs-pre-container type="js"}}
-falkfjalsf
+$(document).ready(function() {
+    $('[data-aljs="modal"]').modal({
+        backdropDismiss: false,
+        dismissSelector: '[data-aljs-dismiss="modal"]',
+        onShow: function() {},
+        onDismiss: function() {}
+    });
+});
 {{/aljs-pre-container}}
+        
+        <h4 class="site-text-heading--large">Markup</h4>
+        <p>This table gives you a quick overview of ALJS-specific markup applied to the SLDS component.</p>
+        <div class="slds-scrollable--x">
+            <table class="slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium">
+                <thead>
+                    <tr class="site-text-heading--label">
+                        <th scope="col">ALJS Markup</th>
+                        <th scope="col">Outcome</th>
+                        <th scope="col">Required</th>
+                        <th scope="col">Applied to</th>
+                        <th scope="col">Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"><code>data-aljs="modal"</code></th>
+                        <td data-label="Outcome">Provides a unique identifier for the plugin</td>
+                        <td data-label="Required" class="slds-cell-shrink">
+                            <svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                            </svg><span class="slds-assistive-text">Required</span></td>
+                        <td data-label="Applied to" class="slds-cell-shrink"><code>.slds-picklist</code></td>
+                        <td data-label="Comments"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>data-aljs-show="</code><em>modal-id</em><code>"</code></th>
+                        <td data-label="Outcome">Assigns the role of showing the specified modal id on click</td>
+                        <td data-label="Required" class="slds-cell-shrink">
+                            <!--<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                            </svg><span class="slds-assistive-text">Required</span>--></td>
+                        <td data-label="Applied to" class="slds-cell-shrink"><code>.slds-picklist</code></td>
+                        <td data-label="Comments">While not required, it is recommended to bind modal showings through this method rather than programmatically</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>data-aljs-dismiss="</code><em>modal-id</em><code>"</code></th>
+                        <td data-label="Outcome">Assigns the role of dismissing modals on click</td>
+                        <td data-label="Required" class="slds-cell-shrink">
+                            <!--<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                            </svg><span class="slds-assistive-text">Required</span>--></td>
+                        <td data-label="Applied to" class="slds-cell-shrink"><code>.slds-picklist</code></td>
+                        <td data-label="Comments">While not required, it is recommended to bind modal dismisses through this method rather than programmatically</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <h4 class="site-text-heading--large">Options</h4>
+        <p>This table details the options available for the jQuery function.</p>
+        <div class="slds-scrollable--x">
+            <table class="slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium">
+                <thead>
+                    <tr class="site-text-heading--label">
+                        <th scope="col">Option</th>
+                        <th scope="col">Behavior</th>
+                        <th scope="col">Values</th>
+                        <th scope="col">Default value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"><code>backdropDismiss</code></th>
+                        <td data-label="Behavior">Specifies whether or not modals will be dismissed if the backdrop is clicked</td>
+                        <td data-label="Accepted values"><code>true</code>, <code>false</code></td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>false</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>dismissSelector</code></th>
+                        <td data-label="Behavior">Binds all elements matching the selector to dismiss modals on click</td>
+                        <td data-label="Accepted values">Any selector</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>'[data-aljs-dismiss="modal"]'</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>onShow</code></th>
+                        <td data-label="Behavior">Calls a function when a modal is shown</td>
+                        <td data-label="Accepted values">Any callback function</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>function() {}</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>onDismiss</code></th>
+                        <td data-label="Behavior">Calls a function when a modal is dismissed</td>
+                        <td data-label="Accepted values">Any callback function</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>function() {}</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </div>

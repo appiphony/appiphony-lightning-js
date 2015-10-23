@@ -74,19 +74,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../src/jquery.aljs-init.js"></script>
     <script src="../src/jquery.aljs-modal.js"></script>
-    <script>
+    <!--<script>
         $(document).ready(function() {
             $('[data-aljs="modal"]').modal();
         });
-    </script>
-    <!--<script>
+    </script>-->
+    <script>
         $(document).ready(function() {
             $('[data-aljs="modal"]').modal({
-                backdropDismiss: true,
-                dismissSelector: '.dismiss'
+                backdropDismiss: false,
+                dismissSelector: '[data-aljs-dismiss="modal"]',
+                onShow: function() {},
+                onDismiss: function() {}
             });
         });
-    </script>-->
+    </script>
     <!--<script>
         $(document).ready(function() {
             $('body').modal({ selector: '[data-aljs="modal"]' })

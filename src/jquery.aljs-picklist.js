@@ -91,7 +91,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             this.obj.$dropdown.hide();
             this.obj.$dropdown.unbind('keyup', this.processKeypress);
 
-            this.obj.$trigger.trigger('aljs.picklistchange') // Custom aljs event
+            this.obj.$trigger.trigger('change.aljs.picklist') // Custom aljs event
                 .focus();
         
             this.obj.$valueContainer.html(this.obj.value);

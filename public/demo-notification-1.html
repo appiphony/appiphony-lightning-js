@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Pill Demo 1 | Appiphony Lightning JS</title>
+    <title>Notification Demo 1 | Appiphony Lightning JS</title>
     <link rel="stylesheet" type="text/css" href="assets/styles/salesforce-lightning-design-system-vf.css">
     <style type="text/css">
         html, body {
@@ -18,21 +18,23 @@
 
 <body>
     <div class="slds">
-    	<span class="slds-pill"><a href="#" class="slds-pill__label">Pill Label</a>
-            <button class="slds-button slds-button--icon-bare" data-aljs-dismiss="pill">
+    	<div class="slds-notify slds-notify--alert slds-theme--inverse-text slds-theme--alert-texture" role="alert">
+            <span class="slds-assistive-text">Info</span>
+            <button class="slds-button slds-button--icon-inverse slds-notify__close" data-aljs-dismiss="notification">
                 <svg aria-hidden="true" class="slds-button__icon">
-                    <use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                    <use xlink:href="assets/icons/action-sprite/svg/symbols.svg#close"></use>
                 </svg>
-                <span class="slds-assistive-text">Remove</span>
+                <span class="slds-assistive-text">Close</span>
             </button>
-        </span>
+            <h2>Base System Alert</h2>
+        </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../src/jquery.aljs-init.js"></script>
-    <script src="../src/jquery.aljs-pill.js"></script>
+    <script src="../src/jquery.aljs-notification.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-    	   $('body').pill();
+    	   $('body').notification();
         });
     </script>
     <!--<script type="text/javascript">

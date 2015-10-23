@@ -79,14 +79,44 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	return stringVal === null || typeof stringVal === 'undefined' || stringVal.trim() === '';
         },
         initLookup: function() {
+        	var self = this;
+
         	this.$el.on('focus', this, this.runSearch)
         			.on('keyup', this, this.runSearch)
         			.on('blur', this, this.handleBlur);
+
+			this.$lookupContainer.on('keyup', function(e) {
+				e.stopPropagation();
+
+				var $focusedA = $(this).find('a:focus');
+
+				if (e.keyCode === 27) {
+		        	self.$el.blur();
+		        }
+
+		        if (e.keyCode === 40) {
+		            // DOWN
+		            if ($focusedA.length > 0) {
+		            	$focusedA.parent().next().find('a').focus();
+		            } else {
+		            	$(this).find('.slds-lookup__list').find('a:first').focus();
+		            }
+		        }
+
+		        if (e.keyCode === 38) {
+		            // UP
+		            if ($focusedA.length > 0) {
+		            	$focusedA.parent().prev().find('a').focus();
+		            } else {
+		            	$(this).find('.slds-lookup__list').find('a:last').focus();
+		            }
+		        }
+			});
         },
         runSearch: function(e) {
         	var self = e.data;
         	var searchTerm = self.$el.val();
-        	
+
         	if (!self.isStringEmpty(searchTerm)) {
         		self.getSearchTermResults(searchTerm);
         	} else {
@@ -103,9 +133,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         			var $pill = $(pillMarkup.replace('{{objectIconUrl}}', self.settings.objectIconUrl)
     												  .replace('{{assetsLocation}}', self.settings.assetsLocation)
     												  .replace('{{selectedResultLabel}}', result.label));
-
-        			$pill.attr('id', result.id);
-        			$pill.on('click', 'a, button', self, self.clearMultiSelectResult);
+        			$pill.removeClass('slds-pill--bare')
+        				 .attr('id', result.id)
+        				 .on('click', 'a, button', self, self.clearMultiSelectResult);
         			$multiSelect.append($pill);
         		});
 
@@ -195,8 +225,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	}
 
         	this.searchResults.forEach(function(result) {
+        		var $lookupResultItem;
         		if (self.isSingle) {
-        			$resultsListContainer.append(lookupResultItemMarkup
+        			$lookupResultItem = $resultsListContainer.append(lookupResultItemMarkup
         														.replace('{{resultLabel}}', result.label)
         														.replace('{{resultId}}', result.id)
         														.replace('{{objectIconUrl}}', self.settings.objectIconUrl));
@@ -204,13 +235,18 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         			var selectedResultsIds = self.selectedResults.map(function(result) { return result.id; });
 
         			if (selectedResultsIds.length === 0 || selectedResultsIds.indexOf(result.id) === -1) {
-        				$resultsListContainer.append(lookupResultItemMarkup
+        				$lookupResultItem = $resultsListContainer.append(lookupResultItemMarkup
         														.replace('{{resultLabel}}', result.label)
         														.replace('{{resultId}}', result.id)
         														.replace('{{objectIconUrl}}', self.settings.objectIconUrl));
         			}
         		}
-        		
+
+        		if ($lookupResultItem) {
+        			$lookupResultItem.find('a').on('focus', function() {
+	        			self.$el.attr('aria-activedescendant', $(this).attr('id'));
+	        		}).on('blur', self, self.handleBlur);
+        		}
         	});
 
         	if (this.settings.clickAddFunction) {
@@ -219,16 +255,20 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         								 	.replace('{{assetsLocation}}', $.aljs.assetsLocation));
         	}
 
-        	$resultsListContainer.one('click', 'a', this, this.clickResult);
-
+        	$resultsListContainer.one('click', 'a', this, this.clickResult)
+        						 
         	this.$lookupSearchContainer = $lookupSearchContainer;
         	$lookupSearchContainer.appendTo(this.$lookupContainer);
+        	this.$el.attr('aria-expanded', 'true');
         },
         closeSearchDropdown: function() {
         	if (this.$lookupSearchContainer) {
         		this.$lookupSearchContainer.remove();
         		this.$lookupSearchContainer = null;
         	}
+
+        	this.$el.attr('aria-expanded', 'false');
+        	this.$el.attr('aria-activedescendant', null);
         },
         handleBlur: function(e) {
         	var self = e.data;
@@ -256,6 +296,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	} else if (selectedResultArray.length > 0) {
         		this.selectedResults.push(selectedResultArray[0]);
         		this.setMultiSelect(this.selectedResults);
+        		this.$el.val('');
         	}
         },
         clearSingleSelect: function(e) {

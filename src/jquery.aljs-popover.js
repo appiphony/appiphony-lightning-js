@@ -44,6 +44,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             } 
 
             $target.wrap('<span style="position: relative; display: inline-block;"></span>');
+            $popover.on('click', options.dismissSelector, function(e) {
+                $popover.unwrap();
+                $popover.remove();
+            });
             $popover.appendTo($target.parent());
         }   
     };
@@ -53,7 +57,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         var settings = $.extend({
             assetsLocation: $.aljs.assetsLocation,
             closeOthers: true,
-            dismissSelector: '[data-aljs-dissmiss="popover"]'
+            dismissSelector: '[data-aljs-dismiss="popover"]'
             // These are the defaults.
             
         }, options );

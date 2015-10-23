@@ -19,64 +19,43 @@
 <body>
     <div class="slds">
         <div class="slds-form-element">
-			<div class="slds-picklist--draggable slds-grid">
+			<div class="slds-picklist--draggable slds-grid" data-aljs="multi-picklist">
 				<div class="slds-form-element">
 					<span class="slds-form-element__label" aria-label="select-1">First Category</span>
-					<div class="slds-picklist slds-picklist--multi">
-						<ul class="slds-picklist__options slds-picklist__options--multi shown">
-							<li draggable="true" id="po-0-0" class="slds-picklist__item slds-has-icon slds-has-icon--left" aria-selected="false" tabindex="0" role="option">
-								<span class="slds-truncate">
-									<span>Option One</span>
-								</span>
-							</li>
-							<li draggable="true" id="po-1-1" class="slds-picklist__item slds-has-icon slds-has-icon--left" aria-selected="false" tabindex="-1" role="option">
-								<span class="slds-truncate">
-									<span>Option Two</span>
-								</span>
-							</li>
-							<li draggable="true" id="po-2-2" class="slds-picklist__item slds-has-icon slds-has-icon--left" aria-selected="false" tabindex="-1" role="option">
-								<span class="slds-truncate">
-									<span>Option Three</span>
-								</span>
-							</li>
-							<li draggable="true" id="po-3-3" class="slds-picklist__item slds-has-icon slds-has-icon--left" aria-selected="false" tabindex="-1" role="option">
-								<span class="slds-truncate">
-									<span>Option Four</span>
-								</span>
-							</li>
-						</ul>
+					<div class="slds-picklist slds-picklist--multi" data-aljs-multi-picklist="unselected">
+						<ul class="slds-picklist__options slds-picklist__options--multi shown"></ul>
 					</div>
 				</div>
 				<div class="slds-grid slds-grid--vertical">
-					<button class="slds-button slds-button--icon-container">
+					<button class="slds-button slds-button--icon-container" data-aljs-multi-picklist="unselect">
 						<svg aria-hidden="true" class="slds-button__icon">
-							<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#left"></use>
+							<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#left"></use>
 						</svg>
 						<span class="slds-assistive-text">Pick list</span>
 					</button>
-					<button class="slds-button slds-button--icon-container">
+					<button class="slds-button slds-button--icon-container" data-aljs-multi-picklist="select">
 						<svg aria-hidden="true" class="slds-button__icon">
-							<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#right"></use>
+							<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#right"></use>
 						</svg>
 						<span class="slds-assistive-text">Pick list</span>
 					</button>
 				</div>
 				<div class="slds-form-element">
 					<span class="slds-form-element__label" aria-label="select-2">Second Category</span>
-					<div class="slds-picklist slds-picklist--multi">
+					<div class="slds-picklist slds-picklist--multi" data-aljs-multi-picklist="selected">
 						<ul class="slds-picklist__options slds-picklist__options--multi shown"></ul>
 					</div>
 				</div>
 				<div class="slds-grid slds-grid--vertical">
-					<button class="slds-button slds-button--icon-container">
+					<button class="slds-button slds-button--icon-container" data-aljs-multi-picklist="move-up">
 						<svg aria-hidden="true" class="slds-button__icon">
-							<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#up"></use>
+							<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#up"></use>
 						</svg>
 						<span class="slds-assistive-text">Pick list</span>
 					</button>
-					<button class="slds-button slds-button--icon-container">
+					<button class="slds-button slds-button--icon-container" data-aljs-multi-picklist="move-down">
 						<svg aria-hidden="true" class="slds-button__icon">
-							<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
+							<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#down"></use>
 						</svg>
 						<span class="slds-assistive-text">Pick list</span>
 					</button>
@@ -88,13 +67,33 @@
     <script src="../src/jquery.aljs-init.js"></script>
     <script src="../src/jquery.aljs-multipicklist.js"></script>
     <script>
+    	var unselectedItems = [
+    		{
+    			id: 1,
+    			label: 'Option 1'
+    		},
+    		{
+    			id: 2,
+    			label: 'Option 2'
+    		}
+    	];
+
+    	var selectedItems = [
+    		{
+    			id: 3,
+    			label: 'Option 3'
+    		},
+    		{
+    			id: 4,
+    			label: 'Option 4'
+    		}
+    	];
+
         $(document).ready(function() {
-            /*$('#pl1').multipicklist({
-                onChange: function(obj) {
-                    console.log('picklist 1');
-                    console.log(obj);
-                }
-            });*/
+            $('[data-aljs="multi-picklist"').multiPicklist({
+                unselectedItems: unselectedItems,
+                selectedItems: selectedItems
+            });
         });
     </script>
     <script>

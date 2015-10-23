@@ -893,6 +893,18 @@ App.SfPopoverComponent = Ember.Component.extend({
 });
 
 App.ExploreController = Ember.ObjectController.extend({
+    getAccounts: function(callback) {
+        callback([
+            {
+                id: 1,
+                label: 'ajaxAccount 1'
+            },
+            {
+                id: 2,
+                label: 'ajaxAccount 2'
+            }
+        ]);
+    },
     accounts: [
         {
             id: 1,

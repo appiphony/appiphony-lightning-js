@@ -195,8 +195,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	}
 
         	this.searchResults.forEach(function(result) {
+        		var $lookupResultItem;
         		if (self.isSingle) {
-        			$resultsListContainer.append(lookupResultItemMarkup
+        			$lookupResultItem = $resultsListContainer.append(lookupResultItemMarkup
         														.replace('{{resultLabel}}', result.label)
         														.replace('{{resultId}}', result.id)
         														.replace('{{objectIconUrl}}', self.settings.objectIconUrl));
@@ -204,13 +205,16 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         			var selectedResultsIds = self.selectedResults.map(function(result) { return result.id; });
 
         			if (selectedResultsIds.length === 0 || selectedResultsIds.indexOf(result.id) === -1) {
-        				$resultsListContainer.append(lookupResultItemMarkup
+        				$lookupResultItem = $resultsListContainer.append(lookupResultItemMarkup
         														.replace('{{resultLabel}}', result.label)
         														.replace('{{resultId}}', result.id)
         														.replace('{{objectIconUrl}}', self.settings.objectIconUrl));
         			}
         		}
-        		
+
+        		$lookupResultItem.find('a').on('focus', function() {
+        			self.$el.attr('aria-activedescendant', $(this).attr('id'));
+        		});
         	});
 
         	if (this.settings.clickAddFunction) {
@@ -219,16 +223,30 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         								 	.replace('{{assetsLocation}}', $.aljs.assetsLocation));
         	}
 
-        	$resultsListContainer.one('click', 'a', this, this.clickResult);
+        	$resultsListContainer.one('click', 'a', this, this.clickResult)
+        						 .on('keyup', function(e) {
+        						 	if (e.keyCode === 40) {
+							            // DOWN
+							            $(this).find('a:focus').parent().next().find('a').focus();
+							        }
 
+							        if (e.keyCode === 38) {
+							            // UP
+							            $(this).find('a:focus').parent().prev().find('a').focus();
+							        }
+        						 });
         	this.$lookupSearchContainer = $lookupSearchContainer;
         	$lookupSearchContainer.appendTo(this.$lookupContainer);
+        	this.$el.attr('aria-expanded', 'true');
         },
         closeSearchDropdown: function() {
         	if (this.$lookupSearchContainer) {
         		this.$lookupSearchContainer.remove();
         		this.$lookupSearchContainer = null;
         	}
+
+        	this.$el.attr('aria-expanded', 'false');
+        	this.$el.attr('aria-activedescendant', null);
         },
         handleBlur: function(e) {
         	var self = e.data;

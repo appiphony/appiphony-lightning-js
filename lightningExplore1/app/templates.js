@@ -1017,15 +1017,15 @@ function program14(depth0,data) {
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers['aljs-lookup'] || (depth0 && depth0['aljs-lookup'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "aljs-lookup", options))));
   data.buffer.push("\n\n        ");
-  hashContexts = {'data-select': depth0,'data-scope': depth0,'data-autocomplete': depth0,'objectLabel': depth0,'objectPluralLabel': depth0,'items': depth0};
-  hashTypes = {'data-select': "STRING",'data-scope': "STRING",'data-autocomplete': "STRING",'objectLabel': "STRING",'objectPluralLabel': "STRING",'items': "ID"};
+  hashContexts = {'data-select': depth0,'data-scope': depth0,'data-autocomplete': depth0,'objectLabel': depth0,'objectPluralLabel': depth0,'emptySearchTermQuery': depth0};
+  hashTypes = {'data-select': "STRING",'data-scope': "STRING",'data-autocomplete': "STRING",'objectLabel': "STRING",'objectPluralLabel': "STRING",'emptySearchTermQuery': "ID"};
   options = {hash:{
     'data-select': ("multi"),
     'data-scope': ("single"),
     'data-autocomplete': ("true"),
     'objectLabel': ("Opportunity"),
     'objectPluralLabel': ("Opportunities"),
-    'items': ("opportunities")
+    'emptySearchTermQuery': ("getAccounts")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers['aljs-lookup'] || (depth0 && depth0['aljs-lookup'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "aljs-lookup", options))));
   data.buffer.push("\n\n</div>");

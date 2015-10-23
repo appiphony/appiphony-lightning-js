@@ -8,9 +8,10 @@
     <style type="text/css">
         html, body {
             margin: 0;
-            padding: 0;
+            padding: 2px;
             width: 100%;
             height: 100%;
+            box-sizing: border-box;
         }
     </style>
 </head>
@@ -69,23 +70,17 @@
         });
 
         $(document).ready(function() {
-            $('[data-aljs="picklist"]').picklist({
-                onChange: function(obj) {
-                    console.log('picklist 1');
-                    console.log(obj);
-                }
-            });
+            $('[data-aljs="picklist"]').picklist();
         });
     </script>
     <!--<script>
         $.aljsInit({
             assetsLocation: '.'
         });
+
+        $(document).ready(function() {
             $('[data-aljs="picklist"]').picklist({
-                assetsLocation: '.',
-                onChange: function(x) {
-                    console.log(x);
-                }
+                onChange: function(obj) {}
             });
         });
     </script>-->
@@ -101,6 +96,14 @@
             });
         });
     </script>-->
+    <script>
+        $(document).ready(function() {
+            $('a[href="#"]').click(function(e) {
+               e.preventDefault();
+                return false;
+            });
+        });
+    </script>
 </body>
 
 </html>

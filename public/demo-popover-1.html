@@ -8,36 +8,40 @@
     <style type="text/css">
         html, body {
             margin: 0;
-            padding: 0;
+            padding: 2px;
             width: 100%;
             height: 100%;
+            box-sizing: border-box;
         }
     </style>
 </head>
 
 <body>
     <div class="slds">
-    	<div>
-            <button class="slds-button slds-button--neutral slds-button--small" data-aljs="popover" data-placement="right">Click for popover
-            </button>
+    	<div class="slds-m-around--xx-large">
+            <button class="slds-button slds-button--neutral slds-button--small" data-aljs="popover" data-placement="right">Open Popover 1</button>
             <div class="slds-popover slds-nubbin--left" role="dialog">
                 <div class="slds-popover__content">
                     <div class="slds-popover__header">
-                        <p class="slds-text-heading--small">Popover Heading</p>
+                        <p class="slds-text-heading--small">Popover 1</p>
                     </div>
-                    <div class="slds-popover__body">Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href="#">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>
+                    <div class="slds-popover__body">
+                        <p>Nostrud deserunt aute id consequat veniam incididunt duis in sint irure nisi.</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div>
-            <button class="slds-button slds-button--neutral slds-button--small" data-aljs="popover" data-placement="right">Click for popover 2
-            </button>
+    	<div class="slds-m-around--xx-large">
+            <button class="slds-button slds-button--neutral slds-button--small" data-aljs="popover" data-placement="right">Open Popover 2</button>
             <div class="slds-popover slds-nubbin--left" role="dialog">
                 <div class="slds-popover__content">
                     <div class="slds-popover__header">
-                        <p class="slds-text-heading--small">Popover Heading 2</p>
+                        <p class="slds-text-heading--small">Popover 2</p>
                     </div>
-                    <div class="slds-popover__body">2 Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href="#">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>
+                    <div class="slds-popover__body">
+                        <p class="slds-m-bottom--medium">Sit nulla est ex deserunt exercitation.</p>
+                        <button class="slds-button slds-button--brand slds-button--small" data-aljs="popover" data-placement="right">Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -47,6 +51,14 @@
     <script src="../src/jquery.aljs-popover.js"></script>
     <script type="text/javascript">
     	$('[data-aljs="popover"]').popover();
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('a[href="#"]').click(function(e) {
+               e.preventDefault();
+                return false;
+            });
+        });
     </script>
 </body>
 

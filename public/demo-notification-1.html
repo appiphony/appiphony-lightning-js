@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Notification Demo 1 | Appiphony Lightning JS</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles/salesforce-lightning-design-system-vf.css">
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 2px;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slds">
+    	<div class="slds-notify slds-notify--alert slds-theme--inverse-text slds-theme--alert-texture" role="alert">
+            <span class="slds-assistive-text">Info</span>
+            <button class="slds-button slds-button--icon-inverse slds-notify__close" data-aljs-dismiss="notification">
+                <svg aria-hidden="true" class="slds-button__icon">
+                    <use xlink:href="assets/icons/action-sprite/svg/symbols.svg#close"></use>
+                </svg>
+                <span class="slds-assistive-text">Close</span>
+            </button>
+            <h2>Base System Alert</h2>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../src/jquery.aljs-init.js"></script>
+    <script src="../src/jquery.aljs-notification.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+    	   $('body').notification();
+        });
+    </script>
+    <!--<script type="text/javascript">
+    	$('body').tooltip({
+            selector: '[data-aljs="tooltip"]'
+        });
+    </script>-->
+    <script>
+        $(document).ready(function() {
+            $('a[href="#"]').click(function(e) {
+               e.preventDefault();
+                return false;
+            });
+        });
+    </script>
+</body>
+
+</html>

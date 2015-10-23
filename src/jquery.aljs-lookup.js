@@ -86,7 +86,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         runSearch: function(e) {
         	var self = e.data;
         	var searchTerm = self.$el.val();
-        	
+
         	if (!self.isStringEmpty(searchTerm)) {
         		self.getSearchTermResults(searchTerm);
         	} else {
@@ -103,9 +103,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         			var $pill = $(pillMarkup.replace('{{objectIconUrl}}', self.settings.objectIconUrl)
     												  .replace('{{assetsLocation}}', self.settings.assetsLocation)
     												  .replace('{{selectedResultLabel}}', result.label));
-
-        			$pill.attr('id', result.id);
-        			$pill.on('click', 'a, button', self, self.clearMultiSelectResult);
+        			$pill.removeClass('slds-pill--bare')
+        				 .attr('id', result.id)
+        				 .on('click', 'a, button', self, self.clearMultiSelectResult);
         			$multiSelect.append($pill);
         		});
 
@@ -256,6 +256,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	} else if (selectedResultArray.length > 0) {
         		this.selectedResults.push(selectedResultArray[0]);
         		this.setMultiSelect(this.selectedResults);
+        		this.$el.val('');
         	}
         },
         clearSingleSelect: function(e) {

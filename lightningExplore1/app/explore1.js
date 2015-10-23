@@ -6,7 +6,7 @@ App = Ember.Application.create({
 });
 
 Ember.Object.reopen({
-    sldsUrl: sldsUrl
+    aljsUrl: aljsUrl
 });
 
 Ember.Component.reopen({
@@ -24,6 +24,136 @@ App.ExploreView = Ember.View.extend({
         $('#modal2').on('closed', function() {
             console.log('modal 2 closed');
         });
+    }
+});
+
+App.AljsLookupComponent = Ember.Component.extend({
+    layoutName: 'components/aljs-lookup',
+    classNames: 'slds-lookup',
+    classNameBindings: ['slds-has-selection'],
+    attributeBindings: ['data-select', 'data-scope', 'data-typeahead', 'objectPluralLabel', 'objectLabel', 'items',
+                        'emptySearchTermQuery', 'filledSearchTermQuery', 'initSelection'],
+    'slds-has-selection' : function() {
+        return !Ember.isEmpty(this.get('selectedResult')) || !Ember.isEmpty(this.get('selectedResults'));
+    }.property('selectedResult', 'selectedResults'),
+    init: function() {
+        this._super();
+
+        var isSingle = this.get('data-select') === 'single';
+        var initSelection = this.get('initSelection');
+
+        if (initSelection) {
+            this.set(isSingle ? 'selectedResult' : 'selectedResults', initSelection);
+        } else {
+            this.setProperties({
+                selectedResult: null,
+                selectedResults: []
+            });
+        }
+    },
+    didInsertElement: function() {
+
+    },
+    isSingle: function() {
+        return this.get('data-select') === 'single';
+    }.property('data-select'),
+    focusIn: function(e) {
+        if (e.target.nodeName.toLowerCase() === 'input') {
+            var searchTerm = this.get('searchTerm');
+
+            if (Ember.isEmpty(searchTerm)) {
+                this.getDefaultResults();
+            } else {
+                this.getSearchTermResults(searchTerm);
+            } 
+        }
+    },
+    focusOut: function(e) {
+        var $relatedTarget = $(e.relatedTarget);
+
+        if (Ember.isEmpty(this.$().find($relatedTarget))) {
+            this.set('searchResults', null);
+        }
+    },
+    keyUp: function() {
+        var searchTerm = this.get('searchTerm');
+
+        if (Ember.isEmpty(searchTerm)) {
+            this.getDefaultResults();
+        } else {
+            this.getSearchTermResults(searchTerm);
+        }
+    },
+    showUse: function() {
+        var searchTerm = this.get('searchTerm');
+        return !Ember.isEmpty(searchTerm) && searchTerm.length > 1;
+    }.property('searchTerm'),
+    showSearchResult: function(result) {
+        // Check if the search result has been selected and don't show otherwise.
+
+        return this.get('isSingle') || Ember.isEmpty(this.get('selectedResults').findBy('id', result.id));
+    },
+    getDefaultResults: function() {
+        var self = this;
+        
+        var items = this.get('items');
+
+        if (!Ember.isEmpty(items)) {
+            this.set('searchResults', items.filter(function(item) {
+                return self.showSearchResult(item);
+            }));
+        } else if (!Ember.isNone(this.get('emptySearchTermQuery'))) { 
+            var callback = function(searchResults) {
+                self.set('searchResults', searchResults.filter(function(searchResult) {
+                    return self.showSearchResult(searchResult);
+                }));
+            };
+
+            this.get('emptySearchTermQuery')(callback);
+        }
+    },
+    getSearchTermResults: function(searchTerm) {
+        var self = this;
+        var selectedResult = this.get('selectedResult');
+        var selectedResults = this.get('selectedResults');
+        var items = this.get('items');
+
+        if (!Ember.isEmpty(items)) {
+            this.set('searchResults', items.filter(function(item) {
+                return item.label.match(searchTerm) !== null
+                        && self.showSearchResult(item);
+            }));
+        } else if (!Ember.isNone(this.get('filledSearchTermQuery'))) { 
+            var callback = function(searchResults) {
+                self.set('searchResults', searchResults.filter(function(result) {
+                    return self.showSearchResult(result);
+                }));
+            };
+
+            this.get('filledSearchTermQuery')(callback);
+        }
+    },
+    actions: {
+        clickResult: function(result) {
+            if (this.get('isSingle')) {
+                this.set('selectedResult', result);
+            } else {
+                this.get('selectedResults').addObject(result);
+            }
+
+            this.set('searchResults', null);
+        },
+        clickRemoveSelection: function(selectedResult) {
+            if (this.get('isSingle')) {
+                this.set('selectedResult', null);
+
+                Ember.run.scheduleOnce('afterRender', this, function() {
+                    this.$().find('input').focus();
+                });
+            } else {
+                this.get('selectedResults').removeObject(selectedResult);
+            }
+        }
     }
 });
 
@@ -287,9 +417,9 @@ App.SfButtonComponent = Ember.Component.extend({
         var iconRight = this.get('iconRight');
 
         if (iconLeft) {
-            return this.get('sldsUrl') + '/assets/icons/utility-sprite/svg/symbols.svg#' + iconLeft;
+            return this.get('aljsUrl') + '/assets/icons/utility-sprite/svg/symbols.svg#' + iconLeft;
         } else if (iconRight) {
-            return this.get('sldsUrl') + '/assets/icons/utility-sprite/svg/symbols.svg#' + iconRight;
+            return this.get('aljsUrl') + '/assets/icons/utility-sprite/svg/symbols.svg#' + iconRight;
         } else {
             return null;
         }
@@ -725,6 +855,26 @@ App.SfPopoverComponent = Ember.Component.extend({
 });
 
 App.ExploreController = Ember.ObjectController.extend({
+    accounts: [
+        {
+            id: 1,
+            label: 'Account 1'
+        },
+        {
+            id: 2,
+            label: 'Account 2'
+        }
+    ],
+    opportunities: [
+        {
+            id: 1,
+            label: 'Opportunity 1'
+        },
+        {
+            id: 2,
+            label: 'Opportunity 2'
+        }
+    ],
     tabs: [
         {
             label: 'Tab 1',
@@ -754,13 +904,13 @@ App.ExploreController = Ember.ObjectController.extend({
         Ember.Object.create({
             id: '1',
             name: 'one',
-            iconUrl: sldsUrl + '/assets/icons/utility-sprite/svg/symbols.svg#download',
+            iconUrl: aljsUrl + '/assets/icons/utility-sprite/svg/symbols.svg#download',
             isSelected: true
         }),
         Ember.Object.create({
             id: '2',
             name: 'two',
-            iconUrl: sldsUrl + '/assets/icons/utility-sprite/svg/symbols.svg#apps',
+            iconUrl: aljsUrl + '/assets/icons/utility-sprite/svg/symbols.svg#apps',
             isSelected: false
         })
     ],

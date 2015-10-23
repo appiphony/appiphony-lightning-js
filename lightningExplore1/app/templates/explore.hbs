@@ -82,7 +82,7 @@
     </div>
 
     <div>
-        Datepicker - jQuery - initalize with $('#date').datepicker({assetsLocation: sldsUrl});
+        Datepicker - jQuery - initalize with $('#date').datepicker({assetsLocation: aljsUrl});
 
         {{partial "datepicker"}}
     </div>
@@ -139,8 +139,15 @@
         </div>
     </div>
     <div>
-    TABS
-    <br/>
-    {{aljs-simple-tabs tabObjects=tabs}}
+        TABS
+        <br/>
+        {{aljs-simple-tabs tabObjects=tabs}}
     </div>
+    <div>
+        Lookups
+        <br/>
+        {{aljs-lookup data-select="single" data-scope="single" data-autocomplete="true" objectLabel="Account" objectPluralLabel="Accounts" items=accounts}}
+
+        {{aljs-lookup data-select="multi" data-scope="single" data-autocomplete="true" objectLabel="Opportunity" objectPluralLabel="Opportunities" items=opportunities}}
+
 </div>

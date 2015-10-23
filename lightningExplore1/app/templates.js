@@ -7,7 +7,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   data.buffer.push("<div class=\"slds-form--stacked\">\n	<div class=\"slds-form-element\">\n		<label class=\"slds-form-element__label\" for=\"date\">Date Picker Label</label>\n		<div class=\"slds-form-element__control\">\n			<div class=\"slds-input-has-icon slds-input-has-icon--right\">\n				<svg aria-hidden=\"true\" class=\"slds-input__icon slds-icon-text-default\">\n					<use xlink:href=\"");
   hashTypes = {};
   hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "sldsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("/assets/icons/utility-sprite/svg/symbols.svg#event\"></use>\n				</svg>\n				<input id=\"date\" class=\"slds-input\" type=\"text\" placeholder=\"Pick a Date\" label=\"Date Picker Label\" />\n			</div>\n		</div>\n	</div>\n</div>");
   return buffer;
   
@@ -30,6 +30,200 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 
 
   data.buffer.push("Tab 2!!");
+  
+});
+
+Ember.TEMPLATES["components/aljs-lookup"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashTypes, hashContexts, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n			<div class=\"slds-pill-container slds-show\">\n				<span class=\"slds-pill slds-pill--bare\">\n					<a href=\"#\" class=\"slds-pill__label\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clickRemoveSelection", "selectedResult", {hash:{},contexts:[depth0,depth0],types:["STRING","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n						<svg aria-hidden=\"true\" class=\"slds-icon slds-icon-standard-account slds-icon--small\">\n							<use xlink:href=\"");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("/assets/icons/standard-sprite/svg/symbols.svg#account\"></use>\n						</svg>");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "selectedResult.label", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n					</a>\n					<button class=\"slds-button slds-button--icon-bare\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clickRemoveSelection", "selectedResult", {hash:{},contexts:[depth0,depth0],types:["STRING","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n						<svg aria-hidden=\"true\" class=\"slds-button__icon\">\n							<use xlink:href=\"");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("/assets/icons/utility-sprite/svg/symbols.svg#close\"></use>\n						</svg>\n						<span class=\"slds-assistive-text\">Remove</span>\n					</button>\n				</span>\n			</div>\n		");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n			");
+  hashContexts = {'class': depth0,'type': depth0,'aria-autocomplete': depth0,'role': depth0,'aria-expanded': depth0,'aria-activedescendant': depth0,'value': depth0};
+  hashTypes = {'class': "STRING",'type': "STRING",'aria-autocomplete': "STRING",'role': "STRING",'aria-expanded': "STRING",'aria-activedescendant': "STRING",'value': "ID"};
+  options = {hash:{
+    'class': ("slds-input"),
+    'type': ("text"),
+    'aria-autocomplete': ("list"),
+    'role': ("combobox"),
+    'aria-expanded': ("true"),
+    'aria-activedescendant': (""),
+    'value': ("searchTerm")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.input || (depth0 && depth0.input)),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push("\n		");
+  return buffer;
+  }
+
+function program5(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts;
+  data.buffer.push("\n		<div class=\"slds-pill-container\">\n			");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "selectedResult", "in", "selectedResults", {hash:{},inverse:self.noop,fn:self.program(6, program6, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n		</div>\n	");
+  return buffer;
+  }
+function program6(depth0,data) {
+  
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n				<span class=\"slds-pill\">\n					<a href=\"#\" class=\"slds-pill__label\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clickRemoveSelection", "selectedResult", {hash:{},contexts:[depth0,depth0],types:["STRING","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n						<svg aria-hidden=\"true\" class=\"slds-icon slds-icon-standard-account slds-icon--small\">\n							<use xlink:href=\"");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("/assets/icons/standard-sprite/svg/symbols.svg#account\"></use>\n						</svg>");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "selectedResult.label", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</a>\n					<button class=\"slds-button slds-button--icon-bare\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clickRemoveSelection", "selectedResult", {hash:{},contexts:[depth0,depth0],types:["STRING","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n						<svg aria-hidden=\"true\" class=\"slds-button__icon\">\n							<use xlink:href=\"");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("/assets/icons/utility-sprite/svg/symbols.svg#close\"></use>\n						</svg>\n						<span class=\"slds-assistive-text\">Remove</span>\n					</button>\n				</span>\n			");
+  return buffer;
+  }
+
+function program8(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts;
+  data.buffer.push("\n	<div class=\"slds-lookup__menu\" role=\"listbox\">\n		");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "showUse", {hash:{},inverse:self.noop,fn:self.program(9, program9, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n		<ul class=\"slds-lookup__list\" role=\"presentation\">\n			");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "result", "in", "searchResults", {hash:{},inverse:self.noop,fn:self.program(11, program11, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n		</ul>\n		");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "canAdd", {hash:{},inverse:self.noop,fn:self.program(13, program13, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n	</div>\n");
+  return buffer;
+  }
+function program9(depth0,data) {
+  
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n			<div class=\"slds-lookup__item\">\n				<button class=\"slds-button\">\n					<svg aria-hidden=\"true\" class=\"slds-icon slds-icon-text-default slds-icon--small\">\n						<use xlink:href=\"");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("/assets/icons/utility-sprite/svg/symbols.svg#search\"></use>\n					</svg>&quot;");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "searchTerm", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("&quot; in ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "objectPluralLabel", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</button>\n			</div>\n		");
+  return buffer;
+  }
+
+function program11(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n				<li class=\"slds-lookup__item\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clickResult", "result", {hash:{},contexts:[depth0,depth0],types:["STRING","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n					<a ");
+  hashContexts = {'id': depth0};
+  hashTypes = {'id': "STRING"};
+  options = {hash:{
+    'id': ("result.id")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || (depth0 && depth0['bind-attr'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push(" href=\"#\" role=\"option\">\n						<svg aria-hidden=\"true\" class=\"slds-icon slds-icon-standard-account slds-icon--small\">\n							<use xlink:href=\"");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("/assets/icons/standard-sprite/svg/symbols.svg#account\"></use>\n						</svg>");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "result.label", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</a>\n				</li>\n			");
+  return buffer;
+  }
+
+function program13(depth0,data) {
+  
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n			<div class=\"slds-lookup__item\">\n				<button class=\"slds-button\">\n					<svg aria-hidden=\"true\" class=\"slds-icon slds-icon-text-default slds-icon--small\">\n						<use xlink:href=\"/assets/icons/utility-sprite/svg/symbols.svg#add\"></use>\n					</svg>Add ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "objectLabel", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</button>\n			</div>\n		");
+  return buffer;
+  }
+
+  data.buffer.push("<div class=\"slds-form-element\">\n	<label class=\"slds-form-element__label\" for=\"lookup\">");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "objectPluralLabel", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</label>\n	<div class=\"slds-form-element__control slds-input-has-icon slds-input-has-icon--right\">\n		<svg aria-hidden=\"true\" class=\"slds-input__icon\">\n			<use xlink:href=\"");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("/assets/icons/utility-sprite/svg/symbols.svg#search\"></use>\n		</svg>\n\n		");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "selectedResult", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n	</div>\n	");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "selectedResults", {hash:{},inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n</div>\n");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "searchResults", {hash:{},inverse:self.noop,fn:self.program(8, program8, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  return buffer;
   
 });
 
@@ -172,7 +366,7 @@ function program1(depth0,data) {
   data.buffer.push(">\n							<svg aria-hidden=\"true\" class=\"slds-button__icon slds-button__icon--small\">\n								<use xlink:href=\"");
   hashTypes = {};
   hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "sldsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("/assets/icons/utility-sprite/svg/symbols.svg#left\"></use>\n							</svg>\n							<span class=\"slds-assistive-text\">Previous Month</span>\n						</button>\n					</div>\n					<h2 id=\"month\" class=\"slds-align-middle\" aria-live=\"assertive\" aria-atomic=\"true\">");
   hashTypes = {};
   hashContexts = {};
@@ -185,7 +379,7 @@ function program1(depth0,data) {
   data.buffer.push(">\n							<svg aria-hidden=\"true\" class=\"slds-button__icon slds-button__icon--small\">\n								<use xlink:href=\"");
   hashTypes = {};
   hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "sldsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("/assets/icons/utility-sprite/svg/symbols.svg#right\"></use>\n							</svg>\n							<span class=\"slds-assistive-text\">Next Month</span>\n						</button>\n					</div>\n				</div>\n				<div class=\"slds-picklist datepicker__filter--year slds-shrink-none\">\n					");
   hashContexts = {'class': depth0,'aria-haspopup': depth0,'selectedWhen': depth0,'action': depth0};
   hashTypes = {'class': "STRING",'aria-haspopup': "STRING",'selectedWhen': "ID",'action': "STRING"};
@@ -220,7 +414,7 @@ function program2(depth0,data) {
   data.buffer.push("\n						<svg aria-hidden=\"true\" class=\"slds-icon slds-icon--small\">\n							<use xlink:href=\"");
   hashTypes = {};
   hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "sldsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("/assets/icons/utility-sprite/svg/symbols.svg#down\"></use>\n						</svg>\n					");
   return buffer;
   }
@@ -272,7 +466,7 @@ function program6(depth0,data) {
   data.buffer.push("\n												<svg aria-hidden=\"true\" class=\"slds-icon slds-icon--small slds-icon--left\"><use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"");
   hashTypes = {};
   hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "sldsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("/assets/icons/standard-sprite/svg/symbols.svg#task2\"></use></svg>\n											");
   return buffer;
   }
@@ -314,7 +508,7 @@ function program9(depth0,data) {
   data.buffer.push("<div class=\"slds-form--stacked\">\n	<div class=\"slds-form-element\">\n		<label class=\"slds-form-element__label\" for=\"date\">Date Picker Label</label>\n		<div class=\"slds-form-element__control\">\n			<div class=\"slds-input-has-icon slds-input-has-icon--right\">\n				<svg aria-hidden=\"true\" class=\"slds-input__icon slds-icon-text-default\">\n					<use xlink:href=\"");
   hashTypes = {};
   hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "sldsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("/assets/icons/utility-sprite/svg/symbols.svg#event\"></use>\n				</svg>\n				");
   hashContexts = {'class': depth0,'type': depth0,'placeholder': depth0,'label': depth0,'value': depth0};
   hashTypes = {'class': "STRING",'type': "STRING",'placeholder': "STRING",'label': "STRING",'value': "ID"};
@@ -404,7 +598,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   data.buffer.push("\">\n                <svg aria-hidden=\"true\" class=\"slds-button__icon slds-button__icon--inverse slds-button__icon--large\">\n                    <use xlink:href=\"");
   hashTypes = {};
   hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "sldsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("/assets/icons/action-sprite/svg/symbols.svg#close\"></use>\n                </svg>\n                <span class=\"slds-assistive-text\">Close</span>\n            </button>\n        </div>\n        <div class=\"slds-modal__content\">\n            <div data-qa-container=\"modalBody\">\n                <bodyYield></bodyYield>\n            </div>\n        </div>\n        <div ");
   hashContexts = {'class': depth0};
   hashTypes = {'class': "STRING"};
@@ -465,7 +659,7 @@ function program2(depth0,data) {
   data.buffer.push("\n							<svg aria-hidden=\"true\" class=\"slds-icon slds-icon--small slds-icon--left\" data-reactid=\".5.0.0.1:$=10:0.0.$=10:0.0.0\"><use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"");
   hashTypes = {};
   hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "sldsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("/assets/icons/standard-sprite/svg/symbols.svg#task2\" data-reactid=\".5.0.0.1:$=10:0.0.$=10:0.0.0.0\"></use></svg>\n						");
   return buffer;
   }
@@ -489,7 +683,7 @@ function program2(depth0,data) {
   data.buffer.push("</span>\n		<svg aria-hidden=\"true\" class=\"slds-icon\">\n			<use xlink:href=\"");
   hashTypes = {};
   hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "sldsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("/assets/icons/utility-sprite/svg/symbols.svg#down\"></use>\n		</svg>\n	</button>\n	<div ");
   hashContexts = {'class': depth0};
   hashTypes = {'class': "STRING"};
@@ -769,7 +963,7 @@ function program14(depth0,data) {
     'selectedDate': ("selectedDate")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers['sf-datepicker'] || (depth0 && depth0['sf-datepicker'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "sf-datepicker", options))));
-  data.buffer.push("\n    </div>\n\n    <div>\n        Datepicker - jQuery - initalize with $('#date').datepicker({assetsLocation: sldsUrl});\n\n        ");
+  data.buffer.push("\n    </div>\n\n    <div>\n        Datepicker - jQuery - initalize with $('#date').datepicker({assetsLocation: aljsUrl});\n\n        ");
   hashTypes = {};
   hashContexts = {};
   options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
@@ -803,14 +997,38 @@ function program14(depth0,data) {
   },inverse:self.noop,fn:self.program(14, program14, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   stack2 = ((stack1 = helpers['sf-popover'] || (depth0 && depth0['sf-popover'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "sf-popover", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n        <div>\n            POPOVERS - JQUERY - initialize with $('[data-aljs=\"popover\"]').popover();\n            <div>\n                <button class=\"slds-button slds-button--neutral slds-button--small\" data-aljs=\"popover\" data-placement=\"right\">Click for popover\n                </button>\n                <div class=\"slds-popover slds-nubbin--left\" role=\"dialog\">\n                    <div class=\"slds-popover__content\">\n                        <div class=\"slds-popover__header\">\n                            <p class=\"slds-text-heading--small\">Popover Heading</p>\n                        </div>\n                        <div class=\"slds-popover__body\">Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href=\"#\">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>\n                    </div>\n                </div>\n            </div>\n            <div>\n                <button class=\"slds-button slds-button--neutral slds-button--small\" data-aljs=\"popover\" data-placement=\"right\">Click for popover 2\n                </button>\n                <div class=\"slds-popover slds-nubbin--left\" role=\"dialog\">\n                    <div class=\"slds-popover__content\">\n                        <div class=\"slds-popover__header\">\n                            <p class=\"slds-text-heading--small\">Popover Heading 2</p>\n                        </div>\n                        <div class=\"slds-popover__body\">2 Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href=\"#\">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div>\n    TABS\n    <br/>\n    ");
+  data.buffer.push("\n        <div>\n            POPOVERS - JQUERY - initialize with $('[data-aljs=\"popover\"]').popover();\n            <div>\n                <button class=\"slds-button slds-button--neutral slds-button--small\" data-aljs=\"popover\" data-placement=\"right\">Click for popover\n                </button>\n                <div class=\"slds-popover slds-nubbin--left\" role=\"dialog\">\n                    <div class=\"slds-popover__content\">\n                        <div class=\"slds-popover__header\">\n                            <p class=\"slds-text-heading--small\">Popover Heading</p>\n                        </div>\n                        <div class=\"slds-popover__body\">Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href=\"#\">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>\n                    </div>\n                </div>\n            </div>\n            <div>\n                <button class=\"slds-button slds-button--neutral slds-button--small\" data-aljs=\"popover\" data-placement=\"right\">Click for popover 2\n                </button>\n                <div class=\"slds-popover slds-nubbin--left\" role=\"dialog\">\n                    <div class=\"slds-popover__content\">\n                        <div class=\"slds-popover__header\">\n                            <p class=\"slds-text-heading--small\">Popover Heading 2</p>\n                        </div>\n                        <div class=\"slds-popover__body\">2 Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href=\"#\">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div>\n        TABS\n        <br/>\n        ");
   hashContexts = {'tabObjects': depth0};
   hashTypes = {'tabObjects': "ID"};
   options = {hash:{
     'tabObjects': ("tabs")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers['aljs-simple-tabs'] || (depth0 && depth0['aljs-simple-tabs'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "aljs-simple-tabs", options))));
-  data.buffer.push("\n    </div>\n</div>");
+  data.buffer.push("\n    </div>\n    <div>\n        Lookups\n        <br/>\n        ");
+  hashContexts = {'data-select': depth0,'data-scope': depth0,'data-autocomplete': depth0,'objectLabel': depth0,'objectPluralLabel': depth0,'items': depth0};
+  hashTypes = {'data-select': "STRING",'data-scope': "STRING",'data-autocomplete': "STRING",'objectLabel': "STRING",'objectPluralLabel': "STRING",'items': "ID"};
+  options = {hash:{
+    'data-select': ("single"),
+    'data-scope': ("single"),
+    'data-autocomplete': ("true"),
+    'objectLabel': ("Account"),
+    'objectPluralLabel': ("Accounts"),
+    'items': ("accounts")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['aljs-lookup'] || (depth0 && depth0['aljs-lookup'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "aljs-lookup", options))));
+  data.buffer.push("\n\n        ");
+  hashContexts = {'data-select': depth0,'data-scope': depth0,'data-autocomplete': depth0,'objectLabel': depth0,'objectPluralLabel': depth0,'items': depth0};
+  hashTypes = {'data-select': "STRING",'data-scope': "STRING",'data-autocomplete': "STRING",'objectLabel': "STRING",'objectPluralLabel': "STRING",'items': "ID"};
+  options = {hash:{
+    'data-select': ("multi"),
+    'data-scope': ("single"),
+    'data-autocomplete': ("true"),
+    'objectLabel': ("Opportunity"),
+    'objectPluralLabel': ("Opportunities"),
+    'items': ("opportunities")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['aljs-lookup'] || (depth0 && depth0['aljs-lookup'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "aljs-lookup", options))));
+  data.buffer.push("\n\n</div>");
   return buffer;
   
 });

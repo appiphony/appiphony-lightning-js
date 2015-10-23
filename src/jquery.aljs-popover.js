@@ -52,7 +52,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     
         var settings = $.extend({
             assetsLocation: $.aljs.assetsLocation,
-            closeOthers: true
+            closeOthers: true,
+            dismissSelector: '[data-aljs-dissmiss="popover"]'
             // These are the defaults.
             
         }, options );

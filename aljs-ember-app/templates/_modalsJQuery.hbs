@@ -9,8 +9,8 @@
         <div class="slds-modal__container">
             <div class="slds-modal__header">
                 <h2 class="slds-text-heading--medium">Modal 1</h2>
-                <button class="slds-button slds-modal__close" data-aljs-dismiss="modal">
-                    <svg aria-hidden="true" class="slds-button__icon slds-button__icon--inverse slds-button__icon--large">
+                <button class="slds-button slds-button--icon-inverse slds-modal__close" data-aljs-dismiss="modal">
+                    <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
                         <use xlink:href="assets/icons/action-sprite/svg/symbols.svg#close"></use>
                     </svg>
                     <span class="slds-assistive-text">Close</span>
@@ -33,8 +33,8 @@
             <div class="slds-modal__container">
                 <div class="slds-modal__header">
                     <h2 class="slds-text-heading--medium">Modal 2</h2>
-                    <button class="slds-button slds-modal__close" data-aljs-dismiss="modal">
-                        <svg aria-hidden="true" class="slds-button__icon slds-button__icon--inverse slds-button__icon--large">
+                    <button class="slds-button slds-button--icon-inverse slds-modal__close" data-aljs-dismiss="modal">
+                        <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
                             <use xlink:href="assets/icons/action-sprite/svg/symbols.svg#close"></use>
                         </svg>
                         <span class="slds-assistive-text">Close</span>
@@ -157,6 +157,41 @@ $(document).ready(function() {
                 </tbody>
             </table>
         </div>
+        <h4 class="site-text-heading--large">Methods</h4>
+{{#aljs-pre-container type="js"}}
+$('#modal-1').modal('show');
+$('#modal-2').modal('dismiss');
+$('[data-aljs-show="modal-1"]').modal('trigger');
+{{/aljs-pre-container}}
+        <p class="slds-m-top--medium">This table details the methods available for the jQuery function.</p>
+        <div class="slds-scrollable--x">
+            <table class="slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium">
+                <thead>
+                    <tr class="site-text-heading--label">
+                        <th scope="col">Method</th>
+                        <th scope="col">jQuery object</th>
+                        <th scope="col">Outcome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"><code>'show'</code></th>
+                        <td data-label="jQuery object">The target modal</td>
+                        <td data-label="Outcome">A modal begins its 'show' animation in the DOM</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>'dismiss'</code></th>
+                        <td data-label="jQuery object">The target modal</td>
+                        <td data-label="Outcome">A modal begins its 'show' animation in the DOM</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>'trigger'</code></th>
+                        <td data-label="jQuery object">The target element with a <code>data-aljs-show</code> attribute</td>
+                        <td data-label="Outcome">A modal begins its 'show' animation in the DOM</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <h4 class="site-text-heading--large">Alternative Call (Supports DOM Changes &amp; All Options)</h4>
 {{#aljs-pre-container type="js"}}
 $('body').modal({
@@ -178,11 +213,46 @@ $('body').modal({
                     <tr>
                         <th scope="row"><code>selector</code></th>
                         <td data-label="Behavior">Allows any existing elements matching the selector to show modals on click</td>
-                        <td data-label="Accepted values">Any selector</td>
+                        <td data-label="Values">Any selector</td>
                         <td data-label="Required" class="slds-cell-shrink">
                             <svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
                             </svg><span class="slds-assistive-text">Required</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <h4 class="site-text-heading--large">Events</h4>
+        <p>This table details the JavaScript events that trigger from user interaction.</p>
+        <div class="slds-scrollable--x">
+            <table class="slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium">
+                <thead>
+                    <tr class="site-text-heading--label">
+                        <th scope="col">Event</th>
+                        <th scope="col">Element</th>
+                        <th scope="col">Trigger</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"><code>show.aljs.modal</code></th>
+                        <td data-label="Element">The modal being shown</td>
+                        <td data-label="Trigger">A modal begins its 'show' animation in the DOM</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>shown.aljs.modal</code></th>
+                        <td data-label="Element">The modal being shown</td>
+                        <td data-label="Trigger">A modal completes its 'show' animation in the DOM</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>dismiss.aljs.modal</code></th>
+                        <td data-label="Element">The modal being dismissed</td>
+                        <td data-label="Trigger">A modal begins its 'dismiss' animation in the DOM</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>dismissed.aljs.modal</code></th>
+                        <td data-label="Element">The modal being dismissed</td>
+                        <td data-label="Trigger">A modal completes its 'dismiss' animation in the DOM</td>
                     </tr>
                 </tbody>
             </table>

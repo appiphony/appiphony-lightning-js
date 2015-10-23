@@ -139,6 +139,14 @@ App.AljsRoute = Ember.Route.extend({
                     name: 'Getting Started'
                 },
                 {
+                    path: 'datepickers',
+                    name: 'Datepickers'
+                },
+                {
+                    path: 'lookups',
+                    name: 'Lookups'
+                },
+                {
                     path: 'modals',
                     name: 'Modals'
                 },
@@ -147,25 +155,17 @@ App.AljsRoute = Ember.Route.extend({
                     name: 'Picklists'
                 },
                 {
-                    path: 'tooltips',
-                    name: 'Tooltips'
-                },
-                {
                     path: 'popovers',
                     name: 'Popovers'
-                },
-                {
-                    path: 'datepickers',
-                    name: 'Datepickers'
                 },
                 {
                     path: 'tabs',
                     name: 'Tabs'
                 },
                 {
-                    path: 'lookups',
-                    name: 'Lookups'
-                }
+                    path: 'tooltips',
+                    name: 'Tooltips'
+                },
             ]
         };
     },

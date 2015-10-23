@@ -84,8 +84,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     setTimeout(function() { // Ensure elements are displayed and rendered before adding classes
                         $('.slds-modal-backdrop').addClass('slds-modal-backdrop--open');
                         self.addClass('slds-fade-in-open')
-                            .trigger('aljs.modalshow'); // Custom aljs event
+                            .trigger('show.aljs.modal'); // Custom aljs event
                         settings.onShow.call(self);
+                        setTimeout(function() {
+                            self.trigger('shown.aljs.modal'); // Custom aljs event
+                        }, 400);
                     }, 25);
                     break;
                     
@@ -98,13 +101,14 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         .attr('aria-hidden', 'true');
                     
                     if (aljsRefocusTarget !== null) aljsRefocusTarget.focus();
+                    self.trigger('dismiss.aljs.modal'); // Custom aljs event
                     
                     setTimeout(function() {
                         $('.slds-modal-backdrop').remove();
                         aljsRefocusTarget = null;
                         self.hide()
-                            .trigger('aljs.modaldismiss'); // Custom aljs event
-                    }, 400);
+                            .trigger('dismissed.aljs.modal'); // Custom aljs event
+                    }, 200);
                     break;
                     
                 case 'trigger':

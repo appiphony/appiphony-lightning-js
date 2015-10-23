@@ -97,8 +97,28 @@ $(document).ready(function() {
                     <tr>
                         <th scope="row"><code>onChange</code></th>
                         <td data-label="Behavior">Calls a function when a picklist value changes</td>
-                        <td data-label="Accepted values">Any callback function</td>
+                        <td data-label="Values">Any callback function</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>function(obj) {}</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <h4 class="site-text-heading--large">Events</h4>
+        <p>This table details the JavaScript events that trigger from user interaction.</p>
+        <div class="slds-scrollable--x">
+            <table class="slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium">
+                <thead>
+                    <tr class="site-text-heading--label">
+                        <th scope="col">Event</th>
+                        <th scope="col">Element</th>
+                        <th scope="col">Trigger</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"><code>change.aljs.picklist</code></th>
+                        <td data-label="Element">The picklist button changing its value</td>
+                        <td data-label="Trigger">A picklist option is selected</td>
                     </tr>
                 </tbody>
             </table>

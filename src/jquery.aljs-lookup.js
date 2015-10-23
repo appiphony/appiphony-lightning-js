@@ -79,9 +79,39 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	return stringVal === null || typeof stringVal === 'undefined' || stringVal.trim() === '';
         },
         initLookup: function() {
+        	var self = this;
+
         	this.$el.on('focus', this, this.runSearch)
         			.on('keyup', this, this.runSearch)
         			.on('blur', this, this.handleBlur);
+
+			this.$lookupContainer.on('keyup', function(e) {
+				e.stopPropagation();
+
+				var $focusedA = $(this).find('a:focus');
+
+				if (e.keyCode === 27) {
+		        	self.$el.blur();
+		        }
+
+		        if (e.keyCode === 40) {
+		            // DOWN
+		            if ($focusedA.length > 0) {
+		            	$focusedA.parent().next().find('a').focus();
+		            } else {
+		            	$(this).find('.slds-lookup__list').find('a:first').focus();
+		            }
+		        }
+
+		        if (e.keyCode === 38) {
+		            // UP
+		            if ($focusedA.length > 0) {
+		            	$focusedA.parent().prev().find('a').focus();
+		            } else {
+		            	$(this).find('.slds-lookup__list').find('a:last').focus();
+		            }
+		        }
+			});
         },
         runSearch: function(e) {
         	var self = e.data;
@@ -212,9 +242,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         			}
         		}
 
-        		$lookupResultItem.find('a').on('focus', function() {
-        			self.$el.attr('aria-activedescendant', $(this).attr('id'));
-        		});
+        		if ($lookupResultItem) {
+        			$lookupResultItem.find('a').on('focus', function() {
+	        			self.$el.attr('aria-activedescendant', $(this).attr('id'));
+	        		}).on('blur', self, self.handleBlur);
+        		}
         	});
 
         	if (this.settings.clickAddFunction) {
@@ -224,17 +256,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	}
 
         	$resultsListContainer.one('click', 'a', this, this.clickResult)
-        						 .on('keyup', function(e) {
-        						 	if (e.keyCode === 40) {
-							            // DOWN
-							            $(this).find('a:focus').parent().next().find('a').focus();
-							        }
-
-							        if (e.keyCode === 38) {
-							            // UP
-							            $(this).find('a:focus').parent().prev().find('a').focus();
-							        }
-        						 });
+        						 
         	this.$lookupSearchContainer = $lookupSearchContainer;
         	$lookupSearchContainer.appendTo(this.$lookupContainer);
         	this.$el.attr('aria-expanded', 'true');

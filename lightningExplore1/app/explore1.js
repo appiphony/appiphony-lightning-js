@@ -84,6 +84,7 @@ App.AljsLookupComponent = Ember.Component.extend({
     },
     keyUp: function(e) {
         var actionKeys = [9, 13, 16, 27, 40, 38];
+        var $focusedA = this.$().find('a:focus');
 
         if (actionKeys.indexOf(e.keyCode) === -1) {
             var searchTerm = this.get('searchTerm');
@@ -102,12 +103,20 @@ App.AljsLookupComponent = Ember.Component.extend({
 
         if (e.keyCode === 40) {
             // DOWN
-            this.$().find('a:focus').parent().next().find('a').focus();
+            if ($focusedA.length > 0) {
+                this.$().find('a:focus').parent().next().find('a').focus();
+            } else {
+                this.$().find('.slds-lookup__list').find('a:first').focus();
+            }
         }
 
         if (e.keyCode === 38) {
             // UP
-            this.$().find('a:focus').parent().prev().find('a').focus();
+            if ($focusedA.length > 0) {
+                this.$().find('a:focus').parent().prev().find('a').focus();
+            } else {
+                this.$().find('.slds-lookup__list').find('a:last').focus();
+            }
         }
         
     },

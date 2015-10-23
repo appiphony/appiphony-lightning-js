@@ -70,17 +70,17 @@ function program3(depth0,data) {
   var buffer = '', stack1, hashContexts, hashTypes, options;
   data.buffer.push("\n			");
   hashContexts = {'class': depth0,'type': depth0,'aria-autocomplete': depth0,'role': depth0,'aria-expanded': depth0,'aria-activedescendant': depth0,'value': depth0};
-  hashTypes = {'class': "STRING",'type': "STRING",'aria-autocomplete': "STRING",'role': "STRING",'aria-expanded': "STRING",'aria-activedescendant': "STRING",'value': "ID"};
+  hashTypes = {'class': "STRING",'type': "STRING",'aria-autocomplete': "STRING",'role': "STRING",'aria-expanded': "ID",'aria-activedescendant': "ID",'value': "ID"};
   options = {hash:{
     'class': ("slds-input"),
     'type': ("text"),
     'aria-autocomplete': ("list"),
     'role': ("combobox"),
-    'aria-expanded': ("true"),
-    'aria-activedescendant': (""),
+    'aria-expanded': ("isExpanded"),
+    'aria-activedescendant': ("focusedSearchResult"),
     'value': ("searchTerm")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.input || (depth0 && depth0.input)),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push(escapeExpression(((stack1 = helpers['aljs-lookup-input'] || (depth0 && depth0['aljs-lookup-input'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "aljs-lookup-input", options))));
   data.buffer.push("\n		");
   return buffer;
   }
@@ -177,7 +177,7 @@ function program11(depth0,data) {
     'id': ("result.id")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || (depth0 && depth0['bind-attr'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
-  data.buffer.push(" href=\"#\" role=\"option\">\n						<svg aria-hidden=\"true\" class=\"slds-icon slds-icon-standard-account slds-icon--small\">\n							<use xlink:href=\"");
+  data.buffer.push(" href=\"javascript:void(0)\" role=\"option\">\n						<svg aria-hidden=\"true\" class=\"slds-icon slds-icon-standard-account slds-icon--small\">\n							<use xlink:href=\"");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));

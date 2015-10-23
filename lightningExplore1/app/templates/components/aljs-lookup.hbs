@@ -22,7 +22,7 @@
 				</span>
 			</div>
 		{{else}}
-			{{input class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" value=searchTerm}}
+			{{aljs-lookup-input class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded=isExpanded aria-activedescendant=focusedSearchResult value=searchTerm}}
 		{{/if}}
 	</div>
 	{{#if selectedResults}}
@@ -57,7 +57,7 @@
 		<ul class="slds-lookup__list" role="presentation">
 			{{#each result in searchResults}}
 				<li class="slds-lookup__item" {{action "clickResult" result}}>
-					<a {{bind-attr id="result.id"}} href="#" role="option">
+					<a {{bind-attr id="result.id"}} href="javascript:void(0)" role="option">
 						<svg aria-hidden="true" class="slds-icon slds-icon-standard-account slds-icon--small">
 							<use xlink:href="{{unbound aljsUrl}}/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
 						</svg>{{result.label}}</a>

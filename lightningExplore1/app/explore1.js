@@ -27,6 +27,10 @@ App.ExploreView = Ember.View.extend({
     }
 });
 
+App.AljsLookupInputComponent = Ember.TextField.extend({
+    attributeBindings: ['aria-expanded', 'aria-autocomplete', 'aria-activedescendant', 'role']
+});
+
 App.AljsLookupComponent = Ember.Component.extend({
     layoutName: 'components/aljs-lookup',
     classNames: 'slds-lookup',
@@ -54,6 +58,9 @@ App.AljsLookupComponent = Ember.Component.extend({
     didInsertElement: function() {
 
     },
+    isExpanded: function() {
+        return !Ember.isEmpty(this.get('searchResults')) ? 'true' : 'false';
+    }.property('searchResults'),
     isSingle: function() {
         return this.get('data-select') === 'single';
     }.property('data-select'),
@@ -75,14 +82,18 @@ App.AljsLookupComponent = Ember.Component.extend({
             this.set('searchResults', null);
         }
     },
-    keyUp: function() {
-        var searchTerm = this.get('searchTerm');
+    keyUp: function(e) {
+        var actionKeys = [9, 13, 16];
+        if (actionKeys.indexOf(e.keyCode) === -1) {
+            var searchTerm = this.get('searchTerm');
 
-        if (Ember.isEmpty(searchTerm)) {
-            this.getDefaultResults();
-        } else {
-            this.getSearchTermResults(searchTerm);
+            if (Ember.isEmpty(searchTerm)) {
+                this.getDefaultResults();
+            } else {
+                this.getSearchTermResults(searchTerm);
+            }
         }
+        
     },
     showUse: function() {
         var searchTerm = this.get('searchTerm');
@@ -133,6 +144,17 @@ App.AljsLookupComponent = Ember.Component.extend({
             this.get('filledSearchTermQuery')(callback);
         }
     },
+    searchResultsChanged: function() {
+        if (!Ember.isEmpty(this.get('searchResults'))) {
+            Ember.run.scheduleOnce('afterRender', this, function() {
+                var self = this;
+                console.log(this.$().find('li.slds-lookup__item'));
+                this.$().find('a[role="option"]').on('focus', function(e) {
+                    self.set('focusedSearchResult', $(e.target).attr('id'));
+                });
+            });
+        }
+    }.observes('searchResults'),
     actions: {
         clickResult: function(result) {
             if (this.get('isSingle')) {

@@ -9,7 +9,7 @@
 
 <body>
     <div class="slds">
-        <div class="slds-lookup" data-select="multi" data-scope="single" data-typeahead="true">
+        <div class="slds-lookup" data-select="single" data-scope="single" data-typeahead="true">
         	Passing in an items list
 			<div class="slds-form-element">
 				<label class="slds-form-element__label" for="lookup">Stuffs</label>
@@ -21,7 +21,8 @@
 				</div>
 			</div>	
 		</div>
-		<div class="slds-lookup" data-select="multi" data-scope="single" data-typeahead="true">
+
+		<div class="slds-lookup" data-select="single" data-scope="single" data-typeahead="true">
 			Passing in functions to get items
 			<div class="slds-form-element">
 				<label class="slds-form-element__label" for="lookup">Things</label>
@@ -30,6 +31,19 @@
 						<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#search"></use>
 					</svg>
 					<input id="lookup2" class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" />
+				</div>
+			</div>	
+		</div>
+
+		<div class="slds-lookup" data-select="multi" data-scope="single" data-typeahead="true">
+			Multi select lookup
+			<div class="slds-form-element">
+				<label class="slds-form-element__label" for="lookup">Entities</label>
+				<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+					<svg aria-hidden="true" class="slds-input__icon">
+						<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+					</svg>
+					<input id="lookup3" class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" />
 				</div>
 			</div>	
 		</div>
@@ -50,6 +64,30 @@
         				{
         					id: 2,
         					label: 'ajaxResult2'
+        				},
+        				{
+        					id: 3,
+        					label: 'ajaxResult3'
+        				},
+        				{
+        					id: 4,
+        					label: 'ajaxResult4'
+        				},
+        				{
+        					id: 5,
+        					label: 'ajaxResult5'
+        				},
+        				{
+        					id: 6,
+        					label: 'ajaxResult6'
+        				},
+        				{
+        					id: 7,
+        					label: 'ajaxResult7'
+        				},
+        				{
+        					id: 8,
+        					label: 'ajaxResult8'
         				}
         			];
         $(document).ready(function() {
@@ -62,6 +100,30 @@
         			{
         				id: 2,
         				label: 'Result 2'
+        			},
+        			{
+        				id: 3,
+        				label: 'Result 3'
+        			},
+        			{
+        				id: 4,
+        				label: 'Result 4'
+        			},
+        			{
+        				id: 5,
+        				label: 'Result 5'
+        			},
+        			{
+        				id: 6,
+        				label: 'Result 6'
+        			},
+        			{
+        				id: 7,
+        				label: 'Result 7'
+        			},
+        			{
+        				id: 8,
+        				label: 'Result 8'
         			}
         		]
         	});
@@ -69,6 +131,23 @@
         	$('#lookup2').lookup({
         		objectPluralLabel: 'Things',
         		objectLabel: 'Thing',
+        		objectIconUrl: 'assets/icons/standard-sprite/svg/symbols.svg#record',
+        		emptySearchTermQuery: function(callback) {
+        			callback(results);
+        		},
+        		filledSearchTermQuery: function(searchTerm, callback) {
+        			callback(results.filter(function(result) {
+        				return result.label.match(searchTerm) !== null;
+        			}));
+        		},
+        		clickAddFunction: function() {
+        			console.log('redirect or do something to add something');
+        		}
+        	});
+
+        	$('#lookup3').lookup({
+        		objectPluralLabel: 'Entities',
+        		objectLabel: 'Entity',
         		objectIconUrl: 'assets/icons/standard-sprite/svg/symbols.svg#record',
         		emptySearchTermQuery: function(callback) {
         			callback(results);

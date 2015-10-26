@@ -4,7 +4,7 @@
 		<div class="slds-form-element__control">
 			<div class="slds-input-has-icon slds-input-has-icon--right">
 				<svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
-					<use xlink:href="{{unbound aljsUrl}}/assets/icons/utility-sprite/svg/symbols.svg#event"></use>
+					<use xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#event"></use>
 				</svg>
 				{{input class="slds-input" type="text" placeholder="Pick a date" label="Date Picker Label" value=selectedDateText}}
 			</div>
@@ -17,7 +17,7 @@
 					<div class="slds-align-middle">
 						<button class="slds-button slds-button--icon-container" {{action "clickNextOrPrevMonth" "prev"}}>
 							<svg aria-hidden="true" class="slds-button__icon slds-button__icon--small">
-								<use xlink:href="{{unbound aljsUrl}}/assets/icons/utility-sprite/svg/symbols.svg#left"></use>
+								<use xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#left"></use>
 							</svg>
 							<span class="slds-assistive-text">Previous Month</span>
 						</button>
@@ -26,19 +26,19 @@
 					<div class="slds-align-middle">
 						<button class="slds-button slds-button--icon-container" {{action "clickNextOrPrevMonth" "next"}}>
 							<svg aria-hidden="true" class="slds-button__icon slds-button__icon--small">
-								<use xlink:href="{{unbound aljsUrl}}/assets/icons/utility-sprite/svg/symbols.svg#right"></use>
+								<use xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#right"></use>
 							</svg>
 							<span class="slds-assistive-text">Next Month</span>
 						</button>
 					</div>
 				</div>
 				<div class="slds-picklist datepicker__filter--year slds-shrink-none">
-					{{#sf-button class="slds-button--neutral slds-picklist__label" aria-haspopup="true" selectedWhen=isYearOpen action="clickYearDropdown"}}
+					{{#aljs-button class="slds-button--neutral slds-picklist__label" aria-haspopup="true" selectedWhen=isYearOpen action="clickYearDropdown"}}
 						{{selectedYear}}
 						<svg aria-hidden="true" class="slds-icon slds-icon--small">
-							<use xlink:href="{{unbound aljsUrl}}/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
+							<use xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
 						</svg>
-					{{/sf-button}}
+					{{/aljs-button}}
 					{{#if isYearOpen}}
 						<div class="slds-dropdown slds-dropdown--menu" aria-hidden="false">
 						    <ul id="yearDropdown" class="slds-dropdown__list" style="max-height: 13.5rem; overflow-y:auto;">
@@ -46,7 +46,7 @@
 									<li id="yearDropdown{{unbound year.value}}" class="slds-dropdown__item" aria-selected="false" {{action "clickSelectYear" year.value}}>
 										<a href="#" {{bind-attr class=":slds-truncate :slds-has-icon--left year.isSelected:slds-is-selected"}} role="menuitemradio">
 											{{#if year.isSelected}}
-												<svg aria-hidden="true" class="slds-icon slds-icon--small slds-icon--left"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{unbound aljsUrl}}/assets/icons/standard-sprite/svg/symbols.svg#task2"></use></svg>
+												<svg aria-hidden="true" class="slds-icon slds-icon--small slds-icon--left"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{unbound assetsLocation}}/assets/icons/standard-sprite/svg/symbols.svg#task2"></use></svg>
 											{{/if}}
 											<span>{{year.value}}</span>
 										</a>

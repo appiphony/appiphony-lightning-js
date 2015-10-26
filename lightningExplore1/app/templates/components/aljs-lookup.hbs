@@ -2,7 +2,7 @@
 	<label class="slds-form-element__label" for="lookup">{{objectPluralLabel}}</label>
 	<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
 		<svg aria-hidden="true" class="slds-input__icon">
-			<use xlink:href="{{unbound aljsUrl}}/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+			<use xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
 		</svg>
 
 		{{#if selectedResult}}
@@ -10,12 +10,12 @@
 				<span class="slds-pill slds-pill--bare">
 					<a href="#" class="slds-pill__label" {{action "clickRemoveSelection" selectedResult}}>
 						<svg aria-hidden="true" class="slds-icon slds-icon-standard-account slds-icon--small">
-							<use xlink:href="{{unbound aljsUrl}}/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
+							<use xlink:href="{{unbound assetsLocation}}/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
 						</svg>{{selectedResult.label}}
 					</a>
 					<button class="slds-button slds-button--icon-bare" {{action "clickRemoveSelection" selectedResult}}>
 						<svg aria-hidden="true" class="slds-button__icon">
-							<use xlink:href="{{unbound aljsUrl}}/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+							<use xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
 						</svg>
 						<span class="slds-assistive-text">Remove</span>
 					</button>
@@ -31,11 +31,11 @@
 				<span class="slds-pill">
 					<a href="#" class="slds-pill__label" {{action "clickRemoveSelection" selectedResult}}>
 						<svg aria-hidden="true" class="slds-icon slds-icon-standard-account slds-icon--small">
-							<use xlink:href="{{unbound aljsUrl}}/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
+							<use xlink:href="{{unbound assetsLocation}}/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
 						</svg>{{selectedResult.label}}</a>
 					<button class="slds-button slds-button--icon-bare" {{action "clickRemoveSelection" selectedResult}}>
 						<svg aria-hidden="true" class="slds-button__icon">
-							<use xlink:href="{{unbound aljsUrl}}/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+							<use xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
 						</svg>
 						<span class="slds-assistive-text">Remove</span>
 					</button>
@@ -50,7 +50,7 @@
 			<div class="slds-lookup__item">
 				<button class="slds-button">
 					<svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--small">
-						<use xlink:href="{{unbound aljsUrl}}/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+						<use xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
 					</svg>&quot;{{searchTerm}}&quot; in {{objectPluralLabel}}</button>
 			</div>
 		{{/if}}
@@ -59,7 +59,7 @@
 				<li class="slds-lookup__item" {{action "clickResult" result}}>
 					<a {{bind-attr id="result.id"}} href="javascript:void(0)" role="option">
 						<svg aria-hidden="true" class="slds-icon slds-icon-standard-account slds-icon--small">
-							<use xlink:href="{{unbound aljsUrl}}/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
+							<use xlink:href="{{unbound assetsLocation}}/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
 						</svg>{{result.label}}</a>
 				</li>
 			{{/each}}

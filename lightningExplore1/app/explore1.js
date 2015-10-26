@@ -6,13 +6,13 @@ App = Ember.Application.create({
 });
 
 Ember.Object.reopen({
-    aljsUrl: aljsUrl
+    assetsLocation: assetsLocation
 });
 
 Ember.Component.reopen({
     attributeBindings: ['data-qa-button', 'data-open-modal', 'data-close-modal', 
                         'data-open-popover', 'data-close-popover', 'data-toggle-popover',
-                        'disabled', 'title', 'data-aljs', 'data-placement', 'sf-title']
+                        'disabled', 'title', 'data-aljs', 'data-placement', 'aljs-title']
 });
 
 App.ExploreView = Ember.View.extend({
@@ -228,12 +228,12 @@ App.AljsSimpleTabsComponent = Ember.Component.extend({
     }
 });
 
-App.SfFormElementComponent = Ember.Component.extend({
-    layoutName: 'components/sf-form-element',
+App.AljsFormElementComponent = Ember.Component.extend({
+    layoutName: 'components/aljs-form-element',
     classNames: 'slds-form-element'
 });
 
-App.SfPicklistComponent = Ember.Component.extend({
+App.AljsPicklistComponent = Ember.Component.extend({
     init: function() {
         this._super(); 
         
@@ -253,7 +253,7 @@ App.SfPicklistComponent = Ember.Component.extend({
         } 
     },
     attributeBindings: ['content', 'optionValuePath', 'optionLabelPath', 'value', 'selection'],
-    layoutName: 'components/sf-picklist',
+    layoutName: 'components/aljs-picklist',
     classNames: 'slds-form-element',
     contentObjects: function() {
         var value = this.get('value');
@@ -490,7 +490,7 @@ App.AljsMultiPicklistComponent = Ember.Component.extend({
     }
 });
 
-App.SfModalComponent = Ember.Component.extend(Ember.Evented, {
+App.AljsModalComponent = Ember.Component.extend(Ember.Evented, {
     init: function() {
         this._super();
         $.fn.modal = function(option){
@@ -503,14 +503,14 @@ App.SfModalComponent = Ember.Component.extend(Ember.Evented, {
             });    
         };
     },
-    layoutName: 'components/sf-modal',
+    layoutName: 'components/aljs-modal',
     click: function(e) {
         var $target = $(e.target);
         var clickedHeader = !Ember.isEmpty($target.closest('.slds-modal__header'));
         var clickedBody = !Ember.isEmpty($target.closest('.slds-modal__content'));
         var clickedFooter = !Ember.isEmpty($target.closest('.slds-modal__footer'));
         
-        if ((!clickedHeader && !clickedBody && !clickedFooter && !this.get('preventBgClose'))
+        if ((!clickedHeader && !clickedBody && !clickedFooter && this.get('backgroundClickCloses'))
                 || !Ember.isEmpty($target.closest('[data-close-modal="' + this.get('modalId') + '"]'))) {
             this.closeModal();
         } 
@@ -585,8 +585,8 @@ App.SfModalComponent = Ember.Component.extend(Ember.Evented, {
     }
 });
 
-App.SfButtonComponent = Ember.Component.extend({
-    layoutName: 'components/sf-button',
+App.AljsButtonComponent = Ember.Component.extend({
+    layoutName: 'components/aljs-button',
     tagName: 'button',
     classNames: 'slds-button',
     classNameBindings: 'selectedState',
@@ -625,9 +625,9 @@ App.SfButtonComponent = Ember.Component.extend({
         var iconRight = this.get('iconRight');
 
         if (iconLeft) {
-            return this.get('aljsUrl') + '/assets/icons/utility-sprite/svg/symbols.svg#' + iconLeft;
+            return this.get('assetsLocation') + '/assets/icons/utility-sprite/svg/symbols.svg#' + iconLeft;
         } else if (iconRight) {
-            return this.get('aljsUrl') + '/assets/icons/utility-sprite/svg/symbols.svg#' + iconRight;
+            return this.get('assetsLocation') + '/assets/icons/utility-sprite/svg/symbols.svg#' + iconRight;
         } else {
             return null;
         }
@@ -645,7 +645,7 @@ App.SfButtonComponent = Ember.Component.extend({
     }
 });
 
-App.SfDatepickerComponent = Ember.Component.extend({
+App.AljsDatepickerComponent = Ember.Component.extend({
     attributeBindings: ['selectedDate'],
     init: function() {
         var self = this;
@@ -687,7 +687,7 @@ App.SfDatepickerComponent = Ember.Component.extend({
     },
     numYearsBefore: 50,
     numYearsAfter: 10,
-    layoutName: 'components/sf-datepicker',
+    layoutName: 'components/aljs-datepicker',
     didInsertElement: function() {
         var self = this;
 
@@ -970,8 +970,8 @@ App.SfDatepickerComponent = Ember.Component.extend({
     }
 });
 
-App.SfPopoverComponent = Ember.Component.extend({
-    layoutName: 'components/sf-popover',
+App.AljsPopoverComponent = Ember.Component.extend({
+    layoutName: 'components/aljs-popover',
     classNames: 'slds-popover',
     classNameBindings: ['positionClass', 'slds-hide'],
     attributeBindings: ['role', 'style'],
@@ -1124,13 +1124,13 @@ App.ExploreController = Ember.ObjectController.extend({
         Ember.Object.create({
             id: '1',
             name: 'one',
-            iconUrl: aljsUrl + '/assets/icons/utility-sprite/svg/symbols.svg#download',
+            iconUrl: assetsLocation + '/assets/icons/utility-sprite/svg/symbols.svg#download',
             isSelected: true
         }),
         Ember.Object.create({
             id: '2',
             name: 'two',
-            iconUrl: aljsUrl + '/assets/icons/utility-sprite/svg/symbols.svg#apps',
+            iconUrl: assetsLocation + '/assets/icons/utility-sprite/svg/symbols.svg#apps',
             isSelected: false
         })
     ],

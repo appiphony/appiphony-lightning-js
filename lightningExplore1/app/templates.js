@@ -227,6 +227,114 @@ function program13(depth0,data) {
   
 });
 
+Ember.TEMPLATES["components/aljs-multi-picklist"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashTypes, hashContexts, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n					<li draggable=\"true\" ");
+  hashContexts = {'id': depth0,'class': depth0,'aria-selected': depth0};
+  hashTypes = {'id': "STRING",'class': "STRING",'aria-selected': "STRING"};
+  options = {hash:{
+    'id': ("unselectedItem.id"),
+    'class': (":slds-picklist__item :slds-has-icon :slds-has-icon--left unselectedItem.isSelected:slds-is-selected"),
+    'aria-selected': ("unselectedItem.ariaSelectedValue")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || (depth0 && depth0['bind-attr'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push(" tabindex=\"0\" role=\"option\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clickItem", "unselected", "unselectedItem", {hash:{},contexts:[depth0,depth0,depth0],types:["STRING","STRING","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n						<span class=\"slds-truncate\">\n							<span>");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "unselectedItem.label", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</span>\n						</span>\n					</li>\n				");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n					<li draggable=\"true\" ");
+  hashContexts = {'id': depth0,'class': depth0,'aria-selected': depth0};
+  hashTypes = {'id': "STRING",'class': "STRING",'aria-selected': "STRING"};
+  options = {hash:{
+    'id': ("selectedItem.id"),
+    'class': (":slds-picklist__item :slds-has-icon :slds-has-icon--left selectedItem.isSelected:slds-is-selected"),
+    'aria-selected': ("selectedItem.ariaSelectedValue")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || (depth0 && depth0['bind-attr'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push(" tabindex=\"0\" role=\"option\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clickItem", "selected", "selectedItem", {hash:{},contexts:[depth0,depth0,depth0],types:["STRING","STRING","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n						<span class=\"slds-truncate\">\n							<span>");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "selectedItem.label", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</span>\n						</span>\n					</li>\n				");
+  return buffer;
+  }
+
+  data.buffer.push("<div class=\"slds-picklist--draggable slds-grid\" data-aljs=\"multi-picklist\">\n	<div class=\"slds-form-element\">\n		<span class=\"slds-form-element__label\" aria-label=\"select-1\">");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "unselectedLabel", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</span>\n		<div class=\"slds-picklist slds-picklist--multi\" data-aljs-multi-picklist=\"unselected\">\n			<ul class=\"slds-picklist__options slds-picklist__options--multi shown\">\n				");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "unselectedItem", "in", "unselectedEmberObjects", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n			</ul>\n		</div>\n	</div>\n	<div class=\"slds-grid slds-grid--vertical\">\n		<button class=\"slds-button slds-button--icon-container\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clickUnselect", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n			<svg aria-hidden=\"true\" class=\"slds-button__icon\">\n				<use xlink:href=\"");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("/assets/icons/utility-sprite/svg/symbols.svg#left\"></use>\n			</svg>\n			<span class=\"slds-assistive-text\">Pick list</span>\n		</button>\n		<button class=\"slds-button slds-button--icon-container\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clickSelect", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n			<svg aria-hidden=\"true\" class=\"slds-button__icon\">\n				<use xlink:href=\"");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("/assets/icons/utility-sprite/svg/symbols.svg#right\"></use>\n			</svg>\n			<span class=\"slds-assistive-text\">Pick list</span>\n		</button>\n	</div>\n	<div class=\"slds-form-element\">\n		<span class=\"slds-form-element__label\" aria-label=\"select-2\">");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "selectedLabel", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</span>\n		<div class=\"slds-picklist slds-picklist--multi\" data-aljs-multi-picklist=\"selected\">\n			<ul class=\"slds-picklist__options slds-picklist__options--multi shown\">\n				");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "selectedItem", "in", "selectedEmberObjects", {hash:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n			</ul>\n		</div>\n	</div>\n	<div class=\"slds-grid slds-grid--vertical\">\n		<button class=\"slds-button slds-button--icon-container\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clickMoveUp", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n			<svg aria-hidden=\"true\" class=\"slds-button__icon\">\n				<use xlink:href=\"");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("/assets/icons/utility-sprite/svg/symbols.svg#up\"></use>\n			</svg>\n			<span class=\"slds-assistive-text\">Pick list</span>\n		</button>\n		<button class=\"slds-button slds-button--icon-container\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clickMoveDown", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n			<svg aria-hidden=\"true\" class=\"slds-button__icon\">\n				<use xlink:href=\"");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "aljsUrl", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("/assets/icons/utility-sprite/svg/symbols.svg#down\"></use>\n			</svg>\n			<span class=\"slds-assistive-text\">Pick list</span>\n		</button>\n	</div>\n</div>");
+  return buffer;
+  
+});
+
 Ember.TEMPLATES["components/aljs-simple-tabs"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -907,6 +1015,15 @@ function program14(depth0,data) {
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "selectedPicklistSimplerThing", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n        </div>\n        <div>\n            Multi picklist\n            ");
+  hashContexts = {'unselectedLabel': depth0,'unselectedItems': depth0,'selectedLabel': depth0};
+  hashTypes = {'unselectedLabel': "STRING",'unselectedItems': "ID",'selectedLabel': "STRING"};
+  options = {hash:{
+    'unselectedLabel': ("select from"),
+    'unselectedItems': ("accounts"),
+    'selectedLabel': ("select to")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['aljs-multi-picklist'] || (depth0 && depth0['aljs-multi-picklist'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "aljs-multi-picklist", options))));
   data.buffer.push("\n        </div>\n    </div>\n    <div>\n        BUTTON STUFF - they all toggle a selected state when clicked<br/>\n        ");
   hashTypes = {};
   hashContexts = {};

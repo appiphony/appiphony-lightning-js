@@ -8,17 +8,32 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             
         }, options );
         
-        if (this.length === 1) {
+        if (this.length === 1 && typeof options !== 'string') {
             return this.on('click', '[data-aljs-dismiss="notification"]', function(e) {
                 var $notification = $(this).closest('.slds-notify');
 
                 if ($notification.length > 0) {
                     $notification.trigger('dismiss.aljs.notification');
-                    $notification.remove();
+                    //$notification.removeClass('slds-show');
+                    $notification.addClass('slds-hide');
                 }
             });
+        } else if (typeof options === 'string') {
+            return this.each(function() {
+                var $node = $(this);
+
+                if (!($node.hasClass('slds-notify'))) {
+                    throw new Error("This method can only be run on a notification with the slds-notify class on it");
+                } else {
+                    if (options === 'show' || (options === 'toggle' && $node.hasClass('slds-hide'))) {
+                        $node.removeClass('slds-hide');
+                    } else if (options === 'hide' || (options === 'toggle' && !($node.hasClass('slds-hide')))) {
+                        $node.addClass('slds-hide');
+                    }
+                }
+            }); 
         } else {
-            throw new Error("This plugin can only be run with a selector")
+            throw new Error("This plugin can only be run with a selector, or with a command")
         }
     };
 }(jQuery));

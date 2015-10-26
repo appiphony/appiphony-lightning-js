@@ -76,9 +76,29 @@ App.AljsDemoContainerComponent = Ember.Component.extend({
     layoutName: 'components/aljs-demo-container'
 });
 
-App.AljsCodeContainerView = Ember.View.extend({
-    layoutName: 'aljs-code-container'
+App.AljsCodeContainerComponent = Ember.Component.extend({
+    layoutName: 'components/aljs-code-container',
+    attributeBindings: ['routeName', 'selectedSection'],
+    selectedSection: 'jQuery',
+    sectionPartial: function() {
+        return (this.get('routeName') + ' ' + this.get('selectedSection')).camelize();
+    }.property('selectedSection', 'routeName'),
+    isJQuery: function() {
+        return this.get('selectedSection') === 'jQuery';
+    }.property('selectedSection'),
+    isEmber: function() {
+        return this.get('selectedSection') === 'ember';
+    }.property('selectedSection'),
+    actions: {
+        clickSection: function(section) {
+            this.set('selectedSection', section);
+        }
+    }
 });
+
+// App.AljsCodeContainerView = Ember.View.extend({
+//     layoutName: 'aljs-code-container'
+// });
 
 App.AljsPreContainerComponent = Ember.Component.extend({
     layoutName: 'components/aljs-pre-container',
@@ -182,9 +202,9 @@ App.AljsRoute = Ember.Route.extend({
         controller.set('selectedSection', 'jQuery');
     },
     actions: {
-        clickSection: function(section) {
-            this.controllerFor('aljs').set('selectedSection', section);
-        },
+        // clickSection: function(section) {
+        //     this.controllerFor('aljs').set('selectedSection', section);
+        // },
         didTransition: function() {
             $(window).scrollTop(0,0);
         }

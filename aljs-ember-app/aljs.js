@@ -128,6 +128,10 @@ App.PillsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
     routeName: 'pills'
 });
 
+App.GettingStartedController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
+    routeName: 'gettingStarted'
+});
+
 App.AljsController = Ember.ObjectController.extend({
     init: function() {
         this._super();

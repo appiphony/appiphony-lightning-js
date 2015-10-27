@@ -32,6 +32,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             this.$el.find('.slds-tabs__content').hide();
             this.$el.find('[data-aljs-show="' + tabId + '"]').closest('li').addClass('slds-active');
             this.$el.find('#' + tabId).show();
+            
+            this.id = tabId;
+            this.settings.onChange(this);
         }
     };
 
@@ -42,10 +45,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         var settings = $.extend({
             // These are the defaults.
             initialTabId: '',
-            assetsLocation: $.aljs.assetsLocation,
-            onChange: function(obj) {
-
-            }
+            onChange: function(obj) {},
+            assetsLocation: $.aljs.assetsLocation
         }, typeof options === 'object' ? options : {});
 
         this.each(function() {

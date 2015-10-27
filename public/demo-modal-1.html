@@ -75,17 +75,25 @@
     <script src="../src/jquery.aljs-init.js"></script>
     <script src="../src/jquery.aljs-modal.js"></script>
     <script>
+        $.aljsInit({
+            scoped: true
+        });
+        
         $(document).ready(function() {
             $('[data-aljs="modal"]').modal();
         });
     </script>
     <!--<script>
+        $.aljsInit({
+            scoped: true
+        });
+
         $(document).ready(function() {
             $('[data-aljs="modal"]').modal({
                 backdropDismiss: false,
                 dismissSelector: '[data-aljs-dismiss="modal"]',
-                onShow: function() {},
-                onDismiss: function() {}
+                onShow: function(obj) { console.log(obj); },
+                onDismiss: function(obj) { console.log(obj); }
             });
         });
     </script>-->

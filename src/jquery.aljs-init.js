@@ -3,7 +3,8 @@ if (typeof jQuery === "undefined") { throw new Error("Appiphony Lightning JS req
 (function($) {
     if (typeof $.aljs === 'undefined') {
         $.aljs = {
-            assetsLocation: ''
+            assetsLocation: '',
+            scoped: false
         };
 
         $.aljsInit = function(options) {

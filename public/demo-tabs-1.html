@@ -40,7 +40,9 @@
     <script src="../src/jquery.aljs-tabs.js"></script>
     <script>
         $(document).ready(function() {
-            $('[data-aljs="tabs"]').tabs();
+            $('[data-aljs="tabs"]').tabs({
+                onChange: function(obj) { console.log(obj); }
+            });
         });
     </script>
     <script>

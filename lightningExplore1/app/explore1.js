@@ -233,6 +233,11 @@ App.AljsFormElementComponent = Ember.Component.extend({
     classNames: 'slds-form-element'
 });
 
+App.AljsNotificationComponent = Ember.Component.extend({
+    layoutName: 'components/aljs-notification',
+    attributeBindings: ['toast'],
+});
+
 App.AljsPicklistComponent = Ember.Component.extend({
     init: function() {
         this._super(); 

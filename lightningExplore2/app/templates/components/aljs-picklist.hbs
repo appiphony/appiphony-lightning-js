@@ -1,0 +1,22 @@
+<div {{bind-attr aria-expanded="isOpen"}} class="slds-picklist">
+	<button class="slds-button slds-button--neutral slds-picklist__label" aria-haspopup="true" {{action "clickTogglePicklist"}}>
+		<span class="slds-truncate">{{getLabelFromPicklistOption selection optionValueKey optionLabelKey prompt}}</span>
+		<svg aria-hidden="true" class="slds-icon">
+			<use xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
+		</svg>
+	</button>
+	<div {{bind-attr class=":slds-dropdown :slds-dropdown--left :slds-dropdown--small :slds-dropdown--menu isOpen::slds-hide"}}>
+		<ul class="slds-dropdown__list" role="menu">
+			{{#each picklistOption in contentObjects}}
+				<li id="menu-0-0" href="#" {{bind-attr class=":slds-dropdown__item :slds-has-icon--left picklistOption.isSelected:slds-is-selected"}}>
+					<a href="#" class="slds-truncate" role="menuitemradio" {{action "clickPicklistOption" picklistOption}}>
+						{{#if picklistOption.isSelected}}
+							<svg aria-hidden="true" class="slds-icon slds-icon--small slds-icon--left" data-reactid=".5.0.0.1:$=10:0.0.$=10:0.0.0"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{unbound assetsLocation}}/assets/icons/standard-sprite/svg/symbols.svg#task2" data-reactid=".5.0.0.1:$=10:0.0.$=10:0.0.0.0"></use></svg>
+						{{/if}}
+						{{picklistOption.label}}
+					</a>
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+</div>

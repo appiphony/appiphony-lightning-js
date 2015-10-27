@@ -19,6 +19,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             $tabButtons.on('click', function(e) {
                 e.stopPropagation();
                 self.selectTab($(e.target).data('aljs-show'));
+                $(this).trigger('selected.aljs.tab'); // Custom aljs event
             });
             // show first tab
             if (this.settings.initialTabId === '' || $('#' + this.settings.initialTabId).length === 0) {
@@ -31,7 +32,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             this.$el.find('.slds-tabs__item').removeClass('slds-active');
             this.$el.find('.slds-tabs__content').hide();
             this.$el.find('[data-aljs-show="' + tabId + '"]').closest('li').addClass('slds-active');
-            this.$el.find('#' + tabId).show();
+            this.$el.find('#' + tabId).show().trigger('shown.aljs.tabcontent'); // Custom aljs event
             
             this.id = tabId;
             this.settings.onChange(this);

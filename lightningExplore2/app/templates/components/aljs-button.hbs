@@ -1,0 +1,23 @@
+{{#if hasIcons}}
+    {{#if iconLeft}}
+        <svg aria-hidden="true" class="slds-button__icon slds-button__icon--left">
+            <use {{bind-attr xlink:href="iconUrl"}}></use>
+        </svg>
+        <span data-qa-label="buttonLabel">
+            {{buttonLabel}}
+        </span>
+    {{/if}}
+    {{#if iconRight}}
+        <span data-qa-label="buttonLabel">
+            {{buttonLabel}}
+        </span>
+        <svg aria-hidden="true" class="slds-button__icon slds-button__icon--right">
+            <use {{bind-attr xlink:href="iconUrl"}}></use>
+        </svg>
+    {{/if}}
+{{else}}
+    <span data-qa-label="buttonLabel">
+        {{buttonLabel}}
+    </span>
+{{/if}}
+{{yield}}

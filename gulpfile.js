@@ -32,7 +32,7 @@ gulp.task('uglify', function() {
     return gulp.src(['src/**/*.js', '!src/**/*.min.js'])
         .pipe(rename({ suffix: '.min' }))
         .pipe(uglify())
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist/jquery'));
 });
 
 gulp.task('watch', function() {

@@ -1,0 +1,23 @@
+<div aria-hidden="false" role="dialog" {{bind-attr class=":slds-modal isModalOpen:slds-fade-in-open"}} id="{{unbound modalId}}" data-qa-modal="{{unbound modalId}}">
+	<div class="slds-modal__container">
+		<div class="slds-modal__header" data-qa-container="modalHeader">
+            <headerYield></headerYield>
+            <button class="slds-button slds-modal__close" data-close-modal="{{unbound modalId}}">
+                <svg aria-hidden="true" class="slds-button__icon slds-button__icon--inverse slds-button__icon--large">
+                    <use xlink:href="{{unbound assetsLocation}}/assets/icons/action-sprite/svg/symbols.svg#close"></use>
+                </svg>
+                <span class="slds-assistive-text">Close</span>
+            </button>
+        </div>
+        <div class="slds-modal__content">
+            <div data-qa-container="modalBody">
+                <bodyYield></bodyYield>
+            </div>
+        </div>
+        <div {{bind-attr class=":slds-modal__footer directionalFooter:slds-modal__footer--directional"}} data-qa-container="modalFooter">
+            <footerYield></footerYield>
+        </div>
+		{{yield}}
+	</div>
+</div>
+<div {{bind-attr class=":slds-modal-backdrop isModalOpen:slds-modal-backdrop--open"}}></div>

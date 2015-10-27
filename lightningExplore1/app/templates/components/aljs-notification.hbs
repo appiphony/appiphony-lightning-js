@@ -1,0 +1,11 @@
+{{#if toast}}
+	<div class="slds-notify-container">
+		<div {{bind-attr class=":slds-notify :slds-notify--toast theme"}} role="alert">
+			{{yield}}
+		</div>
+	</div>
+{{else}}
+	<div {{bind-attr class=":slds-notify :slds-notify--alert theme"}} role="alert">
+		{{yield}}
+	</div>
+{{/if}}

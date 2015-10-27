@@ -686,6 +686,55 @@ function program3(depth0,data) {
   
 });
 
+Ember.TEMPLATES["components/aljs-notification"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var stack1, hashTypes, hashContexts, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n	<div class=\"slds-notify-container\">\n		<div ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  options = {hash:{
+    'class': (":slds-notify :slds-notify--toast theme")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || (depth0 && depth0['bind-attr'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push(" role=\"alert\">\n			");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "yield", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n		</div>\n	</div>\n");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n	<div ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  options = {hash:{
+    'class': (":slds-notify :slds-notify--alert theme")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || (depth0 && depth0['bind-attr'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push(" role=\"alert\">\n		");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "yield", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n	</div>\n");
+  return buffer;
+  }
+
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "toast", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  else { data.buffer.push(''); }
+  
+});
+
 Ember.TEMPLATES["components/aljs-picklist"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -905,6 +954,32 @@ function program4(depth0,data) {
 
 function program6(depth0,data) {
   
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n            <span class=\"slds-assistive-text\">Info</span>\n            <button class=\"slds-button slds-button--icon-inverse slds-notify__close\">\n                <svg aria-hidden=\"true\" class=\"slds-button__icon\">\n                    <use xlink:href=\"");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "assetsLocation", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("/assets/icons/action-sprite/svg/symbols.svg#close\"></use>\n                </svg>\n                <span class=\"slds-assistive-text\">Close</span>\n            </button>\n            <div class=\"notify__content slds-grid\">\n                <svg aria-hidden=\"true\" class=\"slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex\">\n                    <use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "assetsLocation", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("/assets/icons/utility-sprite/svg/symbols.svg#warning\"></use>\n                </svg>\n                <div class=\"slds-col slds-align-middle\">\n                    <h2 class=\"slds-text-heading--small\">You've encountered some errors when trying to save edits to Samuel Smith.</h2>\n                </div>\n            </div>\n        ");
+  return buffer;
+  }
+
+function program8(depth0,data) {
+  
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n            <span class=\"slds-assistive-text\">Info</span>\n            <button class=\"slds-button slds-button--icon-inverse slds-notify__close\">\n                <svg aria-hidden=\"true\" class=\"slds-button__icon slds-button__icon--large\">\n                    <use xlink:href=\"");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "assetsLocation", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("/assets/icons/action-sprite/svg/symbols.svg#close\"></use>\n                </svg>\n                <span class=\"slds-assistive-text\">Close</span>\n            </button>\n            <div class=\"notify__content\">\n                <h2 class=\"slds-text-heading--small\">Full width</h2>\n            </div>\n        ");
+  return buffer;
+  }
+
+function program10(depth0,data) {
+  
   var buffer = '', stack1, hashContexts, hashTypes, options;
   data.buffer.push("\n            <modalHeader>\n                <h2 class=\"slds-text-heading--medium\">Modal 1, directional footer</h2>\n            </modalHeader>\n            <modalBody>\n                <p>You can close this by clicking the background. Except for when it's \"Large\" because the container takes up the vertical space, we need to work around this somehow.</p>\n            </modalBody>\n            <modalFooter>\n                ");
   hashContexts = {'class': depth0,'buttonLabel': depth0,'data-close-modal': depth0};
@@ -928,7 +1003,7 @@ function program6(depth0,data) {
   return buffer;
   }
 
-function program8(depth0,data) {
+function program12(depth0,data) {
   
   var buffer = '', stack1, hashContexts, hashTypes, options;
   data.buffer.push("\n            <modalHeader>\n                <h2 class=\"slds-text-heading--medium\">Modal 2</h2>\n                <p>Here’s a tagline if you need it. It is allowed to extend across mulitple lines, so I’m making up content to show that to you. It is allowed to <a href=\"#\">contain links or be a link</a>.</p>\n            </modalHeader>\n            <modalBody>\n                <p>You can <strong>NOT</strong> close this by clicking the background</p>\n            </modalBody>\n            <modalFooter>\n                ");
@@ -962,19 +1037,19 @@ function program8(depth0,data) {
   return buffer;
   }
 
-function program10(depth0,data) {
+function program14(depth0,data) {
   
   
   data.buffer.push("\n            <div>Hover for tooltip</div>\n        ");
   }
 
-function program12(depth0,data) {
+function program16(depth0,data) {
   
   
   data.buffer.push("\n            <div>Click for popover</div>\n        ");
   }
 
-function program14(depth0,data) {
+function program18(depth0,data) {
   
   
   data.buffer.push("\n            <popoverHeader>\n                <p class=\"slds-text-heading--small\">Hi</p>\n            </popoverHeader>\n            <popoverBody>\n                Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href=\"#\">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.\n            </popoverBody>\n        ");
@@ -1029,6 +1104,23 @@ function program14(depth0,data) {
   hashContexts = {};
   stack2 = helpers.each.call(depth0, "thing", "in", "things", {hash:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n    </div>\n    <div>\n        NOTIFICATIONS\n        </br>\n        ");
+  hashContexts = {'toast': depth0,'theme': depth0};
+  hashTypes = {'toast': "STRING",'theme': "STRING"};
+  options = {hash:{
+    'toast': ("true"),
+    'theme': ("slds-theme--warning")
+  },inverse:self.noop,fn:self.program(6, program6, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  stack2 = ((stack1 = helpers['aljs-notification'] || (depth0 && depth0['aljs-notification'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "aljs-notification", options));
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n        ");
+  hashContexts = {'theme': depth0};
+  hashTypes = {'theme': "STRING"};
+  options = {hash:{
+    'theme': ("slds-theme--inverse-text")
+  },inverse:self.noop,fn:self.program(8, program8, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  stack2 = ((stack1 = helpers['aljs-notification'] || (depth0 && depth0['aljs-notification'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "aljs-notification", options));
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("\n    </div>\n    <div>\n        MODAL STUFF\n        <br/>\n\n        ");
   hashContexts = {'class': depth0,'iconLeft': depth0,'buttonLabel': depth0,'selectedWhen': depth0,'data-open-modal': depth0};
   hashTypes = {'class': "STRING",'iconLeft': "STRING",'buttonLabel': "STRING",'selectedWhen': "ID",'data-open-modal': "STRING"};
@@ -1060,7 +1152,7 @@ function program14(depth0,data) {
     'backgroundClickCloses': ("true"),
     'directionalFooter': ("true"),
     'class': ("slds-modal--large custom-class")
-  },inverse:self.noop,fn:self.program(6, program6, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  },inverse:self.noop,fn:self.program(10, program10, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   stack2 = ((stack1 = helpers['aljs-modal'] || (depth0 && depth0['aljs-modal'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "aljs-modal", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("\n\n        ");
@@ -1070,7 +1162,7 @@ function program14(depth0,data) {
     'modalId': ("modal2"),
     'openFunction': ("sayHi"),
     'param1': ("dude2")
-  },inverse:self.noop,fn:self.program(8, program8, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  },inverse:self.noop,fn:self.program(12, program12, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   stack2 = ((stack1 = helpers['aljs-modal'] || (depth0 && depth0['aljs-modal'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "aljs-modal", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("\n    </div>\n\n    <div>\n        Datepicker - Ember\n        ");
@@ -1093,7 +1185,7 @@ function program14(depth0,data) {
     'data-aljs': ("tooltip"),
     'data-placement': ("top"),
     'title': ("Test LA LA LA LA LA LA L AL A LA LAL AL LAL AL LA")
-  },inverse:self.noop,fn:self.program(10, program10, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  },inverse:self.noop,fn:self.program(14, program14, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   stack2 = ((stack1 = helpers['aljs-button'] || (depth0 && depth0['aljs-button'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "aljs-button", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("\n    </div>\n    \n    <div>\n        POPOVERS - EMBER\n        <br/>\n        ");
@@ -1102,7 +1194,7 @@ function program14(depth0,data) {
   options = {hash:{
     'class': ("slds-button--neutral"),
     'data-toggle-popover': ("popover1")
-  },inverse:self.noop,fn:self.program(12, program12, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  },inverse:self.noop,fn:self.program(16, program16, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   stack2 = ((stack1 = helpers['aljs-button'] || (depth0 && depth0['aljs-button'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "aljs-button", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("\n\n        ");
@@ -1111,7 +1203,7 @@ function program14(depth0,data) {
   options = {hash:{
     'popoverId': ("popover1"),
     'position': ("right")
-  },inverse:self.noop,fn:self.program(14, program14, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  },inverse:self.noop,fn:self.program(18, program18, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   stack2 = ((stack1 = helpers['aljs-popover'] || (depth0 && depth0['aljs-popover'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "aljs-popover", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("\n        <div>\n            POPOVERS - JQUERY - initialize with $('[data-aljs=\"popover\"]').popover();\n            <div>\n                <button class=\"slds-button slds-button--neutral slds-button--small\" data-aljs=\"popover\" data-placement=\"right\">Click for popover\n                </button>\n                <div class=\"slds-popover slds-nubbin--left\" role=\"dialog\">\n                    <div class=\"slds-popover__content\">\n                        <div class=\"slds-popover__header\">\n                            <p class=\"slds-text-heading--small\">Popover Heading</p>\n                        </div>\n                        <div class=\"slds-popover__body\">Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href=\"#\">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>\n                    </div>\n                </div>\n            </div>\n            <div>\n                <button class=\"slds-button slds-button--neutral slds-button--small\" data-aljs=\"popover\" data-placement=\"right\">Click for popover 2\n                </button>\n                <div class=\"slds-popover slds-nubbin--left\" role=\"dialog\">\n                    <div class=\"slds-popover__content\">\n                        <div class=\"slds-popover__header\">\n                            <p class=\"slds-text-heading--small\">Popover Heading 2</p>\n                        </div>\n                        <div class=\"slds-popover__body\">2 Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href=\"#\">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div>\n        TABS\n        <br/>\n        ");

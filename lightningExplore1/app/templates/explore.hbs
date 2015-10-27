@@ -41,6 +41,39 @@
         {{/each}}
     </div>
     <div>
+        NOTIFICATIONS
+        </br>
+        {{#aljs-notification toast="true" theme="slds-theme--warning"}}
+            <span class="slds-assistive-text">Info</span>
+            <button class="slds-button slds-button--icon-inverse slds-notify__close">
+                <svg aria-hidden="true" class="slds-button__icon">
+                    <use xlink:href="{{unbound assetsLocation}}/assets/icons/action-sprite/svg/symbols.svg#close"></use>
+                </svg>
+                <span class="slds-assistive-text">Close</span>
+            </button>
+            <div class="notify__content slds-grid">
+                <svg aria-hidden="true" class="slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#warning"></use>
+                </svg>
+                <div class="slds-col slds-align-middle">
+                    <h2 class="slds-text-heading--small">You've encountered some errors when trying to save edits to Samuel Smith.</h2>
+                </div>
+            </div>
+        {{/aljs-notification}}
+        {{#aljs-notification theme="slds-theme--inverse-text"}}
+            <span class="slds-assistive-text">Info</span>
+            <button class="slds-button slds-button--icon-inverse slds-notify__close">
+                <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
+                    <use xlink:href="{{unbound assetsLocation}}/assets/icons/action-sprite/svg/symbols.svg#close"></use>
+                </svg>
+                <span class="slds-assistive-text">Close</span>
+            </button>
+            <div class="notify__content">
+                <h2 class="slds-text-heading--small">Full width</h2>
+            </div>
+        {{/aljs-notification}}
+    </div>
+    <div>
         MODAL STUFF
         <br/>
 

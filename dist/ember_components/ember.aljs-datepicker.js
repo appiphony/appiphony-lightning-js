@@ -1,7 +1,7 @@
 if (typeof _AljsApp === 'undefined') { throw new Error("Please include ember.aljs-init.js in your compiled Ember Application"); }
 if (typeof moment === 'undefined') { throw new Error("Please include moment.js in your compiled Ember Application"); }
 
-_AljsApp.AljsDatepickerComponent = Ember.Component.extend({
+_AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
     attributeBindings: ['selectedDate', 'format', 'dayLabels', 'monthLabels'],
     init: function() {
         var self = this;
@@ -30,11 +30,11 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend({
         }
 
         if (Ember.isEmpty(this.get('dayLabels'))) {
-            this.set('dayLabels', dayLabelsDefaults);
+            this.set('dayLabels', this.get('dayLabelsDefaults'));
         }
 
         if (Ember.isEmpty(this.get('monthLabels'))) {
-            this.set('monthLabels', monthLabelsDefaults);
+            this.set('monthLabels', this.get('monthLabelsDefaults'));
         }
     },
     initCalendar: function() {

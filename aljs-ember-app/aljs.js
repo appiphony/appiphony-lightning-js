@@ -53,7 +53,7 @@ App.setCookie = function(name, value) {
 };
 
 App.getCookie = function(name) {
-    return document.cookie.replace(/(?:(?:^|.*;\s*)someCookieName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    return document.cookie.replace(new RegExp('(?:(?:^|.*;\\s*)' + name + '\\s*\\=\\s*([^;]*).*$)|^.*$/'), "$1");
 };
 
 App.AljsView = Ember.View.extend({

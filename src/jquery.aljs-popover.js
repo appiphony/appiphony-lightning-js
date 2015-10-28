@@ -16,7 +16,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             
             var nubbinHeight = 15;
             var nubbinWidth = 15;
-            var placement = $target.attr('data-placement') || 'top';
+            var placement = $target.attr('data-aljs-placement') || 'top';
             
             // kill other popovers
             if (options.dismissOthers) {
@@ -81,7 +81,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         
         return this.each(function() {
             var $el = $(this);
-            var $popover = $el.next('.slds-popover').remove();
+            var $popover = $('#' + $el.data('aljs-show')).remove();
             
             $el.on('click', { popoverElement: $popover, options: settings }, togglePopover);
         });

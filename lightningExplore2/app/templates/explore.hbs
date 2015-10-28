@@ -121,16 +121,16 @@
     <div>
         POPOVERS - EMBER
         <br/>
-        {{#aljs-button class="slds-button--neutral" data-toggle-popover="popover1"}}
+        {{#aljs-button class="slds-button--neutral" data-aljs-toggle="popover1"}}
             <div>Click for popover</div>
         {{/aljs-button}}
 
-        {{#aljs-popover popoverId="popover1" position="right"}}
+        {{#aljs-popover popoverId="popover1" placement="right"}}
             <popoverHeader>
                 <p class="slds-text-heading--small">Hi</p>
             </popoverHeader>
             <popoverBody>
-                Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href="#">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.
+                Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a data-aljs-close="popover1" href="#">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.
             </popoverBody>
         {{/aljs-popover}}
     </div>

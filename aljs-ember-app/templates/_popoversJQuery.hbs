@@ -21,7 +21,7 @@
         </div>
         <div class="slds-popover__body">
             <p class="slds-m-bottom--medium">Sit nulla est ex deserunt exercitation.</p>
-            <button class="slds-button slds-button--brand slds-button--small" data-aljs-dismiss="popover">Cancel</button>
+            <button class="slds-button slds-button--brand slds-button--small" data-aljs-dismiss="popover" data-placement="right">Cancel</button>
         </div>
     </div>
 </div>
@@ -91,13 +91,13 @@ $(document).ready(function() {
                 <tbody>
                     <tr>
                         <th scope="row"><code>dismissOthers</code></th>
-                        <td data-label="Behavior">Determines whether or not showing a popover dismisses any currently shown popover</td>
+                        <td data-label="Behavior">Determines whether or not showing a popover dismisses other currently shown popovers</td>
                         <td data-label="Accepted values"><code>true</code>, <code>false</code></td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>true</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>backgroundDismiss</code></th>
-                        <td data-label="Behavior">Specifies whether or not modals will be dismissed if the backdrop is clicked</td>
+                        <td data-label="Behavior">Determines whether or not modals will be dismissed if the background is clicked</td>
                         <td data-label="Accepted values"><code>true</code>, <code>false</code></td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>false</code></td>
                     </tr>
@@ -117,24 +117,14 @@ $(document).ready(function() {
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row"><code>show.aljs.modal</code></th>
-                        <td data-label="Element">The <code>.slds-modal</code> being shown</td>
-                        <td data-label="Trigger">A modal begins its 'show' animation in the DOM</td>
+                        <th scope="row"><code>shown.aljs.popover</code></th>
+                        <td data-label="Element">The <code>.slds-popover</code> being shown</td>
+                        <td data-label="Trigger">A popover is shown</td>
                     </tr>
                     <tr>
-                        <th scope="row"><code>shown.aljs.modal</code></th>
-                        <td data-label="Element">The <code>.slds-modal</code> being shown</td>
-                        <td data-label="Trigger">A modal completes its 'show' animation in the DOM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><code>dismiss.aljs.modal</code></th>
-                        <td data-label="Element">The <code>.slds-modal</code> being dismissed</td>
-                        <td data-label="Trigger">A modal begins its 'dismiss' animation in the DOM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><code>dismissed.aljs.modal</code></th>
-                        <td data-label="Element">The <code>.slds-modal</code> being dismissed</td>
-                        <td data-label="Trigger">A modal completes its 'dismiss' animation in the DOM</td>
+                        <th scope="row"><code>dismissed.aljs.popover</code></th>
+                        <td data-label="Element">The <code>.slds-popover</code> being dismissed</td>
+                        <td data-label="Trigger">A popover is dismissed</td>
                     </tr>
                 </tbody>
             </table>

@@ -50,14 +50,34 @@
                         <td data-label="Comments"></td>
                     </tr>
                     <tr>
+                        <th scope="row"><code>data-aljs-show="</code><em>popover-id</em><code>"</code></th>
+                        <td data-label="Outcome">Assigns the role of showing the specified popover id on click</td>
+                        <td data-label="Required" class="slds-cell-shrink">
+                            <svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                            </svg><span class="slds-assistive-text">Required</span></td>
+                        <td data-label="Applied to" class="slds-cell-shrink"><code>[data-aljs="popover"]</code></td>
+                        <td data-label="Comments"></td>
+                    </tr>
+                    <tr>
                         <th scope="row"><code>data-aljs-dismiss="popover"</code></th>
                         <td data-label="Outcome">Assigns the role of dismissing popovers on click</td>
                         <td data-label="Required" class="slds-cell-shrink">
                             <!--<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
                             </svg><span class="slds-assistive-text">Required</span>--></td>
-                        <td data-label="Applied to" class="slds-cell-shrink">Any link or button</td>
-                        <td data-label="Comments">Useful for any link or element which should dismiss it's parent popover</td>
+                        <td data-label="Applied to" class="slds-cell-shrink">Any link or button contained in <code>[data-aljs="popover"]</code></td>
+                        <td data-label="Comments">Useful if a link or element should dismiss it's parent popover on click</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>data-aljs-placement="</code><em>direction</em><code>"</code></th>
+                        <td data-label="Outcome">Defines the placement of the popover</td>
+                        <td data-label="Required" class="slds-cell-shrink">
+                            <!--<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                            </svg><span class="slds-assistive-text">Required</span>--></td>
+                        <td data-label="Applied to" class="slds-cell-shrink"><code>[data-aljs="popover"]</code></td>
+                        <td data-label="Comments">Defaults to <code>top</code> if the attribute does not exist</td>
                     </tr>
                 </tbody>
             </table>

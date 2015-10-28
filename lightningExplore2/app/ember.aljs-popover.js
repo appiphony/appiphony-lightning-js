@@ -1,6 +1,6 @@
 if (typeof _AljsApp === 'undefined') { throw new Error("Please include ember.aljs-init.js in your compiled Ember Application"); }
 
-_AljsApp.AljsPopoverComponent = Ember.Component.extend({
+_AljsApp.AljsPopoverComponent = Ember.Component.extend(Ember.Evented, {
     layoutName: 'components/aljs-popover',
     //classNames: 'slds-popover',
     classNameBindings: ['slds-hide'],
@@ -73,7 +73,8 @@ _AljsApp.AljsPopoverComponent = Ember.Component.extend({
         Ember.run.scheduleOnce('afterRender', this, function() {
             var $target = this.$().find('[data-aljs-toggle="' + this.get('popoverId') + '"]');
             $target.insertBefore(this.$());
-            this.$().find('.slds-popover').attr('style', '');
+            this.$().find('.slds-popover').attr('style', '')
+                                          .trigger('dismissed.aljs.popover');
         });
     },
     togglePopover: function() {
@@ -87,7 +88,8 @@ _AljsApp.AljsPopoverComponent = Ember.Component.extend({
             Ember.run.scheduleOnce('afterRender', this, function() {
                 var $target = this.$().find('[data-aljs-toggle="' + this.get('popoverId') + '"]');
                 $target.insertBefore(this.$());
-                this.$().find('.slds-popover').attr('style', '');
+                this.$().find('.slds-popover').attr('style', '')
+                                              .trigger('dismissed.aljs.popover');
             });
         }
     },
@@ -111,6 +113,7 @@ _AljsApp.AljsPopoverComponent = Ember.Component.extend({
             }   
 
             $target.appendTo(this.$());
+            $popoverNode.trigger('shown.aljs.popover');
         });     
     }
 });

@@ -1,7 +1,7 @@
 if (typeof _AljsApp === 'undefined') { throw new Error("Please include ember.aljs-init.js in your compiled Ember Application"); }
 if (typeof moment === 'undefined') { throw new Error("Please include moment.js in your compiled Ember Application"); }
 
-_AljsApp.AljsDatepickerComponent = Ember.Component.extend({
+_AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
     attributeBindings: ['selectedDate', 'format', 'dayLabels', 'monthLabels'],
     init: function() {
         var self = this;

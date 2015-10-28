@@ -1,7 +1,7 @@
 <div class="site-example--content slds-scrollable--x slds-tabs__content slds-show" role="tabpanel">
     <div class="slds-p-horizontal--medium">
         <h4 class="site-text-heading--large">Markup</h4>
-        <p class="slds-m-top--medium">It is important to include the .</p>
+        <p class="slds-m-top--medium slds-m-bottom--medium">When using Ember popover components, it's important to 1) specify a unique popoverId for the component, 2) attach a "data-aljs-toggle" attribute with the popoverId to the element you want to toggle the popover with, 3) attach a "data-aljs-dismiss" attribute with the popoverId to the element you want to dismiss the popover with and 4) place the popover component immediately below the toggle element.</p>
 {{#aljs-pre-container type="html"}}
 &#123;&#123;#aljs-button class="slds-button--neutral" data-aljs-toggle="popover1"&#125;&#125;
     <div>Click for popover</div>
@@ -12,10 +12,46 @@
         <p class="slds-text-heading--small">Hi</p>
     </popoverHeader>
     <popoverBody>
-        Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a href="#">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.
+        Sit nulla est ex deserunt exercitation anim occaecat. Nostrud <a data-aljs-dismiss="popover1" href="#">ullamco</a> deserunt aute id consequat veniam incididunt duis in sint irure nisi.
     </popoverBody>
 &#123;&#123;/aljs-popover&#125;&#125;
 {{/aljs-pre-container}}
+	<p class="slds-m-top--medium">This table gives you a quick overview of ALJS-specific markup applied to the SLDS component.</p>
+        <div class="slds-scrollable--x">
+            <table class="slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium">
+                <thead>
+                    <tr class="site-text-heading--label">
+                        <th scope="col">ALJS Markup</th>
+                        <th scope="col">Outcome</th>
+                        <th scope="col">Required</th>
+                        <th scope="col">Applied to</th>
+                        <th scope="col">Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"><code>data-aljs-toggle="<i>popoverId</i>"</code></th>
+                        <td data-label="Outcome">Attach this to the node you want to trigger the popover</td>
+                        <td data-label="Required" class="slds-cell-shrink">
+                            <svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                            </svg><span class="slds-assistive-text">Required</span></td>
+                        <td data-label="Applied to" class="slds-cell-shrink">Any link or button</td>
+                        <td data-label="Comments"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>data-aljs-dismiss="<i>popoverId</i>"</code></th>
+                        <td data-label="Outcome">Assigns the role of dismissing the specified popover on click</td>
+                        <td data-label="Required" class="slds-cell-shrink">
+                            <!--<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                            </svg><span class="slds-assistive-text">Required</span>--></td>
+                        <td data-label="Applied to" class="slds-cell-shrink">Any link or button</td>
+                        <td data-label="Comments">Useful for any link or element which should dismiss it's parent popover</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <h4 class="site-text-heading--large">Attribute Bindings</h4>
         <p class="slds-m-top--medium">This table details the available attribute bindings for this Ember component.</p>
         <div class="slds-scrollable--x">
@@ -30,28 +66,16 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row"><code>selectedDate</code></th>
-                        <td data-label="Purpose">Binds the selected date in the datepicker UI to a moment value.</td>
-                        <td data-label="Values">A valid moment.js object</td>
+                        <th scope="row"><code>popoverId</code></th>
+                        <td data-label="Purpose">The id that will be attached to the popover's markup. Please make sure this is unique.</td>
+                        <td data-label="Values">A unique, valid id string</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
                     </tr>
                     <tr>
-                        <th scope="row"><code>format</code></th>
-                        <td data-label="Purpose">Specifies how dates will be displayed in the datepicker's input.</td>
-                        <td data-label="Values">A valid date string (e.g. 'MM/DD/YYYY')</td>
-                        <td data-label="Default value" class="slds-cell-shrink"><code>MM/DD/YYYY</code></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><code>dayLabels</code></th>
-                        <td data-label="Purpose">An optional array of objects defining labels for the calendar's days</td>
-                        <td data-label="Values">[{full: '<i>full day label</i>', abbv: '<i>abbreviated day label</i>'},...]</td>
-                        <td data-label="Default value" class="slds-cell-shrink">English full labels, empty abbreviation labels</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><code>monthLabels</code></th>
-                        <td data-label="Purpose">An optional array of objects defining labels for the calendar's months</td>
-                        <td data-label="Values">[{full: '<i>full month label</i>', abbv: '<i>abbreviated month label</i>'},...]</td>
-                        <td data-label="Default value" class="slds-cell-shrink">English full labels, empty abbreviation labels</td>
+                        <th scope="row"><code>placement</code></th>
+                        <td data-label="Purpose">Specifies where the popover will appear in relation to its trigger.</td>
+                        <td data-label="Values">top, right, bottom, left</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>top</code></td>
                     </tr>
                 </tbody>
             </table>
@@ -69,7 +93,12 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row"><code>selected.aljs.datepicker</code></th>
+                        <th scope="row"><code>shown.aljs.popover</code></th>
+                        <td data-label="Element">The <code>&lt;input&gt;</code> the datepicker is attached to</td>
+                        <td data-label="Trigger">A user selects a date either by clicking a date on the datepicker or entering a valid date in the text input</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>dismissed.aljs.popover</code></th>
                         <td data-label="Element">The <code>&lt;input&gt;</code> the datepicker is attached to</td>
                         <td data-label="Trigger">A user selects a date either by clicking a date on the datepicker or entering a valid date in the text input</td>
                     </tr>

@@ -1,6 +1,6 @@
 if (typeof _AljsApp === 'undefined') { throw new Error("Please include ember.aljs-init.js in your compiled Ember Application"); }
 
-_AljsApp.AljsPopoverComponent = Ember.Component.extend({
+_AljsApp.AljsPopoverComponent = Ember.Component.extend(Ember.Evented, {
     layoutName: 'components/aljs-popover',
     //classNames: 'slds-popover',
     classNameBindings: ['slds-hide'],
@@ -35,15 +35,15 @@ _AljsApp.AljsPopoverComponent = Ember.Component.extend({
         Ember.run.scheduleOnce('afterRender', this, function() {
             var self = this;
             
-            $('body').on('click', '[data-open-popover="' + this.get('popoverId') + '"]', function() {
-                self.openPopover();
-            });
+            // $('body').on('click', '[data-open-popover="' + this.get('popoverId') + '"]', function() {
+            //     self.openPopover();
+            // });
 
-            $('body').on('click', '[data-close-popover="' + this.get('popoverId') + '"]', function() {
+            $('body').on('click', '[data-aljs-close="' + this.get('popoverId') + '"]', function() {
                 self.closePopover();
             });
 
-            $('body').on('click', '[data-toggle-popover="' + this.get('popoverId') + '"]', function() {
+            $('body').on('click', '[data-aljs-toggle="' + this.get('popoverId') + '"]', function() {
                 self.togglePopover();
             });
 
@@ -58,34 +58,47 @@ _AljsApp.AljsPopoverComponent = Ember.Component.extend({
             left: 'right'
         };
 
-        return 'slds-nubbin--' + nubbinPositionObject[this.get('position')];
-    }.property('position'),
+        return 'slds-nubbin--' + nubbinPositionObject[this.get('placement')];
+    }.property('placement'),
     openPopover: function() {
         this.set('isOpen', true);
-        this.positionPopover();
+
+        Ember.run.scheduleOnce('afterRender', this, function() {
+            this.positionPopover();
+        });
     },
     closePopover: function() {
         this.set('isOpen', false);
-        
-        var $target = this.$().find('[data-toggle-popover="' + this.get('popoverId') + '"]');
-        $target.insertBefore(this.$());
+
+        Ember.run.scheduleOnce('afterRender', this, function() {
+            var $target = this.$().find('[data-aljs-toggle="' + this.get('popoverId') + '"]');
+            $target.insertBefore(this.$());
+            this.$().find('.slds-popover').attr('style', '')
+                                          .trigger('dismissed.aljs.popover');
+        });
     },
     togglePopover: function() {
         this.toggleProperty('isOpen');
 
         if (this.get('isOpen')) {
-            this.positionPopover();
+            Ember.run.scheduleOnce('afterRender', this, function() {
+                this.positionPopover();
+            });
         } else {
-            var $target = this.$().find('[data-toggle-popover="' + this.get('popoverId') + '"]');
-            $target.insertBefore(this.$());
+            Ember.run.scheduleOnce('afterRender', this, function() {
+                var $target = this.$().find('[data-aljs-toggle="' + this.get('popoverId') + '"]');
+                $target.insertBefore(this.$());
+                this.$().find('.slds-popover').attr('style', '')
+                                              .trigger('dismissed.aljs.popover');
+            });
         }
     },
     positionPopover: function() {
         Ember.run.scheduleOnce('afterRender', this, function() {
             var nubbinHeight = this.get('nubbinHeight');
             var nubbinWidth = this.get('nubbinWidth');
-            var popoverPosition = this.get('position');
-            var $target = $('[data-toggle-popover="' + this.get('popoverId') + '"]');
+            var popoverPosition = this.get('placement');
+            var $target = $('[data-aljs-toggle="' + this.get('popoverId') + '"]');
             var $popoverNode = this.$().find('.slds-popover');
             
             $popoverNode.css('width', $popoverNode.innerWidth() + 'px');
@@ -100,6 +113,7 @@ _AljsApp.AljsPopoverComponent = Ember.Component.extend({
             }   
 
             $target.appendTo(this.$());
+            $popoverNode.trigger('shown.aljs.popover');
         });     
     }
 });

@@ -13,7 +13,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         var nubbinHeight = 15;
         var nubbinWidth = 15;
         var tooltipContent = $target.attr('data-aljs-title');
-        var tooltipPosition = $target.attr('data-placement') || 'top';
+        var tooltipPosition = $target.attr('data-aljs-placement') || 'top';
         var tooltipNubbins = {
             top: 'bottom',
             bottom: 'top',

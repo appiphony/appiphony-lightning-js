@@ -54,6 +54,7 @@ pre[type]:before {
     color: #fff;
     text-align: center;
     min-width: 100px;
+    opacity: 0.5;
 }
 
 pre[type="html"]:before {

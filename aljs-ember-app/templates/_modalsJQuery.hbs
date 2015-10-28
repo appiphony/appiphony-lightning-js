@@ -82,7 +82,7 @@
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
                             </svg><span class="slds-assistive-text">Required</span>--></td>
                         <td data-label="Applied to" class="slds-cell-shrink"><code>.slds-picklist</code></td>
-                        <td data-label="Comments">While not required, it is recommended to bind modal showings through this method rather than programmatically</td>
+                        <td data-label="Comments">While not required, it is recommended to bind modal showings through this method rather than with methods (see 'Methods' section)</td>
                     </tr>
                     <tr>
                         <th scope="row"><code>data-aljs-dismiss="</code><em>modal-id</em><code>"</code></th>
@@ -92,7 +92,7 @@
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
                             </svg><span class="slds-assistive-text">Required</span>--></td>
                         <td data-label="Applied to" class="slds-cell-shrink"><code>.slds-picklist</code></td>
-                        <td data-label="Comments">While not required, it is recommended to bind modal dismisses through this method rather than programmatically</td>
+                        <td data-label="Comments">While not required, it is recommended to bind modal dismisses through this method rather than with methods (see 'Methods' section)</td>
                     </tr>
                 </tbody>
             </table>
@@ -128,7 +128,7 @@ $(document).ready(function() {
                 <tbody>
                     <tr>
                         <th scope="row"><code>backdropDismiss</code></th>
-                        <td data-label="Behavior">Specifies whether or not modals will be dismissed if the backdrop is clicked</td>
+                        <td data-label="Behavior">Determines whether or not modals will be dismissed if the backdrop is clicked</td>
                         <td data-label="Accepted values"><code>true</code>, <code>false</code></td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>false</code></td>
                     </tr>
@@ -190,8 +190,10 @@ $('[data-aljs-show="modal-1"]').modal('trigger');
         </div>
         <h4 class="site-text-heading--large">Alternative Call (Supports DOM Changes &amp; All Options)</h4>
 {{#aljs-pre-container type="js"}}
-$('body').modal({
-    selector: '[data-aljs="modal"]'
+$(document).ready(function() {
+    $('body').modal({
+        selector: '[data-aljs="modal"]'
+    });
 });
 {{/aljs-pre-container}}
         <p class="slds-m-top--medium">This table details the options specific to the alternative call.</p>

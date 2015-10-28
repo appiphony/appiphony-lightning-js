@@ -44,6 +44,18 @@ App = Ember.Application.create({
     rootElement: '#app'
 });
 
+App.setCookie = function(name, value) {
+    var d = new Date();
+    d.setTime(d.getTime() + (365*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    
+    document.cookie = name + '=' + value + ';' + expires;
+};
+
+App.getCookie = function(name) {
+    return document.cookie.replace(/(?:(?:^|.*;\s*)someCookieName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+};
+
 App.AljsView = Ember.View.extend({
     didInsertElement: function() {
         
@@ -92,6 +104,7 @@ App.AljsCodeContainerComponent = Ember.Component.extend({
     actions: {
         clickSection: function(section) {
             this.set('selectedSection', section);
+            App.setCookie('aljs_selected_lib', section);
         }
     }
 });
@@ -202,8 +215,10 @@ App.AljsRoute = Ember.Route.extend({
         };
     },
     setupController: function(controller, model) {
+        var selectedSection = App.getCookie('aljs_selected_lib');
+        var selectedSectionIsValid = !Ember.isEmpty(selectedSection) && (selectedSection === 'jQuery' || selectedSection === 'ember');
         controller.set('model', model);
-        controller.set('selectedSection', 'jQuery');
+        controller.set('selectedSection', selectedSectionIsValid ? selectedSection : 'jQuery');
     },
     actions: {
         // clickSection: function(section) {

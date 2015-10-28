@@ -1,8 +1,8 @@
 if (typeof _AljsApp === 'undefined') { throw new Error("Please include ember.aljs-init.js in your compiled Ember Application"); }
-localeString = typeof localeString !== 'undefined' ? localeString : 'MM/DD/YYYY';
+if (typeof moment === 'undefined') { throw new Error("Please include moment.js in your compiled Ember Application"); }
 
 _AljsApp.AljsDatepickerComponent = Ember.Component.extend({
-    attributeBindings: ['selectedDate'],
+    attributeBindings: ['selectedDate', 'format', 'dayLabels', 'monthLabels'],
     init: function() {
         var self = this;
 
@@ -28,6 +28,14 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend({
                 }
             });
         }
+
+        if (Ember.isEmpty(this.get('dayLabels'))) {
+            this.set('dayLabels', dayLabelsDefaults);
+        }
+
+        if (Ember.isEmpty(this.get('monthLabels'))) {
+            this.set('monthLabels', monthLabelsDefaults);
+        }
     },
     initCalendar: function() {
         if (!this.get('isOpen')) {
@@ -37,7 +45,7 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend({
             this.set('selectedMonth', initDate.toDate().getMonth());
 
             if (!Ember.isNone(this.get('selectedDate'))) {
-                this.set('selectedDateText', this.get('selectedDate').format(localeString));
+                this.set('selectedDateText', this.get('selectedDate').format(this.getWithDefault('format', 'MM/DD/YYYY')));
             }
         }
     },
@@ -68,7 +76,7 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend({
 
         return  years;
     }.property(),
-    dayLabels: [
+    dayLabelsDefaults: [
         {
             full: 'Sunday',
             abbv: 'S'
@@ -98,7 +106,7 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend({
             abbv: 'S'
         }
     ],
-    monthLabels: [
+    monthLabelsDefaults: [
         {
             full: 'January',
             abbv: ''
@@ -283,6 +291,7 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend({
         if (momentDate && momentDate.isValid() && momentDate.isAfter(earliestCalendarYear) && momentDate.isBefore(latestCalendarYear)) {
             this.set('selectedDate', momentDate);
             this.closeDatepicker();
+            this.$().find('input').trigger('selected.aljs.datepicker');
         }
     },
     actions: {
@@ -319,8 +328,10 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend({
 
             if (dayObj.isCurrentMonth === true) {
                 this.set('selectedDate', moment(new Date(selectedYear, selectedMonth, selectedDay)));
-                this.set('selectedDateText', moment(new Date(selectedYear, selectedMonth, selectedDay)).format(localeString));
+                this.set('selectedDateText', moment(new Date(selectedYear, selectedMonth, selectedDay)).format(this.getWithDefault('format', 'MM/DD/YYYY')));
                 this.closeDatepicker();
+
+                this.$().find('input').trigger('selected.aljs.datepicker');
             }
         }
     }

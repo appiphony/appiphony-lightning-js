@@ -65,6 +65,8 @@ _AljsApp.AljsModalComponent = Ember.Component.extend(Ember.Evented, {
     },
     openModal: function() {
         var self = this;
+        $('#' + this.get('modalId')).trigger('show.aljs.modal');
+
         this.set('isModalOpen', true);
 
         if (this.get('openFunction')) {
@@ -79,18 +81,24 @@ _AljsApp.AljsModalComponent = Ember.Component.extend(Ember.Evented, {
             this.sendAction.apply(this, params);
         }
 
-        $('#' + this.get('modalId')).trigger('opened');
-
         $('body').on('keyup', function(e) {
             if (e.keyCode === 27) {
                 $(this).unbind('keyup');
                 self.closeModal();
             }
         });
+
+        Ember.run.later(this, function() {
+            $('#' + this.get('modalId')).trigger('shown.aljs.modal');
+        }, 400);
     },
     closeModal: function() {
+        $('#' + this.get('modalId')).trigger('dismiss.aljs.modal');
+
         this.set('isModalOpen', false);
 
-        $('#' + this.get('modalId')).trigger('closed');
+        Ember.run.later(this, function() {
+            $('#' + this.get('modalId')).trigger('dismissed.aljs.modal');
+        }, 200);
     }
 });

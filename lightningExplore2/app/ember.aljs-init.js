@@ -7,6 +7,6 @@ Ember.Object.reopen({
 
 Ember.Component.reopen({
     attributeBindings: ['data-qa-button', 'data-open-modal', 'data-close-modal', 
-                        'data-open-popover', 'data-close-popover', 'data-toggle-popover',
+                        'data-aljs-close', 'data-aljs-toggle',
                         'disabled', 'title', 'data-aljs', 'data-placement', 'aljs-title']
 });

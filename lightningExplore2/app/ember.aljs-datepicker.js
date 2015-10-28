@@ -30,11 +30,11 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend({
         }
 
         if (Ember.isEmpty(this.get('dayLabels'))) {
-            this.set('dayLabels', dayLabelsDefaults);
+            this.set('dayLabels', this.get('dayLabelsDefaults'));
         }
 
         if (Ember.isEmpty(this.get('monthLabels'))) {
-            this.set('monthLabels', monthLabelsDefaults);
+            this.set('monthLabels', this.get('monthLabelsDefaults'));
         }
     },
     initCalendar: function() {

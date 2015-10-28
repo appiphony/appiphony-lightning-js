@@ -86,7 +86,7 @@ $(document).ready(function() {
                         <th scope="row"><code>initialTabId</code></th>
                         <td data-label="Behavior">Specifies which tab will be initially selected on page load</td>
                         <td data-label="Accepted values">Any tab id selector</td>
-                        <td data-label="Default value" class="slds-cell-shrink"><code>''</code> (Empty defaults to the first tab)</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>''</code> (Defaults to the first tab if empty)</td>
                     </tr>
                     <tr>
                         <th scope="row"><code>onChange</code></th>
@@ -111,12 +111,12 @@ $(document).ready(function() {
                 <tbody>
                     <tr>
                         <th scope="row"><code>selected.aljs.tab</code></th>
-                        <td data-label="Element">The selected tab</td>
+                        <td data-label="Element">The selected <code>.slds-tabs__item</code></td>
                         <td data-label="Trigger">A tab is clicked</td>
                     </tr>
                     <tr>
                         <th scope="row"><code>shown.aljs.tabcontent</code></th>
-                        <td data-label="Element">The tab content being shown</td>
+                        <td data-label="Element">The <code>.slds-tabs__content</code> being shown</td>
                         <td data-label="Trigger">A tab is clicked</td>
                     </tr>
                 </tbody>

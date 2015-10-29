@@ -172,7 +172,6 @@ $(document).ready(function() {
                 <thead>
                     <tr class="site-text-heading--label">
                         <th scope="col">Option</th>
-                        <th scope="col">Required</th>
                         <th scope="col">Behavior</th>
                         <th scope="col">Values</th>
                         <th scope="col">Default value</th>
@@ -181,81 +180,43 @@ $(document).ready(function() {
                 <tbody>
                     <tr>
                         <th scope="row"><code>items</code></th>
-                        <td data-label="Required" class="slds-cell-shrink">
-                            <svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
-                            </svg><span class="slds-assistive-text">Required</span></td>
                         <td data-label="Behavior">Populates the list of lookup items on page load</td>
                         <td data-label="Accepted values">An array of objects with <code>id</code> (unique) and <code>label</code> properties</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>[]</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>objectLabel</code></th>
-                        <td data-label="Required" class="slds-cell-shrink">
-                            <!--<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
-                            </svg><span class="slds-assistive-text">Required</span>--></td>
                         <td data-label="Behavior">Sets the singular label for the searchable object</td>
                         <td data-label="Accepted values">Any string</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>'Object'</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>objectPluralLabel</code></th>
-                        <td data-label="Required" class="slds-cell-shrink">
-                            <!--<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
-                            </svg><span class="slds-assistive-text">Required</span>--></td>
                         <td data-label="Behavior">Sets the plural label for the searchable object</td>
                         <td data-label="Accepted values">Any string</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>'Objects'</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>objectIconUrl</code></th>
-                        <td data-label="Required" class="slds-cell-shrink">
-                            <!--<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
-                            </svg><span class="slds-assistive-text">Required</span>--></td>
                         <td data-label="Behavior">Sets the icon of the searchable object</td>
                         <td data-label="Accepted values">Any string representing a URL</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>'/assets/icons/standard-sprite/svg/symbols.svg#account'</code></td>
                     </tr>
                     <tr>
-                        <th scope="row"><code>searchTerm</code></th>
-                        <td data-label="Required" class="slds-cell-shrink">
-                            <!--<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
-                            </svg><span class="slds-assistive-text">Required</span>--></td>
-                        <td data-label="Behavior"> </td>
-                        <td data-label="Accepted values">Any string</td>
-                        <td data-label="Default value" class="slds-cell-shrink"><code>function(obj) {}</code></td>
-                    </tr>
-                    <tr>
                         <th scope="row"><code>emptySearchTermQuery</code></th>
-                        <td data-label="Required" class="slds-cell-shrink">
-                            <!--<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
-                            </svg><span class="slds-assistive-text">Required</span>--></td>
-                        <td data-label="Behavior"> </td>
-                        <td data-label="Accepted values">Any callback function</td>
+                        <td data-label="Behavior">A function that runs <code>callback</code> passing an array of items when an empty search is performed.</td>
+                        <td data-label="Accepted values"><code>function(callback) { callback([{id: 1, label: 'One'}]); })</code></td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>function () { callback([]); }</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>filledSearchTermQuery</code></th>
-                        <td data-label="Required" class="slds-cell-shrink">
-                            <!--<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
-                            </svg><span class="slds-assistive-text">Required</span>--></td>
-                        <td data-label="Behavior"> </td>
-                        <td data-label="Accepted values">Any callback function</td>
+                        <td data-label="Behavior">A function that runs <code>callback</code> passing an array of items when a filled search is performed.</td>
+                        <td data-label="Accepted values"><code>function(searchTerm, callback) { callback([{id: 1, label: 'One'}]); })</code></td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>function (searchTerm, callback) { callback([]); }</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>clickAddFunction</code></th>
-                        <td data-label="Required" class="slds-cell-shrink">
-                            <!--<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
-                            </svg><span class="slds-assistive-text">Required</span>--></td>
-                        <td data-label="Behavior"> </td>
+                        <td data-label="Behavior">A function that runs when a user clicks the "Add" link in the search results</td>
                         <td data-label="Accepted values">Any callback function</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
                     </tr>

@@ -21,12 +21,12 @@
         <div class="slds-lookup" data-select="single" data-scope="single" data-typeahead="true">
             <p class="slds-text-heading--small slds-m-bottom--x-small">Passing in an Items List</p>
 			<div class="slds-form-element">
-				<label class="slds-form-element__label" for="lookup">Stuffs</label>
+				<label class="slds-form-element__label" for="lookup">Stuff</label>
 				<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
 					<svg aria-hidden="true" class="slds-input__icon">
 						<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#search"></use>
 					</svg>
-					<input id="lookup" class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" />
+					<input id="lookup-1" class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" />
 				</div>
 			</div>	
 		</div>
@@ -38,7 +38,7 @@
 					<svg aria-hidden="true" class="slds-input__icon">
 						<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#search"></use>
 					</svg>
-					<input id="lookup2" class="slds-input" type="text" aria-autocomplete="list" role="combobox"/>
+					<input id="lookup-2" class="slds-input" type="text" aria-autocomplete="list" role="combobox"/>
 				</div>
 			</div>	
 		</div>
@@ -50,7 +50,7 @@
 					<svg aria-hidden="true" class="slds-input__icon">
 						<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#search"></use>
 					</svg>
-					<input id="lookup3" class="slds-input" type="text" aria-autocomplete="list" role="combobox"/>
+					<input id="lookup-3" class="slds-input" type="text" aria-autocomplete="list" role="combobox"/>
 				</div>
 			</div>	
 		</div>
@@ -66,80 +66,64 @@
     	$.aljsInit({
             assetsLocation: '.'
         });
-
-    	var results = [
-        				{
-        					id: 'lookup2-1',
-        					label: 'ajaxResult1'
-        				},
-        				{
-        					id: 'lookup2-2',
-        					label: 'ajaxResult2'
-        				},
-        				{
-        					id: 'lookup2-3',
-        					label: 'ajaxResult3'
-        				},
-        				{
-        					id: 'lookup2-4',
-        					label: 'ajaxResult4'
-        				},
-        				{
-        					id: 'lookup2-5',
-        					label: 'ajaxResult5'
-        				},
-        				{
-        					id: 'lookup2-6',
-        					label: 'ajaxResult6'
-        				},
-        				{
-        					id: 'lookup2-7',
-        					label: 'ajaxResult7'
-        				},
-        				{
-        					id: 'lookup2-8',
-        					label: 'ajaxResult8'
-        				}
-        			];
         $(document).ready(function() {
-        	$('#lookup').lookup({
+        	$('#lookup-1').lookup({
         		items: [
         			{
-        				id: 'lookup-1',
+        				id: 'result-1',
         				label: 'Result 1'
         			},
         			{
-        				id: 'lookup-2',
+        				id: 'result-2',
         				label: 'Result 2'
         			},
         			{
-        				id: 'lookup-3',
+        				id: 'result-3',
         				label: 'Result 3'
         			},
         			{
-        				id: 'lookup-4',
+        				id: 'result-4',
         				label: 'Result 4'
         			},
         			{
-        				id: 'lookup-5',
+        				id: 'result-5',
         				label: 'Result 5'
         			},
         			{
-        				id: 'lookup-6',
+        				id: 'result-6',
         				label: 'Result 6'
-        			},
-        			{
-        				id: 'lookup-7',
-        				label: 'Result 7'
-        			},
-        			{
-        				id: 'lookup-8',
-        				label: 'Result 8'
         			}
         		]
         	});
+            
+            var results = [
+                {
+                    id: 'ajax-result-1',
+                    label: 'ajaxResult1'
+                },
+                {
+                    id: 'ajax-result-2',
+                    label: 'ajaxResult2'
+                },
+                {
+                    id: 'ajax-result-3',
+                    label: 'ajaxResult3'
+                },
+                {
+                    id: 'ajax-result-4',
+                    label: 'ajaxResult4'
+                },
+                {
+                    id: 'ajax-result-5',
+                    label: 'ajaxResult5'
+                },
+                {
+                    id: 'ajax-result-6',
+                    label: 'ajaxResult6'
+                }
+            ];
 
-        	$('#lookup2').lookup({
+        	$('#lookup-2').lookup({
         		objectPluralLabel: 'Things',
         		objectLabel: 'Thing',
         		objectIconUrl: 'assets/icons/standard-sprite/svg/symbols.svg#record',
@@ -156,7 +140,7 @@
         		}
         	});
 
-        	$('#lookup3').lookup({
+        	$('#lookup-3').lookup({
         		objectPluralLabel: 'Entities',
         		objectLabel: 'Entity',
         		objectIconUrl: 'assets/icons/standard-sprite/svg/symbols.svg#record',
@@ -182,8 +166,8 @@
     </script>
     <script>
         $(document).ready(function() {
-            $('a[href="#"]').click(function(e) {
-               e.preventDefault();
+            $('body').on('click', 'a[href="#"]', function(e) {
+                e.preventDefault();
                 return false;
             });
         });

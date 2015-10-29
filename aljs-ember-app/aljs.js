@@ -161,6 +161,10 @@ App.PillsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
     routeName: 'pills'
 });
 
+App.NotificationsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
+    routeName: 'notifications'
+});
+
 App.GettingStartedController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
     routeName: 'gettingStarted'
 });
@@ -190,6 +194,10 @@ App.AljsRoute = Ember.Route.extend({
                 {
                     path: 'modals',
                     name: 'Modals'
+                },
+                {
+                    path: 'notifications',
+                    name: 'Notifications'
                 },
                 {
                     path: 'picklists',
@@ -241,6 +249,7 @@ App.Router.map(function() {
     	this.resource('popovers');
     	this.resource('datepickers');
         this.resource('tabs');
+        this.resource('notifications');
         this.resource('lookups');
         this.resource('pills');
     });

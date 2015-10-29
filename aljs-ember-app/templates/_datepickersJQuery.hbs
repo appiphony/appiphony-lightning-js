@@ -1,12 +1,196 @@
-<div class="site-example--content slds-scrollable--x slds-tabs__content slds-show" role="tabpanel">
+<div class="site-example--content slds-m-bottom--xx-large slds-scrollable--x slds-tabs__content slds-show" role="tabpanel">
     <div class="slds-p-horizontal--medium">
+        <h4 class="site-text-heading--large">Markup</h4>
 {{#aljs-pre-container type="html"}}
-<div>
-    afasdsa
+<div class="slds-form--stacked slds-float--left">
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="date">Date Picker Label</label>
+        <div class="slds-form-element__control">
+            <div class="slds-input-has-icon slds-input-has-icon--right">
+                <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
+                    <use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#event"></use>
+                </svg>
+                <input id="date" class="slds-input" type="text" placeholder="Pick a Date" label="Date Picker Label" />
+            </div>
+        </div>
+    </div>
 </div>
 {{/aljs-pre-container}}
+        <h4 class="site-text-heading--large">Initialize</h4>
 {{#aljs-pre-container type="js"}}
-falkfjalsf
+$(document).ready(function() {
+    $('#date').datepicker();
+});
 {{/aljs-pre-container}}
+        <h4 class="site-text-heading--large">Initialize with Options</h4>
+{{#aljs-pre-container type="js"}}
+$(document).ready(function() {
+    $('#date').datepicker({
+        numYearsBefore: 50,
+        numYearsAfter: 10,
+        format: 'MM/DD/YYYY',
+        initDate: moment(),
+        dayLabels: [
+            {
+                full: 'Sunday',
+                abbv: 'S'
+            },
+            {
+                full: 'Monday',
+                abbv: 'M'
+            },
+            {
+                full: 'Tuesday',
+                abbv: 'T'
+            },
+            {
+                full: 'Wednesday',
+                abbv: 'W'
+            },
+            {
+                full: 'Thursday',
+                abbv: 'T'
+            },
+            {
+                full: 'Friday',
+                abbv: 'F'
+            },
+            {
+                full: 'Saturday',
+                abbv: 'S'
+            }
+        ],
+        monthLabels: [
+            {
+                full: 'January',
+                abbv: ''
+            },
+            {
+                full: 'February',
+                abbv: ''
+            },
+            {
+                full: 'March',
+                abbv: ''
+            },
+            {
+                full: 'April',
+                abbv: ''
+            },
+            {
+                full: 'May',
+                abbv: ''
+            },
+            {
+                full: 'June',
+                abbv: ''
+            },
+            {
+                full: 'July',
+                abbv: ''
+            },
+            {
+                full: 'August',
+                abbv: ''
+            },
+            {
+                full: 'September',
+                abbv: ''
+            },
+            {
+                full: 'October',
+                abbv: ''
+            },
+            {
+                full: 'November',
+                abbv: ''
+            },
+            {
+                full: 'December',
+                abbv: ''
+            }
+        ]
+    });
+});
+{{/aljs-pre-container}}
+        <p class="slds-m-top--medium">This table details the options available for the jQuery function.</p>
+        <div class="slds-scrollable--x">
+            <table class="slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium">
+                <thead>
+                    <tr class="site-text-heading--label">
+                        <th scope="col">Option</th>
+                        <th scope="col">Behavior</th>
+                        <th scope="col">Values</th>
+                        <th scope="col">Default value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"><code>numYearsBefore</code></th>
+                        <td data-label="Behavior">Determines how many years before the current year to include in the year dropdown</td>
+                        <td data-label="Accepted values">An integer value</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>50</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>numYearsAfter</code></th>
+                        <td data-label="Behavior">Determines how many years after the current year to include in the year dropdown</td>
+                        <td data-label="Accepted values">An integer value</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>10</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>format</code></th>
+                        <td data-label="Purpose">Specifies how dates will be displayed in the datepicker's input.</td>
+                        <td data-label="Values">A valid date string (e.g. 'MM/DD/YYYY')</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>MM/DD/YYYY</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>initDate</code></th>
+                        <td data-label="Behavior">Sets the datepicker to a specified date</td>
+                        <td data-label="Accepted values">A moment.js object</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>moment()</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>dayLabels</code></th>
+                        <td data-label="Purpose">An optional array of objects defining labels for the calendar's days</td>
+                        <td data-label="Values">[{full: '<i>full day label</i>', abbv: '<i>abbreviated day label</i>'},...]</td>
+                        <td data-label="Default value" class="slds-cell-shrink">English full labels, empty abbreviation labels</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>monthLabels</code></th>
+                        <td data-label="Purpose">An optional array of objects defining labels for the calendar's months</td>
+                        <td data-label="Values">[{full: '<i>full month label</i>', abbv: '<i>abbreviated month label</i>'},...]</td>
+                        <td data-label="Default value" class="slds-cell-shrink">English full labels, empty abbreviation labels</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+{{#aljs-pre-container type="js"}}
+var momentDate = $('#date').datepicker('getDate');
+$('#date').datepicker('setDate', moment);
+{{/aljs-pre-container}}
+        <p class="slds-m-top--medium">This table details the methods available for the jQuery function.</p>
+        <div class="slds-scrollable--x">
+            <table class="slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium">
+                <thead>
+                    <tr class="site-text-heading--label">
+                        <th scope="col">Method</th>
+                        <th scope="col">jQuery object</th>
+                        <th scope="col">Outcome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"><code>'getDate'</code></th>
+                        <td data-label="jQuery object">The datepicker's input node</td>
+                        <td data-label="Outcome">A moment.js object representing the selected date is returned</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>'setDate'</code></th>
+                        <td data-label="jQuery object">The datepicker's input node</td>
+                        <td data-label="Outcome">The datepicker is set to the date of the passed in moment.js object</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

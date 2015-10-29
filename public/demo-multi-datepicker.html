@@ -51,7 +51,9 @@
             assetsLocation: '.'
         });
 
-    	$('#startDate').datepicker();
+    	$('#startDate').datepicker({
+    		endDateInputId: 'endDate'
+    	});
     </script>
     <script>
         $(document).ready(function() {

@@ -77,7 +77,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
         this.$el = $(el);
 
         var initDate = moment(options.initDate) || moment();
-        var endDateId = this.$el.data('aljs-end-date');
+        var endDateId = options.endDateInputId;
 
         this.$datepickerEl = $(datepickerMenuMarkup.replace(/{{assetsLocation}}/g, options.assetsLocation) + datepickerTableMarkup);
         this.options = options;
@@ -464,6 +464,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
             numYearsBefore: 50,
             numYearsAfter: 10,
             format: 'MM/DD/YYYY',
+            endDateInputId: null,
             dayLabels: [
                 {
                     full: 'Sunday',
@@ -550,8 +551,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
 
         this.each(function() {
             var $this = $(this),
-                data = $this.data('datepicker'),
-                endDateId = $this.data('aljs-end-date');
+                data = $this.data('datepicker');
 
             if (!data) {
                 var datepickerData = new Datepicker(this, settings);

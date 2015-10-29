@@ -45,7 +45,6 @@ pre[type]:before {
     font-weight: bold;
     font-size: 10px;
     display: block;
-    content: 'HTML';
     position: absolute;
     top: 0;
     right: 0;
@@ -63,6 +62,10 @@ pre[type="html"]:before {
 
 pre[type="js"]:before {
     content: 'JS';
+}
+
+pre[type="vf"]:before {
+    content: 'VF';
 }
 
 pre .highlight {

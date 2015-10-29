@@ -332,9 +332,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         var settings = $.extend({
             // These are the defaults.
             assetsLocation: $.aljs.assetsLocation,
-            objectPluralLabel: 'Stuffs',
-            objectLabel: 'Stuff',
-            objectIconUrl: 'assets/icons/standard-sprite/svg/symbols.svg#account',
+            objectPluralLabel: 'Objects',
+            objectLabel: 'Object',
+            objectIconUrl: '/assets/icons/standard-sprite/svg/symbols.svg#account',
             searchTerm: '',
             items: [],
             emptySearchTermQuery: function () { callback([]); },

@@ -68,6 +68,11 @@ App.AljsView = Ember.View.extend({
                 scrollTop: (nav.offset().top - nav.height()) + 'px'
             }, 1000);
         });
+        
+        $('body').on('click', 'a[href="#"]', function(e) {
+            e.preventDefault();
+            return false;
+        });
     }
 });
 

@@ -18,15 +18,25 @@
 
 <body>
     <div class="slds">
-        <div class="slds-form--stacked slds-float--left">
+		<div class="slds-form--stacked slds-float--left">
 		  	<div class="slds-form-element">
-		    	<label class="slds-form-element__label" for="date">Date Picker Label</label>
+		    	<label class="slds-form-element__label" for="date">Multi Select Date Picker Label</label>
 		    	<div class="slds-form-element__control">
 		      		<div class="slds-input-has-icon slds-input-has-icon--right">
 		        		<svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
 		          			<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#event"></use>
 		        		</svg>
-		        		<input id="date" class="slds-input" type="text" placeholder="Pick a Date" label="Date Picker Label" />
+		        		<input id="startDate" data-aljs-end-date="endDate" class="slds-input" type="text" placeholder="Pick a Start Date" label="Date Picker Label" />
+		      		</div>
+		    	</div>
+		  	</div>
+		  	<div class="slds-form-element">
+		    	<div class="slds-form-element__control">
+		      		<div class="slds-input-has-icon slds-input-has-icon--right">
+		        		<svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
+		          			<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#event"></use>
+		        		</svg>
+		        		<input id="endDate" class="slds-input" type="text" placeholder="Pick a End Date" label="Date Picker Label" />
 		      		</div>
 		    	</div>
 		  	</div>
@@ -41,7 +51,7 @@
             assetsLocation: '.'
         });
 
-    	$('#date').datepicker();
+    	$('#startDate').datepicker();
     </script>
     <script>
         $(document).ready(function() {

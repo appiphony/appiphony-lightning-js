@@ -87,8 +87,6 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
         }
 
         if (endDateId && $('#' + endDateId).length === 1) {
-            console.log('init multi')
-
             this.$elEndDate = $('#' + endDateId);
 
             if (options.endDate) {
@@ -107,8 +105,8 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
             var $el = this.$el;
             var $elEndDate = this.$elEndDate || [];
 
-            // Opening datepicker
-            $([$el[0], $elEndDate[0]]).on('focus', function(e) {
+            var openDatepicker = function(e) {
+                e.stopPropagation();
                 if ((e.target === $el[0] && ($el.val() !== null && $el.val() !== '')) || (e.target === $elEndDate[0] && ($elEndDate.val() !== null && $elEndDate.val() !== ''))) {
 
                 } else {
@@ -116,27 +114,34 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
                     self.viewedMonth = initDate.month();
                     self.viewedYear = initDate.year();
                     self.fillMonth();
-                    self.$selectedInput = $(e.target);
+                    self.$selectedInput = $(this).parent().find('input');
 
                     // if ($el.closest('.slds-form-element').next('.slds-datepicker').length > 0) {
                     //     $datepickerEl.show();
                     // } else {
-                        self.$selectedInput.closest('.slds-form-element').append($datepickerEl);   
-                        self.initYearDropdown();
-                        $([$el, $datepickerEl, $elEndDate]).each(function() {
-                            $(this).on('click', self.blockClose);
-                        });         
-                        $datepickerEl.on('click', self, self.processClick);
+                    self.$selectedInput.closest('.slds-form-element').append($datepickerEl);   
+                    self.initYearDropdown();
+                    $([$el, $datepickerEl, $elEndDate, $el.prev('svg')]).each(function() {
+                        $(this).on('click', self.blockClose);
+                    });         
+                    $datepickerEl.on('click', self, self.processClick);
                     //}  
                     //if ()
                     self.$selectedInput.blur();
                     $('body').on('click', self, self.closeDatepicker); 
-                }    
-            });
+                }  
+            };
 
-            
+            // Opening datepicker
+            $($el).on('focus', openDatepicker);
+            $($el.prev('svg')).on('click', openDatepicker);
+            $el.prev('svg').css('cursor', 'pointer');
 
-            
+            if ($elEndDate.length > 0) {
+                $($elEndDate).on('focus', openDatepicker);
+                $($elEndDate.prev('svg')).on('click', openDatepicker);
+                $elEndDate.prev('svg').css('cursor', 'pointer');
+            }
 
             /* focus out?
             $([$el, $datepickerEl.find('button')]).each(function() {
@@ -415,10 +420,13 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
             var self = e.data;
             var $datepickerEl = self.$datepickerEl;
             var $selectedInput = self.$selectedInput;
+            var $target = $(this);
 
-            $selectedInput.closest('.slds-form-element').find('.slds-datepicker').remove();
-            $('body').unbind('click', self.closeDatepicker);
-            $datepickerEl.unbind('click', self.processClick);
+            if ($target.closest(self.$el.parent()).length === 0) {
+                $selectedInput.closest('.slds-form-element').find('.slds-datepicker').remove();
+                $('body').unbind('click', self.closeDatepicker);
+                $datepickerEl.unbind('click', self.processClick);
+            }
         },
         blockClose: function(e) {
             e.stopPropagation();

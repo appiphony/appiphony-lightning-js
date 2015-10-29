@@ -6,7 +6,8 @@
     <title>Notification Demo | Appiphony Lightning JS</title>
     <link rel="stylesheet" type="text/css" href="assets/styles/salesforce-lightning-design-system-vf.css">
     <style type="text/css">
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 2px;
             width: 100%;
@@ -18,7 +19,8 @@
 
 <body>
     <div class="slds">
-    	<div class="slds-notify slds-notify--alert slds-theme--inverse-text slds-theme--alert-texture" role="alert">
+        <button id="open-notification" class="slds-button slds-button--neutral slds-m-bottom--medium">Open Notification</button>
+        <div id="alert-1" class="slds-notify slds-notify--alert slds-theme--inverse-text slds-theme--alert-texture slds-m-bottom--medium" role="alert">
             <span class="slds-assistive-text">Info</span>
             <button class="slds-button slds-button--icon-inverse slds-notify__close" data-aljs-dismiss="notification">
                 <svg aria-hidden="true" class="slds-button__icon">
@@ -28,13 +30,26 @@
             </button>
             <h2>Base System Alert</h2>
         </div>
+        <div id="alert-2" class="slds-notify slds-notify--alert slds-theme--error slds-hide" role="alert">
+            <span class="slds-assistive-text">Info</span>
+            <button class="slds-button slds-button--icon-inverse slds-notify__close" data-aljs-dismiss="notification">
+                <svg aria-hidden="true" class="slds-button__icon">
+                    <use xlink:href="assets/icons/action-sprite/svg/symbols.svg#close"></use>
+                </svg>
+                <span class="slds-assistive-text">Close</span>
+            </button>
+            <h2>You have encountered an error</h2>
+        </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../src/jquery.aljs-init.js"></script>
     <script src="../src/jquery.aljs-notification.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-    	   $('body').notification();
+        $(document).ready(function () {
+            $('body').notification();
+            $('#open-notification').click(function() {
+                $('#alert-2').notification('show');
+            });
         });
     </script>
     <!--<script type="text/javascript">
@@ -43,9 +58,9 @@
         });
     </script>-->
     <script>
-        $(document).ready(function() {
-            $('a[href="#"]').click(function(e) {
-               e.preventDefault();
+        $(document).ready(function () {
+            $('a[href="#"]').click(function (e) {
+                e.preventDefault();
                 return false;
             });
         });

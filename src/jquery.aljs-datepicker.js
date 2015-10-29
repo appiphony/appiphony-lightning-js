@@ -267,7 +267,7 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
 
             // Fill previous month
             for (var i = numDaysInPrevMonth - (firstDayOfMonth - 1); i <= numDaysInPrevMonth; i++) {
-                var iDate = moment(new Date(viewedYear, viewedMonth, i));
+                var iDate = moment(new Date(previousMonth === 11 ? viewedYear - 1 : viewedYear, previousMonth, i));
                 allDays.push({
                     value: i,
                     dateValue: this.getMMDDYYYY(previousMonth + 1, i, viewedYear),
@@ -309,11 +309,11 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
             });
             
             // Fill last row
-            if (calendarRows[calendarRows.length - 1].length < 7) {
-                var iDate = moment(new Date(viewedYear, viewedMonth, i));
-                var numColsToFill = 7 - calendarRows[calendarRows.length - 1].length;
+            if (calendarRows[calendarRows.length - 1].data.length < 7) {
+                var iDate = moment(new Date(nextMonth === 0 ? viewedYear + 1 : viewedYear, nextMonth, i));
+                var numColsToFill = 7 - calendarRows[calendarRows.length - 1].data.length;
                 for (var i = 1; i <= numColsToFill; i++) {
-                    calendarRows[calendarRows.length - 1].push({
+                    calendarRows[calendarRows.length - 1].data.push({
                         value: i,
                         dateValue: this.getMMDDYYYY(nextMonth + 1, i, (nextMonth === 0 ? viewedYear + 1 : viewedYear)),
                         isCurrentMonth: false,

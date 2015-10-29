@@ -3,15 +3,18 @@ if (typeof _AljsApp === 'undefined') { throw new Error("Please include ember.alj
 _AljsApp.AljsModalComponent = Ember.Component.extend(Ember.Evented, {
     init: function() {
         this._super();
-        $.fn.modal = function(option){
-            $('.slds-fade-in-open').trigger('close');
-            this.each(function(){
-                if ($(this).hasClass('slds-modal')) {
-                    $(this).trigger(option);
-                }
-                return $(this); // support chaining
-            });    
-        };
+
+        if (!($.fn.modal)) {
+            $.fn.modal = function(option){
+                $('.slds-fade-in-open').trigger('close');
+                this.each(function(){
+                    if ($(this).hasClass('slds-modal')) {
+                        $(this).trigger(option);
+                    }
+                    return $(this); // support chaining
+                });    
+            };
+        }
     },
     layoutName: 'components/aljs-modal',
     click: function(e) {

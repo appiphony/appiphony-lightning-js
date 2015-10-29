@@ -173,17 +173,17 @@ $('[data-aljs-show="modal-1"]').modal('trigger');
                     <tr>
                         <th scope="row"><code>'show'</code></th>
                         <td data-label="jQuery object">The target modal</td>
-                        <td data-label="Outcome">A modal begins its 'show' animation in the DOM</td>
+                        <td data-label="Outcome">The target modal begins its 'show' animation in the DOM</td>
                     </tr>
                     <tr>
                         <th scope="row"><code>'dismiss'</code></th>
                         <td data-label="jQuery object">The target modal</td>
-                        <td data-label="Outcome">A modal begins its 'show' animation in the DOM</td>
+                        <td data-label="Outcome">The target modal begins its 'dismiss' animation in the DOM</td>
                     </tr>
                     <tr>
                         <th scope="row"><code>'trigger'</code></th>
                         <td data-label="jQuery object">The target element with a <code>data-aljs-show</code> attribute</td>
-                        <td data-label="Outcome">A modal begins its 'show' animation in the DOM</td>
+                        <td data-label="Outcome">The element's target modal begins its 'show' animation in the DOM</td>
                     </tr>
                 </tbody>
             </table>
@@ -210,7 +210,7 @@ $(document).ready(function() {
                 <tbody>
                     <tr>
                         <th scope="row"><code>selector</code></th>
-                        <td data-label="Behavior">Allows any existing elements matching the selector to show modals on click</td>
+                        <td data-label="Behavior">Allows elements matching the selector to show modals on click, regardless of whether or not they were present during initialization</td>
                         <td data-label="Values">Any selector</td>
                         <td data-label="Required" class="slds-cell-shrink">
                             <svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">

@@ -22,10 +22,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 $(this).trigger('selected.aljs.tab'); // Custom aljs event
             });
             // show first tab
-            if (this.settings.initialTabId === '' || $('#' + this.settings.initialTabId).length === 0) {
+            if (this.settings.defaultTabId === '' || $('#' + this.settings.defaultTabId).length === 0) {
                 this.selectTab($tabButtons.first().data('aljs-show'));
             } else {
-                this.selectTab(this.settings.initialTabId);
+                this.selectTab(this.settings.defaultTabId);
             }
         },
         selectTab: function(tabId) {
@@ -45,7 +45,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         var settings = $.extend({
             // These are the defaults.
-            initialTabId: '',
+            defaultTabId: '',
             onChange: function(obj) {},
             assetsLocation: $.aljs.assetsLocation
         }, typeof options === 'object' ? options : {});

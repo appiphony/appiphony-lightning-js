@@ -65,7 +65,7 @@ $(document).ready(function() {
 {{#aljs-pre-container type="js"}}
 $(document).ready(function() {
     $('[data-aljs="tabs"]').tabs({
-        initialTabId: '',
+        defaultTabId: '',
         onChange: function(obj) {}
     });
 });
@@ -83,7 +83,7 @@ $(document).ready(function() {
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row"><code>initialTabId</code></th>
+                        <th scope="row"><code>defaultTabId</code></th>
                         <td data-label="Behavior">Specifies which tab will be initially selected on page load</td>
                         <td data-label="Accepted values">Any tab id selector</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>''</code> (Defaults to the first tab if empty)</td>

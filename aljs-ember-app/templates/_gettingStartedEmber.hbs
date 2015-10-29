@@ -11,11 +11,6 @@
 	        	</li>
 	        </ul>
         </div>
-        <h4 class="site-text-heading--large">Define the path to the SLDS' assets directory</h4>
-		<p class="slds-m-bottom--medium">In your Visualforce Page, in a script tag, define a variable "assetsLocation" to be the URL path that contains the SLDS assets folder</p>
-{{#aljs-pre-container type="js"}}
-var assetsLocation = '{!URLFOR($Resource.slds)}';
-{{/aljs-pre-container}}
 		<p class="slds-m-top--medium slds-m-bottom--medium">In your main JS file, after defining the global namespace for your app. Assign that variable to _AljsApp.</p>
 {{#aljs-pre-container type="js"}}
 App = Ember.Application.create({

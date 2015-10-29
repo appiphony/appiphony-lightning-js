@@ -1,5 +1,29 @@
 {{aljs-header label="Getting Started" icon="images/icon-getting-started.svg"}}
 {{#aljs-main-content}}
     <p class="site-text-introduction">Enabling Appiphony Lightning JS on your Visualforce pages is simple.</p>
+    <h4 class="site-text-heading--large">Import the SLDS Library into your Salesforce Org</h4>
+	<p class="slds-m-top--medium">Download the SLDS Library from their <a href="http://www.lightningdesignsystem.com/resources/downloads">website.</a></p>
+	<p class="slds-m-top--medium">Create a zip that contains the assets folder in its root.</p>
+	<p class="slds-m-top--medium">Upload the zip to your org's Static Resources and name it "slds"</p>
+	<p class="slds-m-top--medium">Download the ALJS Library from our <a href="https://github.com/appiphony/salesforce-lightning-javascript-toolkit">website.</a></p>
+	<p class="slds-m-top--medium">Upload the aljs.zip file from the "dist" folder to your org's Static Resources and name it aljs.</p>
+	<p class="slds-m-top--medium">Now that you have both SLDS and ALJS available in your org, you can import and configure them in a Visualforce page using the URLFOR apex helper.</p>
+	<p class="slds-m-top--medium">Importing CSS:</p>
+{{#aljs-pre-container type="vf"}}
+<apex:page sidebar="false" standardStylesheets="false" showHeader="false" docType="html-5.0">
+	<link rel="stylesheet" href="{!URLFOR($Resource.slds, '/assets/styles/salesforce-lightning-design-system-vf.min.css')}"/>
+</apex:page>
+{{/aljs-pre-container}}
+	<p class="slds-m-top--medium">Define the assets location for SLDS (this enables the user to use SLDS' fonts and icons):</p>
+{{#aljs-pre-container type="vf"}}
+<script>
+	var assetsLocation = '{!URLFOR($Resource.slds}';
+</script>
+{{/aljs-pre-container}}
+	<p class="slds-m-top--medium">Scope your page's content inside of the <code>"slds"</code> class:</p>
+{{#aljs-pre-container type="vf"}}
+<div class="slds">Your content here</div>
+{{/aljs-pre-container}}
     {{aljs-code-container routeName="gettingStarted" selectedSection=selectedSection}}
+
 {{/aljs-main-content}}

@@ -157,7 +157,39 @@ a.aljs-home-link {
 
 @media only screen and (min-width: 1024px) {}
 
-@media only screen and (max-width: 768px) {}
+@media only screen and (max-width: 768px) {
+    .aljs-site-content {
+        padding: 0;
+        padding-top: 0;
+    }
+    .aljs-site-content .aljs-site-content {
+        padding: 2rem;
+    }
+    .aljs-section-icon {
+        top: -15px;
+        left: 0;
+    }
+    .site-masthead {
+        min-height: 100px;
+        padding: 0;
+    }
+    .site-main-content {
+        padding: 2rem;
+        padding-bottom: 1rem;
+    }
+    .aljs-section-icon + .aljs-section-title {
+        left: 60px;
+    }
+    .aljs-flavors {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .site-masthead .slds-button {
+        display: block;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+}
 
 @media only screen and (min-width: 768px) {}
 

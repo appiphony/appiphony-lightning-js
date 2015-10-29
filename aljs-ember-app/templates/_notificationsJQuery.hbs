@@ -59,13 +59,13 @@
                 </tbody>
             </table>
         </div>
-        <h4 class="site-text-heading--large">jQuery</h4>
+        <h4 class="site-text-heading--large">Initialize</h4>
 {{#aljs-pre-container type="js"}}
 $(document).ready(function() {
     $('[data-aljs="modal"]').modal();
 });
 {{/aljs-pre-container}}
-        <h4 class="site-text-heading--large">Options</h4>
+        <h4 class="site-text-heading--large">Initialize with Options</h4>
 {{#aljs-pre-container type="js"}}
 $(document).ready(function() {
     $('[data-aljs="modal"]').modal({
@@ -150,7 +150,8 @@ $('[data-aljs-show="modal-1"]').modal('trigger');
                 </tbody>
             </table>
         </div>
-        <h4 class="site-text-heading--large">Alternative Call (Supports DOM Changes &amp; All Options)</h4>
+        <h4 class="site-text-heading--large">Initialize on Body</h4>
+        <p class="slds-m-bottom--medium">The following method of initializing supports markup added to the DOM post-initialization and all options.</p>
 {{#aljs-pre-container type="js"}}
 $(document).ready(function() {
     $('body').modal({
@@ -158,7 +159,7 @@ $(document).ready(function() {
     });
 });
 {{/aljs-pre-container}}
-        <p class="slds-m-top--medium">This table details the options specific to the alternative call.</p>
+        <p class="slds-m-top--medium">This table details the options specific to initializing on the body.</p>
         <div class="slds-scrollable--x">
             <table class="slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium">
                 <thead>

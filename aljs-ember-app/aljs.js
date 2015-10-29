@@ -169,6 +169,10 @@ App.GettingStartedController = Ember.ObjectController.extend(App.SelectedSection
     routeName: 'gettingStarted'
 });
 
+App.ChangelogController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
+    routeName: 'changelog'
+});
+
 App.AljsController = Ember.ObjectController.extend({
     init: function() {
         this._super();
@@ -219,6 +223,10 @@ App.AljsRoute = Ember.Route.extend({
                     path: 'tooltips',
                     name: 'Tooltips'
                 },
+                {
+                    path: 'changelog',
+                    name: 'Changelog'
+                },
             ]
         };
     },
@@ -250,6 +258,7 @@ App.Router.map(function() {
     	this.resource('datepickers');
         this.resource('tabs');
         this.resource('notifications');
+        this.resource('changelog');
         this.resource('lookups');
         this.resource('pills');
     });

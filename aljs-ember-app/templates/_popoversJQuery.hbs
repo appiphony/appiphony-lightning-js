@@ -5,9 +5,6 @@
 <button class="slds-button slds-button--neutral slds-button--small" data-aljs="popover" data-aljs-show="popover-1" data-aljs-placement="right">Open Popover 1</button>
 <div id="popover-1" class="slds-popover slds-nubbin--left" role="dialog">
     <div class="slds-popover__content">
-        <div class="slds-popover__header">
-            <p class="slds-text-heading--small">Popover 1</p>
-        </div>
         <div class="slds-popover__body">
             <p>Nostrud deserunt aute id consequat veniam incididunt duis in sint irure nisi.</p>
         </div>
@@ -16,12 +13,9 @@
 <button class="slds-button slds-button--neutral slds-button--small" data-aljs="popover" data-aljs-show="popover-2" data-aljs-placement="right">Open Popover 2</button>
 <div id="popover-2" class="slds-popover slds-nubbin--left" role="dialog">
     <div class="slds-popover__content">
-        <div class="slds-popover__header">
-            <p class="slds-text-heading--small">Popover 2</p>
-        </div>
         <div class="slds-popover__body">
             <p class="slds-m-bottom--medium">Sit nulla est ex deserunt exercitation.</p>
-            <button class="slds-button slds-button--brand slds-button--small" data-aljs-dismiss="popover" data-placement="right">Cancel</button>
+            <button class="slds-button slds-button--brand slds-button--small" data-aljs-dismiss="popover">Cancel</button>
         </div>
     </div>
 </div>
@@ -77,7 +71,7 @@
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
                             </svg><span class="slds-assistive-text">Required</span>--></td>
                         <td data-label="Applied to" class="slds-cell-shrink"><code>[data-aljs="popover"]</code></td>
-                        <td data-label="Comments">Defaults to <code>top</code> if the attribute does not exist</td>
+                        <td data-label="Comments">Defaults to <code>top</code> if the attribute does not exist; does not affect nubbin classes</td>
                     </tr>
                 </tbody>
             </table>

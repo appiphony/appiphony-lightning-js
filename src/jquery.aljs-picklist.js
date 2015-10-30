@@ -4,13 +4,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
     var Picklist = function(el, options) {
         this.$el = $(el);
-        this.obj = {
-            checkmarkIcon: '<svg aria-hidden="true" class="slds-icon slds-icon--selected slds-icon--x-small slds-icon-text-default slds-m-right--small"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="' + $.aljs.assetsLocation + '/assets/icons/utility-sprite/svg/symbols.svg#check"></use></svg>'
-        };
         this.settings = options;
-
+        this.obj = {};
         this.bindTrigger();
-        this.bindChoices();  
+        this.bindChoices();
     };
 
     Picklist.prototype = {
@@ -29,11 +26,12 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 
                     self.obj.id = $(this).attr('id');
                 
-                    if (self.obj.$dropdown.is(':hidden')) {
+                    if (self.obj.$dropdown.hasClass('slds-hide')) {
                         // Close other picklists
                         $('[data-aljs="picklist"]').not(self.$el).picklist('close');
 
-                        self.obj.$dropdown.show();
+                        self.obj.$dropdown.removeClass('slds-hide')
+                            .addClass('slds-show');
 
                         if (self.obj.valueId === null || typeof self.obj.valueId === 'undefined') {
                             self.focusedIndex = 0;
@@ -44,13 +42,15 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         self.focusOnElement();
                         self.obj.$dropdown.on('keyup', self, self.processKeypress);
                     } else {
-                        self.obj.$dropdown.hide();
+                        self.obj.$dropdown.removeClass('slds-show')
+                            .addClass('slds-hide');
                         self.obj.$dropdown.unbind('keyup', self.processKeypress);
                     }
                 });
             
             $('body').click(function() { 
-                self.obj.$dropdown.hide();
+                self.obj.$dropdown.removeClass('slds-show')
+                    .addClass('slds-hide');
                 self.obj.$dropdown.unbind('keyup', self.processKeypress);
             });
 
@@ -85,23 +85,20 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         },
         setValueAndUpdateDom: function(optionId) {
             var $li = this.$el.find('#' + optionId);
-            this.obj.value = $li.find('a').html();
+            this.obj.value = $li.find('a').text();
             this.obj.valueId = optionId;
-            //self.settings.onChange(self.obj);
-            this.obj.$dropdown.hide();
+            this.obj.$dropdown.removeClass('slds-show')
+                .addClass('slds-hide');
             this.obj.$dropdown.unbind('keyup', this.processKeypress);
 
             this.obj.$trigger.trigger('change.aljs.picklist') // Custom aljs event
                 .focus();
         
-            this.obj.$valueContainer.html(this.obj.value);
+            this.obj.$valueContainer.text(this.obj.value);
             this.obj.$choices.parent()
-                .removeClass('slds-is-selected')
-                .find('.slds-icon')
-                .remove();
+                .removeClass('slds-is-selected');
         
-            $li.addClass('slds-is-selected')
-                .find('a').prepend(this.obj.checkmarkIcon);
+            $li.addClass('slds-is-selected');
         },
         setValue: function(optionId, callOnChange) {
             this.setValueAndUpdateDom(optionId);
@@ -114,7 +111,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             return this.obj.valueId;
         },
         close: function() {
-            this.obj.$dropdown.hide();
+            this.obj.$dropdown.removeClass('slds-show')
+                .addClass('slds-hide');
             this.obj.$dropdown.unbind('keyup', this.processKeypress);
         }
     };
@@ -134,8 +132,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         }, typeof options === 'object' ? options : {});
 
         this.each(function() {
-            var $this = $(this),
-                data = $this.data('aljs-picklist');
+            var $this = $(this);
+            var data = $this.data('aljs-picklist');
+            var dropdown = $this.find('.slds-dropdown')
+                .addClass('slds-hide');
 
             if (!data) {
                 var picklistData = new Picklist(this, settings);

@@ -29,20 +29,20 @@ gulp.task('neuterDev', function() {
 });
 
 gulp.task('uglify', function() {
-    return gulp.src(['src/**/*.js', '!src/**/*.min.js'])
+    return gulp.src(['./public/src/**/*.js', '!./public/src/**/*.min.js'])
         .pipe(rename({ suffix: '.min' }))
         .pipe(uglify())
         .pipe(gulp.dest('dist/jquery'));
 });
 
 gulp.task('watch', function() {
-    gulp.watch(['src/**/*.js', '!src/**/*.min.js'], ['uglify']);
+    gulp.watch(['./public/src/**/*.js', '!./public/src/**/*.min.js'], ['uglify']);
     gulp.watch('./aljs-ember-app/templates/**/*.hbs', ['emberTemplates']);
     gulp.watch('./aljs-ember-app/**/*.js', ['neuter']);
 });
 
 gulp.task('watchDev', function() {
-    gulp.watch(['src/**/*.js', '!src/**/*.min.js'], ['uglify']);
+    gulp.watch(['./public/src/**/*.js', '!./public/src/**/*.min.js'], ['uglify']);
     gulp.watch('./aljs-ember-app/templates/**/*.hbs', ['emberTemplates']);
     gulp.watch('./aljs-ember-app/**/*.js', ['neuterDev']);
 });

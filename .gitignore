@@ -29,3 +29,7 @@ node_modules
 # Compiled files
 aljs.pck.js
 templates.js
+
+# Ember test files
+lightningExplore1
+lightningExplore2

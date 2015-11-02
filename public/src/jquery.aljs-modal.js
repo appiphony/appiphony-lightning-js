@@ -16,7 +16,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         aljsModals.appendTo(modalContainer)
             .append('<div class="slds-modal-backdrop"></div>')
             .attr('aria-hidden', 'true')
-            .hide();
+            .addClass('slds-hide');
     }
     
     function showModal(obj, args) {
@@ -71,7 +71,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     aljsBodyTag.keyup(keyUpCheck);
                     modalObj.self.removeClass('slds-fade-in-open')
                         .attr('aria-hidden', 'false')
-                        .show();
+                        .addClass('slds-show');
                     
                     dismissModalElement.click(function(e) { // Bind events based on options
                         e.preventDefault();
@@ -111,7 +111,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     setTimeout(function() {
                         $('.slds-modal-backdrop').remove();
                         aljsRefocusTarget = null;
-                        modalObj.self.hide()
+                        modalObj.self.addClass('slds-hide')
                             .trigger('dismissed.aljs.modal'); // Custom aljs event
                     }, 200);
                     break;

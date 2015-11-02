@@ -2,16 +2,22 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
 (function($) {
 
+    var dismissPopover = function($popover) {
+        $popover.removeAttr('style')
+                .trigger('dismissed.aljs.popover') // Custom aljs event
+                .unwrap()
+                .remove();
+    };
+    
     var togglePopover = function(e) {
         var $target = $(e.target);
         var $popover = $('#' + $target.data('aljs-show'));
         var options = e.data.options;
+        var trigger = e.data.trigger;
         
-        if ($popover.length > 0) {
-            $popover.trigger('dismissed.aljs.popover') // Custom aljs event
-                .unwrap()
-                .remove();
-        } else {
+        if ($popover.length > 0 && e.type !== 'focus') {
+            dismissPopover($popover);
+        } else if ($popover.length === 0) {
             var otherPopovers = $('.slds-popover').not(e.data.popoverElement);
             var popoverElement = e.data.popoverElement;
             
@@ -23,12 +29,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             if (options.useClick && options.dismissOthers) {
                 otherPopovers.each(function() {
                     if (!($(this).hasClass('slds-hide'))) {
-                        $(this).trigger('dismissed.aljs.popover') // Custom aljs event
-                            .unwrap()
-                            .remove();
+                        dismissPopover($(this));
                     }
                 });
             }
+            
             // Background dismiss
             if (options.useClick && options.backgroundDismiss) {
                 e.stopPropagation();
@@ -51,14 +56,24 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             
             $target.wrap('<span style="position: relative; display: inline-block;"></span>');
             $popover.on('click', options.dismissSelector, function(e) {
-                $popover.trigger('dismissed.aljs.popover') // Custom aljs event
-                    .unwrap()
-                    .remove();
+                dismissPopover($popover);
             });
             $popover.trigger('shown.aljs.popover') // Custom aljs event
                 .appendTo($target.parent());
+            
+            // Focus out
+            if (!options.useClick) {
+                if (trigger == 'focus') {
+                    $target.focus();
+                }
+                
+                $target.one('blur', function() {
+                    dismissPopover($popover);
+                });
+            }
         }   
     };
+    
     
     $.fn.popover = function(options) {
         var settings = $.extend({
@@ -76,8 +91,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             $('body').click(function() {
                 $('.slds-popover').each(function() {
                     if (!($(this).hasClass('slds-hide'))) {
-                        $(this).unwrap();
-                        $(this).remove();
+                        dismissPopover($(this));
                     } 
                 });
             });
@@ -90,8 +104,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             if (settings.useClick) {
                 $el.on('click', { popoverElement: $popover, options: settings }, togglePopover);
             } else {
-                $el.on('mouseenter', { popoverElement: $popover, options: settings }, togglePopover);
-                $el.on('mouseleave', { popoverElement: $popover, options: settings }, togglePopover);
+                $el.on('mouseenter', { popoverElement: $popover, options: settings, trigger: 'hover' }, togglePopover);
+                $el.on('mouseleave', { popoverElement: $popover, options: settings, trigger: 'hover' }, togglePopover);
+                $el.on('focus', { popoverElement: $popover, options: settings, trigger: 'focus' }, togglePopover);
             }
         });
     };

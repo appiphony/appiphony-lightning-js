@@ -2,12 +2,12 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
 (function($) {
 
-	var picklistItemMarkup = 
+    var picklistItemMarkup = 
     '<li draggable="true" id="{{optionId}}" class="slds-picklist__item slds-has-icon slds-has-icon--left" aria-selected="false" tabindex="0" role="option">' +
-		'<span class="slds-truncate">' +
-			'<span>{{optionLabel}}</span>' +
-		'</span>' +
-	'</li>';
+        '<span class="slds-truncate">' +
+            '<span>{{optionLabel}}</span>' +
+        '</span>' +
+    '</li>';
 
     var MultiPicklist = function(el, options) {
         this.$el = $(el);
@@ -24,153 +24,182 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     MultiPicklist.prototype = {
         constructor: MultiPicklist,
         init: function() {
-        	this.renderPicklists();
+            this.renderPicklists();
 
-        	this.$el.find('[data-aljs-multi-picklist="unselect"]').on('click', this, this.unselectOption);
-        	this.$el.find('[data-aljs-multi-picklist="select"]').on('click', this, this.selectOption);
-        	this.$el.find('[data-aljs-multi-picklist="move-up"]').on('click', this, this.moveOptionUp);
-        	this.$el.find('[data-aljs-multi-picklist="move-down"]').on('click', this, this.moveOptionDown);
+            this.$el.find('[data-aljs-multi-picklist="unselect"]').on('click', this, this.unselectOption);
+            this.$el.find('[data-aljs-multi-picklist="select"]').on('click', this, this.selectOption);
+            this.$el.find('[data-aljs-multi-picklist="move-up"]').on('click', this, this.moveOptionUp);
+            this.$el.find('[data-aljs-multi-picklist="move-down"]').on('click', this, this.moveOptionDown);
         },
         renderPicklists: function() {
-        	var self = this;        	
+            var self = this;            
 
-        	this.unselectedItems.forEach(function(item) {
-        		self.$unselectedContainer.append(self.createPicklistDomItem(item));
-        	});
+            this.unselectedItems.forEach(function(item) {
+                self.$unselectedContainer.append(self.createPicklistDomItem(item));
+            });
 
-        	this.$unselectedContainer
-	        	.on('click', 'li', function(e) {
-	        		$(this).addClass('slds-is-selected')
-	        			   .attr('aria-selected', 'true')
-	        			   .siblings()
-	        			   .removeClass('slds-is-selected')
-	        			   .attr('aria-selected', 'false');
-				    self.itemToSelect = $(this).data('aljs-picklist-obj');
-	        	})
-	        	.on('dragstart', 'li', function(e) {
-	        		self.itemToSelect = $(this).data('aljs-picklist-obj');
-	        	})
-	        	.on('dragover', function(e) {
-			        e.preventDefault();
-			        e.stopPropagation();
-			    })
-				.on('dragenter', function(e) {
-					e.preventDefault();
-					e.stopPropagation();
-				})
-	        	.on('drop', function(e) {
-	        		e.preventDefault();  
-    				e.stopPropagation();
-    				self.$el.find('[data-aljs-multi-picklist="unselect"]').click();
-	        	});
+            this.$unselectedContainer
+                .on('click', 'li', function(e) {
+                    $(this).addClass('slds-is-selected')
+                           .attr('aria-selected', 'true')
+                           .siblings()
+                           .removeClass('slds-is-selected')
+                           .attr('aria-selected', 'false');
+                    self.itemToSelect = $(this).data('aljs-picklist-obj');
+                })
+                .on('dragstart', 'li', function(e) {
+                    self.itemToSelect = $(this).data('aljs-picklist-obj');
+                })
+                .on('dragover', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                })
+                .on('dragenter', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                })
+                .on('drop', function(e) {
+                    e.preventDefault();  
+                    e.stopPropagation();
+                    self.$el.find('[data-aljs-multi-picklist="unselect"]').click();
+                });
 
-        	this.selectedItems.forEach(function(item) {
-        		self.$selectedContainer.append(self.createPicklistDomItem(item));
-        	});
+            this.selectedItems.forEach(function(item) {
+                self.$selectedContainer.append(self.createPicklistDomItem(item));
+            });
 
-        	this.$selectedContainer
-        		.on('click', 'li', function(e) {
-	        		$(this).addClass('slds-is-selected')
-	        		       .attr('aria-selected', 'true')
-	        			   .siblings()
-	        			   .removeClass('slds-is-selected')
-	        			   .attr('aria-selected', 'false');
-				    self.itemToUnselect = $(this).data('aljs-picklist-obj');
-	        	})
-	        	.on('dragstart', 'li', function(e) {
-	        		self.itemToUnselect = $(this).data('aljs-picklist-obj');
-	        	})
-	        	.on('dragover', function(e) {
-			        e.preventDefault();
-			        e.stopPropagation();
-			    })
-				.on('dragenter', function(e) {
-					e.preventDefault();
-					e.stopPropagation();
-				})
-	        	.on('drop', function(e) {
-	        		e.preventDefault();  
-    				e.stopPropagation();
-    				self.$el.find('[data-aljs-multi-picklist="select"]').click();
-	        	});
+            this.$selectedContainer
+                .on('click', 'li', function(e) {
+                    $(this).addClass('slds-is-selected')
+                           .attr('aria-selected', 'true')
+                           .siblings()
+                           .removeClass('slds-is-selected')
+                           .attr('aria-selected', 'false');
+                    self.itemToUnselect = $(this).data('aljs-picklist-obj');
+                })
+                .on('dragstart', 'li', function(e) {
+                    self.itemToUnselect = $(this).data('aljs-picklist-obj');
+                })
+                .on('dragover', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                })
+                .on('dragenter', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                })
+                .on('drop', function(e) {
+                    e.preventDefault();  
+                    e.stopPropagation();
+                    self.$el.find('[data-aljs-multi-picklist="select"]').click();
+                });
         },
         selectOption: function(e) {
-        	var self = e.data;
+            var self = e.data;
 
-        	if (self.itemToSelect) {
-	        	self.$unselectedContainer.find('#' + self.itemToSelect.id)
-	        		.removeClass('slds-is-selected')
-	        		.attr('aria-selected', 'false')
-	        		.appendTo(self.$selectedContainer);
-	        	self.unselectedItems.splice(self.unselectedItems.indexOf(self.itemToSelect), 1);
-	        	self.selectedItems.push(self.itemToSelect);
-	        	self.itemToSelect = null;
-        	}
+            if (self.itemToSelect) {
+                self.$unselectedContainer.find('#' + self.itemToSelect.id)
+                    .removeClass('slds-is-selected')
+                    .attr('aria-selected', 'false')
+                    .appendTo(self.$selectedContainer);
+                self.unselectedItems.splice(self.unselectedItems.indexOf(self.itemToSelect), 1);
+                self.selectedItems.push(self.itemToSelect);
+                self.itemToSelect = null;
+            }
         },
         unselectOption: function(e) {
-        	var self = e.data;
+            var self = e.data;
 
-        	if (!self.itemToUnselect) { return; }
+            if (!self.itemToUnselect) { return; }
 
-        	self.$selectedContainer.find('#' + self.itemToUnselect.id)
-        		.removeClass('slds-is-selected')
-        		.attr('aria-selected', 'false')
-        		.appendTo(self.$unselectedContainer);
-        	self.selectedItems.splice(self.selectedItems.indexOf(self.itemToUnselect), 1);
-        	self.unselectedItems.push(self.itemToUnselect);
-        	self.itemToUnselect = null;
+            self.$selectedContainer.find('#' + self.itemToUnselect.id)
+                .removeClass('slds-is-selected')
+                .attr('aria-selected', 'false')
+                .appendTo(self.$unselectedContainer);
+            self.selectedItems.splice(self.selectedItems.indexOf(self.itemToUnselect), 1);
+            self.unselectedItems.push(self.itemToUnselect);
+            self.itemToUnselect = null;
         },
         moveOptionUp: function(e) {
-        	var self = e.data;
+            var self = e.data;
 
-        	if (!self.itemToUnselect) { return; }
+            if (!self.itemToUnselect) { return; }
 
-        	var itemIndex = self.selectedItems.indexOf(self.itemToUnselect);
+            var itemIndex = self.selectedItems.indexOf(self.itemToUnselect);
 
-        	if (itemIndex > 0) {
-        		self.selectedItems.splice(itemIndex, 1);
-        		self.selectedItems.splice(itemIndex - 1, 0, self.itemToUnselect);
+            if (itemIndex > 0) {
+                self.selectedItems.splice(itemIndex, 1);
+                self.selectedItems.splice(itemIndex - 1, 0, self.itemToUnselect);
 
-        		var $itemToMove = self.$selectedContainer.find('#' + self.itemToUnselect.id);
+                var $itemToMove = self.$selectedContainer.find('#' + self.itemToUnselect.id);
 
-        		$itemToMove.removeClass('slds-is-selected')
-	        			   .attr('aria-selected', 'false')
-	        			   .insertBefore($itemToMove.prev('li'));
+                $itemToMove.removeClass('slds-is-selected')
+                           .attr('aria-selected', 'false')
+                           .insertBefore($itemToMove.prev('li'));
 
-			    self.itemToUnselect = null;
-        	}
+                self.itemToUnselect = null;
+            }
         },
         moveOptionDown: function(e) {
-        	var self = e.data;
+            var self = e.data;
 
-        	if (!self.itemToUnselect) { return; }
+            if (!self.itemToUnselect) { return; }
 
-        	var itemIndex = self.selectedItems.indexOf(self.itemToUnselect);
+            var itemIndex = self.selectedItems.indexOf(self.itemToUnselect);
 
-        	if (itemIndex < self.selectedItems.length - 1) {
-        		self.selectedItems.splice(itemIndex, 1);
-        		self.selectedItems.splice(itemIndex + 1, 0, self.itemToUnselect);
+            if (itemIndex < self.selectedItems.length - 1) {
+                self.selectedItems.splice(itemIndex, 1);
+                self.selectedItems.splice(itemIndex + 1, 0, self.itemToUnselect);
 
-        		var $itemToMove = self.$selectedContainer.find('#' + self.itemToUnselect.id);
+                var $itemToMove = self.$selectedContainer.find('#' + self.itemToUnselect.id);
 
-        		$itemToMove.removeClass('slds-is-selected')
-	        			   .attr('aria-selected', 'false')
-	        			   .insertAfter($itemToMove.next('li'));
+                $itemToMove.removeClass('slds-is-selected')
+                           .attr('aria-selected', 'false')
+                           .insertAfter($itemToMove.next('li'));
 
-			    self.itemToUnselect = null;
-        	}
+                self.itemToUnselect = null;
+            }
         },
         createPicklistDomItem: function(item) {
-        	//var $picklistItem = 
-        	return $(picklistItemMarkup.replace('{{optionId}}', item.id)
-        							   .replace('{{optionLabel}}', item.label))
-        							   .data('aljs-picklist-obj', item);
+            //var $picklistItem = 
+            return $(picklistItemMarkup.replace('{{optionId}}', item.id)
+                                       .replace('{{optionLabel}}', item.label))
+                                       .data('aljs-picklist-obj', item);
+        },
+        setSelectedItems: function(ids) {
+            var self = this;
+            if (ids && ids.length > 0) {
+                var itemsToSelect = this.unselectedItems.filter(function(item) {
+                    return ids.indexOf(item.id) !== -1;
+                });
+
+                itemsToSelect.forEach(function(item) {
+                    self.itemToSelect = item;
+
+                    self.$el.find('[data-aljs-multi-picklist="select"]').click();
+                });
+            }
+        },
+        setUnselectedItems: function(ids) {
+            var self = this;
+
+            if (ids && ids.length > 0) {
+                var itemsToUnselect = this.selectedItems.filter(function(item) {
+                    return ids.indexOf(item.id) !== -1;
+                });
+
+                itemsToUnselect.forEach(function(item) {
+                    self.itemToUnselect = item;
+
+                    self.$el.find('[data-aljs-multi-picklist="unselect"]').click();
+                });
+            }
         },
         getSelectedItems: function() {
-        	return this.selectedItems;
+            return this.selectedItems;
         },
         getUnselectedItems: function() {
-        	return this.unselectedItems;
+            return this.unselectedItems;
         }
     };
 

@@ -185,9 +185,9 @@ if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning J
                         $dayCol.prop('aria-disabled', 'true');
                     }
 
-                    if (col.isSelected || col.isSelectedEndDate || col.isSelectedMulti || 
-                                (!isMultiSelect && !selectedFullDate && col.isToday) ||
-                                (isMultiSelect && !selectedEndDate && col.isToday)) {
+                    if (col.isSelected || col.isSelectedEndDate || col.isSelectedMulti) {// || 
+                                //(!isMultiSelect && !selectedFullDate && col.isToday) ||
+                                //(isMultiSelect && !selectedEndDate && col.isToday)) {
                         $dayCol.prop('aria-selected', 'true');
                         $dayCol.addClass(isMultiSelect ? 'slds-is-selected-multi slds-is-selected' : 'slds-is-selected');
                     } else {

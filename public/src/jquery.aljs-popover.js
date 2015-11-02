@@ -13,6 +13,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         var $target = $(e.target);
         var $popover = $('#' + $target.data('aljs-show'));
         var options = e.data.options;
+        var trigger = e.data.trigger;
         
         if ($popover.length > 0 && e.type !== 'focus') {
             dismissPopover($popover);
@@ -60,10 +61,12 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             $popover.trigger('shown.aljs.popover') // Custom aljs event
                 .appendTo($target.parent());
             
-            $target.focus();
-            
             // Focus out
             if (!options.useClick) {
+                if (trigger == 'focus') {
+                    $target.focus();
+                }
+                
                 $target.one('blur', function() {
                     dismissPopover($popover);
                 });
@@ -101,9 +104,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             if (settings.useClick) {
                 $el.on('click', { popoverElement: $popover, options: settings }, togglePopover);
             } else {
-                $el.on('mouseenter', { popoverElement: $popover, options: settings }, togglePopover);
-                $el.on('mouseleave', { popoverElement: $popover, options: settings }, togglePopover);
-                $el.on('focus', { popoverElement: $popover, options: settings }, togglePopover);
+                $el.on('mouseenter', { popoverElement: $popover, options: settings, trigger: 'hover' }, togglePopover);
+                $el.on('mouseleave', { popoverElement: $popover, options: settings, trigger: 'hover' }, togglePopover);
+                $el.on('focus', { popoverElement: $popover, options: settings, trigger: 'focus' }, togglePopover);
             }
         });
     };

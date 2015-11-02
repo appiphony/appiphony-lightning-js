@@ -6,15 +6,15 @@
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="{!URLFOR($Resource.aljs, '/js/aljs-init.min.css')}"></script>
 {{/aljs-pre-container}}
-        <h4 class="site-text-heading--large">Include the ALJS Plugins You Wish to Use</h4>
+    <h4 class="site-text-heading--large">Include the ALJS Plugins You Wish to Use</h4>
 {{#aljs-pre-container type="vf"}}
 <script src="{!URLFOR($Resource.aljs, '/js/aljs-datepicker.min.css')}"></script>
 <script src="{!URLFOR($Resource.aljs, '/js/aljs-modal.min.css')}"></script>
 <script src="{!URLFOR($Resource.aljs, '/js/aljs-pill.min.css')}"></script>
 <script src="{!URLFOR($Resource.aljs, '/js/aljs-tooltip.min.css')}"></script>
 {{/aljs-pre-container}}
-        <h4 class="site-text-heading--large">Override Common Settings (Optional)</h4>
-        <p class="slds-m-bottom--medium">Edit the ALJS settings with your own. If we are in a Visualforce Page, we want scoped to equal <code>true</code>, otherwise use <code>false</code></p>
+    <h4 class="site-text-heading--large">Override Common Settings (Optional)</h4>
+    <p class="slds-m-bottom--medium">Edit the ALJS settings with your own. If we are in a Visualforce Page, we want scoped to equal <code>true</code>, otherwise use <code>false</code></p>
 {{#aljs-pre-container type="vf"}}
 <script>
     $._aljsInit({
@@ -23,39 +23,39 @@
     });
 </script>
 {{/aljs-pre-container}}
-        <p class="slds-m-top--medium">This table details the options available for overriding the ALJS Common Settings.</p>
-        <div class="slds-scrollable--x">
-            <table class="slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium">
-                <thead>
-                    <tr class="site-text-heading--label">
-                        <th scope="col">Option</th>
-                        <th scope="col">Behavior</th>
-                        <th scope="col">Values</th>
-                        <th scope="col">Default value</th>
-                        <th scope="col">Comments</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row"><code>assetsLocation</code></th>
-                        <td data-label="Behavior">Specifies the directory containing SLDS's <code>assets</code> directory</td>
-                        <td data-label="Accepted values">Any string</td>
-                        <td data-label="Default value" class="slds-cell-shrink"><code>''</code></td>
-                        <td data-label="Comments" class="slds-cell-shrink">The default value represents the root of the site; Use '.' to select the same directory as the current page</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><code>scoped</code></th>
-                        <td data-label="Behavior">Specifies whether or not the page is scoped using the <code>slds</code> class</td>
-                        <td data-label="Accepted values"><code>true</code>, <code>false</code></td>
-                        <td data-label="Default value" class="slds-cell-shrink"><code>false</code></td>
-                        <td data-label="Comments" class="slds-cell-shrink"</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <h4 class="site-text-heading--large">Initialize the Plugins</h4>
-        <p class="slds-m-bottom--medium">Please visit the individual component pages for instructions on how initialize each plugin.</p>
-        <h4 class="site-text-heading--large">Combined Markup</h4>
+    <p class="slds-m-top--medium">This table details the options available for overriding the ALJS Common Settings.</p>
+    <div class="slds-scrollable--x">
+        <table class="slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium">
+            <thead>
+                <tr class="site-text-heading--label">
+                    <th scope="col">Option</th>
+                    <th scope="col">Behavior</th>
+                    <th scope="col">Values</th>
+                    <th scope="col">Default value</th>
+                    <th scope="col">Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row"><code>assetsLocation</code></th>
+                    <td data-label="Behavior">Specifies the directory containing SLDS's <code>assets</code> directory</td>
+                    <td data-label="Accepted values">Any string</td>
+                    <td data-label="Default value" class="slds-cell-shrink"><code>''</code></td>
+                    <td data-label="Comments" class="slds-cell-shrink">The default value represents the root of the site; Use '.' to select the same directory as the current page</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code>scoped</code></th>
+                    <td data-label="Behavior">Specifies whether or not the page is scoped using the <code>slds</code> class</td>
+                    <td data-label="Accepted values"><code>true</code>, <code>false</code></td>
+                    <td data-label="Default value" class="slds-cell-shrink"><code>false</code></td>
+                    <td data-label="Comments" class="slds-cell-shrink"</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h4 class="site-text-heading--large">Initialize the Plugins</h4>
+    <p class="slds-m-bottom--medium">Please visit the individual component pages for instructions on how initialize each plugin.</p>
+    <h4 class="site-text-heading--large">Combined Markup</h4>
 {{#aljs-pre-container type="vf"}}
 <apex:page sidebar="false" standardStylesheets="false" showHeader="false" docType="html-5.0">
     <link rel="stylesheet" href="{!URLFOR($Resource.slds, '/assets/styles/salesforce-lightning-design-system-vf.min.css')}"/>

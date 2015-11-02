@@ -19,7 +19,7 @@
 <body>
     <div class="slds">
     	<div class="slds-m-around--x-large">
-            <button class="slds-button slds-button--neutral slds-button--small" data-aljs="popover" data-aljs-show="popover-1" data-aljs-placement="right">Open Popover 1</button>
+            <button class="slds-button slds-button--neutral slds-button--small" data-aljs="popover" data-aljs-show="popover-1" data-aljs-placement="right" aria-describedby="popover-1">Open Popover 1</button>
             <div id="popover-1" class="slds-popover slds-nubbin--left" role="dialog">
                 <div class="slds-popover__content">
                     <div class="slds-popover__body">
@@ -29,12 +29,12 @@
             </div>
         </div>
     	<div class="slds-m-around--x-large">
-            <button class="slds-button slds-button--neutral slds-button--small" data-aljs="popover" data-aljs-show="popover-2" data-aljs-placement="right">Open Popover 2</button>
+            <button class="slds-button slds-button--neutral slds-button--small" data-aljs="popover" data-aljs-show="popover-2" data-aljs-placement="right" aria-describedby="popover-2">Open Popover 2</button>
             <div id="popover-2" class="slds-popover slds-nubbin--left" role="dialog">
                 <div class="slds-popover__content">
                     <div class="slds-popover__body">
-                        <p class="slds-m-bottom--medium">Sit nulla est ex deserunt exercitation.</p>
-                        <button class="slds-button slds-button--brand slds-button--small" data-aljs-dismiss="popover">Cancel</button>
+                        <h3 class="slds-text-heading--small slds-m-bottom--xx-small">Popover 2</h3>
+                        <p>Sit nulla est ex deserunt exercitation.</p>
                     </div>
                 </div>
             </div>
@@ -51,6 +51,7 @@
     <!--<script type="text/javascript">
         $(document).ready(function() {
             $('[data-aljs="popover"]').popover({
+                useClick: true,
                 dismissOthers: false,
                 backgroundDismiss: true
             });

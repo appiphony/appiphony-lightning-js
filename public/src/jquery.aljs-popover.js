@@ -20,7 +20,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             var placement = $target.attr('data-aljs-placement') || 'top';
             
             // Kill other popovers
-            if (options.dismissOthers) {
+            if (options.useClick && options.dismissOthers) {
                 otherPopovers.each(function() {
                     if (!($(this).hasClass('slds-hide'))) {
                         $(this).trigger('dismissed.aljs.popover') // Custom aljs event
@@ -30,7 +30,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 });
             }
             // Background dismiss
-            if (options.backgroundDismiss) {
+            if (options.useClick && options.backgroundDismiss) {
                 e.stopPropagation();
             }
             
@@ -63,6 +63,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     $.fn.popover = function(options) {
         var settings = $.extend({
             assetsLocation: $.aljs.assetsLocation,
+            useClick: false,
             dismissOthers: true,
             backgroundDismiss: false,
             dismissSelector: '[data-aljs-dismiss="popover"]'
@@ -71,7 +72,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         }, options);
         
         // Background dismiss
-        if (settings.backgroundDismiss) {
+        if (settings.useClick && settings.backgroundDismiss) {
             $('body').click(function() {
                 $('.slds-popover').each(function() {
                     if (!($(this).hasClass('slds-hide'))) {
@@ -86,7 +87,12 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             var $el = $(this);
             var $popover = $('#' + $el.data('aljs-show')).remove();
             
-            $el.on('click', { popoverElement: $popover, options: settings }, togglePopover);
+            if (settings.useClick) {
+                $el.on('click', { popoverElement: $popover, options: settings }, togglePopover);
+            } else {
+                $el.on('mouseenter', { popoverElement: $popover, options: settings }, togglePopover);
+                $el.on('mouseleave', { popoverElement: $popover, options: settings }, togglePopover);
+            }
         });
     };
 }(jQuery));

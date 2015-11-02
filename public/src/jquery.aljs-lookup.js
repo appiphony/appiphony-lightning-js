@@ -164,7 +164,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     			this.$el.addClass('slds-hide')
         		this.$lookupContainer.addClass('slds-has-selection');
 
-        		this.$singleSelect.one('click', 'a, button', this, this.clearSingleSelect);
+        		this.$singleSelect.one('click', 'button', this, this.clearSingleSelect);//'a, button', this, this.clearSingleSelect);
         	} else {
         		this.$singleSelect.addClass('slds-hide')
     						  	  .removeClass('slds-show');

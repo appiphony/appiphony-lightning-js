@@ -178,6 +178,38 @@ $(document).ready(function() {
                 </tbody>
             </table>
         </div>
+        <h4 class="site-text-heading--large">Methods</h4>
+{{#aljs-pre-container type="js"}}
+$('[data-aljs="picklist"]').picklist('setValue', idToSelect, false);
+$('[data-aljs="picklist"]').picklist('getValue');
+{{/aljs-pre-container}}
+        <p class="slds-m-top--medium">This table details the methods available for the jQuery function.</p>
+        <div class="slds-scrollable--x">
+            <table class="slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium">
+                <thead>
+                    <tr class="site-text-heading--label">
+                        <th scope="col">Method</th>
+                        <th scope="col">jQuery object</th>
+                        <th scope="col">Additional params</th>
+                        <th scope="col">Outcome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"><code>'setValue'</code></th>
+                        <td data-label="jQuery object">The picklist</td>
+                        <td data-label="Additional params">A string of the id to select, and an optional param on whether to call the "onChange" method or not (defaults to <code>false</code>)</td>
+                        <td data-label="Outcome">The picklist is set to select the item with the passed in id</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>'getValue'</code></th>
+                        <td data-label="jQuery object">The picklist</td>
+                        <td data-label="Additional params">N/A</td>
+                        <td data-label="Outcome">An object that represents the selected item is returned</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <h4 class="site-text-heading--large">Events</h4>
         <p>This table details the JavaScript events that trigger from user interaction.</p>
         <div class="slds-scrollable--x">

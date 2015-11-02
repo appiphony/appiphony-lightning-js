@@ -90,16 +90,15 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         if (settings.useClick && settings.backgroundDismiss) {
             $('body').click(function() {
                 $('.slds-popover').each(function() {
-                    if (!($(this).hasClass('slds-hide'))) {
-                        dismissPopover($(this));
-                    } 
+                    dismissPopover($(this));
                 });
             });
         }
         
         return this.each(function() {
             var $el = $(this);
-            var $popover = $('#' + $el.data('aljs-show')).remove();
+            var $popover = $('#' + $el.data('aljs-show')).remove()
+                .removeClass('slds-hide');
             
             if (settings.useClick) {
                 $el.on('click', { popoverElement: $popover, options: settings }, togglePopover);

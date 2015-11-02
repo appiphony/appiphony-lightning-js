@@ -1,10 +1,15 @@
 <div class="site-example--content slds-scrollable--x slds-tabs__content slds-show" role="tabpanel">
     <div class="slds-p-horizontal--medium">
         <h4 class="site-text-heading--large">Markup</h4>
+        <p><strong>Suggested edits to SLDS markup:</strong></p>
+        <ul class="slds-m-bottom--large">
+            <li>Add the <code>slds-hide</code> class to <code>slds-modal</code> elements to prevent modals from appearing before the plugin initializes</li>
+            <li>The <code>slds-modal-backdrop</code> element is not required; backdrops are managed by the plugin</li>
+        </ul>
 {{#aljs-pre-container type="html"}}
 <button class="slds-button slds-button--neutral" data-aljs="modal" data-aljs-show="modal-1">Open Modal 1</button>
 <button class="slds-button slds-button--neutral" data-aljs="modal" data-aljs-show="modal-2">Open Modal 2</button>
-<div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open" id="modal-1">
+<div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open slds-hide" id="modal-1">
     <div class="slds-modal__container">
         <div class="slds-modal__header">
             <h2 class="slds-text-heading--medium">Modal 1</h2>
@@ -27,7 +32,7 @@
     </div>
 </div>
 <div>
-    <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open" id="modal-2">
+    <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open slds-hide" id="modal-2">
         <div class="slds-modal__container">
             <div class="slds-modal__header">
                 <h2 class="slds-text-heading--medium">Modal 2</h2>

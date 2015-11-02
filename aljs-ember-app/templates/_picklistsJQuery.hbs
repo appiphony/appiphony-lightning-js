@@ -1,6 +1,10 @@
 <div class="site-example--content slds-scrollable--x slds-tabs__content slds-show" role="tabpanel">
     <div class="slds-p-horizontal--medium">
         <h4 class="site-text-heading--large">Markup</h4>
+        <p><strong>Suggested edits to SLDS markup:</strong></p>
+        <ul class="slds-m-bottom--large">
+            <li>Add the <code>slds-hide</code> class to <code>slds-dropdown</code> elements to prevent picklist dropdowns from appearing before the plugin initializes</li>
+        </ul>
 {{#aljs-pre-container type="html"}}
 <div class="slds-picklist" aria-expanded="true" data-aljs="picklist">
     <button class="slds-button slds-button--neutral slds-picklist__label" aria-haspopup="true">
@@ -9,7 +13,7 @@
             <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
         </svg>
     </button>
-    <div class="slds-dropdown slds-dropdown--left slds-dropdown--menu">
+    <div class="slds-dropdown slds-dropdown--left slds-dropdown--menu slds-hide">
         <ul class="slds-dropdown__list" role="menu">
             <li id="menu-0-0" href="#" class="slds-dropdown__item">
                 <a href="javascript:void(0)" role="menuitemradio">
@@ -84,7 +88,7 @@
             <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
         </svg>
     </button>
-    <div class="slds-dropdown slds-dropdown--left slds-dropdown--menu">
+    <div class="slds-dropdown slds-dropdown--left slds-dropdown--menu slds-hide">
         <ul class="slds-dropdown__list" role="menu">
             <li id="menu-1-0" href="#" class="slds-dropdown__item">
                 <a href="javascript:void(0)" role="menuitemradio">

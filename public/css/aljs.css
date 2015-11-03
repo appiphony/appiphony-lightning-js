@@ -18,6 +18,11 @@
     top: -2px;
 }
 
+.aljs-screenshot {
+    display: block;
+    border: 1px solid #d8dde6;
+}
+
 .aljs-section-title {
     display: inline-block;
 }

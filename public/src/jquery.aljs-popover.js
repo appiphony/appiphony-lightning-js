@@ -13,9 +13,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         var $target = $(e.target);
         var $popover = $('#' + $target.data('aljs-show'));
         var options = e.data.options;
-        var trigger = e.data.trigger;
+        var trigger = e.type;
+        var wrapperDisplay = options.wrapperDisplay;
         
-        if ($popover.length > 0 && e.type !== 'focus') {
+        if ($popover.length > 0 && trigger !== 'focus') {
             dismissPopover($popover);
         } else if ($popover.length === 0) {
             var otherPopovers = $('.slds-popover').not(e.data.popoverElement);
@@ -54,7 +55,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 $popover.css(placement, '-' + ($popover.innerWidth() + nubbinWidth) + 'px');
             } 
             
-            $target.wrap('<span style="position: relative; display: inline-block;"></span>');
+            $target.wrap('<span style="position: relative; display: ' + wrapperDisplay + ';"></span>');
             $popover.on('click', options.dismissSelector, function(e) {
                 dismissPopover($popover);
             });
@@ -65,11 +66,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             if (!options.useClick) {
                 if (trigger == 'focus') {
                     $target.focus();
+                    
+                     $target.one('blur', function() {
+                        dismissPopover($popover);
+                    });
                 }
-                
-                $target.one('blur', function() {
-                    dismissPopover($popover);
-                });
             }
         }   
     };
@@ -81,6 +82,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             useClick: false,
             dismissOthers: true,
             backgroundDismiss: false,
+            wrapperDisplay: 'inline-block',
             dismissSelector: '[data-aljs-dismiss="popover"]'
             // These are the defaults.
             
@@ -103,9 +105,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             if (settings.useClick) {
                 $el.on('click', { popoverElement: $popover, options: settings }, togglePopover);
             } else {
-                $el.on('mouseenter', { popoverElement: $popover, options: settings, trigger: 'hover' }, togglePopover);
-                $el.on('mouseleave', { popoverElement: $popover, options: settings, trigger: 'hover' }, togglePopover);
-                $el.on('focus', { popoverElement: $popover, options: settings, trigger: 'focus' }, togglePopover);
+                $el.on('mouseenter', { popoverElement: $popover, options: settings }, togglePopover);
+                $el.on('mouseleave', { popoverElement: $popover, options: settings }, togglePopover);
+                $el.on('focus', { popoverElement: $popover, options: settings }, togglePopover);
             }
         });
     };

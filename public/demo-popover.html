@@ -45,9 +45,7 @@
     <script src="./src/jquery.aljs-popover.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-    	   $('[data-aljs="popover"]').popover(/*{
-            useClick: true
-           }*/);
+    	   $('[data-aljs="popover"]').popover();
         });
     </script>
     <!--<script type="text/javascript">
@@ -55,7 +53,8 @@
             $('[data-aljs="popover"]').popover({
                 useClick: true,
                 dismissOthers: false,
-                backgroundDismiss: true
+                backgroundDismiss: true,
+                wrapperDisplay: 'block'
             });
             $('body').on('dismissed.aljs.popover', '#popover-1', function() { console.log('dismissed'); });
             $('body').on('shown.aljs.popover', '#popover-1', function() { console.log('shown'); });

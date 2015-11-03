@@ -1,9 +1,10 @@
 var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
-    rename = require('gulp-rename');
-    neuter = require('gulp-neuter');
-    concat = require('gulp-concat');
-    emberTemplates = require('gulp-ember-templates');
+    rename = require('gulp-rename'),
+    neuter = require('gulp-neuter'),
+    concat = require('gulp-concat'),
+    emberTemplates = require('gulp-ember-templates'),
+    zip = require('gulp-zip');
 
 gulp.task('emberTemplates', function() {
 	gulp.src('./aljs-ember-app/templates/**/*.hbs')
@@ -35,17 +36,25 @@ gulp.task('uglify', function() {
         .pipe(gulp.dest('dist/jquery'));
 });
 
+gulp.task('zip', function() {
+    return gulp.src(['./dist/**/*', '!./dist/**/*.zip'])
+        .pipe(zip('aljs.zip'))
+        .pipe(gulp.dest('./dist'));
+});
+
 gulp.task('watch', function() {
     gulp.watch(['./public/src/**/*.js', '!./public/src/**/*.min.js'], ['uglify']);
     gulp.watch('./aljs-ember-app/templates/**/*.hbs', ['emberTemplates']);
     gulp.watch('./aljs-ember-app/**/*.js', ['neuter']);
+    gulp.watch('./dist/**/*', ['zip']);
 });
 
 gulp.task('watchDev', function() {
     gulp.watch(['./public/src/**/*.js', '!./public/src/**/*.min.js'], ['uglify']);
     gulp.watch('./aljs-ember-app/templates/**/*.hbs', ['emberTemplates']);
     gulp.watch('./aljs-ember-app/**/*.js', ['neuterDev']);
+    gulp.watch('./dist/**/*', ['zip']);
 });
 
-gulp.task('default', ['emberTemplates', 'neuter', 'uglify', 'watch']);
-gulp.task('dev', ['emberTemplates', 'neuterDev', 'uglify', 'watchDev']);
+gulp.task('default', ['emberTemplates', 'neuter', 'uglify', 'zip', 'watch']);
+gulp.task('dev', ['emberTemplates', 'neuterDev', 'uglify', 'zip', 'watchDev']);

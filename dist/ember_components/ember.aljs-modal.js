@@ -24,7 +24,7 @@ _AljsApp.AljsModalComponent = Ember.Component.extend(Ember.Evented, {
         var clickedFooter = !Ember.isEmpty($target.closest('.slds-modal__footer'));
         
         if ((!clickedHeader && !clickedBody && !clickedFooter && this.get('backgroundClickCloses'))
-                || !Ember.isEmpty($target.closest('[data-close-modal="' + this.get('modalId') + '"]'))) {
+                || !Ember.isEmpty($target.closest('[data-aljs-dismiss="' + this.get('modalId') + '"]'))) {
             this.closeModal();
         } 
     },
@@ -61,7 +61,7 @@ _AljsApp.AljsModalComponent = Ember.Component.extend(Ember.Evented, {
         Ember.run.scheduleOnce('afterRender', this, function() {
             var self = this;
             
-            $('body').on('click', '[data-open-modal="' + this.get('modalId') + '"]', function() {
+            $('body').on('click', '[data-aljs-show="' + this.get('modalId') + '"]', function() {
                 self.openModal();
             });
         });

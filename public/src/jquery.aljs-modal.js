@@ -127,7 +127,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     console.error('The action you entered does not exist');
             }
         } else if (modalObj.hasSelector && this.length === 1) { // If allowing for selector to trigger modals post-init
-            function clickEvent(e) { showModal($(e.target), args); }
+            function clickEvent(e) { showModal($(this), args); }
             
             initModals();
             this.on('click', args.selector, clickEvent);

@@ -1,5 +1,5 @@
 if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the ALJS initializer file") }
-if (typeof moment === "undefined") { throw new Error("The Salesforce Lightning JavaScript Toolkit requires momentjs") }
+if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin requires moment.js") }
 
 // based on bootstrap-datepicker.js 
 

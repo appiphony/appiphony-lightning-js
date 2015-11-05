@@ -1,5 +1,4 @@
 .aljs-home-header {
-    /*background-color: #1c4c67;*/
     height: auto;
 }
 
@@ -106,7 +105,7 @@ a.aljs-home-link {
     left: 0;
     background: no-repeat center center url(../images/home-hero-bg.jpg);
     background-size: cover;
-    opacity: 0.1;
+    opacity: 0.25;
 }
 
 .site-resources--landing .grid-card {
@@ -166,6 +165,11 @@ a.aljs-home-link {
 @media only screen and (min-width: 1024px) {}
 
 @media only screen and (max-width: 768px) {
+    .aljs-header-container {
+        padding: 12vw;
+        padding-left: 0;
+        padding-right: 0;
+    }
     .aljs-site-content {
         padding: 0;
         padding-top: 0;

@@ -5,11 +5,12 @@
         <ul class="slds-m-bottom--large">
             <li>Add the <code>slds-hide</code> class to <code>slds-modal</code> elements to prevent modals from appearing before the plugin initializes</li>
             <li>The <code>slds-modal-backdrop</code> element is not required; backdrops are managed by the plugin</li>
+            <li>Set the <code>aria-hidden</code> attribute to <code>true</code> to have screen readers ignore modal content before the plugin initializes</li>
         </ul>
 {{#aljs-pre-container type="html"}}
 <button class="slds-button slds-button--neutral" data-aljs="modal" data-aljs-show="modal-1">Open Modal 1</button>
 <button class="slds-button slds-button--neutral" data-aljs="modal" data-aljs-show="modal-2">Open Modal 2</button>
-<div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open slds-hide" id="modal-1">
+<div aria-hidden="true" role="dialog" class="slds-modal slds-fade-in-open slds-hide" id="modal-1">
     <div class="slds-modal__container">
         <div class="slds-modal__header">
             <h2 class="slds-text-heading--medium">Modal 1</h2>
@@ -32,7 +33,7 @@
     </div>
 </div>
 <div>
-    <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open slds-hide" id="modal-2">
+    <div aria-hidden="true" role="dialog" class="slds-modal slds-fade-in-open slds-hide" id="modal-2">
         <div class="slds-modal__container">
             <div class="slds-modal__header">
                 <h2 class="slds-text-heading--medium">Modal 2</h2>

@@ -9,13 +9,13 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         this.bindTrigger();
         this.bindChoices();
     };
-
+    
     Picklist.prototype = {
         constructor: Picklist,
         bindTrigger: function() {
             var self = this;
             var $el = this.$el;
-
+            
             this.obj.$trigger = $('.slds-button', $el);
             this.obj.$dropdown = $('.slds-dropdown', $el);
             this.obj.$choices = $('.slds-dropdown__item a', $el);
@@ -29,12 +29,12 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     if (self.obj.$dropdown.hasClass('slds-hide')) {
                         // Close other picklists
                         $('[data-aljs="picklist"]').not(self.$el).picklist('close');
-
+                        
                         self.obj.$dropdown.removeClass('slds-hide')
                             .addClass('slds-show');
-
+                        
                         if (self.obj.valueId === null || typeof self.obj.valueId === 'undefined') {
-                            self.focusedIndex = 0;
+                            self.focusedIndex = null;
                         } else {
                             self.focusedIndex = self.obj.$dropdown.find('li').index(self.obj.$dropdown.find('#' + self.obj.valueId));
                         }
@@ -46,6 +46,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                             .addClass('slds-hide');
                         self.obj.$dropdown.unbind('keyup', self.processKeypress);
                     }
+                return false; // Prevent scrolling on keypress
                 });
             
             $('body').click(function() { 
@@ -53,7 +54,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     .addClass('slds-hide');
                 self.obj.$dropdown.unbind('keyup', self.processKeypress);
             });
-
+            
         },
         processKeypress: function(e) {
             var self = e.data;
@@ -65,9 +66,12 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 self.focusedIndex = self.focusedIndex === 0 ? optionsLength - 1 : self.focusedIndex - 1;
                 self.focusOnElement();
             }
+            return false; // Prevents scrolling
         },
         focusOnElement: function() {
-            this.obj.$choices.eq(this.focusedIndex).focus();
+            if (this.focusedIndex !== null) {
+                this.obj.$choices.eq(this.focusedIndex).focus();
+            }
         },
         bindChoices: function() {
             var self = this;
@@ -78,7 +82,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     e.stopPropagation();
                 
                     var optionId = $(this).closest('li').attr('id');
-
+                
                     self.setValueAndUpdateDom(optionId);
                     self.settings.onChange(self.obj);
                 });
@@ -90,14 +94,14 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             this.obj.$dropdown.removeClass('slds-show')
                 .addClass('slds-hide');
             this.obj.$dropdown.unbind('keyup', this.processKeypress);
-
+            
             this.obj.$trigger.trigger('change.aljs.picklist') // Custom aljs event
                 .focus();
         
             this.obj.$valueContainer.text(this.obj.value);
             this.obj.$choices.parent()
                 .removeClass('slds-is-selected');
-        
+            
             $li.addClass('slds-is-selected');
         },
         setValue: function(optionId, callOnChange) {
@@ -105,7 +109,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             if (callOnChange) {
                 this.settings.onChange(this.obj);
             }
-
+            
         },
         getValueId: function() {
             return this.obj.valueId;
@@ -116,27 +120,24 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             this.obj.$dropdown.unbind('keyup', this.processKeypress);
         }
     };
-
+    
     $.fn.picklist = function(options) {
         var picklistArguments = arguments;
         var internalReturn;
-       // var arguments = arguments;
-
+        
         var settings = $.extend({
-            // These are the defaults.
-
             assetsLocation: $.aljs.assetsLocation,
             onChange: function(obj) {
-
+            // These are the defaults.
             }
         }, typeof options === 'object' ? options : {});
-
+        
         this.each(function() {
             var $this = $(this);
             var data = $this.data('aljs-picklist');
             var dropdown = $this.find('.slds-dropdown')
                 .addClass('slds-hide');
-
+            
             if (!data) {
                 var picklistData = new Picklist(this, settings);
                 $this.data('aljs-picklist', (data = picklistData));
@@ -146,11 +147,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 internalReturn = data[options](picklistArguments[1], picklistArguments[2]);
             }
         });
-
+        
         if (internalReturn === undefined || internalReturn instanceof Picklist) {
             return this;
         }
-
+        
         if (this.length > 1) {
             throw new Error('Using only allowed for the collection of a single element (' + option + ' function)');
         } else {

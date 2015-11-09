@@ -1,10 +1,8 @@
-<div class="slds-tabs--scoped">
-	<ul class="slds-tabs--scoped__nav" role="tablist">
-		{{#each tabLink in tabLinks}}
-			<li {{bind-attr class=":slds-tabs__item :slds-text-heading--label tabLink.isActive:slds-active" title="tabLink.label" tabindex="tabLink.index"}} role="presentation" {{action "clickTab" tabLink}}><a href="#" role="tab" aria-selected="true" aria-controls="tab-default-1">{{tabLink.label}}</a></li>
-		{{/each}}
-	</ul>
-	<div class="slds-tabs__content" role="tabpanel">
-		{{partial activeTab.partial}}
-	</div>
+<ul {{bind-attr class="sldsTabsNavClass"}} role="tablist">
+	{{#each tabLink in tabLinks}}
+		<li {{bind-attr class=":slds-tabs__item :slds-text-heading--label tabLink.isActive:slds-active" title="tabLink.label" tabindex="tabLink.index"}} role="presentation" {{action "clickTab" tabLink}}><a href="#" role="tab" aria-selected="true" aria-controls="tab-default-1">{{tabLink.label}}</a></li>
+	{{/each}}
+</ul>
+<div class="slds-tabs__content" role="tabpanel">
+	{{partial activeTab.partial}}
 </div>

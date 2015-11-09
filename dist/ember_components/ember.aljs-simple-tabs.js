@@ -3,6 +3,14 @@ if (typeof _AljsApp === 'undefined') { throw new Error("Please include ember.alj
 _AljsApp.AljsSimpleTabsComponent = Ember.Component.extend({
     layoutName: 'components/aljs-simple-tabs',
     attributeBindings: ['tabObjects', 'activeTabIndex'],
+    sldsTabsNavClass: function() {
+        var classes = this.get('classNames');
+        var sldsTabsClass = classes.filter(function(className) {
+            return !Ember.isEmpty(className.match('slds-tabs'));
+        });
+
+        return !Ember.isEmpty(sldsTabsClass) ? sldsTabsClass[0] + '__nav' : null;
+    }.property(),
     tabLinks: function() {
         var activeTabIndex = this.get('activeTabIndex');
         return this.get('tabObjects').map(function(tab, index) {
@@ -18,8 +26,10 @@ _AljsApp.AljsSimpleTabsComponent = Ember.Component.extend({
     }.property('tabLinks.@each.isActive'),
     actions: {
         clickTab: function(tabLink) {
-            this.get('tabLinks').setEach('isActive', false);
+            var tabLinks = this.get('tabLinks');
+            tabLinks.setEach('isActive', false);
             tabLink.set('isActive', true);
+            this.set('activeTabIndex', tabLinks.indexOf(tabLink));
         }
     }
 });

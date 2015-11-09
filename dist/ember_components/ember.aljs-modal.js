@@ -109,12 +109,18 @@ _AljsApp.AljsModalComponent = Ember.Component.extend(Ember.Evented, {
             $('#' + this.get('modalId')).trigger('shown.aljs.modal');
         }, 400);
     },
-    closeModal: function() {
-        $('#' + this.get('modalId')).trigger('dismiss.aljs.modal');
+    closeModal: function(e) {
+        var self = this;
 
-        this.set('isModalOpen', false);
+        if (e) {
+            self = e.data;
+        }
+        
+        $('#' + self.get('modalId')).trigger('dismiss.aljs.modal');
 
-        Ember.run.later(this, function() {
+        self.set('isModalOpen', false);
+
+        Ember.run.later(self, function() {
             $('#' + this.get('modalId')).trigger('dismissed.aljs.modal');
         }, 200);
     }

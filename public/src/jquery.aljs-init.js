@@ -6,7 +6,7 @@ if (typeof jQuery === "undefined") { throw new Error("Appiphony Lightning JS req
             assetsLocation: '',
             scoped: false
         };
-
+        
         $.aljsInit = function(options) {
             $.aljs = options;
         }

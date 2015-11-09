@@ -65,7 +65,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     $.fn.tooltip = function(options) {
         var settings = $.extend({
             assetsLocation: $.aljs.assetsLocation
-            // These are the defaults.
+            // These are the defaults
             
         }, options );
         

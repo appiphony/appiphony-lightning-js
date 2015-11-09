@@ -13,7 +13,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     Tabs.prototype = {
         constructor: Tabs,
         initTabs: function() {
-            // bind buttons
+            // Bind buttons
             var self = this;
             var $tabButtons = this.$el.find('a[data-aljs-show]');
             $tabButtons.on('click', function(e) {
@@ -21,7 +21,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 self.selectTab($(e.target).data('aljs-show'));
                 $(this).trigger('selected.aljs.tab'); // Custom aljs event
             });
-            // show first tab
+            // Show first tab
             if (this.settings.defaultTabId === '' || $('#' + this.settings.defaultTabId).length === 0) {
                 this.selectTab($tabButtons.first().data('aljs-show'));
             } else {
@@ -44,7 +44,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         var internalReturn;
 
         var settings = $.extend({
-            // These are the defaults.
+            // These are the defaults
             defaultTabId: '',
             onChange: function(obj) {},
             assetsLocation: $.aljs.assetsLocation

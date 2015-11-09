@@ -75,7 +75,6 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         }   
     };
     
-    
     $.fn.popover = function(options) {
         var settings = $.extend({
             assetsLocation: $.aljs.assetsLocation,

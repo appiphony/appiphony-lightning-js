@@ -1,7 +1,7 @@
 if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the ALJS initializer file") }
 if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin requires moment.js") }
 
-// based on bootstrap-datepicker.js 
+// Based on bootstrap-datepicker.js 
 
 
 (function($) {
@@ -458,7 +458,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
     $.fn.datepicker = function(options, val) {
         var internalReturn;
         var settings = $.extend({
-            // These are the defaults.
+            // These are the defaults
 
             assetsLocation: $.aljs.assetsLocation,
             numYearsBefore: 50,

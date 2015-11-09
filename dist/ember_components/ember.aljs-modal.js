@@ -61,42 +61,50 @@ _AljsApp.AljsModalComponent = Ember.Component.extend(Ember.Evented, {
         Ember.run.scheduleOnce('afterRender', this, function() {
             var self = this;
             
-            $('body').on('click', '[data-aljs-show="' + this.get('modalId') + '"]', function() {
-                self.openModal();
-            });
+            $('body').on('click.modal', '[data-aljs-show="' + this.get('modalId') + '"]', this, this.openModal);
 
-            this.$().find('.slds-modal').on('dismiss', function(e) {
-                self.closeModal();
-                console.log(e);
-            });
+            this.$().find('.slds-modal').on('dismiss.modal', this, this.closeModal);
         });
     },
-    openModal: function() {
+    willDestroyElement: function() {
+        $('body').off('.modal');
+        this.$().find('.slds-modal').off('.modal');
+    },
+    openModal: function(e) {
         var self = this;
-        $('#' + this.get('modalId')).trigger('show.aljs.modal');
 
-        this.set('isModalOpen', true);
+        if (e) {
+            self = e.data;
+        }
 
-        if (this.get('openFunction')) {
+        if (self.isDestroyed || self.isDestroying) {
+            return;
+        }
+
+        $('#' + self.get('modalId')).trigger('show.aljs.modal');
+
+        self.set('isModalOpen', true);
+
+        if (self.get('openFunction')) {
             var params = ['openFunction'];
             var paramNum = 1;
 
-            while(!Ember.isEmpty(this.get('param' + paramNum))) {
-                params.push(this.get('param' + paramNum));
+            while(!Ember.isEmpty(self.get('param' + paramNum))) {
+                params.push(self.get('param' + paramNum));
                 paramNum++;
             } 
 
-            this.sendAction.apply(this, params);
+            self.sendAction.apply(self, params);
         }
 
         $('body').on('keyup', function(e) {
             if (e.keyCode === 27) {
-                $(this).unbind('keyup');
+                $(self).unbind('keyup');
                 self.closeModal();
             }
         });
 
-        Ember.run.later(this, function() {
+        Ember.run.later(self, function() {
             $('#' + this.get('modalId')).trigger('shown.aljs.modal');
         }, 400);
     },

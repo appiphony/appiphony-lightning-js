@@ -1,82 +1,9 @@
 if (typeof _AljsApp === 'undefined') { throw new Error("Please include ember.aljs-init.js in your compiled Ember Application"); }
 if (typeof moment === 'undefined') { throw new Error("Please include moment.js in your compiled Ember Application"); }
 
-_AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
-    attributeBindings: ['selectedDate', 'format', 'dayLabels', 'monthLabels'],
-    init: function() {
-        var self = this;
 
-        this._super();
-        this.initCalendar();
-
-        if (!Ember.Handlebars.helpers['convertNumberToMonth']) {
-            Ember.Handlebars.registerBoundHelper('convertNumberToMonth', function(index) {            
-                if(!Ember.isNone(index)) {
-                    return new Ember.Handlebars.SafeString(self.get('monthLabels')[index].full);
-                } else {
-                    return '';
-                }
-            });
-        }
-
-        if (!Ember.Handlebars.helpers['convertNumberToDayOfWeek']) {
-            Ember.Handlebars.registerBoundHelper('convertNumberToDayOfWeek', function(index) {
-                if(!Ember.isNone(index)) {
-                    return new Ember.Handlebars.SafeString(self.get('dayLabels')[index]);
-                } else {
-                    return '';
-                }
-            });
-        }
-
-        if (Ember.isEmpty(this.get('dayLabels'))) {
-            this.set('dayLabels', this.get('dayLabelsDefaults'));
-        }
-
-        if (Ember.isEmpty(this.get('monthLabels'))) {
-            this.set('monthLabels', this.get('monthLabelsDefaults'));
-        }
-    },
-    initCalendar: function() {
-        if (!this.get('isOpen')) {
-            var initDate = this.get('selectedDate') || moment();
-
-            this.set('selectedYear', initDate.toDate().getFullYear());
-            this.set('selectedMonth', initDate.toDate().getMonth());
-
-            if (!Ember.isNone(this.get('selectedDate'))) {
-                this.set('selectedDateText', this.get('selectedDate').format(this.getWithDefault('format', 'MM/DD/YYYY')));
-            }
-        }
-    },
-    numYearsBefore: 50,
-    numYearsAfter: 10,
-    layoutName: 'components/aljs-datepicker',
-    didInsertElement: function() {
-        var self = this;
-
-        $('body').on('click', function() {
-           self.closeDatepicker();
-        });
-
-        $('body').on('keyup', this, this.triggerClickNextOrPrev);
-    },
-    willClearRender: function() {
-        $('body').unbind('keyup', this, this.triggerClickNextOrPrev);
-    },
-    years: function() {
-        var currentYear = (new Date()).getFullYear();
-        var years = [];
-        for (var i = currentYear - this.get('numYearsBefore'); i <= currentYear + this.get('numYearsAfter'); i++) {
-            years.push(Ember.Object.create({
-                value: i,
-                isSelected: i === currentYear
-            }));
-        }
-
-        return  years;
-    }.property(),
-    dayLabelsDefaults: [
+_AljsApp.AljsDatepickerFixtures = Ember.Object.create({
+    dayLabels: [
         {
             full: 'Sunday',
             abbv: 'S'
@@ -106,7 +33,7 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
             abbv: 'S'
         }
     ],
-    monthLabelsDefaults: [
+    monthLabels: [
         {
             full: 'January',
             abbv: ''
@@ -155,7 +82,82 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
             full: 'December',
             abbv: ''
         }
-    ],
+    ]
+});
+
+_AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
+    attributeBindings: ['selectedDate', 'format', 'dayLabels', 'monthLabels'],
+    init: function() {
+        var self = this;
+
+        this._super();
+        this.initCalendar();
+
+        if (!Ember.isEmpty(this.get('dayLabels'))) {
+            _AljsApp.AljsDatepickerFixtures.set('dayLabels', this.get('dayLabels'));
+        }
+
+        if (!Ember.isEmpty(this.get('monthLabels'))) {
+            _AljsApp.AljsDatepickerFixtures.set('monthLabels', this.get('monthLabels'));
+        }
+
+
+        if (!Ember.Handlebars.helpers['convertNumberToMonth']) {
+            Ember.Handlebars.registerBoundHelper('convertNumberToMonth', function(index) {            
+                if(!Ember.isNone(index)) {
+                    return new Ember.Handlebars.SafeString(_AljsApp.AljsDatepickerFixtures.get('monthLabels')[index].full);
+                } else {
+                    return '';
+                }
+            });
+        }
+
+        if (!Ember.Handlebars.helpers['convertNumberToDayOfWeek']) {
+            Ember.Handlebars.registerBoundHelper('convertNumberToDayOfWeek', function(index) {
+                if(!Ember.isNone(index)) {
+                    return new Ember.Handlebars.SafeString(_AljsApp.AljsDatepickerFixtures.get('dayLabels')[index]);
+                } else {
+                    return '';
+                }
+            });
+        }
+    },
+    initCalendar: function() {
+        if (!this.get('isOpen')) {
+            var initDate = this.get('selectedDate') || moment();
+
+            this.set('selectedYear', initDate.toDate().getFullYear());
+            this.set('selectedMonth', initDate.toDate().getMonth());
+
+            if (!Ember.isNone(this.get('selectedDate'))) {
+                this.set('selectedDateText', this.get('selectedDate').format(this.getWithDefault('format', 'MM/DD/YYYY')));
+            }
+        }
+    },
+    numYearsBefore: 50,
+    numYearsAfter: 10,
+    layoutName: 'components/aljs-datepicker',
+    didInsertElement: function() {
+        var self = this;
+
+        $('body').on('keyup.' + this.get('elementId'), this, this.triggerClickNextOrPrev);
+        $('body').on('click.' + this.get('elementId'), this, this.closeDatepicker);
+    },
+    willClearRender: function() {
+        $('body').off('.' + this.get('elementId'));
+    },
+    years: function() {
+        var currentYear = (new Date()).getFullYear();
+        var years = [];
+        for (var i = currentYear - this.get('numYearsBefore'); i <= currentYear + this.get('numYearsAfter'); i++) {
+            years.push(Ember.Object.create({
+                value: i,
+                isSelected: i === currentYear
+            }));
+        }
+
+        return  years;
+    }.property(),
     isLeapYear: function () {
         var year = this.get('selectedYear');
         return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0))
@@ -176,7 +178,6 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
         var firstDayOfMonth = (new Date(this.get('selectedYear'), this.get('selectedMonth'), 1)).getDay();
         var allDays = [];
         var calendarRows = [];
-        var dayLabels = this.get('dayLabels');
 
         // Fill previous month
         for (var i = numDaysInPrevMonth - (firstDayOfMonth - 1); i <= numDaysInPrevMonth; i++) {
@@ -350,10 +351,19 @@ _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
         this.initCalendar('Start');
         this.initCalendar('End');
 
+        if (!Ember.isEmpty(this.get('dayLabels'))) {
+            _AljsApp.AljsDatepickerFixtures.set('dayLabels', this.get('dayLabels'));
+        }
+
+        if (!Ember.isEmpty(this.get('monthLabels'))) {
+            _AljsApp.AljsDatepickerFixtures.set('monthLabels', this.get('monthLabels'));
+        }
+
+
         if (!Ember.Handlebars.helpers['convertNumberToMonth']) {
             Ember.Handlebars.registerBoundHelper('convertNumberToMonth', function(index) {            
                 if(!Ember.isNone(index)) {
-                    return new Ember.Handlebars.SafeString(self.get('monthLabels')[index].full);
+                    return new Ember.Handlebars.SafeString(_AljsApp.AljsDatepickerFixtures.get('monthLabels')[index].full);
                 } else {
                     return '';
                 }
@@ -363,19 +373,11 @@ _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
         if (!Ember.Handlebars.helpers['convertNumberToDayOfWeek']) {
             Ember.Handlebars.registerBoundHelper('convertNumberToDayOfWeek', function(index) {
                 if(!Ember.isNone(index)) {
-                    return new Ember.Handlebars.SafeString(self.get('dayLabels')[index]);
+                    return new Ember.Handlebars.SafeString(_AljsApp.AljsDatepickerFixtures.get('dayLabels')[index]);
                 } else {
                     return '';
                 }
             });
-        }
-
-        if (Ember.isEmpty(this.get('dayLabels'))) {
-            this.set('dayLabels', this.get('dayLabelsDefaults'));
-        }
-
-        if (Ember.isEmpty(this.get('monthLabels'))) {
-            this.set('monthLabels', this.get('monthLabelsDefaults'));
         }
     },
     initCalendar: function(inputType) {
@@ -396,14 +398,11 @@ _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
     didInsertElement: function() {
         var self = this;
 
-        $('body').on('click', function() {
-           self.closeDatepicker();
-        });
-
-        $('body').on('keyup', this, this.triggerClickNextOrPrev);
+        $('body').on('keyup.' + this.get('elementId'), this, this.triggerClickNextOrPrev);
+        $('body').on('click.' + this.get('elementId'), this, this.closeDatepicker);
     },
     willClearRender: function() {
-        $('body').unbind('keyup', this, this.triggerClickNextOrPrev);
+        $('body').off('.' + this.get('elementId'));
     },
     years: function() {
         var currentYear = (new Date()).getFullYear();
@@ -417,86 +416,6 @@ _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
 
         return  years;
     }.property(),
-    dayLabelsDefaults: [
-        {
-            full: 'Sunday',
-            abbv: 'S'
-        },
-        {
-            full: 'Monday',
-            abbv: 'M'
-        },
-        {
-            full: 'Tuesday',
-            abbv: 'T'
-        },
-        {
-            full: 'Wednesday',
-            abbv: 'W'
-        },
-        {
-            full: 'Thursday',
-            abbv: 'T'
-        },
-        {
-            full: 'Friday',
-            abbv: 'F'
-        },
-        {
-            full: 'Saturday',
-            abbv: 'S'
-        }
-    ],
-    monthLabelsDefaults: [
-        {
-            full: 'January',
-            abbv: ''
-        },
-        {
-            full: 'February',
-            abbv: ''
-        },
-        {
-            full: 'March',
-            abbv: ''
-        },
-        {
-            full: 'April',
-            abbv: ''
-        },
-        {
-            full: 'May',
-            abbv: ''
-        },
-        {
-            full: 'June',
-            abbv: ''
-        },
-        {
-            full: 'July',
-            abbv: ''
-        },
-        {
-            full: 'August',
-            abbv: ''
-        },
-        {
-            full: 'September',
-            abbv: ''
-        },
-        {
-            full: 'October',
-            abbv: ''
-        },
-        {
-            full: 'November',
-            abbv: ''
-        },
-        {
-            full: 'December',
-            abbv: ''
-        }
-    ],
     isLeapYear: function () {
         var year = this.get('selected' + this.get('inputType') + 'Year');
         return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0))
@@ -526,7 +445,6 @@ _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
         var firstDayOfMonth = (new Date(selectedYear, selectedMonth, 1)).getDay();
         var allDays = [];
         var calendarRows = [];
-        var dayLabels = this.get('dayLabels');
 
         // Fill previous month
         for (var i = numDaysInPrevMonth - (firstDayOfMonth - 1); i <= numDaysInPrevMonth; i++) {
@@ -556,7 +474,7 @@ _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
                 calendarRows.push({
                     data: [],
                     'slds-has-multi-row-selection': (index > 6 && calendarRows[calendarRows.length - 1].data[6].isSelected === true && day.isSelected === true)
-                                                        || (index === 0 && allDays[6].isSelected === true && allDays[7].isSelected === true) 
+                                                        || (!Ember.isNone(allDays[index + 6]) && allDays[index + 6].isSelected === true && !Ember.isNone(allDays[index + 7]) && allDays[index + 7].isSelected === true) 
                 });
             }
 
@@ -614,13 +532,19 @@ _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
         this.set('is' + otherInputType + 'Open', false);
         this.set(('is' + inputType + 'Open'), true);
     },
-    closeDatepicker: function() {
-        var inputType = this.get('inputType');
+    closeDatepicker: function(e) {
+        var self = this;
 
-        this.set('is' + inputType + 'YearOpen', false);
-        this.set('is' + inputType + 'Open', false);
+        if (e) {
+            self = e.data;
+        }
 
-        this.$().find('[data-aljs-multi-datepicker="' + inputType + '"]').blur();
+        var inputType = self.get('inputType');
+
+        self.set('is' + inputType + 'YearOpen', false);
+        self.set('is' + inputType + 'Open', false);
+
+        self.$().find('[data-aljs-multi-datepicker="' + inputType + '"]').blur();
     },
     openYearDropdown: function() {
         this.set('isYearOpen', true);

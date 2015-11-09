@@ -59,16 +59,17 @@ _AljsApp.AljsModalComponent = Ember.Component.extend(Ember.Evented, {
     },
     didInsertElement: function() {
         Ember.run.scheduleOnce('afterRender', this, function() {
-            var self = this;
-            
-            $('body').on('click.modal', '[data-aljs-show="' + this.get('modalId') + '"]', this, this.openModal);
+            var modalId = this.get('modalId');
 
-            this.$().find('.slds-modal').on('dismiss.modal', this, this.closeModal);
+            $('body').on('click.' + modalId, '[data-aljs-show="' + modalId + '"]', this, this.openModal);
+
+            this.$().find('.slds-modal').on('dismiss.' + modalId, this, this.closeModal);
         });
     },
     willDestroyElement: function() {
-        $('body').off('.modal');
-        this.$().find('.slds-modal').off('.modal');
+        var eventNamespace = '.' + this.get('modalId');
+        $('body').off(eventNamespace);
+        this.$().find('.slds-modal').off(eventNamespace);
     },
     openModal: function(e) {
         var self = this;

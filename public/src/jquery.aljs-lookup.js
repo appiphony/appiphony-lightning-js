@@ -330,7 +330,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
        // var arguments = arguments;
 
         var settings = $.extend({
-            // These are the defaults.
+            // These are the defaults
             assetsLocation: $.aljs.assetsLocation,
             objectPluralLabel: 'Objects',
             objectLabel: 'Object',

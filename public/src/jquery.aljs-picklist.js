@@ -128,7 +128,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         var settings = $.extend({
             assetsLocation: $.aljs.assetsLocation,
             onChange: function(obj) {
-            // These are the defaults.
+            // These are the defaults
             }
         }, typeof options === 'object' ? options : {});
         

@@ -4,7 +4,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     $.fn.pill = function(options) {
         var settings = $.extend({
             assetsLocation: $.aljs.assetsLocation
-            // These are the defaults.\
+            // These are the defaults
         }, options );
         
         if (this.length === 1) {
@@ -12,7 +12,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 var $pill = $(this).closest('.slds-pill');
                 
                 if ($pill.length > 0) {
-                    $pill.trigger('dismissed.aljs.pill');
+                    $pill.trigger('dismissed.aljs.pill'); // Custom aljs event
                     $pill.remove();
                 }
             });

@@ -4,8 +4,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     $.fn.notification = function(options) {
         var settings = $.extend({
             assetsLocation: $.aljs.assetsLocation
-            // These are the defaults.
-            
+            // These are the defaults
         }, options );
         
         if (this.length === 1 && typeof options !== 'string') {
@@ -13,7 +12,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 var $notification = $(this).closest('.slds-notify');
 
                 if ($notification.length > 0) {
-                    $notification.trigger('dismissed.aljs.notification');
+                    $notification.trigger('dismissed.aljs.notification'); // Custom aljs event
                     $notification.addClass('slds-hide');
                 }
             });
@@ -26,10 +25,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 } else {
                     if (options === 'show' || (options === 'toggle' && $node.hasClass('slds-hide'))) {
                         $node.removeClass('slds-hide');
-                        $notification.trigger('dismissed.aljs.notification');
+                        $notification.trigger('dismissed.aljs.notification'); // Custom aljs event
                     } else if (options === 'dismiss' || (options === 'toggle' && !($node.hasClass('slds-hide')))) {
                         $node.addClass('slds-hide');
-                        $notification.trigger('shown.aljs.notification');
+                        $notification.trigger('shown.aljs.notification'); // Custom aljs event
                     }
                 }
             }); 

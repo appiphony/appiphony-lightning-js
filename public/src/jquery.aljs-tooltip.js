@@ -9,6 +9,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             $target.attr('title', ''); 
             $target.css('position', 'relative');
         }
+        var lineHeightFix = ($target.parent().hasClass('slds-button')) ? ' style="line-height: normal;"' : ''; // Adjust line height if tooltip is inside a button
         var toolkitId = $target.attr('data-aljs-id') || 'aljs-' + (new Date()).valueOf();
         var nubbinHeight = 15;
         var nubbinWidth = 15;
@@ -24,7 +25,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         
         var tooltipMarkup = '<div id="' + toolkitId + '" aria-describedby="' + toolkitId + '" class="slds-tooltip slds-nubbin--' + (tooltipNubbins[tooltipPosition] || 'top') + '" role="tooltip" style="' + tooltipPositioningCSS +'">' +
                                 '<div class="slds-tooltip__content">' +
-                                    '<div class="slds-tooltip__body">' +
+                                    '<div class="slds-tooltip__body"' + lineHeightFix + '>' +
                                     tooltipContent +
                                     '</div>' +
                                 '</div>' +

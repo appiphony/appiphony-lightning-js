@@ -28,18 +28,20 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         },
         selectTab: function(tabId) {
             this.$el.find('.slds-tabs__item')
-                .removeClass('slds-active');
+                .removeClass('slds-active')
+                .find('a')
+                .attr('tabindex', '-1')
+                .attr('aria-selected', 'false');
             this.$el.find('.slds-tabs__content')
-                .hide()
-                .attr('aria-selected', 'false')
-                .attr('tabindex', '-1');
+                .hide();
             this.$el.find('[data-aljs-show="' + tabId + '"]')
                 .closest('li')
-                .addClass('slds-active');
+                .addClass('slds-active')
+                .find('a')
+                .attr('tabindex', '0')
+                .attr('aria-selected', 'true');
             this.$el.find('#' + tabId).show()
-                .trigger('shown.aljs.tabcontent') // Custom aljs event
-                .attr('aria-selected', 'true')
-                .attr('tabindex', '0');
+                .trigger('shown.aljs.tabcontent'); // Custom aljs event
             
             this.id = tabId;
             this.settings.onChange(this);

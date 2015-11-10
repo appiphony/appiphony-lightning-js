@@ -5,7 +5,6 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
 
 (function($) {
-
     var datepickerMenuMarkup = 
     '<div class="slds-dropdown slds-dropdown--left slds-datepicker" aria-hidden="false" data-selection="single">' +
         '<div class="slds-datepicker__filter slds-grid">' +

@@ -179,6 +179,10 @@ App.NotificationsController = Ember.ObjectController.extend(App.SelectedSectionM
     routeName: 'notifications'
 });
 
+App.MultiSelectsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
+    routeName: 'multiSelects'
+});
+
 App.GettingStartedController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
     routeName: 'gettingStarted'
 });
@@ -212,6 +216,10 @@ App.AljsRoute = Ember.Route.extend({
                 {
                     path: 'modals',
                     name: 'Modals'
+                },
+                {
+                    path: 'multiSelects',
+                    name: 'Multi Selects'
                 },
                 {
                     path: 'notifications',
@@ -275,6 +283,7 @@ App.Router.map(function() {
         this.resource('changelog');
         this.resource('lookups');
         this.resource('pills');
+        this.resource('multiSelects');
     });
 });
 

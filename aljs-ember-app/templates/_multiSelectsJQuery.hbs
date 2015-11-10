@@ -3,21 +3,21 @@
         <h4 class="site-text-heading--large">Markup</h4>
 {{#aljs-pre-container type="html"}}
 <div class="slds-form-element">
-    <div class="slds-picklist--draggable slds-grid" data-aljs="multi-picklist">
+    <div class="slds-picklist--draggable slds-grid" data-aljs="multi-select">
         <div class="slds-form-element">
             <span class="slds-form-element__label" aria-label="select-1">First Category</span>
-            <div class="slds-picklist slds-picklist--multi" data-aljs-multi-picklist="unselected">
+            <div class="slds-picklist slds-picklist--multi" data-aljs-multi-select="unselected">
                 <ul class="slds-picklist__options slds-picklist__options--multi shown"></ul>
             </div>
         </div>
         <div class="slds-grid slds-grid--vertical">
-            <button class="slds-button slds-button--icon-container" data-aljs-multi-picklist="unselect">
+            <button class="slds-button slds-button--icon-container" data-aljs-multi-select="unselect">
                 <svg aria-hidden="true" class="slds-button__icon">
                     <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#left"></use>
                 </svg>
                 <span class="slds-assistive-text">Pick list</span>
             </button>
-            <button class="slds-button slds-button--icon-container" data-aljs-multi-picklist="select">
+            <button class="slds-button slds-button--icon-container" data-aljs-multi-select="select">
                 <svg aria-hidden="true" class="slds-button__icon">
                     <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#right"></use>
                 </svg>
@@ -26,18 +26,18 @@
         </div>
         <div class="slds-form-element">
             <span class="slds-form-element__label" aria-label="select-2">Second Category</span>
-            <div class="slds-picklist slds-picklist--multi" data-aljs-multi-picklist="selected">
+            <div class="slds-picklist slds-picklist--multi" data-aljs-multi-select="selected">
                 <ul class="slds-picklist__options slds-picklist__options--multi shown"></ul>
             </div>
         </div>
         <div class="slds-grid slds-grid--vertical">
-            <button class="slds-button slds-button--icon-container" data-aljs-multi-picklist="move-up">
+            <button class="slds-button slds-button--icon-container" data-aljs-multi-select="move-up">
                 <svg aria-hidden="true" class="slds-button__icon">
                     <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#up"></use>
                 </svg>
                 <span class="slds-assistive-text">Pick list</span>
             </button>
-            <button class="slds-button slds-button--icon-container" data-aljs-multi-picklist="move-down">
+            <button class="slds-button slds-button--icon-container" data-aljs-multi-select="move-down">
                 <svg aria-hidden="true" class="slds-button__icon">
                     <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
                 </svg>
@@ -61,7 +61,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row"><code>data-aljs="multi-picklist"</code></th>
+                        <th scope="row"><code>data-aljs="multi-select"</code></th>
                         <td data-label="Outcome">Provides a unique identifier for the plugin</td>
                         <td data-label="Required" class="slds-cell-shrink">
                             <svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
@@ -71,7 +71,7 @@
                         <td data-label="Comments"></td>
                     </tr>
                     <tr>
-                        <th scope="row"><code>data-aljs-multi-picklist="unselected"</code></th>
+                        <th scope="row"><code>data-aljs-multi-select="unselected"</code></th>
                         <td data-label="Outcome">Establishes the element as the unselected list</td>
                         <td data-label="Required" class="slds-cell-shrink">
                             <svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
@@ -81,7 +81,7 @@
                         <td data-label="Comments"></td>
                     </tr>
                     <tr>
-                        <th scope="row"><code>data-aljs-multi-picklist="selected"</code></th>
+                        <th scope="row"><code>data-aljs-multi-select="selected"</code></th>
                         <td data-label="Outcome">Establishes the element as the selected list</td>
                         <td data-label="Required" class="slds-cell-shrink">
                             <svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
@@ -91,7 +91,7 @@
                         <td data-label="Comments"></td>
                     </tr>
                     <tr>
-                        <th scope="row"><code>data-aljs-multi-picklist="unselect"</code></th>
+                        <th scope="row"><code>data-aljs-multi-select="unselect"</code></th>
                         <td data-label="Outcome">Binds the element to move entries to the unselected list on click</td>
                         <td data-label="Required" class="slds-cell-shrink">
                             <svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
@@ -101,7 +101,7 @@
                         <td data-label="Comments"></td>
                     </tr>
                     <tr>
-                        <th scope="row"><code>data-aljs-multi-picklist="select"</code></th>
+                        <th scope="row"><code>data-aljs-multi-select="select"</code></th>
                         <td data-label="Outcome">Binds the element to move entries to the selected list on click</td>
                         <td data-label="Required" class="slds-cell-shrink">
                             <svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
@@ -111,7 +111,7 @@
                         <td data-label="Comments"></td>
                     </tr>
                     <tr>
-                        <th scope="row"><code>data-aljs-multi-picklist="move-up"</code></th>
+                        <th scope="row"><code>data-aljs-multi-select="move-up"</code></th>
                         <td data-label="Outcome">Binds the element to move entries up in the unselected list on click</td>
                         <td data-label="Required" class="slds-cell-shrink">
                             <svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
@@ -121,7 +121,7 @@
                         <td data-label="Comments"></td>
                     </tr>
                     <tr>
-                        <th scope="row"><code>data-aljs-multi-picklist="move-down"</code></th>
+                        <th scope="row"><code>data-aljs-multi-select="move-down"</code></th>
                         <td data-label="Outcome">Binds the element to move entries down in the unselected list on click</td>
                         <td data-label="Required" class="slds-cell-shrink">
                             <svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
@@ -158,7 +158,7 @@ var selectedItems = [
 ];
 
 $(document).ready(function() {
-    $('[data-aljs="multi-picklist"]').multiPicklist({
+    $('[data-aljs="multi-select"]').multiPicklist({
         unselectedItems: unselectedItems,
         selectedItems: selectedItems
     });
@@ -196,10 +196,10 @@ $(document).ready(function() {
 var idsToSelect = ['option-1', 'option-2'];
 var idsToUnselect = ['option-3', 'option-4'];
 
-$('[data-aljs="multi-picklist"]').multiPicklist('setSelectedItems', idsToSelect);
-$('[data-aljs="multi-picklist"]').multiPicklist('setUnselectedItems', idsToUnselect);
-$('[data-aljs="multi-picklist"]').multiPicklist('getSelectedItems');
-$('[data-aljs="multi-picklist"]').multiPicklist('getUnselectedItems');
+$('[data-aljs="multi-select"]').multiPicklist('setSelectedItems', idsToSelect);
+$('[data-aljs="multi-select"]').multiPicklist('setUnselectedItems', idsToUnselect);
+$('[data-aljs="multi-select"]').multiPicklist('getSelectedItems');
+$('[data-aljs="multi-select"]').multiPicklist('getUnselectedItems');
 {{/aljs-pre-container}}
         <p class="slds-m-top--medium">This table details the methods available for the jQuery function.</p>
         <div class="slds-scrollable--x">

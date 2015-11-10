@@ -1,7 +1,6 @@
 if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the ALJS initializer file") }
 
 (function($) {
-
     var picklistItemMarkup = 
     '<li draggable="true" id="{{optionId}}" class="slds-picklist__item slds-has-icon slds-has-icon--left" aria-selected="false" tabindex="0" role="option">' +
         '<span class="slds-truncate">' +
@@ -9,10 +8,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         '</span>' +
     '</li>';
 
-    var MultiPicklist = function(el, options) {
+    var multiSelect = function(el, options) {
         this.$el = $(el);
-        this.$selectedContainer = this.$el.find('[data-aljs-multi-picklist="selected"]').find('ul');
-        this.$unselectedContainer = this.$el.find('[data-aljs-multi-picklist="unselected"]').find('ul');
+        this.$selectedContainer = this.$el.find('[data-aljs-multi-select="selected"]').find('ul');
+        this.$unselectedContainer = this.$el.find('[data-aljs-multi-select="unselected"]').find('ul');
         this.selectedItems = options.selectedItems;
         this.unselectedItems = options.unselectedItems;
 
@@ -21,15 +20,15 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         this.init();
     };
 
-    MultiPicklist.prototype = {
-        constructor: MultiPicklist,
+    multiSelect.prototype = {
+        constructor: multiSelect,
         init: function() {
             this.renderPicklists();
 
-            this.$el.find('[data-aljs-multi-picklist="unselect"]').on('click', this, this.unselectOption);
-            this.$el.find('[data-aljs-multi-picklist="select"]').on('click', this, this.selectOption);
-            this.$el.find('[data-aljs-multi-picklist="move-up"]').on('click', this, this.moveOptionUp);
-            this.$el.find('[data-aljs-multi-picklist="move-down"]').on('click', this, this.moveOptionDown);
+            this.$el.find('[data-aljs-multi-select="unselect"]').on('click', this, this.unselectOption);
+            this.$el.find('[data-aljs-multi-select="select"]').on('click', this, this.selectOption);
+            this.$el.find('[data-aljs-multi-select="move-up"]').on('click', this, this.moveOptionUp);
+            this.$el.find('[data-aljs-multi-select="move-down"]').on('click', this, this.moveOptionDown);
         },
         renderPicklists: function() {
             var self = this;            
@@ -61,7 +60,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 .on('drop', function(e) {
                     e.preventDefault();  
                     e.stopPropagation();
-                    self.$el.find('[data-aljs-multi-picklist="unselect"]').click();
+                    self.$el.find('[data-aljs-multi-select="unselect"]').click();
                 });
 
             this.selectedItems.forEach(function(item) {
@@ -91,7 +90,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 .on('drop', function(e) {
                     e.preventDefault();  
                     e.stopPropagation();
-                    self.$el.find('[data-aljs-multi-picklist="select"]').click();
+                    self.$el.find('[data-aljs-multi-select="select"]').click();
                 });
         },
         selectOption: function(e) {
@@ -176,7 +175,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 itemsToSelect.forEach(function(item) {
                     self.itemToSelect = item;
 
-                    self.$el.find('[data-aljs-multi-picklist="select"]').click();
+                    self.$el.find('[data-aljs-multi-select="select"]').click();
                 });
             }
         },
@@ -191,7 +190,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 itemsToUnselect.forEach(function(item) {
                     self.itemToUnselect = item;
 
-                    self.$el.find('[data-aljs-multi-picklist="unselect"]').click();
+                    self.$el.find('[data-aljs-multi-select="unselect"]').click();
                 });
             }
         },
@@ -203,8 +202,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         }
     };
 
-    $.fn.multiPicklist = function(options) {
-        var multiPicklistArguments = arguments;
+    $.fn.multiSelect = function(options) {
+        var multiSelectArguments = arguments;
         var internalReturn;
        // var arguments = arguments;
 
@@ -220,16 +219,16 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 data = $this.data('aljs-multi-picklist');
 
             if (!data) {
-                var multiPicklistData = new MultiPicklist(this, settings);
-                $this.data('aljs-multi-picklist', (data = multiPicklistData));
+                var multiSelectData = new multiSelect(this, settings);
+                $this.data('aljs-multi-picklist', (data = multiSelectData));
             }
             
             if (typeof options === 'string') {
-                internalReturn = data[options](multiPicklistArguments[1], multiPicklistArguments[2]);
+                internalReturn = data[options](multiSelectArguments[1], multiSelectArguments[2]);
             }
         });
 
-        if (internalReturn === undefined || internalReturn instanceof MultiPicklist) {
+        if (internalReturn === undefined || internalReturn instanceof multiSelect) {
             return this;
         }
 

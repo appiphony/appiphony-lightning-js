@@ -177,6 +177,11 @@
                 e.preventDefault();
                 return false;
             });
+            $(document).keyup(function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                return false;
+            });
         });
     </script>
 </body>

@@ -1,7 +1,6 @@
 if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the ALJS initializer file") }
 
 (function($) {
-
     var dismissPopover = function($popover) {
         $popover.removeAttr('style')
                 .trigger('dismissed.aljs.popover') // Custom aljs event

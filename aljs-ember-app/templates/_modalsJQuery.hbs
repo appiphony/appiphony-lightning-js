@@ -116,7 +116,9 @@ $(document).ready(function() {
         backdropDismiss: false,
         dismissSelector: '[data-aljs-dismiss="modal"]',
         onShow: function(obj) {},
-        onDismiss: function(obj) {}
+        onShown: function(obj) {},
+        onDismiss: function(obj) {},
+        onDismissed: function(obj) {}
     });
 });
 {{/aljs-pre-container}}
@@ -146,13 +148,25 @@ $(document).ready(function() {
                     </tr>
                     <tr>
                         <th scope="row"><code>onShow</code></th>
-                        <td data-label="Behavior">Calls a function when a modal is shown</td>
+                        <td data-label="Behavior">Calls a function when a modal begins its 'show' animation in the DOM</td>
+                        <td data-label="Accepted values">Any callback function</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>function(obj) {}</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>onShown</code></th>
+                        <td data-label="Behavior">Calls a function when a modal completes its 'show' animation in the DOM</td>
                         <td data-label="Accepted values">Any callback function</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>function(obj) {}</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>onDismiss</code></th>
-                        <td data-label="Behavior">Calls a function when a modal is dismissed</td>
+                        <td data-label="Behavior">Calls a function when a modal begins its 'dismiss' animation in the DOM</td>
+                        <td data-label="Accepted values">Any callback function</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>function(obj) {}</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>onDismissed</code></th>
+                        <td data-label="Behavior">Calls a function when a modal completes its 'dismiss' animation in the DOM</td>
                         <td data-label="Accepted values">Any callback function</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>function(obj) {}</code></td>
                     </tr>

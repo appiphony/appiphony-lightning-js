@@ -17,6 +17,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 e.stopPropagation();
                 self.selectTab($(e.target).data('aljs-show'));
                 $(this).trigger('selected.aljs.tab'); // Custom aljs event
+                return false;
             });
             
             // Show first tab
@@ -60,8 +61,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         }, typeof options === 'object' ? options : {});
         
         this.each(function() {
-            var $this = $(this),
-                data = $this.data('aljs-tabs');
+            var $this = $(this);
+            var data = $this.data('aljs-tabs');
             
             if (!data) {
                 var tabsData = new Tabs(this, settings);

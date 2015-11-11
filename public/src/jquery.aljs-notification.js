@@ -7,19 +7,19 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             // These are the defaults
         }, options );
         
-        if (this.length === 1 && typeof options !== 'string') {
+        if (this.length === 1 && typeof options !== 'string') { // If initializing plugin with options
             return this.on('click', '[data-aljs-dismiss="notification"]', function(e) {
                 var $notification = $(this).closest('.slds-notify');
-
+                
                 if ($notification.length > 0) {
                     $notification.trigger('dismissed.aljs.notification'); // Custom aljs event
                     $notification.addClass('slds-hide');
                 }
             });
-        } else if (typeof options === 'string') {
+        } else if (typeof options === 'string') { // If calling a method
             return this.each(function() {
                 var $node = $(this);
-
+                
                 if (!($node.hasClass('slds-notify'))) {
                     throw new Error("This method can only be run on a notification with the slds-notify class on it");
                 } else {

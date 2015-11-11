@@ -38,13 +38,16 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         modalObj.tabTarget = $('[href], [contentEditable="true"], button, a, input, textarea', modalObj.ariaTarget);
         modalObj.hasSelector = (args && args.hasOwnProperty('selector')) ? true : false;
         
-        if (args !== null && typeof args === 'string') { // If calling an action
+        if (args !== null && typeof args === 'string') { // If calling a method
             var settings = $.extend({
                     selector: null,
                     dismissSelector: '[data-aljs-dismiss="modal"]',
                     backdropDismiss: false,
                     onShow: function(obj) {},
-                    onDismiss: function(obj) {}
+                    onShown: function(obj) {},
+                    onDismiss: function(obj) {},
+                    onDismissed: function(obj) {}
+                    // These are the defaults
                 }, options);
             var dismissModalElement = $(settings.dismissSelector);
             var modalElements = $('.slds-modal__header, .slds-modal__content, .slds-modal__footer');
@@ -93,6 +96,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         settings.onShow(modalObj);
                         setTimeout(function() {
                             modalObj.self.trigger('shown.aljs.modal'); // Custom aljs event
+                            settings.onShown(modalObj);
                         }, 400);
                     }, 25);
                     break;
@@ -113,6 +117,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         aljsRefocusTarget = null;
                         modalObj.self.addClass('slds-hide')
                             .trigger('dismissed.aljs.modal'); // Custom aljs event
+                        settings.onDismissed(modalObj);
                     }, 200);
                     break;
                     
@@ -124,7 +129,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     break;
                     
                 default:
-                    console.error('The action you entered does not exist');
+                    console.error('The method you entered does not exist');
             }
         } else if (modalObj.hasSelector && this.length === 1) { // If allowing for selector to trigger modals post-init
             function clickEvent(e) { showModal($(this), args); }

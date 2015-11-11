@@ -216,11 +216,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         this.each(function() {
             var $this = $(this),
-                data = $this.data('aljs-multi-picklist');
+                data = $this.data('aljs-multi-select');
 
             if (!data) {
                 var multiSelectData = new multiSelect(this, settings);
-                $this.data('aljs-multi-picklist', (data = multiSelectData));
+                $this.data('aljs-multi-select', (data = multiSelectData));
             }
             
             if (typeof options === 'string') {

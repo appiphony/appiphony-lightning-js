@@ -14,22 +14,47 @@ _AljsApp.AljsSimpleTabsComponent = Ember.Component.extend({
     tabLinks: function() {
         var activeTabIndex = this.get('activeTabIndex');
         return this.get('tabObjects').map(function(tab, index) {
+            var isActiveTab = (!Ember.isNone(activeTabIndex) && index === activeTabIndex) || (Ember.isNone(activeTabIndex) && index === 0);
+
             return Ember.Object.create({
                 label: tab.label,
                 partial: tab.partial,
-                isActive: (!Ember.isNone(activeTabIndex) && index === activeTabIndex) || (Ember.isNone(activeTabIndex) && index === 0) ? true : false
+                partialId: tab.partialId,
+                isActive: isActiveTab,
+                index: isActiveTab ? '0' : '-1'
             });
         });
     }.property('tabObjects', 'activeTabIndex'),
     activeTab: function() {
         return this.get('tabLinks').findBy('isActive', true);
     }.property('tabLinks.@each.isActive'),
+    keyUp: function(e) {
+        var tabLinks = this.get('tabLinks');
+        var activeTabIndex = tabLinks.indexOf(this.get('activeTab'));
+
+        if (e.keyCode === 37) {
+            // left
+
+            var previousTabIndex = activeTabIndex === 0 ? tabLinks.length - 1 : activeTabIndex - 1;
+
+            this.send('clickTab', tabLinks[previousTabIndex]);
+        } else if (e.keyCode === 39) {
+            // right
+
+            var nextTabIndex = activeTabIndex === tabLinks.length - 1 ? 0 : activeTabIndex + 1;
+
+            this.send('clickTab', tabLinks[nextTabIndex]);
+        }
+    },
     actions: {
         clickTab: function(tabLink) {
             var tabLinks = this.get('tabLinks');
             tabLinks.setEach('isActive', false);
             tabLink.set('isActive', true);
             this.set('activeTabIndex', tabLinks.indexOf(tabLink));
+            Ember.run.scheduleOnce('afterRender', this, function() {
+                this.$().find('li[tabindex="0"]').find('a').focus();
+            });
         }
     }
 });

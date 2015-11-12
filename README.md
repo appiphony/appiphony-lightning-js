@@ -8,8 +8,10 @@ See it in action here: <a href="http://aljs.appiphony.com" target="_blank">http:
 ### Available as jQuery Plugins and Ember.js Components
 Currently Supported SLDS Components:
 * Datepickers
+* Icon Groups
 * Lookups
 * Modals
+* Multi Selects
 * Notifications
 * Picklists
 * Pills

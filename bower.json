@@ -1,0 +1,27 @@
+{
+  "name": "appiphony-lightning-js",
+  "version": "0.1.1",
+  "description": "Your JS Solution for the Lightning Design System",
+  "authors": [
+    "Appiphony, LLC <info@appiphony.com>"
+  ],
+  "license": "BSD 2-Clause License",
+  "keywords": [
+    "salesforce",
+    "lightning",
+    "design",
+    "system"
+  ],
+  "dependencies": {
+    "jquery": ">=1.7.0"
+  },
+  "homepage": "http://aljs.appiphony.com",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

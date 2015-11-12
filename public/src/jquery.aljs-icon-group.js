@@ -5,31 +5,62 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         var isSelected = 'slds-is-selected';
         var notSelected = 'slds-not-selected';
         var settings = $.extend({
-            type: 'sort', // toggle, switch
-            defaultIconId: '',
-            onChange: function(obj) {},
+            type: 'sort',
+            defaultButtonId: '',
+            onChange: function() {},
             assetsLocation: $.aljs.assetsLocation
             // These are the defaults
         }, options);
         
-        if (this.length === 1 && typeof options !== 'string') { // If initializing plugin with options
-            return this.each(function() {
-                var buttons = $('.slds-button', this);
-                buttons.click(function() {
-                    if ($(this).hasClass(isSelected) && (settings.type === 'toggle' || settings.type === 'switch')) {
-                        $(this).removeClass(isSelected)
-                            .addClass(notSelected);
-                    }
-                });
+        function select(button) {
+            button.removeClass(notSelected)
+                .addClass(isSelected)
+                .trigger('selected.aljs.button'); // Custom aljs event
+        }
+        
+        function deselect(button) {
+            button.removeClass(isSelected)
+                .addClass(notSelected)
+                .trigger('deselected.aljs.button'); // Custom aljs event
+        }
+        
+        if (typeof options !== 'string') { // If initializing plugin with options
+            var buttons = $('.slds-button', this);
+            var defaultIcon = (settings.defaultButtonId === '') ? buttons.eq(0) : '#' + settings.defaultButtonId;
+            
+            if (settings.type === 'sort') {
+                select($(defaultIcon));
+            }
+            
+            buttons.click(function() {
+                var target = $(this);
+                
+                if (target.hasClass(isSelected) && (settings.type === 'toggle' || settings.type === 'switch')) {
+                    deselect(target);
+                    settings.onChange();
+                } else if (target.hasClass(notSelected) && settings.type === 'toggle') {
+                    select(target);
+                    settings.onChange();
+                } else if (target.hasClass(notSelected) && (settings.type === 'switch' || settings.type === 'sort')) {
+                    buttons.each(function() {
+                        if ($(this) !== target && $(this).hasClass(isSelected)) deselect($(this));
+                    });
+                    
+                    select(target);
+                    settings.onChange();
+                }
             });
+            
+            return this;
         } else if (typeof options === 'string') { // If calling a method
             return this.each(function() {
                 switch(options) {
                     case 'select':
+                        select($(this));
                         break;
                         
                     case 'deselect':
-                        
+                        deselect($(this));
                         break;
                         
                     default:

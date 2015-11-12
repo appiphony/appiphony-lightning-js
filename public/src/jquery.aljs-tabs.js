@@ -13,6 +13,12 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             // Bind buttons
             var self = this;
             var $tabButtons = this.$el.find('a[data-aljs-show]');
+            var children = $('.slds-tabs__item', this.$el);
+            var tabsObj = {
+                self: self,
+                children: children
+            }
+            
             $tabButtons.on('click', function(e) {
                 e.stopPropagation();
                 self.selectTab($(e.target).data('aljs-show'));
@@ -26,6 +32,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             } else {
                 this.selectTab(this.settings.defaultTabId);
             }
+            
+            children.keyup(tabsObj, this.processKeypress);
         },
         selectTab: function(tabId) {
             this.$el.find('.slds-tabs__item')
@@ -40,12 +48,35 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 .addClass('slds-active')
                 .find('a')
                 .attr('tabindex', '0')
-                .attr('aria-selected', 'true');
+                .attr('aria-selected', 'true')
+                .focus();
             this.$el.find('#' + tabId).show()
                 .trigger('shown.aljs.tabcontent'); // Custom aljs event
             
             this.id = tabId;
             this.settings.onChange(this);
+        },
+        processKeypress: function(e) {
+            var children = e.data.children;
+            var length = $(children).length - 1;
+            var selectedPos = $('.slds-active', $(children).parent()).index();
+            var tabId;
+            
+            if (e.which == 37) { // Left arrow
+                if (selectedPos == 0) {
+                    tabId = $(children).eq(length).find('[data-aljs-show]').data('aljs-show');
+                } else {
+                    tabId = $(children).eq((selectedPos - 1)).find('[data-aljs-show]').data('aljs-show');
+                }
+                e.data.self.selectTab(tabId);
+            } else if (e.which == 39) { // Right arrow
+                if (selectedPos == length) {
+                    tabId = $(children).eq(0).find('[data-aljs-show]').data('aljs-show');
+                } else {
+                    tabId = $(children).eq((selectedPos + 1)).find('[data-aljs-show]').data('aljs-show');
+                }
+                e.data.self.selectTab(tabId);
+            }
         }
     };
     

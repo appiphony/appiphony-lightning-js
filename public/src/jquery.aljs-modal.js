@@ -4,6 +4,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     var aljsBodyTag = $('body');
     var aljsModals = $('.slds-modal');
     var aljsRefocusTarget = null; // Element to refocus on modal dismiss
+    var isShowing;
     
     function initModals() {
         var aljsScope = ($.aljs.scoped) ? $('.slds') : aljsBodyTag;
@@ -66,15 +67,19 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             
             switch (args) {
                 case 'show':
+                    isShowing = true;
+
                     modalObj.id = this.attr('id');
                     
+                    // Close existing modals
+                    $('.slds-modal').removeClass('slds-fade-in-open')
+                                    .attr('aria-hidden', 'false');
+
                     $('.slds-modal-backdrop').remove(); // Remove any existing backdrops
                     $('.aljs-modal-container').append('<div class="slds-modal-backdrop"></div>');
                     
                     aljsBodyTag.keyup(keyUpCheck);
-                    modalObj.self.removeClass('slds-fade-in-open')
-                        .attr('aria-hidden', 'false')
-                        .addClass('slds-show');
+                    modalObj.self.addClass('slds-show');
                     
                     dismissModalElement.click(function(e) { // Bind events based on options
                         e.preventDefault();
@@ -97,12 +102,15 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         setTimeout(function() {
                             modalObj.self.trigger('shown.aljs.modal'); // Custom aljs event
                             settings.onShown(modalObj);
+                            isShowing = false;
                         }, 400);
                     }, 25);
                     break;
                     
                 case 'dismiss':
-                    $('.slds-modal-backdrop').removeClass('slds-modal-backdrop--open');
+                    if (!isShowing) {
+                        $('.slds-modal-backdrop').removeClass('slds-modal-backdrop--open');
+                    }
                     settings.onDismiss(modalObj);
                     modalObj.ariaTarget.attr('aria-hidden', 'false');
                     modalObj.tabTarget.removeAttr('tabindex');
@@ -113,7 +121,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     modalObj.self.trigger('dismiss.aljs.modal'); // Custom aljs event
                     
                     setTimeout(function() {
-                        $('.slds-modal-backdrop').remove();
+                        if(!isShowing) {
+                            $('.slds-modal-backdrop').remove();
+                        }
                         aljsRefocusTarget = null;
                         modalObj.self.addClass('slds-hide')
                             .trigger('dismissed.aljs.modal'); // Custom aljs event

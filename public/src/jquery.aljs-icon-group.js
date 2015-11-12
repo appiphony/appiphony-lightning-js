@@ -2,12 +2,14 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
 (function($) {
     $.fn.iconGroup = function(options) {
+        var iconGroupObj = {};
         var isSelected = 'slds-is-selected';
         var notSelected = 'slds-not-selected';
-        var settings = $.extend({
+        
+        iconGroupObj.settings = $.extend({
             type: 'sort',
             defaultButtonId: '',
-            onChange: function() {},
+            onChange: function(obj) { console.log(obj); },
             assetsLocation: $.aljs.assetsLocation
             // These are the defaults
         }, options);
@@ -25,29 +27,30 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         }
         
         if (typeof options !== 'string') { // If initializing plugin with options
-            var buttons = $('.slds-button', this);
-            var defaultIcon = (settings.defaultButtonId === '') ? buttons.eq(0) : '#' + settings.defaultButtonId;
+            iconGroupObj.buttons = $('.slds-button', this);
+            iconGroupObj.defaultIcon = (iconGroupObj.settings.defaultButtonId === '') ? iconGroupObj.buttons.eq(0) : '#' + iconGroupObj.settings.defaultButtonId;
             
-            if (settings.type === 'sort') {
-                select($(defaultIcon));
+            if (iconGroupObj.settings.type === 'sort') {
+                select($(iconGroupObj.defaultIcon));
             }
             
-            buttons.click(function() {
-                var target = $(this);
+            iconGroupObj.buttons.click(function() {
+                iconGroupObj.target = $(this);
+                iconGroupObj.targetId = iconGroupObj.target.attr('id');
                 
-                if (target.hasClass(isSelected) && (settings.type === 'toggle' || settings.type === 'switch')) {
-                    deselect(target);
-                    settings.onChange();
-                } else if (target.hasClass(notSelected) && settings.type === 'toggle') {
-                    select(target);
-                    settings.onChange();
-                } else if (target.hasClass(notSelected) && (settings.type === 'switch' || settings.type === 'sort')) {
-                    buttons.each(function() {
-                        if ($(this) !== target && $(this).hasClass(isSelected)) deselect($(this));
+                if (iconGroupObj.target.hasClass(isSelected) && (iconGroupObj.settings.type === 'toggle' || iconGroupObj.settings.type === 'switch')) {
+                    deselect(iconGroupObj.target);
+                    iconGroupObj.settings.onChange();
+                } else if (iconGroupObj.target.hasClass(notSelected) && iconGroupObj.settings.type === 'toggle') {
+                    select(iconGroupObj.target);
+                    iconGroupObj.settings.onChange();
+                } else if (iconGroupObj.target.hasClass(notSelected) && (iconGroupObj.settings.type === 'switch' || iconGroupObj.settings.type === 'sort')) {
+                    iconGroupObj.buttons.each(function() {
+                        if ($(this) !== iconGroupObj.target && $(this).hasClass(isSelected)) deselect($(this));
                     });
                     
-                    select(target);
-                    settings.onChange();
+                    select(iconGroupObj.target);
+                    iconGroupObj.settings.onChange(iconGroupObj);
                 }
             });
             

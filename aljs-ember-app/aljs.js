@@ -175,6 +175,10 @@ App.PillsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
     routeName: 'pills'
 });
 
+App.IconGroupController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
+    routeName: 'iconGroups'
+});
+
 App.NotificationsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
     routeName: 'notifications'
 });
@@ -208,6 +212,10 @@ App.AljsRoute = Ember.Route.extend({
                 {
                     path: 'datepickers',
                     name: 'Datepickers'
+                },
+                {
+                    path: 'iconGroups',
+                    name: 'Icon Groups'
                 },
                 {
                     path: 'lookups',
@@ -280,6 +288,7 @@ App.Router.map(function() {
     	this.resource('datepickers');
         this.resource('tabs');
         this.resource('notifications');
+        this.resource('iconGroups');
         this.resource('changelog');
         this.resource('lookups');
         this.resource('pills');

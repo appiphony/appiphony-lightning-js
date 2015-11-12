@@ -109,7 +109,10 @@ $(document).ready(function() {
                 full: 'December',
                 abbv: ''
             }
-        ]
+        ],
+        onChange: function(datepicker) {
+            console.log(datepicker);
+        }
     });
 });
 {{/aljs-pre-container}}
@@ -128,38 +131,44 @@ $(document).ready(function() {
                     <tr>
                         <th scope="row"><code>numYearsBefore</code></th>
                         <td data-label="Behavior">Determines how many years before the current year to include in the year dropdown</td>
-                        <td data-label="Accepted values">An integer value</td>
+                        <td data-label="Values">An integer value</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>50</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>numYearsAfter</code></th>
                         <td data-label="Behavior">Determines how many years after the current year to include in the year dropdown</td>
-                        <td data-label="Accepted values">An integer value</td>
+                        <td data-label="Values">An integer value</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>10</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>format</code></th>
-                        <td data-label="Purpose">Specifies how dates will be displayed in the datepicker's input.</td>
+                        <td data-label="Behavior">Specifies how dates will be displayed in the datepicker's input</td>
                         <td data-label="Values">A valid date string (e.g. 'MM/DD/YYYY')</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>MM/DD/YYYY</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>initDate</code></th>
                         <td data-label="Behavior">Sets the datepicker to a specified date</td>
-                        <td data-label="Accepted values">A moment.js object</td>
+                        <td data-label="Values">A moment.js object</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>moment()</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>dayLabels</code></th>
-                        <td data-label="Purpose">An optional array of objects defining labels for the calendar's days</td>
+                        <td data-label="Behavior">An optional array of objects defining labels for the calendar's days</td>
                         <td data-label="Values">[{full: '<i>full day label</i>', abbv: '<i>abbreviated day label</i>'},...]</td>
                         <td data-label="Default value" class="slds-cell-shrink">English full labels, empty abbreviation labels</td>
                     </tr>
                     <tr>
                         <th scope="row"><code>monthLabels</code></th>
-                        <td data-label="Purpose">An optional array of objects defining labels for the calendar's months</td>
+                        <td data-label="Behavior">An optional array of objects defining labels for the calendar's months</td>
                         <td data-label="Values">[{full: '<i>full month label</i>', abbv: '<i>abbreviated month label</i>'},...]</td>
                         <td data-label="Default value" class="slds-cell-shrink">English full labels, empty abbreviation labels</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>onChange</code></th>
+                        <td data-label="Behavior">Calls a function when a datepicker's date is set by user interaction or programmatically</td>
+                        <td data-label="Values">Any callback function with a passed in datepicker object parameter</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>function(datepicker) {}</code></td>
                     </tr>
                 </tbody>
             </table>

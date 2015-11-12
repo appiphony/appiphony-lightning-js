@@ -79,7 +79,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
         var endDateId = options.endDateInputId;
 
         this.$datepickerEl = $(datepickerMenuMarkup.replace(/{{assetsLocation}}/g, options.assetsLocation) + datepickerTableMarkup);
-        this.options = options;
+        this.settings = options;
 
         if (options.initDate) {
             this.setSelectedFullDate(initDate);
@@ -160,7 +160,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
         },
         fillMonth: function() {
             var self = this;
-            var dayLabels = this.options.dayLabels;
+            var dayLabels = this.settings.dayLabels;
             var monthArray = this.getMonthArray();
             var $monthTableBody = $('<tbody>');
             var isMultiSelect = this.$elEndDate && this.$elEndDate.length > 0;
@@ -206,7 +206,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             });
 
             this.$datepickerEl.find('tbody').replaceWith($monthTableBody);
-            this.$datepickerEl.find('#month').text(this.options.monthLabels[this.viewedMonth].full);
+            this.$datepickerEl.find('#month').text(this.settings.monthLabels[this.viewedMonth].full);
             this.$datepickerEl.find('#aljs-year').text(this.viewedYear);
         },
         initYearDropdown: function() {
@@ -227,9 +227,9 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 var currentYear = moment().year();
                 // var selectedIconMarkup = ('<svg aria-hidden="true" class="slds-icon slds-icon--small slds-icon--left">' +
                 //                         '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{assetsLocation}}/assets/icons/standard-sprite/svg/symbols.svg#task2" data-reactid=".46.0.0.1:$=10:0.0.$=11:0.0.0.0"></use>' +
-                //                     '</svg>').replace(/{{assetsLocation}}/g, this.options.assetsLocation);
+                //                     '</svg>').replace(/{{assetsLocation}}/g, this.settings.assetsLocation);
 
-                for (var i = currentYear - this.options.numYearsBefore; i <= currentYear + this.options.numYearsAfter; i++) {
+                for (var i = currentYear - this.settings.numYearsBefore; i <= currentYear + this.settings.numYearsAfter; i++) {
                     var $yearOption = $('<option value="' + i + '">' + i + '</option>').appendTo($yearSelect);
                 }
 
@@ -331,11 +331,13 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
         },
         setSelectedFullDate: function(selectedFullDate) {
             this.selectedFullDate = selectedFullDate;
-            this.$el.val(selectedFullDate.format(this.options.format));
+            this.$el.val(selectedFullDate.format(this.settings.format));
+            this.settings.onChange(this);
         },
         setSelectedEndDate: function(selectedEndDate) {
             this.selectedEndDate = selectedEndDate;
-            this.$elEndDate.val(selectedEndDate.format(this.options.format));
+            this.$elEndDate.val(selectedEndDate.format(this.settings.format));
+            this.settings.onChange(this);
         },
         processClick: function(e) {
             e.preventDefault();
@@ -475,6 +477,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             numYearsAfter: 10,
             format: 'MM/DD/YYYY',
             endDateInputId: null,
+            onChange: function(datepicker) {},
             dayLabels: [
                 {
                     full: 'Sunday',

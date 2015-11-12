@@ -58,8 +58,18 @@
             assetsLocation: '.'
         });
 
-    	$('#date').datepicker();
-        $('#date2').datepicker();
+    	$('#date').datepicker({
+            onChange: function(datepicker) {
+                console.log(datepicker);
+                console.log(this);
+            }
+        });
+        $('#date2').datepicker({
+            onChange: function(datepicker) {
+                console.log(datepicker);
+                console.log(this);
+            }
+        });
     </script>
     <script>
         $(document).ready(function() {

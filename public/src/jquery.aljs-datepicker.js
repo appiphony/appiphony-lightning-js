@@ -106,17 +106,17 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
             var openDatepicker = function(e) {
                 e.stopPropagation();
+                // Close other datepickers
+                $('[data-aljs-datepicker-id]').not(this).each(function() {
+                    $(this).data('datepicker').closeDatepicker();
+                });
+
                 if ((e.target === $el[0] && ($el.val() !== null && $el.val() !== '')) || (e.target === $elEndDate[0] && ($elEndDate.val() !== null && $elEndDate.val() !== ''))) {
                     self.$selectedInput = $(this).parent().find('input');
                     self.$selectedInput.on('keyup', self, self.processKeyup)
                                        .on('blur', self, self.processBlur);
                     self.closeDatepicker();
                 } else {
-                    // Close other datepickers
-                    $('[data-aljs-datepicker-id]').not(this).each(function() {
-                        $(this).data('datepicker').closeDatepicker();
-                    });
-
                     var initDate = self.selectedFullDate || moment();
                     self.viewedMonth = initDate.month();
                     self.viewedYear = initDate.year();
@@ -244,7 +244,6 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             }
 
             $yearSelect.on('change', function(e) {
-                console.log('update');
                 self.viewedYear = $(e.target).val();
                 self.fillMonth();
             });
@@ -338,14 +337,24 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             return calendarRows;
         },
         setSelectedFullDate: function(selectedFullDate) {
+            var oldDate = this.selectedFullDate;
+
             this.selectedFullDate = selectedFullDate;
             this.$el.val(selectedFullDate.format(this.settings.format));
-            this.settings.onChange(this);
+
+            if (!oldDate || (!oldDate.isSame(selectedFullDate, 'day'))) {
+                this.settings.onChange(this);
+            }
         },
         setSelectedEndDate: function(selectedEndDate) {
+            var oldDate = this.selectedEndDate;
+
             this.selectedEndDate = selectedEndDate;
             this.$elEndDate.val(selectedEndDate.format(this.settings.format));
-            this.settings.onChange(this);
+
+            if (!oldDate || (!oldDate.isSame(selectedEndDate, 'day'))) {
+                this.settings.onChange(this);
+            }
         },
         processClick: function(e) {
             e.preventDefault();
@@ -393,16 +402,16 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             }  
         },
         processBlur: function(e) {
-            console.log(e);
             if (e) {
                 var self = e.data;
                 var selectedDate = $(this).val();
+                var momentSelectedDate = moment(selectedDate, self.settings.format);
 
-                if (moment(selectedDate).isValid()) {
+                if (momentSelectedDate.isValid()) {
                     if (self.$elEndDate && self.$elEndDate.length > 0 && self.$elEndDate[0] === self.$selectedInput[0]) {
-                        self.setSelectedEndDate(moment(selectedDate, self.settings.format));
+                        self.setSelectedEndDate(momentSelectedDate);
                     } else {
-                        self.setSelectedFullDate(moment(selectedDate, self.settings.format));
+                        self.setSelectedFullDate(momentSelectedDate);
                     }
 
                     self.closeDatepicker(e);

@@ -101,9 +101,9 @@ $(document).ready(function() {
                 id: 'result-6',
                 label: 'Result 6'
             }
-        ]
+        ],
     });
-        
+
     var results = [
         {
             id: 'ajax-result-1',
@@ -130,11 +130,12 @@ $(document).ready(function() {
             label: 'ajaxResult6'
         }
     ];
-    
+
     $('#lookup-2').lookup({
         objectPluralLabel: 'Things',
         objectLabel: 'Thing',
-        objectIconUrl: '/assets/icons/standard-sprite/svg/symbols.svg#record',
+        objectIconUrl: '/assets/icons/standard-sprite/svg/symbols.svg#account',
+        objectIconClass: 'slds-icon-standard-account',
         emptySearchTermQuery: function(callback) {
             callback(results);
         },
@@ -147,11 +148,12 @@ $(document).ready(function() {
             console.log('redirect or do something to add something');
         }
     });
-    
+
     $('#lookup-3').lookup({
         objectPluralLabel: 'Entities',
         objectLabel: 'Entity',
-        objectIconUrl: '/assets/icons/standard-sprite/svg/symbols.svg#record',
+        objectIconUrl: '/assets/icons/standard-sprite/svg/symbols.svg#account',
+        objectIconClass: 'slds-icon-standard-account',
         emptySearchTermQuery: function(callback) {
             callback(results);
         },
@@ -199,8 +201,14 @@ $(document).ready(function() {
                     <tr>
                         <th scope="row"><code>objectIconUrl</code></th>
                         <td data-label="Behavior">Sets the icon of the searchable object</td>
-                        <td data-label="Accepted values">Any string representing a URL</td>
+                        <td data-label="Accepted values">Any string representing an icon URL; use <code>''</code> (empty string) to exclude icons</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>'/assets/icons/standard-sprite/svg/symbols.svg#account'</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>objectIconClass</code></th>
+                        <td data-label="Behavior">Sets the icon background color of the searchable object</td>
+                        <td data-label="Accepted values">Any string representing an icon class (see <a href="https://www.lightningdesignsystem.com/components/icons" target="_blank">https://www.lightningdesignsystem.com/components/icons</a> for more details)</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>'slds-icon-standard-account'</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>emptySearchTermQuery</code></th>

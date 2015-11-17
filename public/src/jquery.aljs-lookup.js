@@ -3,11 +3,24 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 (function($) {
 	var selectContainerMarkup = '<div class="slds-pill-container slds-hide"></div>';
 	var pillMarkup = 
-    	'<span class="slds-pill slds-pill--bare">' +
+    	'<span class="slds-pill slds-pill--bare"{{marginTop}}>' +
       		'<a href="#" class="slds-pill__label">' +
-        		'<svg aria-hidden="true" class="slds-icon slds-icon-standard-account slds-icon--small">' +
+        		'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-icon--small{{hasIcon}}">' +
           			'<use xlink:href="{{objectIconUrl}}"></use>' +
         		'</svg>{{selectedResultLabel}}' +
+        	'</a>' +
+      		'<button class="slds-button slds-button--icon-bare">' +
+        		'<svg aria-hidden="true" class="slds-button__icon">' +
+          			'<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#close"></use>' +
+        		'</svg>' +
+        		'<span class="slds-assistive-text">Remove</span>' +
+      		'</button>' +
+    	'</span>';
+
+	var customPillMarkup = 
+    	'<span class="slds-pill slds-pill--bare"{{marginTop}}>' +
+      		'<a href="#" class="slds-pill__label">' +
+                '<img class="{{objectIconClass}} slds-icon slds-icon--small{{hasIcon}}" src="{{objectIconUrl}}"/>{{selectedResultLabel}}' +
         	'</a>' +
       		'<button class="slds-button slds-button--icon-bare">' +
         		'<svg aria-hidden="true" class="slds-button__icon">' +
@@ -26,7 +39,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	var useMarkup = 
 		'<div class="slds-lookup__item">' +
 			'<button class="slds-button">' +
-				'<svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--small">' +
+				'<svg aria-hidden="true" class="slds-icon-text-default slds-icon slds-icon--small{{hasIcon}}">' +
 					'<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#search"></use>' +
 				'</svg>&quot;{{searchTerm}}&quot; in {{objectPluralLabel}}' +
 			'</button>' +
@@ -35,7 +48,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	var addItemMarkup = 
 		'<div class="slds-lookup__item">' +
 			'<button class="slds-button">' +
-				'<svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--small">' +
+				'<svg aria-hidden="true" class="slds-icon-text-default slds-icon slds-icon--small{{hasIcon}}">' +
 					'<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#add"></use>' +
 				'</svg>Add {{objectLabel}}' +
 			'</button>' +
@@ -44,9 +57,16 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	var lookupResultItemMarkup = 
 		'<li class="slds-lookup__item">' +
 			'<a id="{{resultId}}" href="#" role="option">' +
-				'<svg aria-hidden="true" class="slds-icon slds-icon-standard-account slds-icon--small">' +
+				'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-icon--small{{hasIcon}}">' +
 					'<use xlink:href="{{objectIconUrl}}"></use>' +
 				'</svg>{{resultLabel}}' +
+			'</a>' +
+		'</li>';
+
+	var customLookupResultItemMarkup = 
+		'<li class="slds-lookup__item">' +
+			'<a id="{{resultId}}" href="#" role="option">' +
+                '<img class="{{objectIconClass}} slds-icon slds-icon--small{{hasIcon}}" src="{{objectIconUrl}}"/>{{resultLabel}}' +
 			'</a>' +
 		'</li>';
 
@@ -127,39 +147,47 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	var self = this;
         	var $multiSelect = this.$multiSelect.html('');
         	var $lookupContainer = this.$lookupContainer;
+            var conditionalPillMarkup = (self.settings.customObjectIcon) ? customPillMarkup : pillMarkup;
 
         	if (selectedResults.length > 0) {
         		selectedResults.forEach(function(result) {
-        			var $pill = $(pillMarkup.replace('{{objectIconUrl}}', self.settings.objectIconUrl)
-    												  .replace('{{assetsLocation}}', self.settings.assetsLocation)
-    												  .replace('{{selectedResultLabel}}', result.label));
+        			var $pill = $(conditionalPillMarkup.replace('{{objectIconUrl}}', self.settings.objectIconUrl)
+                                .replace('{{objectIconClass}}', self.settings.objectIconClass)
+                                .replace('{{marginTop}}', (self.settings.objectIconUrl !== '') ? '' : ' style="margin-top: 3px"')
+                                .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
+                                .replace('{{assetsLocation}}', self.settings.assetsLocation)
+                                .replace('{{selectedResultLabel}}', result.label));
         			$pill.removeClass('slds-pill--bare')
-        				 .attr('id', result.id)
-        				 .on('click', 'a, button', self, self.clearMultiSelectResult);
+                        .attr('id', result.id)
+                        .on('click', 'a, button', self, self.clearMultiSelectResult);
         			$multiSelect.append($pill);
         		});
 
         		$multiSelect.addClass('slds-show')
-        					.removeClass('slds-hide');
+                    .removeClass('slds-hide');
         		$lookupContainer.addClass('slds-has-selection');
         	} else {
         		$multiSelect.html('');
         		$multiSelect.addClass('slds-hide')
-        					.removeClass('slds-show');
+                    .removeClass('slds-show');
         		$lookupContainer.removeClass('slds-has-selection');
         	}
         },
         setSingleSelect: function(selectedResultLabel) {
         	var self = this;
         	var newResultLabel = selectedResultLabel || '';
+            var conditionalPillMarkup = (self.settings.customObjectIcon) ? customPillMarkup : pillMarkup;
 
-        	this.$singleSelect.html(pillMarkup.replace('{{objectIconUrl}}', this.settings.objectIconUrl)
-    												  .replace('{{assetsLocation}}', this.settings.assetsLocation)
-    												  .replace('{{selectedResultLabel}}', newResultLabel));
+        	this.$singleSelect.html(conditionalPillMarkup.replace('{{objectIconUrl}}', this.settings.objectIconUrl)
+                                    .replace('{{objectIconClass}}', self.settings.objectIconClass)
+                                    .replace('{{marginTop}}', (self.settings.objectIconUrl !== '') ? '' : ' style="margin-top: 3px"')
+                                    .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
+                                    .replace('{{assetsLocation}}', this.settings.assetsLocation)
+                                    .replace('{{selectedResultLabel}}', newResultLabel));
 
         	if (selectedResultLabel) {
         		this.$singleSelect.addClass('slds-show')
-    						  	  .removeClass('slds-hide');
+                    .removeClass('slds-hide');
 
     			this.$el.addClass('slds-hide')
         		this.$lookupContainer.addClass('slds-has-selection');
@@ -167,7 +195,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         		this.$singleSelect.one('click', 'button', this, this.clearSingleSelect);//'a, button', this, this.clearSingleSelect);
         	} else {
         		this.$singleSelect.addClass('slds-hide')
-    						  	  .removeClass('slds-show');
+                    .removeClass('slds-show');
 
         		this.$el.val('')
         			.removeClass('slds-hide')
@@ -220,25 +248,28 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         	if (!this.isStringEmpty(searchTerm) && searchTerm.length > 1) {
         		$resultsListContainer.before(useMarkup.replace('{{searchTerm}}', searchTerm)
-        											  .replace('{{objectPluralLabel}}', this.settings.objectPluralLabel)
-        											  .replace('{{assetsLocation}}', $.aljs.assetsLocation));
+                                            .replace('{{objectPluralLabel}}', this.settings.objectPluralLabel)
+                                            .replace('{{assetsLocation}}', $.aljs.assetsLocation));
         	}
 
         	this.searchResults.forEach(function(result) {
         		var $lookupResultItem;
+                var conditionalLookupMarkup = (self.settings.customObjectIcon) ? customLookupResultItemMarkup : lookupResultItemMarkup;
         		if (self.isSingle) {
-        			$lookupResultItem = $resultsListContainer.append(lookupResultItemMarkup
-        														.replace('{{resultLabel}}', result.label)
-        														.replace('{{resultId}}', result.id)
-        														.replace('{{objectIconUrl}}', self.settings.objectIconUrl));
+        			$lookupResultItem = $resultsListContainer.append(conditionalLookupMarkup.replace('{{resultLabel}}', result.label)
+                                                                    .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
+                                                                    .replace('{{resultId}}', result.id)
+                                                                    .replace('{{objectIconUrl}}', self.settings.objectIconUrl)
+                                                                    .replace('{{objectIconClass}}', self.settings.objectIconClass));
         		} else if (self.selectedResults) {
         			var selectedResultsIds = self.selectedResults.map(function(result) { return result.id; });
 
         			if (selectedResultsIds.length === 0 || selectedResultsIds.indexOf(result.id) === -1) {
-        				$lookupResultItem = $resultsListContainer.append(lookupResultItemMarkup
-        														.replace('{{resultLabel}}', result.label)
-        														.replace('{{resultId}}', result.id)
-        														.replace('{{objectIconUrl}}', self.settings.objectIconUrl));
+        				$lookupResultItem = $resultsListContainer.append(conditionalLookupMarkup.replace('{{resultLabel}}', result.label)
+                                                                        .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
+                                                                        .replace('{{resultId}}', result.id)
+                                                                        .replace('{{objectIconUrl}}', self.settings.objectIconUrl)
+                                                                        .replace('{{objectIconClass}}', self.settings.objectIconClass));
         			}
         		}
 
@@ -251,8 +282,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         	if (this.settings.clickAddFunction) {
         		var $addItem = $resultsListContainer.after(addItemMarkup
-        									.replace('{{objectLabel}}', this.settings.objectLabel)
-        								 	.replace('{{assetsLocation}}', $.aljs.assetsLocation));
+                                                           .replace('{{hasIcon}}', 'slds-icon')
+                                                           .replace('{{objectLabel}}', this.settings.objectLabel)
+                                                           .replace('{{assetsLocation}}', $.aljs.assetsLocation));
         	}
 
         	$resultsListContainer.one('click', 'a', this, this.clickResult)
@@ -334,7 +366,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             assetsLocation: $.aljs.assetsLocation,
             objectPluralLabel: 'Objects',
             objectLabel: 'Object',
+            customObjectIcon: false,
             objectIconUrl: '/assets/icons/standard-sprite/svg/symbols.svg#account',
+            objectIconClass: 'slds-icon-standard-account',
             searchTerm: '',
             items: [],
             emptySearchTermQuery: function () { callback([]); },

@@ -134,6 +134,7 @@ $(document).ready(function() {
     $('#lookup-2').lookup({
         objectPluralLabel: 'Things',
         objectLabel: 'Thing',
+        customObjectIcon: false,
         objectIconUrl: '/assets/icons/standard-sprite/svg/symbols.svg#account',
         objectIconClass: 'slds-icon-standard-account',
         emptySearchTermQuery: function(callback) {
@@ -152,6 +153,7 @@ $(document).ready(function() {
     $('#lookup-3').lookup({
         objectPluralLabel: 'Entities',
         objectLabel: 'Entity',
+        customObjectIcon: false,
         objectIconUrl: '/assets/icons/standard-sprite/svg/symbols.svg#account',
         objectIconClass: 'slds-icon-standard-account',
         emptySearchTermQuery: function(callback) {
@@ -197,6 +199,12 @@ $(document).ready(function() {
                         <td data-label="Behavior">Sets the plural label for the searchable object</td>
                         <td data-label="Accepted values">Any string</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>'Objects'</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>customObjectIcon</code></th>
+                        <td data-label="Behavior">Adjusts the generated markup accept SVG or PNG files for object icons</td>
+                        <td data-label="Accepted values"><code>true</code>, <code>false</code></td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>false</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>objectIconUrl</code></th>

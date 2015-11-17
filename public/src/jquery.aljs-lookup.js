@@ -5,7 +5,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	var pillMarkup = 
     	'<span class="slds-pill slds-pill--bare">' +
       		'<a href="#" class="slds-pill__label">' +
-        		'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon--small {{hasIcon}}">' +
+        		'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-icon--small{{hasIcon}}">' +
           			'<use xlink:href="{{objectIconUrl}}"></use>' +
         		'</svg>{{selectedResultLabel}}' +
         	'</a>' +
@@ -20,7 +20,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	var customPillMarkup = 
     	'<span class="slds-pill slds-pill--bare">' +
       		'<a href="#" class="slds-pill__label">' +
-                '<img class="{{objectIconClass}} slds-icon--small {{hasIcon}}" src="{{objectIconUrl}}"/>{{selectedResultLabel}}' +
+                '<img class="{{objectIconClass}} slds-icon slds-icon--small{{hasIcon}}" src="{{objectIconUrl}}"/>{{selectedResultLabel}}' +
         	'</a>' +
       		'<button class="slds-button slds-button--icon-bare">' +
         		'<svg aria-hidden="true" class="slds-button__icon">' +
@@ -39,7 +39,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	var useMarkup = 
 		'<div class="slds-lookup__item">' +
 			'<button class="slds-button">' +
-				'<svg aria-hidden="true" class="slds-icon-text-default slds-icon--small {{hasIcon}}">' +
+				'<svg aria-hidden="true" class="slds-icon-text-default slds-icon slds-icon--small{{hasIcon}}">' +
 					'<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#search"></use>' +
 				'</svg>&quot;{{searchTerm}}&quot; in {{objectPluralLabel}}' +
 			'</button>' +
@@ -48,7 +48,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	var addItemMarkup = 
 		'<div class="slds-lookup__item">' +
 			'<button class="slds-button">' +
-				'<svg aria-hidden="true" class="slds-icon-text-default slds-icon--small {{hasIcon}}">' +
+				'<svg aria-hidden="true" class="slds-icon-text-default slds-icon slds-icon--small{{hasIcon}}">' +
 					'<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#add"></use>' +
 				'</svg>Add {{objectLabel}}' +
 			'</button>' +
@@ -57,7 +57,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	var lookupResultItemMarkup = 
 		'<li class="slds-lookup__item">' +
 			'<a id="{{resultId}}" href="#" role="option">' +
-				'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon--small {{hasIcon}}">' +
+				'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-icon--small{{hasIcon}}">' +
 					'<use xlink:href="{{objectIconUrl}}"></use>' +
 				'</svg>{{resultLabel}}' +
 			'</a>' +
@@ -66,7 +66,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	var customLookupResultItemMarkup = 
 		'<li class="slds-lookup__item">' +
 			'<a id="{{resultId}}" href="#" role="option">' +
-                '<img class="{{objectIconClass}} slds-icon--small {{hasIcon}}" src="{{objectIconUrl}}"/>{{resultLabel}}' +
+                '<img class="{{objectIconClass}} slds-icon slds-icon--small{{hasIcon}}" src="{{objectIconUrl}}"/>{{resultLabel}}' +
 			'</a>' +
 		'</li>';
 
@@ -153,7 +153,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         		selectedResults.forEach(function(result) {
         			var $pill = $(conditionalPillMarkup.replace('{{objectIconUrl}}', self.settings.objectIconUrl)
                                 .replace('{{objectIconClass}}', self.settings.objectIconClass)
-                                .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? 'slds-icon' : 'slds-icon" style="display: none;')
+                                .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
                                 .replace('{{assetsLocation}}', self.settings.assetsLocation)
                                 .replace('{{selectedResultLabel}}', result.label));
         			$pill.removeClass('slds-pill--bare')
@@ -179,7 +179,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         	this.$singleSelect.html(conditionalPillMarkup.replace('{{objectIconUrl}}', this.settings.objectIconUrl)
                                     .replace('{{objectIconClass}}', self.settings.objectIconClass)
-                                    .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? 'slds-icon' : 'slds-icon" style="display: none;')
+                                    .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
                                     .replace('{{assetsLocation}}', this.settings.assetsLocation)
                                     .replace('{{selectedResultLabel}}', newResultLabel));
 
@@ -255,7 +255,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 var conditionalLookupMarkup = (self.settings.customObjectIcon) ? customLookupResultItemMarkup : lookupResultItemMarkup;
         		if (self.isSingle) {
         			$lookupResultItem = $resultsListContainer.append(conditionalLookupMarkup.replace('{{resultLabel}}', result.label)
-                                                                    .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? 'slds-icon' : 'slds-icon" style="display: none;')
+                                                                    .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
                                                                     .replace('{{resultId}}', result.id)
                                                                     .replace('{{objectIconUrl}}', self.settings.objectIconUrl)
                                                                     .replace('{{objectIconClass}}', self.settings.objectIconClass));
@@ -264,7 +264,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         			if (selectedResultsIds.length === 0 || selectedResultsIds.indexOf(result.id) === -1) {
         				$lookupResultItem = $resultsListContainer.append(conditionalLookupMarkup.replace('{{resultLabel}}', result.label)
-                                                                        .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? 'slds-icon' : 'slds-icon" style="display: none;')
+                                                                        .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
                                                                         .replace('{{resultId}}', result.id)
                                                                         .replace('{{objectIconUrl}}', self.settings.objectIconUrl)
                                                                         .replace('{{objectIconClass}}', self.settings.objectIconClass));

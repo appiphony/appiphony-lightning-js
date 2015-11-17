@@ -9,7 +9,7 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
     classNames: 'slds-lookup',
     classNameBindings: ['slds-has-selection'],
     attributeBindings: ['data-select', 'data-scope', 'data-typeahead', 'objectPluralLabel', 'objectLabel', 'items',
-                        'emptySearchTermQuery', 'filledSearchTermQuery', 'initSelection'],
+                        'emptySearchTermQuery', 'filledSearchTermQuery', 'initSelection', 'objectIconUrl', 'isObjectIconCustom', 'objectIconClass'],
     'slds-has-selection' : function() {
         return !Ember.isEmpty(this.get('selectedResult')) || !Ember.isEmpty(this.get('selectedResults'));
     }.property('selectedResult', 'selectedResults'),

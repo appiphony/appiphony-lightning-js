@@ -7,11 +7,16 @@
 
 		{{#if selectedResult}}
 			<div class="slds-pill-container slds-show">
-				<span class="slds-pill slds-pill--bare">
+				<span class="slds-pill slds-pill--bare" style="margin-top: 3px;">
 					<a href="#" class="slds-pill__label" {{action "clickRemoveSelection" selectedResult}}>
-						<svg aria-hidden="true" class="slds-icon slds-icon-standard-account slds-icon--small">
-							<use xlink:href="{{unbound assetsLocation}}/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
-						</svg>{{selectedResult.label}}
+						{{#if isObjectIconCustom}}
+							<img src="{{unbound objectIconUrl}}" {{bind-attr class=":slds-icon :slds-icon--small objectIconClass objectIconUrl::slds-hide"}}></img>
+						{{else}}
+							<svg aria-hidden="true" {{bind-attr class=":slds-icon :slds-icon--small objectIconClass objectIconUrl::slds-hide"}}>
+								<use xlink:href="{{unbound objectIconUrl}}"></use>
+							</svg>
+						{{/if}}
+						{{selectedResult.label}}
 					</a>
 					<button class="slds-button slds-button--icon-bare" {{action "clickRemoveSelection" selectedResult}}>
 						<svg aria-hidden="true" class="slds-button__icon">
@@ -28,11 +33,17 @@
 	{{#if selectedResults}}
 		<div class="slds-pill-container">
 			{{#each selectedResult in selectedResults}}
-				<span class="slds-pill">
+				<span class="slds-pill" style="margin-top: 3px;">
 					<a href="#" class="slds-pill__label" {{action "clickRemoveSelection" selectedResult}}>
-						<svg aria-hidden="true" class="slds-icon slds-icon-standard-account slds-icon--small">
-							<use xlink:href="{{unbound assetsLocation}}/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
-						</svg>{{selectedResult.label}}</a>
+						{{#if isObjectIconCustom}}
+							<img src="{{unbound objectIconUrl}}" {{bind-attr class=":slds-icon :slds-icon--small objectIconClass objectIconUrl::slds-hide"}}></img>
+						{{else}}
+							<svg aria-hidden="true" {{bind-attr class=":slds-icon :slds-icon--small objectIconClass objectIconUrl::slds-hide"}}>
+								<use xlink:href="{{unbound objectIconUrl}}"></use>
+							</svg>
+						{{/if}}
+						{{selectedResult.label}}
+					</a>
 					<button class="slds-button slds-button--icon-bare" {{action "clickRemoveSelection" selectedResult}}>
 						<svg aria-hidden="true" class="slds-button__icon">
 							<use xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
@@ -58,9 +69,15 @@
 			{{#each result in searchResults}}
 				<li class="slds-lookup__item" {{action "clickResult" result}}>
 					<a {{bind-attr id="result.id"}} href="javascript:void(0)" role="option">
-						<svg aria-hidden="true" class="slds-icon slds-icon-standard-account slds-icon--small">
-							<use xlink:href="{{unbound assetsLocation}}/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
-						</svg>{{result.label}}</a>
+						{{#if isObjectIconCustom}}
+							<img src="{{unbound objectIconUrl}}" {{bind-attr class=":slds-icon :slds-icon--small objectIconClass objectIconUrl::slds-hide"}}></img>
+						{{else}}
+							<svg aria-hidden="true" {{bind-attr class=":slds-icon :slds-icon--small objectIconClass objectIconUrl::slds-hide"}}>
+								<use xlink:href="{{unbound objectIconUrl}}"></use>
+							</svg>
+						{{/if}}
+						{{result.label}}
+					</a>
 				</li>
 			{{/each}}
 		</ul>

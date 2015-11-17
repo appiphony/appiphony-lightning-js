@@ -19,13 +19,13 @@
                 <tbody>
                     <tr>
                         <th scope="row"><code>objectLabel</code></th>
-                        <td data-label="Purpose">The singular label of the object you are looking up.</td>
+                        <td data-label="Purpose">The singular label of the object you are looking up</td>
                         <td data-label="Values">A valid string</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>objectPluralLabel</code></th>
-                        <td data-label="Purpose">The plural label of the object you are looking up.</td>
+                        <td data-label="Purpose">The plural label of the object you are looking up</td>
                         <td data-label="Values">A valid string</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
                     </tr>
@@ -37,14 +37,32 @@
                     </tr>
                     <tr>
                         <th scope="row"><code>emptySearchTermQuery</code></th>
-                        <td data-label="Purpose">An optional function that runs <code>callback</code> passing an array of items when an empty search is performed.</td>
+                        <td data-label="Purpose">An optional function that runs <code>callback</code> passing an array of items when an empty search is performed</td>
                         <td data-label="Values"><code>function(callback) { callback([{id: 1, label: 'One'}]); })</code></td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>filledSearchTermQuery</code></th>
-                        <td data-label="Purpose">An optional function that runs <code>callback</code> passing an array of items when a filled search is performed.</td>
+                        <td data-label="Purpose">An optional function that runs <code>callback</code> passing an array of items when a filled search is performed</td>
                         <td data-label="Values"><code>function(searchTerm, callback) { callback([{id: 1, label: 'One'}]); })</code></td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>objectIconUrl</code></th>
+                        <td data-label="Purpose">An optional string that represents a URL path to an image, if null no icon will be displayed./td>
+                        <td data-label="Values">Any valid URL to any image with a transparent background</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>isObjectIconCustom</code></th>
+                        <td data-label="Purpose">Determines whether the supplied <code>objectIconUrl</code> is a custom image or from SLDS. To specify <code>false</code>, just omit this attribute</td>
+                        <td data-label="Values"><code>"true"</code></td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>objectIconClass</code></th>
+                        <td data-label="Purpose">An optional string that determines classes applied to the object icon container</td>
+                        <td data-label="Values">Any valid string that matches class name(s)</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
                     </tr>
                 </tbody>

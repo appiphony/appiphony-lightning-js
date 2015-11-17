@@ -3,7 +3,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 (function($) {
 	var selectContainerMarkup = '<div class="slds-pill-container slds-hide"></div>';
 	var pillMarkup = 
-    	'<span class="slds-pill slds-pill--bare">' +
+    	'<span class="slds-pill slds-pill--bare"{{marginTop}}>' +
       		'<a href="#" class="slds-pill__label">' +
         		'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-icon--small{{hasIcon}}">' +
           			'<use xlink:href="{{objectIconUrl}}"></use>' +
@@ -18,7 +18,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     	'</span>';
 
 	var customPillMarkup = 
-    	'<span class="slds-pill slds-pill--bare">' +
+    	'<span class="slds-pill slds-pill--bare"{{marginTop}}>' +
       		'<a href="#" class="slds-pill__label">' +
                 '<img class="{{objectIconClass}} slds-icon slds-icon--small{{hasIcon}}" src="{{objectIconUrl}}"/>{{selectedResultLabel}}' +
         	'</a>' +
@@ -153,6 +153,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         		selectedResults.forEach(function(result) {
         			var $pill = $(conditionalPillMarkup.replace('{{objectIconUrl}}', self.settings.objectIconUrl)
                                 .replace('{{objectIconClass}}', self.settings.objectIconClass)
+                                .replace('{{marginTop}}', (self.settings.objectIconUrl !== '') ? '' : ' style="margin-top: 3px"')
                                 .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
                                 .replace('{{assetsLocation}}', self.settings.assetsLocation)
                                 .replace('{{selectedResultLabel}}', result.label));
@@ -179,6 +180,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         	this.$singleSelect.html(conditionalPillMarkup.replace('{{objectIconUrl}}', this.settings.objectIconUrl)
                                     .replace('{{objectIconClass}}', self.settings.objectIconClass)
+                                    .replace('{{marginTop}}', (self.settings.objectIconUrl !== '') ? '' : ' style="margin-top: 3px"')
                                     .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
                                     .replace('{{assetsLocation}}', this.settings.assetsLocation)
                                     .replace('{{selectedResultLabel}}', newResultLabel));

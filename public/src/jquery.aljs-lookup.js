@@ -305,9 +305,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         handleBlur: function(e) {
         	var self = e.data;
 
-        	if ($(e.relatedTarget).closest('.slds-lookup__menu').length === 0 && self.$lookupSearchContainer) {
-        		self.closeSearchDropdown();
-        	}
+            window.setTimeout(function() {
+            	if ($(e.relatedTarget).closest('.slds-lookup__menu').length === 0 && self.$lookupSearchContainer) {
+            		self.closeSearchDropdown();
+            	}
+            }, 100);
         },
         clickResult: function(e) {
         	var self = e.data;
@@ -330,6 +332,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         		this.setMultiSelect(this.selectedResults);
         		this.$el.val('');
         	}
+
+            this.settings.onChange(selectedResultArray.length > 0 ? selectedResultArray[0] : null);
         },
         clearSingleSelect: function(e) {
         	var self = e.data;
@@ -353,6 +357,13 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         		self.setMultiSelect(self.selectedResults);
         	}
+        },
+        getSelection: function() {
+            if (this.isSingle) {
+                return this.selectedResult;
+            } else {
+                return this.selectedResults;
+            }
         }
     };
 
@@ -373,7 +384,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             items: [],
             emptySearchTermQuery: function () { callback([]); },
             filledSearchTermQuery: function (searchTerm, callback) { callback([]); },
-            clickAddFunction: null
+            clickAddFunction: null,
+            onChange: function() {}
         }, typeof options === 'object' ? options : {});
 
         this.each(function() {
@@ -390,7 +402,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             }
         });
 
-        if (internalReturn === undefined || internalReturn instanceof Picklist) {
+        if (internalReturn === undefined || internalReturn instanceof Lookup) {
             return this;
         }
 

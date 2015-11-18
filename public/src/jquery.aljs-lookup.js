@@ -86,8 +86,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         if (!this.isStringEmpty(options.searchTerm)) {
     		this.$el.val(options.searchTerm);
     		this.setSingleSelect();
-    	} else if (options.initialSelectedResult) {
-    		this.setSingleSelect(options.initialSelectedResult.label);
+    	} else if (options.initialSelection) {
+    		this.setSelection(options.initialSelection);
     	}
 
         this.initLookup();
@@ -360,9 +360,30 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         },
         getSelection: function() {
             if (this.isSingle) {
-                return this.selectedResult;
+                return this.selectedResult || null;
             } else {
-                return this.selectedResults;
+                return this.selectedResults || null;
+            }
+        },
+        setSelection: function(selection) {
+            var self = this;
+
+            if (selection && typeof selection === 'object') {
+
+                if (selection instanceof Array) {
+                    this.searchResults = selection;
+                    this.selectedResults = [];
+
+                    selection.forEach(function(s) {
+                        self.selectResult(s.id);
+                    });
+                } else {
+                    this.selectedResult = null;
+                    this.searchResults = [selection];
+                    self.selectResult(selection.id);
+                }
+            } else {
+                throw new Error('setSelection must be called with either a valid result object or an array of result objects.')
             }
         }
     };
@@ -385,7 +406,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             emptySearchTermQuery: function () { callback([]); },
             filledSearchTermQuery: function (searchTerm, callback) { callback([]); },
             clickAddFunction: null,
-            onChange: function() {}
+            onChange: function() {},
+            initialSelection: null
         }, typeof options === 'object' ? options : {});
 
         this.each(function() {

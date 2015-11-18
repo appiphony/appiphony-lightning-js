@@ -231,10 +231,55 @@ $(document).ready(function() {
                         <td data-label="Default value" class="slds-cell-shrink"><code>function (searchTerm, callback) { callback([]); }</code></td>
                     </tr>
                     <tr>
+                        <th scope="row"><code>initialSelection</code></th>
+                        <td data-label="Behavior">An object or array of objects that the lookup will initially have selected</td>
+                        <td data-label="Accepted values">Either a valid search result object or an array of result objects</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
+                    </tr>
+                    <tr>
                         <th scope="row"><code>clickAddFunction</code></th>
                         <td data-label="Behavior">A function that runs when a user clicks the "Add" link in the search results</td>
                         <td data-label="Accepted values">Any callback function</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>onChange</code></th>
+                        <td data-label="Behavior">A function that runs when a user selects a search result. The selected object is passed in.</td>
+                        <td data-label="Accepted values">Any callback function</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>function() {}</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <h4 class="site-text-heading--large">Methods</h4>
+{{#aljs-pre-container type="js"}}
+$('#lookup-1').lookup('getSelection');
+$('#lookup-1').lookup('setSelection', { id: 1, label: 'item1'});
+$('#lookup-1').lookup('setSelection', [{ id: 1, label: 'item1'}, { id: 2, label: 'item2'}]);
+{{/aljs-pre-container}}
+        <p class="slds-m-top--medium">This table details the methods available for the jQuery function.</p>
+        <div class="slds-scrollable--x">
+            <table class="slds-table slds-table--bordered slds-max-medium-table--stacked slds-no-row-hover slds-m-top--medium">
+                <thead>
+                    <tr class="site-text-heading--label">
+                        <th scope="col">Method</th>
+                        <th scope="col">jQuery object</th>
+                        <th scope="col">Parameters</th>
+                        <th scope="col">Outcome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"><code>getSelection</code></th>
+                        <td data-label="jQuery object">The target lookup</td>
+                        <td data-label="Parameters">None</td>
+                        <td data-label="Outcome">The object that is selected is returned</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>setSelection</code></th>
+                        <td data-label="jQuery object">The target lookup</td>
+                        <td data-label="Parameters">Either a valid search result object or an array of result objects</td>
+                        <td data-label="Outcome">The lookup is set to the passed in selection(s)</td>
                     </tr>
                 </tbody>
             </table>

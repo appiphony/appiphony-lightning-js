@@ -11,6 +11,22 @@ _AljsApp.AljsSimpleTabsComponent = Ember.Component.extend({
 
         return !Ember.isEmpty(sldsTabsClass) ? sldsTabsClass[0] + '__nav' : null;
     }.property(),
+    sldsTabsItemClass: function() {
+        var classes = this.get('classNames');
+        var sldsTabsClass = classes.filter(function(className) {
+            return !Ember.isEmpty(className.match('slds-tabs'));
+        });
+
+        return !Ember.isEmpty(sldsTabsClass) ? sldsTabsClass[0] + '__item slds-text-heading--label' : null;
+    }.property(),
+    sldsTabsLinkClass: function() {
+        var classes = this.get('classNames');
+        var sldsTabsClass = classes.filter(function(className) {
+            return !Ember.isEmpty(className.match('slds-tabs'));
+        });
+
+        return !Ember.isEmpty(sldsTabsClass) ? sldsTabsClass[0] + '__link' : null;
+    }.property(),
     tabLinks: function() {
         var activeTabIndex = this.get('activeTabIndex');
         return this.get('tabObjects').map(function(tab, index) {

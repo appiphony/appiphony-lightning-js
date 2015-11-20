@@ -1,7 +1,7 @@
 {
   "name": "salesforce-lightning-javascript-toolkit",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.2",
+  "description": "Current release: 0.1.2   See it in action here: <a href=\"http://aljs.appiphony.com\" target=\"_blank\">http://aljs.appiphony.com</a>",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,6 +21,15 @@
     "gulp-concat": "^2.6.0",
     "gulp-ember-templates": "0.5.2",
     "gulp-neuter": "~0.1.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.4.2",
+    "gulp-zip": "^3.0.2"
+  },
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-ember-templates": "^0.5.2",
+    "gulp-neuter": "^0.1.3",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.4.2",
     "gulp-zip": "^3.0.2"

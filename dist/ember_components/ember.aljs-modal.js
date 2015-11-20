@@ -63,7 +63,8 @@ _AljsApp.AljsModalComponent = Ember.Component.extend(Ember.Evented, {
 
             $('body').on('click.' + modalId, '[data-aljs-show="' + modalId + '"]', this, this.openModal);
 
-            this.$().find('.slds-modal').on('dismiss.' + modalId, this, this.closeModal);
+            this.$().find('.slds-modal').on('dismiss.' + modalId, this, this.closeModal)
+                                        .on('show.' + modalId, this, this.openModal);
         });
     },
     willDestroyElement: function() {

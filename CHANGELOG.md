@@ -1,6 +1,7 @@
 # Appiphony Lightning JS Beta
 
 ### Release 0.1.1 — November 12, 2015
+
 #### jQuery
 * **Datepickers**: Multiple datepickers on a page now properly close each other <a href="https://github.com/appiphony/appiphony-lightning-js/issues/5">(GitHub Issue #5)</a>
 * **Datepickers**: Added the ability to pass in an onChange callback function <a href="https://github.com/appiphony/appiphony-lightning-js/issues/4">(GitHub Issue #4)</a>
@@ -15,6 +16,7 @@
 * **Tabs**: Added support for left and right key navigation
 * **Tabs**: Updated aria-selected and tabindex attributes to match SLDS requirements
 * **Tooltips**: Fixed tooltip line height when triggered from inside a button
+
 #### Ember
 * **Checkboxes**: Added a checkbox component
 * **Datepickers**: Added a multi-range datepicker component

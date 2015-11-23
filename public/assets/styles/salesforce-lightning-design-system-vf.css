@@ -3517,10 +3517,10 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
     .slds .slds-tabs--default__link:focus {
       color: #0070d2;
       box-shadow: #0070d2 0 -1px 0 inset; }
-  .slds.slds-active .slds-tabs--default__link {
+  .slds .slds-active .slds-tabs--default__link {
     border-color: #0070d2;
     color: #16325c; }
-    .slds.slds-active .slds-tabs--default__link:focus {
+    .slds .slds-active .slds-tabs--default__link:focus {
       color: #0070d2; }
   .slds .slds-tabs--default .slds-tabs__item--overflow {
     overflow: visible; }

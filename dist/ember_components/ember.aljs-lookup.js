@@ -8,7 +8,7 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
     layoutName: 'components/aljs-lookup',
     classNames: 'slds-lookup',
     classNameBindings: ['slds-has-selection'],
-    attributeBindings: ['data-select', 'data-scope', 'data-typeahead', 'objectPluralLabel', 'objectLabel', 'items',
+    attributeBindings: ['data-select', 'data-scope', 'data-typeahead', 'objectPluralLabel', 'objectLabel', 'items', 'searchTerm', 'ctrl',
                         'emptySearchTermQuery', 'filledSearchTermQuery', 'initSelection', 'objectIconUrl', 'isObjectIconCustom', 'objectIconClass'],
     'slds-has-selection' : function() {
         return !Ember.isEmpty(this.get('selectedResult')) || !Ember.isEmpty(this.get('selectedResults'));
@@ -118,7 +118,7 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
                 }));
             };
 
-            this.get('emptySearchTermQuery')(callback);
+            this.get('emptySearchTermQuery').call(this, callback);
         }
     },
     getSearchTermResults: function(searchTerm) {
@@ -139,7 +139,7 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
                 }));
             };
 
-            this.get('filledSearchTermQuery')(callback);
+            this.get('filledSearchTermQuery').call(this, searchTerm, callback);
         }
     },
     searchResultsChanged: function() {

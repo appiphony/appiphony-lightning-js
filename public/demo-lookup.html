@@ -21,7 +21,7 @@
         <div class="slds-lookup" data-select="single" data-scope="single" data-typeahead="true">
             <p class="slds-text-heading--small slds-m-bottom--x-small">Passing in an Items List</p>
 			<div class="slds-form-element">
-				<label class="slds-form-element__label" for="lookup">Objects</label>
+				<label class="slds-form-element__label" for="lookup-1">Objects</label>
 				<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
 					<svg aria-hidden="true" class="slds-input__icon">
 						<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#search"></use>
@@ -33,7 +33,7 @@
 		<div class="slds-lookup" data-select="single" data-scope="single" data-typeahead="true">
             <p class="slds-text-heading--small slds-m-bottom--x-small slds-m-top--large">Passing in Functions to Get Items</p>
 			<div class="slds-form-element">
-				<label class="slds-form-element__label" for="lookup">Things</label>
+				<label class="slds-form-element__label" for="lookup-2">Things</label>
 				<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
 					<svg aria-hidden="true" class="slds-input__icon">
 						<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#search"></use>
@@ -45,7 +45,7 @@
 		<div class="slds-lookup" data-select="multi" data-scope="single" data-typeahead="true">
             <p class="slds-text-heading--small slds-m-bottom--x-small slds-m-top--large">Multi Select Lookup</p>
 			<div class="slds-form-element">
-				<label class="slds-form-element__label" for="lookup">Entities</label>
+				<label class="slds-form-element__label" for="lookup-3">Entities</label>
 				<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
 					<svg aria-hidden="true" class="slds-input__icon">
 						<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#search"></use>
@@ -56,7 +56,7 @@
 		</div>
         <div class="slds-text-longform slds-m-top--large">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum porta sem, a eleifend sapien placerat non. Phasellus at sapien commodo, commodo risus quis, laoreet lectus. Mauris dictum sodales fringilla. Nam mi dolor, egestas vel lobortis sed, mattis vitae risus. Aenean eget lorem arcu. Nulla erat purus, consequat a lacus id, consequat molestie arcu. Fusce volutpat dui mattis rhoncus pellentesque. Nulla iaculis turpis in dolor rhoncus euismod nec ut ligula. Ut vel pulvinar nulla, in aliquam ante. Proin mollis, tortor eu semper maximus, urna sem vehicula ante, vel aliquam diam ipsum sed justo. Etiam finibus tortor orci, sed molestie lectus efficitur sed. Aenean euismod ipsum sit amet enim rutrum feugiat.</p>
-            <p>Fusce ut egestas tellus, in facilisis dui. Sed at urna sed nisi pharetra maximus et eu est. Etiam condimentum magna eget nulla lacinia, sit amet ultricies ligula congue. Cras pretium metus a eros ornare vehicula sed non metus. Pellentesque nec nisl nec justo dapibus aliquam a nec quam. Nunc et bibendum lacus. Maecenas at venenatis nibh. Nullam mollis, enim quis dictum luctus, sem turpis egestas dolor, ut interdum risus mi vitae quam. Aenean eu nibh ullamcorper, fermentum sem eget, mollis arcu. Nullam vulputate, ante in ullamcorper ultricies, ipsum augue imperdiet ante, ut iaculis magna mi in eros. Ut vel pulvinar nulla, in aliquam ante. Aliquam convallis, dui quis varius gravida, urna turpis tempor nibh, sit amet tempus lectus ligula ut turpis. Nunc nec mollis quam, et efficitur augue.</p>
+            <p>Fusce ut egestas tellus, in facilisis dui. Sed at urna sed nisi pharetra maximus et eu est. Etiam condimentum magna eget nulla lacinia, sit amet ultricies ligula congue. Cras pretium metus a eros ornare vehicula sed non metus. Pellentesque nec nisl nec justo dapibus aliquam a nec quam. Nunc et bibendum lacus. Maecenas at venenatis nibh. Nullam mollis, enim quis dictum luctus, sem turpis egestas dolor, ut interdum risus mi vitae quam. Aenean eu nibh ullamcorper, fermentum sem eget, mollis arcu. Nullam vulputate, ante in ullamcorper ultricies, ipsum augue imperdiet ante, ut iaculis magna mi in eros. Ut vel pulvinar nulla, in aliquam ante. Aliquam convallis, dui quis varius gravida, urna turpis tempor nibh, sit amet tempus.</p>
         </div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -127,7 +127,8 @@
         	$('#lookup-2').lookup({
         		objectPluralLabel: 'Things',
         		objectLabel: 'Thing',
-        		objectIconUrl: 'assets/icons/standard-sprite/svg/symbols.svg#record',
+        		objectIconUrl: 'assets/icons/standard-sprite/svg/symbols.svg#account',
+                objectIconClass: 'slds-icon-standard-account',
         		emptySearchTermQuery: function(callback) {
         			callback(results);
         		},
@@ -138,13 +139,15 @@
         		},
         		clickAddFunction: function() {
         			console.log('redirect or do something to add something');
-        		}
+        		},
+                initialSelection: { id: 'ajax-result-1', label: 'ajaxResult1' }
         	});
 
         	$('#lookup-3').lookup({
         		objectPluralLabel: 'Entities',
         		objectLabel: 'Entity',
-        		objectIconUrl: 'assets/icons/standard-sprite/svg/symbols.svg#record',
+        		objectIconUrl: 'assets/icons/standard-sprite/svg/symbols.svg#account',
+                objectIconClass: 'slds-icon-standard-account',
         		emptySearchTermQuery: function(callback) {
         			callback(results);
         		},

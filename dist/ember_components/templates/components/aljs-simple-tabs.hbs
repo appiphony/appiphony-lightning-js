@@ -1,6 +1,6 @@
 <ul {{bind-attr class="sldsTabsNavClass"}} role="tablist">
 	{{#each tabLink in tabLinks}}
-		<li {{bind-attr class=":slds-tabs__item :slds-text-heading--label tabLink.isActive:slds-active" title="tabLink.label" tabindex="tabLink.index"}} role="presentation" {{action "clickTab" tabLink}}><a href="#" role="tab" {{bind-attr aria-selected="tabLink.isActive:true:false" aria-controls="tabLink.partialId"}}>{{tabLink.label}}</a></li>
+		<li {{bind-attr class="sldsTabsItemClass tabLink.isActive:slds-active" title="tabLink.label" tabindex="tabLink.index"}} role="presentation" {{action "clickTab" tabLink}}><a {{bind-attr class="sldsTabsLinkClass"}} href="#" role="tab" {{bind-attr aria-selected="tabLink.isActive:true:false" aria-controls="tabLink.partialId"}}>{{tabLink.label}}</a></li>
 	{{/each}}
 </ul>
 <div class="slds-tabs__content" role="tabpanel">

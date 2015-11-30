@@ -106,20 +106,24 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
             var openDatepicker = function(e) {
                 e.stopPropagation();
+                // Close other datepickers
+                $('[data-aljs-datepicker-id]').not(this).each(function() {
+                    $(this).data('datepicker').closeDatepicker();
+                });
+
                 if ((e.target === $el[0] && ($el.val() !== null && $el.val() !== '')) || (e.target === $elEndDate[0] && ($elEndDate.val() !== null && $elEndDate.val() !== ''))) {
-
+                    self.$selectedInput = $(this).parent().find('input');
+                    self.$selectedInput.on('keyup', self, self.processKeyup)
+                                       .on('blur', self, self.processBlur);
+                    self.closeDatepicker();
                 } else {
-                    // Close other datepickers
-                    $('[data-aljs-datepicker-id]').not(this).each(function() {
-                        $(this).data('datepicker').closeDatepicker();
-                    });
-
                     var initDate = self.selectedFullDate || moment();
                     self.viewedMonth = initDate.month();
                     self.viewedYear = initDate.year();
                     self.fillMonth();
                     self.$selectedInput = $(this).parent().find('input');
-
+                    self.$selectedInput.off('keyup')
+                                       .off('blur');
                     // if ($el.closest('.slds-form-element').next('.slds-datepicker').length > 0) {
                     //     $datepickerEl.show();
                     // } else {
@@ -132,6 +136,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     //}  
                     //if ()
                     self.$selectedInput.blur();
+
                     $('body').on('click', self, self.closeDatepicker); 
                 }  
             };
@@ -239,7 +244,6 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             }
 
             $yearSelect.on('change', function(e) {
-                console.log('update');
                 self.viewedYear = $(e.target).val();
                 self.fillMonth();
             });
@@ -289,7 +293,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     isCurrentMonth: true,
                     isSelected: selectedFullDate && iDate.isSame(selectedFullDate, 'day'),
                     isSelectedEndDate: selectedEndDate && iDate.isSame(selectedEndDate, 'day'),
-                    isSelectedMulti: selectedFullDate && selectedEndDate && iDate.isBetween(selectedFullDate, selectedEndDate),
+                    isSelectedMulti: selectedFullDate && selectedEndDate && (iDate.isBetween(selectedFullDate, selectedEndDate) || iDate.isSame(selectedFullDate, 'day') || iDate.isSame(selectedEndDate, 'day')),
                     isToday: iDate.isSame(moment(), 'day')
                 });
             }
@@ -297,7 +301,10 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             // Split array into rows of 7
             allDays.forEach(function(day, index, allDays) {
                 if (index % 7 === 0) {
-                    var hasMultiRowSelection = index >= 7 && allDays[index - 1].isSelectedMulti && day.isSelectedMulti;
+                    var hasMultiRowSelection = (index >= 7 && allDays[index - 1].isSelectedMulti && day.isSelectedMulti);
+                                                //|| (allDays[index + 6] && allDays[index + 6].isSelectedMulti === true 
+                                                //    && allDays[index + 7] && allDays[index + 7].isSelectedMulti === true);
+                    
                     if (hasMultiRowSelection) {
                         calendarRows[calendarRows.length - 1].hasMultiRowSelection = true;
                     }
@@ -330,14 +337,24 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             return calendarRows;
         },
         setSelectedFullDate: function(selectedFullDate) {
+            var oldDate = this.selectedFullDate;
+
             this.selectedFullDate = selectedFullDate;
             this.$el.val(selectedFullDate.format(this.settings.format));
-            this.settings.onChange(this);
+
+            if (!oldDate || (!oldDate.isSame(selectedFullDate, 'day'))) {
+                this.settings.onChange(this);
+            }
         },
         setSelectedEndDate: function(selectedEndDate) {
+            var oldDate = this.selectedEndDate;
+
             this.selectedEndDate = selectedEndDate;
             this.$elEndDate.val(selectedEndDate.format(this.settings.format));
-            this.settings.onChange(this);
+
+            if (!oldDate || (!oldDate.isSame(selectedEndDate, 'day'))) {
+                this.settings.onChange(this);
+            }
         },
         processClick: function(e) {
             e.preventDefault();
@@ -365,6 +382,44 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             // } else {
             //     self.hideYearDropdown();
             // }
+        },
+        processKeyup: function(e) {
+            if (e.keyCode === 13) {
+                $(this).blur();
+                // var self = e.data;
+                // var selectedDate = $(this).val();
+
+                // if (moment(selectedDate).isValid()) {
+                //     if (self.$elEndDate && self.$elEndDate.length > 0 && self.$elEndDate[0] === self.$selectedInput[0]) {
+                //         self.setSelectedEndDate(moment(selectedDate, self.settings.format));
+                //     } else {
+                //         self.setSelectedFullDate(moment(selectedDate, self.settings.format));
+                //     }
+
+                //     self.closeDatepicker(e);
+                //     $(this).blur();
+                // } 
+            }  
+        },
+        processBlur: function(e) {
+            if (e) {
+                var self = e.data;
+                var selectedDate = $(this).val();
+                var momentSelectedDate = moment(selectedDate, self.settings.format);
+
+                if (momentSelectedDate.isValid()) {
+                    if (self.$elEndDate && self.$elEndDate.length > 0 && self.$elEndDate[0] === self.$selectedInput[0]) {
+                        self.setSelectedEndDate(momentSelectedDate);
+                    } else {
+                        self.setSelectedFullDate(momentSelectedDate);
+                    }
+
+                    self.closeDatepicker(e);
+                    self.$selectedInput.off('keyup')
+                                       .off('blur');
+                    //$(this).blur();
+                } 
+            }  
         },
         clickPrev: function(e) {
             var self = e.data;

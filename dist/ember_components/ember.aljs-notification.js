@@ -7,6 +7,9 @@ _AljsApp.AljsNotificationComponent = Ember.Component.extend({
     	var $el = this.$();
     	var dismissClass = this.get('dismissClass');
 
+        this.$().find('.slds-notify').addClass(this.get('class'));
+        this.$().attr('class', '');
+
     	if (!Ember.isEmpty(dismissClass)) {
     		$el.find('.' + dismissClass).one('click', function(e) {
     			$el.addClass('slds-hide');

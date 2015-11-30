@@ -2,12 +2,14 @@
 	<div class="slds-modal__container">
 		<div class="slds-modal__header" data-qa-container="modalHeader">
             <headerYield></headerYield>
-            <button class="slds-button slds-modal__close slds-button--icon-inverse" data-aljs-dismiss="{{unbound modalId}}">
-                <svg aria-hidden="true" class="slds-button__icon slds-button__icon--inverse slds-button__icon--large">
-                    <use xlink:href="{{unbound assetsLocation}}/assets/icons/action-sprite/svg/symbols.svg#close"></use>
-                </svg>
-                <span class="slds-assistive-text">Close</span>
-            </button>
+            {{#unless hasCustomCloseButton}}
+                <button class="slds-button slds-modal__close slds-button--icon-inverse" data-aljs-dismiss="{{unbound modalId}}" data-qa-button="closeModal">
+                    <svg aria-hidden="true" class="slds-button__icon slds-button__icon--inverse slds-button__icon--large">
+                        <use xlink:href="{{unbound assetsLocation}}/assets/icons/action-sprite/svg/symbols.svg#close"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+            {{/unless}}
         </div>
         <div class="slds-modal__content">
             <div data-qa-container="modalBody">

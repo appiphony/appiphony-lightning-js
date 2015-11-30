@@ -8,16 +8,16 @@
 * **Lookups**: Added an onChange option to run when a user selects a result
 * **Lookups**: Added an initialSelection option to set the selected result on load
 * **Lookups**: Added a setSelection method to programmatically set the selected result
-* **Lookups**: Added the option to remove icons on lookup results
-* **Lookups**: Added support custom object icons
+* **Lookups**: Added support for custom object icons and hiding icons from results markup <a href="https://github.com/appiphony/appiphony-lightning-js/issues/8">(GitHub Issue #8)</a>
 * **Modals**: Updated backdrop markup to comply with 0.12.0 SLDS release
+* **Tabs**: Updated template classes to comply with 0.12.0 SLDS release
 * **Tabs**: Updated docs to comply with 0.12.0 SLDS release
 
 #### Ember
 * **Lookups**: Added support for a custom icon URL and class
-* **Lookups**: Added support custom object icons
 * **Lookups**: Updated single selected result markup to comply with 0.12.0 SLDS release
 * **Lookups**: Added support to bind to a route's controller and fixed calling the search methods
+* **Lookups**: Added support for custom object icons and hiding icons from results markup <a href="https://github.com/appiphony/appiphony-lightning-js/issues/8">(GitHub Issue #8)</a>
 * **Modals**: Updated backdrop markup to comply with 0.12.0 SLDS release
 * **Modals**: Added a show method to the jQuery call
 * **Tabs**: Updated template classes to comply with 0.12.0 SLDS release

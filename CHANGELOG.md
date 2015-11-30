@@ -1,5 +1,30 @@
 # Appiphony Lightning JS Beta
 
+### Release 0.1.2 — November 30, 2015
+
+#### jQuery
+* **Lookups**: Lookups now properly populate when selecting a result on Safari/Firefox/IE 10 <a href="https://github.com/appiphony/appiphony-lightning-js/issues/9">(GitHub Issue #9)</a>
+* **Lookups**: Updated single selected result markup to comply with 0.12.0 SLDS release
+* **Lookups**: Added an onChange option to run when a user selects a result
+* **Lookups**: Added an initialSelection option to set the selected result on load
+* **Lookups**: Added a setSelection method to programmatically set the selected result
+* **Lookups**: Added the option to remove icons on lookup results
+* **Lookups**: Added support custom object icons
+* **Modals**: Updated backdrop markup to comply with 0.12.0 SLDS release
+* **Tabs**: Updated docs to comply with 0.12.0 SLDS release
+
+#### Ember
+* **Lookups**: Added support for a custom icon URL and class
+* **Lookups**: Added support custom object icons
+* **Lookups**: Updated single selected result markup to comply with 0.12.0 SLDS release
+* **Lookups**: Added support to bind to a route's controller and fixed calling the search methods
+* **Modals**: Updated backdrop markup to comply with 0.12.0 SLDS release
+* **Modals**: Added a show method to the jQuery call
+* **Tabs**: Updated template classes to comply with 0.12.0 SLDS release
+* **Notifications**: Added support to customize classes that get applied to the slds-notify div
+
+---
+
 ### Release 0.1.1 — November 12, 2015
 
 #### jQuery

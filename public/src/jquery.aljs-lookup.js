@@ -211,7 +211,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         	if (this.settings.items.length > 0) {
         		this.searchResults = this.settings.items.filter(function(item) {
-        			return item.label.match(searchTerm) !== null;
+        			return item.label.toLowerCase().match(searchTerm.toLowerCase()) !== null;
         		});
         		this.renderSearchResults();
         	} else { 

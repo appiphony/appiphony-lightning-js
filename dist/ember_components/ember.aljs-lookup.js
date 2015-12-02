@@ -129,7 +129,7 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
 
         if (!Ember.isEmpty(items)) {
             this.set('searchResults', items.filter(function(item) {
-                return item.label.match(searchTerm) !== null
+                return item.label.toLowerCase().match(searchTerm.toLowerCase()) !== null
                         && self.showSearchResult(item);
             }));
         } else if (!Ember.isNone(this.get('filledSearchTermQuery'))) { 

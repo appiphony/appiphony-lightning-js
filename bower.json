@@ -1,6 +1,6 @@
 {
   "name": "appiphony-lightning-js",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "Your JS Solution for the Lightning Design System",
   "authors": [
     "Appiphony, LLC <info@appiphony.com>"
@@ -19,6 +19,8 @@
   "moduleType": [],
   "ignore": [
     "**/.*",
+    "**/*.json",
+    "public",
     "node_modules",
     "bower_components",
     "test",

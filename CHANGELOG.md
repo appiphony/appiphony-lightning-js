@@ -1,5 +1,18 @@
 # Appiphony Lightning JS Beta
 
+### Release 0.1.3 — December 2, 2015
+
+#### General
+* Bower install name has been edited to 'appiphony-lightning-js'
+
+#### jQuery
+* **Lookups**: Default search when a list of items is passed in is now case insensitive <a href="https://github.com/appiphony/appiphony-lightning-js/issues/10">(GitHub Issue #10)</a>
+
+#### Ember
+* **Lookups**: Default search when a list of items is passed in is now case insensitive <a href="https://github.com/appiphony/appiphony-lightning-js/issues/10">(GitHub Issue #10)</a>
+
+---
+
 ### Release 0.1.2 — November 30, 2015
 
 #### jQuery

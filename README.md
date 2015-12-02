@@ -1,6 +1,6 @@
 # Appiphony Lightning JS Beta
 ### Your JS Solution for the Lightning Design System
-Current release: 0.1.2  
+Current release: 0.1.3
 See it in action here: <a href="http://aljs.appiphony.com" target="_blank">http://aljs.appiphony.com</a>
 
 ---

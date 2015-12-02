@@ -20,7 +20,7 @@
   "ignore": [
     "**/.*",
     "**/*.json",
-    "public",
+    "aljs-ember-app",
     "node_modules",
     "bower_components",
     "test",

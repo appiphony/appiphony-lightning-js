@@ -22,6 +22,7 @@
     "**/*.json",
     "aljs-ember-app",
     "node_modules",
+    "public",
     "bower_components",
     "test",
     "tests"

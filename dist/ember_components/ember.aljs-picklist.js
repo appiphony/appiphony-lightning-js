@@ -63,7 +63,7 @@ _AljsApp.AljsPicklistComponent = Ember.Component.extend({
     setSelectedPicklistOption: function(picklistOption, optionValueKey) {
         var optionValueKey = this.get('optionValueKey');
 
-        if (optionValueKey) {
+        if (optionValueKey && !Ember.isEmpty(picklistOption)) {
             this.setProperties({
                 selection: this.get('content').findBy(optionValueKey, picklistOption.value)
             });

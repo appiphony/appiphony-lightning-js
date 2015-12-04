@@ -403,7 +403,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             objectIconClass: 'slds-icon-standard-account',
             searchTerm: '',
             items: [],
-            emptySearchTermQuery: function () { callback([]); },
+            emptySearchTermQuery: function (callback) { callback([]); },
             filledSearchTermQuery: function (searchTerm, callback) { callback([]); },
             clickAddFunction: null,
             onChange: function() {},

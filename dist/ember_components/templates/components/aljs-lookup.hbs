@@ -6,7 +6,7 @@
 		</svg>
 
 		{{#if selectedResult}}
-			<div class="slds-pill-container slds-show">
+			<div class="slds-pill__container slds-show">
 				<a href="#void" class="slds-pill">
 					{{#if isObjectIconCustom}}
 						<img src="{{unbound objectIconUrl}}" {{bind-attr class=":slds-icon :slds-pill__icon objectIconClass objectIconUrl::slds-hide"}}></img>
@@ -29,7 +29,7 @@
 		{{/if}}
 	</div>
 	{{#if selectedResults}}
-		<div class="slds-pill-container">
+		<div class="slds-pill__container">
 			{{#each selectedResult in selectedResults}}
 				<span class="slds-pill" style="margin-top: 3px;">
 					<a href="#" class="slds-pill__label" {{action "clickRemoveSelection" selectedResult}}>

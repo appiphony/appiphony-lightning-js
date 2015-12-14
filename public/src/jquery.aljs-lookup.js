@@ -1,7 +1,7 @@
 if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the ALJS initializer file") }
 
 (function($) {
-	var selectContainerMarkup = '<div class="slds-pill-container slds-hide"></div>';
+	var selectContainerMarkup = '<div class="slds-pill__container slds-hide"></div>';
 	var pillMarkup = 
     	'<span class="slds-pill">' +
       		'<a href="javascript:void(0)" class="slds-pill__label">' +

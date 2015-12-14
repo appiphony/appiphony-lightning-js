@@ -8,8 +8,9 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
     layoutName: 'components/aljs-lookup',
     classNames: 'slds-lookup',
     classNameBindings: ['slds-has-selection'],
-    attributeBindings: ['data-select', 'data-scope', 'data-typeahead', 'objectPluralLabel', 'objectLabel', 'items', 'searchTerm', 'ctrl',
-                        'emptySearchTermQuery', 'filledSearchTermQuery', 'initSelection', 'objectIconUrl', 'isObjectIconCustom', 'objectIconClass'],
+    attributeBindings: ['data-select', 'data-scope', 'data-typeahead', 'objectPluralLabel', 'objectLabel', 'items', 'searchTerm', 'ctrl', 'disabled',
+                        'emptySearchTermQuery', 'filledSearchTermQuery', 'initSelection', 'objectIconUrl', 'isObjectIconCustom', 'objectIconClass', 'placehoder',
+                        'showSearch'],
     'slds-has-selection' : function() {
         return !Ember.isEmpty(this.get('selectedResult')) || !Ember.isEmpty(this.get('selectedResults'));
     }.property('selectedResult', 'selectedResults'),
@@ -55,26 +56,37 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
             this.set('searchResults', null);
         }
     },
-    keyUp: function(e) {
-        var actionKeys = [9, 13, 16, 27, 40, 38];
+    search : function(){
+        var searchTerm = this.get('searchTerm');
+        if (Ember.isEmpty(searchTerm)) {
+            this.getDefaultResults();
+        } else {
+            this.getSearchTermResults(searchTerm);
+        }
+    },
+    keyUp: function(e) {                         
+        const TAB = 9;
+        const ENTER = 13;
+        const SHIFT = 16;
+        const ESCAPE = 27;
+        const DOWN_ARROW = 40;
+        const UP_ARROW = 38;
+        const CMD = 91;
+        const CTRL = 17;
+
+        var actionKeys = [TAB, ENTER, SHIFT, ESCAPE, DOWN_ARROW, UP_ARROW, CMD, CTRL];
         var $focusedA = this.$().find('a:focus');
 
         if (actionKeys.indexOf(e.keyCode) === -1) {
-            var searchTerm = this.get('searchTerm');
-
-            if (Ember.isEmpty(searchTerm)) {
-                this.getDefaultResults();
-            } else {
-                this.getSearchTermResults(searchTerm);
-            }
+            Ember.run.debounce(this, this.search, 200);
         }
 
-        if (e.keyCode === 27) {
+        if (e.keyCode === ESCAPE) {
             this.set('searchResults', null);
             this.$().find('input').blur();
         }
 
-        if (e.keyCode === 40) {
+        if (e.keyCode === DOWN_ARROW) {
             // DOWN
             if ($focusedA.length > 0) {
                 this.$().find('a:focus').parent().next().find('a').focus();
@@ -83,7 +95,7 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
             }
         }
 
-        if (e.keyCode === 38) {
+        if (e.keyCode === UP_ARROW) {
             // UP
             if ($focusedA.length > 0) {
                 this.$().find('a:focus').parent().prev().find('a').focus();
@@ -95,8 +107,10 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
     },
     showUse: function() {
         var searchTerm = this.get('searchTerm');
-        return !Ember.isEmpty(searchTerm) && searchTerm.length > 1;
-    }.property('searchTerm'),
+        var showSearch = this.get('showSearch') && this.get('showSearch').toString() == 'true';
+
+        return !Ember.isEmpty(searchTerm) && searchTerm.length > 1 && showSearch;
+    }.property('searchTerm', 'showSearch'),
     showSearchResult: function(result) {
         // Check if the search result has been selected and don't show otherwise.
 
@@ -119,6 +133,8 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
             };
 
             this.get('emptySearchTermQuery').call(this, callback);
+        } else {
+            this.set('searchResults', null);
         }
     },
     getSearchTermResults: function(searchTerm) {
@@ -146,7 +162,6 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
         if (!Ember.isEmpty(this.get('searchResults'))) {
             Ember.run.scheduleOnce('afterRender', this, function() {
                 var self = this;
-                console.log(this.$().find('li.slds-lookup__item'));
                 this.$().find('a[role="option"]').on('focus', function(e) {
                     self.set('focusedSearchResult', $(e.target).attr('id'));
                 });

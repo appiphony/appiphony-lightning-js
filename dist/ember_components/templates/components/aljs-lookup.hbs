@@ -25,7 +25,7 @@
 				</a>
 			</div>
 		{{else}}
-			{{aljs-lookup-input class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded=isExpanded aria-activedescendant=focusedSearchResult value=searchTerm}}
+			{{aljs-lookup-input class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded=isExpanded aria-activedescendant=focusedSearchResult value=searchTerm disabled=disabled placeholder=placeholder}}
 		{{/if}}
 	</div>
 	{{#if selectedResults}}

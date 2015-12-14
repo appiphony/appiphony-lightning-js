@@ -32,29 +32,19 @@
 						</button>
 					</div>
 				</div>
-				<div class="slds-picklist datepicker__filter--year slds-shrink-none">
-					{{#aljs-button class="slds-button--neutral slds-picklist__label" aria-haspopup="true" selectedWhen=isYearOpen action="clickYearDropdown"}}
-						{{selectedYear}}
-						<svg aria-hidden="true" class="slds-icon slds-icon--small">
-							<use xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
-						</svg>
-					{{/aljs-button}}
-					{{#if isYearOpen}}
-						<div class="slds-dropdown slds-dropdown--menu" aria-hidden="false">
-						    <ul id="yearDropdown" class="slds-dropdown__list" style="max-height: 13.5rem; overflow-y:auto;">
-						    	{{#each year in years}}
-									<li id="yearDropdown{{unbound year.value}}" class="slds-dropdown__item" aria-selected="false" {{action "clickSelectYear" year.value}}>
-										<a href="#" {{bind-attr class=":slds-truncate :slds-has-icon--left year.isSelected:slds-is-selected"}} role="menuitemradio">
-											{{#if year.isSelected}}
-												<svg aria-hidden="true" class="slds-icon slds-icon--small slds-icon--left"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{unbound assetsLocation}}/assets/icons/standard-sprite/svg/symbols.svg#task2"></use></svg>
-											{{/if}}
-											<span>{{year.value}}</span>
-										</a>
-									</li>
-								{{/each}}
-							</ul>
+				<div class="slds-form-element">
+					<div class="slds-form-element__control">
+						<div class="slds-picklist datepicker__filter--year slds-shrink-none">
+							<label>
+								{{view "select" 
+											class="slds-select select picklist__label" 
+											content=years
+											optionLabelPath="content.value"
+											optionValuePath="content.value"
+											value=selectedYear}}
+							</label>
 						</div>
-					{{/if}}
+					</div>
 				</div>
 			</div>
 			<table class="datepicker__month" role="grid" aria-labelledby="month">

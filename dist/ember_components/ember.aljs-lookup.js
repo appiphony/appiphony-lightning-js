@@ -54,9 +54,11 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
     focusOut: function(e) {
         var $relatedTarget = $(e.relatedTarget);
 
-        if (Ember.isEmpty(this.$().find($relatedTarget))) {
-            this.set('searchResults', null);
-        }
+        window.setTimeout(function() {
+            if (Ember.isEmpty(this.$().find($relatedTarget))) {
+                this.set('searchResults', null);
+            }
+        }, 100);
     },
     search : function(){
         var searchTerm = this.get('searchTerm');

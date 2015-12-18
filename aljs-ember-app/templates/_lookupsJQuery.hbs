@@ -134,7 +134,7 @@ $(document).ready(function() {
     $('#lookup-2').lookup({
         objectPluralLabel: 'Things',
         objectLabel: 'Thing',
-        customObjectIcon: false,
+        useImgTag: false,
         objectIconUrl: '/assets/icons/standard-sprite/svg/symbols.svg#account',
         objectIconClass: 'slds-icon-standard-account',
         emptySearchTermQuery: function(callback) {
@@ -153,7 +153,7 @@ $(document).ready(function() {
     $('#lookup-3').lookup({
         objectPluralLabel: 'Entities',
         objectLabel: 'Entity',
-        customObjectIcon: false,
+        useImgTag: false,
         objectIconUrl: '/assets/icons/standard-sprite/svg/symbols.svg#account',
         objectIconClass: 'slds-icon-standard-account',
         emptySearchTermQuery: function(callback) {
@@ -201,7 +201,7 @@ $(document).ready(function() {
                         <td data-label="Default value" class="slds-cell-shrink"><code>'Objects'</code></td>
                     </tr>
                     <tr>
-                        <th scope="row"><code>customObjectIcon</code></th>
+                        <th scope="row"><code>useImgTag</code></th>
                         <td data-label="Behavior">Adjusts the generated markup accept images with transparent backgrounds for object icons</td>
                         <td data-label="Accepted values"><code>true</code>, <code>false</code></td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>false</code></td>

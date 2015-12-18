@@ -149,7 +149,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	var self = this;
         	var $multiSelect = this.$multiSelect.html('');
         	var $lookupContainer = this.$lookupContainer;
-            var conditionalPillMarkup = (self.settings.customObjectIcon) ? customPillMarkup : pillMarkup;
+            var conditionalPillMarkup = (self.settings.useImgTag) ? customPillMarkup : pillMarkup;
 
         	if (selectedResults.length > 0) {
         		selectedResults.forEach(function(result) {
@@ -177,7 +177,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         setSingleSelect: function(selectedResultLabel) {
         	var self = this;
         	var newResultLabel = selectedResultLabel || '';
-            var conditionalPillMarkup = (self.settings.customObjectIcon) ? customPillMarkup : pillMarkup;
+            var conditionalPillMarkup = (self.settings.useImgTag) ? customPillMarkup : pillMarkup;
 
         	this.$singleSelect.html(conditionalPillMarkup.replace('{{objectIconUrl}}', this.settings.objectIconUrl)
                                     .replace('{{objectIconClass}}', self.settings.objectIconClass)
@@ -254,7 +254,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         	this.searchResults.forEach(function(result) {
         		var $lookupResultItem;
-                var conditionalLookupMarkup = (self.settings.customObjectIcon) ? customLookupResultItemMarkup : lookupResultItemMarkup;
+                var conditionalLookupMarkup = (self.settings.useImgTag) ? customLookupResultItemMarkup : lookupResultItemMarkup;
         		if (self.isSingle) {
         			$lookupResultItem = $resultsListContainer.append(conditionalLookupMarkup.replace('{{resultLabel}}', result.label)
                                                                     .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
@@ -398,7 +398,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             assetsLocation: $.aljs.assetsLocation,
             objectPluralLabel: 'Objects',
             objectLabel: 'Object',
-            customObjectIcon: false,
+            useImgTag: false,
             objectIconUrl: '/assets/icons/standard-sprite/svg/symbols.svg#account',
             objectIconClass: 'slds-icon-standard-account',
             searchTerm: '',

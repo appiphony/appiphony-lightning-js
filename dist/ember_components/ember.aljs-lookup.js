@@ -30,7 +30,9 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
         }
     },
     didInsertElement: function() {
-
+        if (!Ember.isEmpty(this.get('data-qa-input'))) {
+            this.$().attr('data-qa-input', null);
+        }
     },
     isExpanded: function() {
         return !Ember.isEmpty(this.get('searchResults')) ? 'true' : 'false';

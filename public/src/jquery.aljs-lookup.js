@@ -246,7 +246,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	var searchTerm = this.$el.val();
         	var self = this;
 
-        	if (!this.isStringEmpty(searchTerm) && searchTerm.length > 1) {
+        	if (!this.isStringEmpty(searchTerm) && searchTerm.length > 1 && this.settings.showSearch === true) {
         		$resultsListContainer.before(useMarkup.replace('{{searchTerm}}', searchTerm)
                                             .replace('{{objectPluralLabel}}', this.settings.objectPluralLabel)
                                             .replace('{{assetsLocation}}', $.aljs.assetsLocation));
@@ -407,7 +407,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             filledSearchTermQuery: function (searchTerm, callback) { callback([]); },
             clickAddFunction: null,
             onChange: function() {},
-            initialSelection: null
+            initialSelection: null,
+            showSearch: false
         }, typeof options === 'object' ? options : {});
 
         this.each(function() {

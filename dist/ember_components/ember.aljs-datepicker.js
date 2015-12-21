@@ -86,7 +86,7 @@ _AljsApp.AljsDatepickerFixtures = Ember.Object.create({
 });
 
 _AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
-    attributeBindings: ['selectedDate', 'selectedDateText', 'format', 'dayLabels', 'monthLabels'],
+    attributeBindings: ['selectedDate', 'selectedDateText', 'format', 'dayLabels', 'monthLabels', 'label'],
     init: function() {
         var self = this;
 
@@ -140,8 +140,8 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
     didInsertElement: function() {
         var self = this;
         
-        $('body').on('keyup.' + this.get('elementId'), {scope : this}, this.triggerClickNextOrPrev);
-        $('body').on('click.' + this.get('elementId'), {scope : this}, this.closeDatepicker);
+        $('body').on('keyup.' + this.get('elementId'), this, this.triggerClickNextOrPrev);
+        $('body').on('click.' + this.get('elementId'), this, this.closeDatepicker);
     },
     willClearRender: function() {
         $('body').off('.' + this.get('elementId'));
@@ -242,7 +242,7 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
         }
     },
     triggerClickNextOrPrev: function(e) {
-        var self = e.data;
+        var self = e.data ? e.data : this;
         if(self.get('isOpen') === true && Ember.isEmpty(self.$().find('input:focus'))) {
             if (e.keyCode === 37) {
                 self.send('clickNextOrPrevMonth', 'prev');
@@ -254,9 +254,15 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
     openDatepicker: function() {
         this.initCalendar();
         this.set('isOpen', true);
+
+        Ember.run.scheduleOnce('afterRender', this, function() {
+            if (Ember.isEmpty(this.get('selectedDate'))) {
+                this.$().find('input').blur();
+            }
+        });
     },
     closeDatepicker: function(event) {
-        var self = event.data.scope ? event.data.scope : this;
+        var self = event.data ? event.data : this;
         
         self.setProperties({
             isYearOpen: false,
@@ -344,11 +350,13 @@ _AljsApp.MultiDatepickerInputComponent = Ember.TextField.extend({
 });
 
 _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
-    attributeBindings: ['selectedStartDate', 'selectedEndDate', 'format', 'dayLabels', 'monthLabels'],
+    attributeBindings: ['selectedStartDate', 'selectedEndDate', 'format', 'dayLabels', 'monthLabels', 'startLabel', 'endLabel'],
     init: function() {
         var self = this;
 
         this._super();
+        this.set('startLabel', this.getWithDefault('startLabel', 'Start Date'));
+        this.set('endLabel', this.getWithDefault('endLabel', 'End Date'));
         this.initCalendar('Start');
         this.initCalendar('End');
 
@@ -534,6 +542,12 @@ _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
         this.set('is' + otherInputType + 'YearOpen', false);
         this.set('is' + otherInputType + 'Open', false);
         this.set(('is' + inputType + 'Open'), true);
+
+        Ember.run.scheduleOnce('afterRender', this, function() {
+            if (Ember.isEmpty(this.get('selected' + inputType + 'Date'))) {
+                this.$().find('input').blur();
+            }
+        });
     },
     closeDatepicker: function(e) {
         var self = this;

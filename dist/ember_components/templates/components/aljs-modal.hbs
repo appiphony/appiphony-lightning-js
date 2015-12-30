@@ -1,6 +1,6 @@
 <div aria-hidden="false" role="dialog" {{bind-attr class=":slds-modal isModalOpen:slds-fade-in-open"}} id="{{unbound modalId}}" data-qa-modal="{{unbound modalId}}">
 	<div class="slds-modal__container">
-		<div class="slds-modal__header" data-qa-container="modalHeader">
+		<div {{bind-attr class=":slds-modal__header headerClass"}} data-qa-container="modalHeader">
             <headerYield></headerYield>
             {{#unless hasCustomCloseButton}}
                 <button class="slds-button slds-modal__close slds-button--icon-inverse" data-aljs-dismiss="{{unbound modalId}}" data-qa-button="closeModal">
@@ -11,7 +11,7 @@
                 </button>
             {{/unless}}
         </div>
-        <div class="slds-modal__content">
+        <div {{bind-attr class=":slds-modal__content bodyClass"}}>
             <div data-qa-container="modalBody">
                 <bodyYield></bodyYield>
             </div>

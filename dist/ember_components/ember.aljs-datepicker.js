@@ -262,7 +262,7 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
         });
     },
     closeDatepicker: function(event) {
-        var self = event.data ? event.data : this;
+        var self = event && event.data ? event.data : this;
         
         self.setProperties({
             isYearOpen: false,

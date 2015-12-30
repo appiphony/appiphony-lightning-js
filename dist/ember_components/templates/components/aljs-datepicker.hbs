@@ -1,6 +1,8 @@
 <div class="slds-form--stacked">
-	<div class="slds-form-element">
-		<label class="slds-form-element__label" for="date">Date Picker Label</label>
+	<div {{bind-attr class=":slds-form-element isRequired:slds-is-required"}}>
+		{{#if label}}
+			<label class="slds-form-element__label" for="date">{{label}}</label>
+		{{/if}}
 		<div class="slds-form-element__control">
 			<div class="slds-input-has-icon slds-input-has-icon--right">
 				<svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">

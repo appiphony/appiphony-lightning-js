@@ -1,7 +1,9 @@
 <div class="slds-form-element__row slds-clearfix js-filter-set slds-show" id="applied-fields">
     <label class="slds-form-element__control slds-float--left slds-size--1-of-2">
-        <div class="slds-form-element">
-            <label class="slds-form-element__label slds-show" for="date">Start Date</label>
+        <div {{bind-attr class=":slds-form-element isRequired:slds-is-required"}}>
+        	{{#if startLabel}}
+            	<label class="slds-form-element__label slds-show" for="date">{{startLabel}}</label>
+            {{/if}}
             <div class="slds-input-has-icon slds-input-has-icon--right">
                 <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default" style="cursor: pointer;">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#event"></use>
@@ -113,8 +115,10 @@
 		{{/if}}
     </label>
     <label class="slds-form-element__control slds-col slds-size--1-of-2">
-        <div class="slds-form-element">
-            <label class="slds-form-element__label slds-show" for="date">End Date</label>
+        <div {{bind-attr class=":slds-form-element isRequired:slds-is-required"}}>
+        	{{#if endLabel}}
+            	<label class="slds-form-element__label slds-show" for="date">{{endLabel}}</label>
+            {{/if}}
             <div class="slds-input-has-icon slds-input-has-icon--right">
                 <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default" style="cursor: pointer;">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#event"></use>

@@ -1,11 +1,11 @@
 {{#if toast}}
-	<div class="slds-notify-container">
+	<div class="slds-notify-container fader" style="display:none">
 		<div {{bind-attr class=":slds-notify :slds-notify--toast theme"}} role="alert">
 			{{yield}}
 		</div>
 	</div>
 {{else}}
-	<div {{bind-attr class=":slds-notify :slds-notify--alert theme"}} role="alert">
+	<div {{bind-attr class=":slds-notify :slds-notify--alert theme :fader"}} style="display:none" role="alert">
 		{{yield}}
 	</div>
 {{/if}}

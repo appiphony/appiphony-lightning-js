@@ -2,10 +2,9 @@ if (typeof _AljsApp === 'undefined') { throw new Error("Please include ember.alj
 
 _AljsApp.AljsCheckboxComponent = Ember.Component.extend({
 	layoutName: 'components/aljs-checkbox',
-	tagName: 'label',
-	classNames: 'slds-checkbox',
+	classNames: 'slds-form-element',
 	classNameBindings: ['customClasses'],
-	attributeBindings: ['for', 'checked', 'data-qa-checkbox', 'label'],
+	attributeBindings: ['checked', 'data-qa-checkbox', 'label'],
 	didInsertElement: function() {
 		this.set('for', this.$().find('input').attr('id'));
 	}

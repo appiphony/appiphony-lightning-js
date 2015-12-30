@@ -9,18 +9,27 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
     classNames: 'slds-lookup',
     classNameBindings: ['slds-has-selection'],
     attributeBindings: ['data-select', 'data-scope', 'data-typeahead', 'objectPluralLabel', 'objectLabel', 'items', 'searchTerm', 'ctrl', 'disabled',
-                        'emptySearchTermQuery', 'filledSearchTermQuery', 'initSelection', 'objectIconUrl', 'useImgTag', 'objectIconClass', 'placehoder',
-                        'showSearch'],
+                        'emptySearchTermQuery', 'filledSearchTermQuery', 'objectIconUrl', 'isObjectIconCustom', 'objectIconClass',
+                        'showSearch', 'clearOnSelect', 'selectedResult', 'selectedResults'],
     'slds-has-selection' : function() {
-        return !Ember.isEmpty(this.get('selectedResult')) || !Ember.isEmpty(this.get('selectedResults'));
+        return (!Ember.isEmpty(this.get('selectedResult')) && !this.get('clearOnSelect')) || !Ember.isEmpty(this.get('selectedResults'));
     }.property('selectedResult', 'selectedResults'),
     init: function() {
         this._super();
-
         var isSingle = this.get('data-select') === 'single';
         var initSelection = this.get('initSelection');
 
         if (initSelection) {
+
+            if (!isSingle && typeof initSelection[0] !== 'object') {
+                initSelection = initSelection.map(function(item) {
+                    return {
+                        label: item,
+                        id: item
+                    };
+                });
+            }
+
             this.set(isSingle ? 'selectedResult' : 'selectedResults', initSelection);
         } else {
             this.setProperties({
@@ -53,10 +62,10 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
     },
     focusOut: function(e) {
         var $relatedTarget = $(e.relatedTarget);
-
+        var self = this;
         window.setTimeout(function() {
-            if (Ember.isEmpty(this.$().find($relatedTarget))) {
-                this.set('searchResults', null);
+            if (Ember.isEmpty(self.$().find($relatedTarget))) {
+                self.set('searchResults', null);
             }
         }, 100);
     },
@@ -172,12 +181,19 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
             });
         }
     }.observes('searchResults'),
+    showSelectedResult: function() {
+        return !Ember.isEmpty(this.get('selectedResult')) && !this.get('clearOnSelect');
+    }.property('selectedResult', 'clearOnSelect'),
     actions: {
         clickResult: function(result) {
             if (this.get('isSingle')) {
                 this.set('selectedResult', result);
+                if (this.get('clearOnSelect')) {
+                    this.set('searchTerm', null);
+                }
             } else {
                 this.get('selectedResults').addObject(result);
+                this.notifyPropertyChange('selectedResults');
             }
 
             this.set('searchResults', null);
@@ -191,6 +207,7 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
                 });
             } else {
                 this.get('selectedResults').removeObject(selectedResult);
+                this.notifyPropertyChange('selectedResults');
             }
         }
     }

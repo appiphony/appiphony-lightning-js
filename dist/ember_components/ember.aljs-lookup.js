@@ -14,14 +14,15 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
     'slds-has-selection' : function() {
         return (!Ember.isEmpty(this.get('selectedResult')) && !this.get('clearOnSelect')) || !Ember.isEmpty(this.get('selectedResults'));
     }.property('selectedResult', 'selectedResults'),
+    minimumSearchLength: 2,
     init: function() {
         this._super();
         var isSingle = this.get('data-select') === 'single';
         var initSelection = this.get('initSelection');
+        var items = this.get('items')
 
         if (initSelection) {
-
-            if (!isSingle && typeof initSelection[0] !== 'object') {
+            if (typeof initSelection[0] !== 'object') {
                 initSelection = initSelection.map(function(item) {
                     return {
                         label: item,
@@ -36,6 +37,19 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
                 selectedResult: null,
                 selectedResults: []
             });
+        }
+        
+        if (items) {
+            if (typeof items[0] !== 'object') {
+                items = items.map(function(item) {
+                    return {
+                        label: item,
+                        id: item
+                    };
+                });
+            }
+            
+            this.set('items', items);
         }
     },
     didInsertElement: function() {
@@ -71,10 +85,37 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
     },
     search : function(){
         var searchTerm = this.get('searchTerm');
+        var minimumSearchLength = this.get('minimumSearchLength');
+
         if (Ember.isEmpty(searchTerm)) {
             this.getDefaultResults();
-        } else {
+        } else if (searchTerm.length >= minimumSearchLength) {
             this.getSearchTermResults(searchTerm);
+        } else {
+            this.set('searchResults', null);
+        }
+    },
+    keyPress: function(e) {
+        const ENTER = 13;
+        var $focusedA = this.$().find('a:focus');
+
+        // Variables for allowing creation of an item
+        var allowNewItems = this.get('allowNewItems');
+        var tokenSeparators = this.get('tokenSeparators');
+        var searchTerm = this.getWithDefault('searchTerm', '');
+        var minimumSearchLength = this.get('minimumSearchLength');
+
+        if ((allowNewItems)
+                && (e.keyCode === ENTER || tokenSeparators.indexOf(String.fromCharCode(e.keyCode)) !== -1) 
+                && (searchTerm.length >= minimumSearchLength) 
+                && (Ember.isEmpty($focusedA))) {
+
+            var newItem = {
+                id: searchTerm,
+                label: searchTerm
+            };
+
+            this.send('clickResult', newItem);
         }
     },
     keyUp: function(e) {                         
@@ -184,16 +225,32 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
     showSelectedResult: function() {
         return !Ember.isEmpty(this.get('selectedResult')) && !this.get('clearOnSelect');
     }.property('selectedResult', 'clearOnSelect'),
+    tokenSeparatorEntered: function() {
+        var tokenCheckObj = this.getProperties(['searchTerm', 'tokenSeparators', 'allowNewItems', 'clearOnSelect']);
+
+        if (!Ember.isEmpty(tokenCheckObj.searchTerm)
+            && (tokenCheckObj.allowNewItems) 
+            && (tokenCheckObj.clearOnSelect) 
+            && (!Ember.isEmpty(tokenCheckObj.tokenSeparators) && tokenCheckObj.tokenSeparators.indexOf(tokenCheckObj.searchTerm) !== -1)) {
+            this.set('searchTerm', null);
+        }
+    }.observes('searchTerm'),
     actions: {
         clickResult: function(result) {
             if (this.get('isSingle')) {
-                this.set('selectedResult', result);
-                if (this.get('clearOnSelect')) {
-                    this.set('searchTerm', null);
-                }
+                this.set('selectedResult', result);  
             } else {
-                this.get('selectedResults').addObject(result);
-                this.notifyPropertyChange('selectedResults');
+                var selectedResults = this.get('selectedResults');
+
+                if (selectedResults.getEach('id').indexOf(result.id) === -1
+                        && selectedResults.getEach('label').indexOf(result.label) === -1) {
+                    this.get('selectedResults').addObject(result);
+                    this.notifyPropertyChange('selectedResults');
+                }
+            }
+
+            if (this.get('clearOnSelect')) {
+                this.set('searchTerm', null);                
             }
 
             this.set('searchResults', null);

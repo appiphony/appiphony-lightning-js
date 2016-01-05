@@ -131,6 +131,30 @@
                         <td data-label="Values">A valid string</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
                     </tr>
+                    <tr>
+                        <th scope="row"><code>minimumSearchLength</code></th>
+                        <td data-label="Purpose">The minimum number of characters required to perform a search or create a new item</td>
+                        <td data-label="Values">A valid integer</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>2</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>clearOnSelect</code></th>
+                        <td data-label="Purpose">An optional string/boolean that determines whether the lookup should clear the input after a user has selected a result</td>
+                        <td data-label="Values">A valid string or boolean, note - do not use "false" as string</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>allowNewItems</code></th>
+                        <td data-label="Purpose">An optional string/boolean that determines whether the user can type in a new value to be selected</td>
+                        <td data-label="Values">A valid string or boolean, note - do not use "false" as string</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>tokenSeparators</code></th>
+                        <td data-label="Purpose">If allowNewItems is truthy, tokenSeparators defines what characters would trigger creating a new item</td>
+                        <td data-label="Values">An array of single characters</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

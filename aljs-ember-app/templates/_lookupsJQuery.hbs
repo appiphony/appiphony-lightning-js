@@ -244,9 +244,9 @@ $(document).ready(function() {
                     </tr>
                     <tr>
                         <th scope="row"><code>onChange</code></th>
-                        <td data-label="Behavior">A function that runs when a user selects a search result. The selected object is passed in.</td>
+                        <td data-label="Behavior">A function that runs when a user selects or clears a search result. It can receive two parameters - <code>currentSelection</code>: the current item that is passed in, and <code>isAdd</code>: a boolean that is true on addition of a selection and false on removal.</td>
                         <td data-label="Accepted values">Any callback function</td>
-                        <td data-label="Default value" class="slds-cell-shrink"><code>function() {}</code></td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>function(currentSelection, isAdd) {}</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>showSearch</code></th>

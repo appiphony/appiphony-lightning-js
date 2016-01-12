@@ -1,7 +1,7 @@
 <div class="slds-form-element">
 	<label class="slds-form-element__label" for="lookup">{{objectPluralLabel}}</label>
 	<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
-		<svg aria-hidden="true" class="slds-input__icon">
+		<svg aria-hidden="true" class="slds-input__icon" {{action "clickSearchIcon"}} style="cursor: pointer;" tabindex="1">
 			<use xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
 		</svg>
 

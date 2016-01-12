@@ -81,7 +81,7 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
             if (Ember.isEmpty(self.$().find($relatedTarget))) {
                 self.set('searchResults', null);
             }
-        }, 100);
+        }, 200);
     },
     search : function(){
         var searchTerm = this.get('searchTerm');
@@ -266,6 +266,9 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
                 this.get('selectedResults').removeObject(selectedResult);
                 this.notifyPropertyChange('selectedResults');
             }
+        },
+        clickSearchIcon: function() {
+            this.$().find('input').focus();
         }
     }
 });

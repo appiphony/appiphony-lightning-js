@@ -309,7 +309,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             	if ($(e.relatedTarget).closest('.slds-lookup__menu').length === 0 && self.$lookupSearchContainer) {
             		self.closeSearchDropdown();
             	}
-            }, 100);
+            }, 250);
         },
         clickResult: function(e) {
         	var self = e.data;
@@ -333,12 +333,18 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         		this.$el.val('');
         	}
 
-            this.settings.onChange(selectedResultArray.length > 0 ? selectedResultArray[0] : null);
+            if (this.isSingle) {
+                this.settings.onChange(this.selectedResult, true);
+            } else {
+                this.settings.onChange(this.selectedResults, true);
+            }
         },
         clearSingleSelect: function(e) {
         	var self = e.data;
-
+            self.selectedResult = null;
         	self.setSingleSelect();
+
+            self.settings.onChange(selectResult, false);
         },
         clearMultiSelectResult: function(e) {
         	var self = e.data;
@@ -354,8 +360,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         	if (typeof indexToRemove !== 'undefined' && indexToRemove !== null) {
         		self.selectedResults.splice(indexToRemove, 1);
-
         		self.setMultiSelect(self.selectedResults);
+
+                self.settings.onChange(self.selectedResults, false);
         	}
         },
         getSelection: function() {

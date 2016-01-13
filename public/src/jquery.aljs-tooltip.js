@@ -22,7 +22,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             left: 'right',
             right: 'left'
         };
-        var tooltipPositioningCSS = 'overflow: visible; display: inline-block; position: absolute;';
+        var tooltipPositioningCSS = 'overflow: visible; display: inline-block; position: absolute; z-index:9999;';
         
         var tooltipMarkup = '<div id="' + tooltipId + '" aria-describedby="' + tooltipId + '" class="slds-tooltip slds-nubbin--' + (tooltipNubbins[tooltipPosition] || 'top') + '" role="tooltip" style="' + tooltipPositioningCSS +'">' +
                                 '<div class="slds-tooltip__content">' +
@@ -40,10 +40,6 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             var targetPos = getPosition($target)
             var calculatedOffset = getCalculatedOffset(tooltipPosition, targetPos, actualWidth, actualHeight);
             applyPlacement(calculatedOffset, tooltipPosition, actualWidth, actualHeight, $tooltipNode);
-
-            if (e.type === 'focusin') {
-                $target.focus();
-            }
         } 
     };
 

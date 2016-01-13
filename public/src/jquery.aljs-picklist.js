@@ -52,19 +52,31 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 self.obj.$dropdown.removeClass('slds-show')
                     .addClass('slds-hide');
                 self.obj.$dropdown.unbind('keyup', self.processKeypress);
+            }).keyup(function(e) {
+                if (e.keyCode === 27) { // Esc
+                    $('[data-aljs="picklist"]').picklist('close');
+                }
             });
             
         },
         processKeypress: function(e) {
             var self = e.data;
             var optionsLength = self.obj.$choices.length;
-            if (e.keyCode === 40) {
-                self.focusedIndex = self.focusedIndex === optionsLength - 1 ? 0 : self.focusedIndex + 1;
-                self.focusOnElement();
-            } else if (e.keyCode === 38) {
-                self.focusedIndex = self.focusedIndex === 0 ? optionsLength - 1 : self.focusedIndex - 1;
-                self.focusOnElement();
+            
+            switch (e.keyCode) {
+                case (40): // Down
+                    self.focusedIndex = self.focusedIndex === optionsLength - 1 ? 0 : self.focusedIndex + 1;
+                    self.focusOnElement();
+                    break;
+                case (38): // Up
+                    self.focusedIndex = self.focusedIndex === 0 ? optionsLength - 1 : self.focusedIndex - 1;
+                    self.focusOnElement();
+                    break;
+                case (27): // Esc
+                    self.$el.picklist('close');
+                    break;
             }
+            
             return false; // Prevents scrolling
         },
         focusOnElement: function() {

@@ -1,14 +1,15 @@
 <div class="slds-form-element__row slds-clearfix js-filter-set slds-show" id="applied-fields">
     <label class="slds-form-element__control slds-float--left slds-size--1-of-2">
-        <div {{bind-attr class=":slds-form-element isRequired:slds-is-required"}}>
+        <div {{bind-attr class=":slds-form-element isRequired:slds-is-required hasError:slds-has-error"}}>
         	{{#if startLabel}}
             	<label class="slds-form-element__label slds-show" for="date">{{startLabel}}</label>
             {{/if}}
             <div class="slds-input-has-icon slds-input-has-icon--right">
-                <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default" style="cursor: pointer;">
+                <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default" style="cursor: pointer;" {{action "clickStartEventIcon"}}>
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#event"></use>
                 </svg>
                 {{multi-datepicker-input class="slds-input" type="text" placeholder="Pick a start date" label="Date Picker Label" value=selectedStartDateText data-aljs-multi-datepicker="start"}}
+                {{#if errorMessage}}<span class="slds-form-element__help">{{errorMessage}}</span>{{/if}}
             </div>
         </div>
         {{#if isStartOpen}}
@@ -47,55 +48,30 @@
 							</div>
 						</div>
 					</div>
-					{{!--
-					<div class="slds-picklist datepicker__filter--year slds-shrink-none">
-						{{#aljs-button class="slds-button--neutral slds-picklist__label" aria-haspopup="true" selectedWhen=isYearOpen action="clickYearDropdown"}}
-							{{selectedStartYear}}
-							<svg aria-hidden="true" class="slds-icon slds-icon--small">
-								<use xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
-							</svg>
-						{{/aljs-button}}
-						{{#if isYearOpen}}
-							<div class="slds-dropdown slds-dropdown--menu" aria-hidden="false">
-							    <ul id="yearDropdown" class="slds-dropdown__list" style="max-height: 13.5rem; overflow-y:auto;">
-							    	{{#each year in years}}
-										<li id="yearDropdown{{unbound year.value}}" class="slds-dropdown__item" aria-selected="false" {{action "clickSelectYear" year.value}}>
-											<a href="#" {{bind-attr class=":slds-truncate :slds-has-icon--left year.isSelected:slds-is-selected"}} role="menuitemradio">
-												{{#if year.isSelected}}
-													<svg aria-hidden="true" class="slds-icon slds-icon--small slds-icon--left"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{unbound assetsLocation}}/assets/icons/standard-sprite/svg/symbols.svg#task2"></use></svg>
-												{{/if}}
-												<span>{{year.value}}</span>
-											</a>
-										</li>
-									{{/each}}
-								</ul>
-							</div>
-						{{/if}}
-					</div>--}}
 				</div>
 				<table class="datepicker__month" role="grid" aria-labelledby="month">
 					<thead>
 						<tr id="weekdays">
-							<th id="Sunday">
-								<abbr title="Sunday">S</abbr>
+							<th id="{{unbound convertNumberToDayOfWeek "0" "full"}}">
+								<abbr title="{{unbound convertNumberToDayOfWeek "0" "full"}}">{{convertNumberToDayOfWeek "0" "abbv"}}</abbr>
 							</th>
-							<th id="Monday">
-								<abbr title="Monday">M</abbr>
+							<th id="{{unbound convertNumberToDayOfWeek "1" "full"}}">
+								<abbr title="{{unbound convertNumberToDayOfWeek "1" "full"}}">{{convertNumberToDayOfWeek "1" "abbv"}}</abbr>
 							</th>
-							<th id="Tuesday">
-								<abbr title="Tuesday">T</abbr>
+							<th id="{{unbound convertNumberToDayOfWeek "2" "full"}}">
+								<abbr title="{{unbound convertNumberToDayOfWeek "2" "full"}}">{{convertNumberToDayOfWeek "2" "abbv"}}</abbr>
 							</th>
-							<th id="Wednesday">
-								<abbr title="Wednesday">W</abbr>
+							<th id="{{unbound convertNumberToDayOfWeek "3" "full"}}">
+								<abbr title="{{unbound convertNumberToDayOfWeek "3" "full"}}">{{convertNumberToDayOfWeek "3" "abbv"}}</abbr>
 							</th>
-							<th id="Thursday">
-								<abbr title="Thursday">T</abbr>
+							<th id="{{unbound convertNumberToDayOfWeek "4" "full"}}">
+								<abbr title="{{unbound convertNumberToDayOfWeek "4" "full"}}">{{convertNumberToDayOfWeek "4" "abbv"}}</abbr>
 							</th>
-							<th id="Friday">
-								<abbr title="Friday">F</abbr>
+							<th id="{{unbound convertNumberToDayOfWeek "5" "full"}}">
+								<abbr title="{{unbound convertNumberToDayOfWeek "5" "full"}}">{{convertNumberToDayOfWeek "5" "abbv"}}</abbr>
 							</th>
-							<th id="Saturday">
-								<abbr title="Saturday">S</abbr>
+							<th id="{{unbound convertNumberToDayOfWeek "6" "full"}}">
+								<abbr title="{{unbound convertNumberToDayOfWeek "6" "full"}}">{{convertNumberToDayOfWeek "6" "abbv"}}</abbr>
 							</th>
 						</tr>
 					</thead>
@@ -103,7 +79,7 @@
 						{{#each row in calendarRows}}
 							<tr {{bind-attr class="row.slds-has-multi-row-selection"}}>
 								{{#each col in row.data}}
-									<td {{bind-attr class="col.isCurrentMonth::slds-disabled-text col.isToday:slds-is-today col.isSelected:slds-is-selected col.isSelected:slds-is-selected-multi" aria-disabled="col.isCurrentMonth:false:true"}} headers="Sunday" role="gridcell" {{action "clickSelectDate" col}}>
+									<td {{bind-attr class="col.isCurrentMonth::slds-disabled-text col.isToday:slds-is-today col.isSelected:slds-is-selected col.isSelected:slds-is-selected-multi" aria-disabled="col.isCurrentMonth:false:true"}} {{bind-attr headers="col.headerText"}} role="gridcell" {{action "clickSelectDate" col}}>
 										<span class="slds-day">{{col.value}}</span>
 									</td>
 								{{/each}}
@@ -120,14 +96,15 @@
             	<label class="slds-form-element__label slds-show" for="date">{{endLabel}}</label>
             {{/if}}
             <div class="slds-input-has-icon slds-input-has-icon--right">
-                <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default" style="cursor: pointer;">
+                <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default" style="cursor: pointer;" {{action "clickEndEventIcon"}}>
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#event"></use>
                 </svg>
                 {{multi-datepicker-input class="slds-input" type="text" placeholder="Pick an end date" label="Date Picker Label" value=selectedEndDateText data-aljs-multi-datepicker="end"}}
+                {{#if errorMessage}}<span class="slds-form-element__help">{{errorMessage}}</span>{{/if}}
             </div>
         </div>
         {{#if isEndOpen}}
-			<div class="slds-dropdown slds-dropdown--left slds-datepicker" aria-hidden="false" data-selection="single">
+			<div class="slds-dropdown slds-dropdown--left slds-datepicker" style="margin-left: 8px;" aria-hidden="false" data-selection="single">
 				<div class="slds-datepicker__filter slds-grid">
 					<div class="slds-datepicker__filter--month slds-grid slds-grid--align-spread slds-size--3-of-4">
 						<div class="slds-align-middle">
@@ -162,54 +139,30 @@
 							</div>
 						</div>
 					</div>
-					{{!--<div class="slds-picklist datepicker__filter--year slds-shrink-none">
-						{{#aljs-button class="slds-button--neutral slds-picklist__label" aria-haspopup="true" selectedWhen=isYearOpen action="clickYearDropdown"}}
-							{{selectedEndYear}}
-							<svg aria-hidden="true" class="slds-icon slds-icon--small">
-								<use xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
-							</svg>
-						{{/aljs-button}}
-						{{#if isYearOpen}}
-							<div class="slds-dropdown slds-dropdown--menu" aria-hidden="false">
-							    <ul id="yearDropdown" class="slds-dropdown__list" style="max-height: 13.5rem; overflow-y:auto;">
-							    	{{#each year in years}}
-										<li id="yearDropdown{{unbound year.value}}" class="slds-dropdown__item" aria-selected="false" {{action "clickSelectYear" year.value}}>
-											<a href="#" {{bind-attr class=":slds-truncate :slds-has-icon--left year.isSelected:slds-is-selected"}} role="menuitemradio">
-												{{#if year.isSelected}}
-													<svg aria-hidden="true" class="slds-icon slds-icon--small slds-icon--left"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{unbound assetsLocation}}/assets/icons/standard-sprite/svg/symbols.svg#task2"></use></svg>
-												{{/if}}
-												<span>{{year.value}}</span>
-											</a>
-										</li>
-									{{/each}}
-								</ul>
-							</div>
-						{{/if}}
-					</div>--}}
 				</div>
 				<table class="datepicker__month" role="grid" aria-labelledby="month">
 					<thead>
 						<tr id="weekdays">
-							<th id="Sunday">
-								<abbr title="Sunday">S</abbr>
+							<th id="{{unbound convertNumberToDayOfWeek "0" "full"}}">
+								<abbr title="{{unbound convertNumberToDayOfWeek "0" "full"}}">{{convertNumberToDayOfWeek "0" "abbv"}}</abbr>
 							</th>
-							<th id="Monday">
-								<abbr title="Monday">M</abbr>
+							<th id="{{unbound convertNumberToDayOfWeek "1" "full"}}">
+								<abbr title="{{unbound convertNumberToDayOfWeek "1" "full"}}">{{convertNumberToDayOfWeek "1" "abbv"}}</abbr>
 							</th>
-							<th id="Tuesday">
-								<abbr title="Tuesday">T</abbr>
+							<th id="{{unbound convertNumberToDayOfWeek "2" "full"}}">
+								<abbr title="{{unbound convertNumberToDayOfWeek "2" "full"}}">{{convertNumberToDayOfWeek "2" "abbv"}}</abbr>
 							</th>
-							<th id="Wednesday">
-								<abbr title="Wednesday">W</abbr>
+							<th id="{{unbound convertNumberToDayOfWeek "3" "full"}}">
+								<abbr title="{{unbound convertNumberToDayOfWeek "3" "full"}}">{{convertNumberToDayOfWeek "3" "abbv"}}</abbr>
 							</th>
-							<th id="Thursday">
-								<abbr title="Thursday">T</abbr>
+							<th id="{{unbound convertNumberToDayOfWeek "4" "full"}}">
+								<abbr title="{{unbound convertNumberToDayOfWeek "4" "full"}}">{{convertNumberToDayOfWeek "4" "abbv"}}</abbr>
 							</th>
-							<th id="Friday">
-								<abbr title="Friday">F</abbr>
+							<th id="{{unbound convertNumberToDayOfWeek "5" "full"}}">
+								<abbr title="{{unbound convertNumberToDayOfWeek "5" "full"}}">{{convertNumberToDayOfWeek "5" "abbv"}}</abbr>
 							</th>
-							<th id="Saturday">
-								<abbr title="Saturday">S</abbr>
+							<th id="{{unbound convertNumberToDayOfWeek "6" "full"}}">
+								<abbr title="{{unbound convertNumberToDayOfWeek "6" "full"}}">{{convertNumberToDayOfWeek "6" "abbv"}}</abbr>
 							</th>
 						</tr>
 					</thead>
@@ -217,7 +170,7 @@
 						{{#each row in calendarRows}}
 							<tr {{bind-attr class="row.slds-has-multi-row-selection"}}>
 								{{#each col in row.data}}
-									<td {{bind-attr class="col.isCurrentMonth::slds-disabled-text col.isToday:slds-is-today col.isSelected:slds-is-selected col.isSelected:slds-is-selected-multi" aria-disabled="col.isCurrentMonth:false:true"}} headers="Sunday" role="gridcell" {{action "clickSelectDate" col}}>
+									<td {{bind-attr class="col.isCurrentMonth::slds-disabled-text col.isToday:slds-is-today col.isSelected:slds-is-selected col.isSelected:slds-is-selected-multi" aria-disabled="col.isCurrentMonth:false:true"}} {{bind-attr headers="col.headerText"}} role="gridcell" {{action "clickSelectDate" col}}>
 										<span class="slds-day">{{col.value}}</span>
 									</td>
 								{{/each}}

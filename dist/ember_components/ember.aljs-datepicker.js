@@ -113,9 +113,9 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
         }
 
         if (!Ember.Handlebars.helpers['convertNumberToDayOfWeek']) {
-            Ember.Handlebars.registerBoundHelper('convertNumberToDayOfWeek', function(index) {
+            Ember.Handlebars.registerBoundHelper('convertNumberToDayOfWeek', function(index, format) {
                 if(!Ember.isNone(index)) {
-                    return new Ember.Handlebars.SafeString(_AljsApp.AljsDatepickerFixtures.get('dayLabels')[index]);
+                    return new Ember.Handlebars.SafeString(_AljsApp.AljsDatepickerFixtures.get('dayLabels')[parseInt(index)][format]);
                 } else {
                     return '';
                 }
@@ -388,9 +388,9 @@ _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
         }
 
         if (!Ember.Handlebars.helpers['convertNumberToDayOfWeek']) {
-            Ember.Handlebars.registerBoundHelper('convertNumberToDayOfWeek', function(index) {
+            Ember.Handlebars.registerBoundHelper('convertNumberToDayOfWeek', function(index, format) {
                 if(!Ember.isNone(index)) {
-                    return new Ember.Handlebars.SafeString(_AljsApp.AljsDatepickerFixtures.get('dayLabels')[index]);
+                    return new Ember.Handlebars.SafeString(_AljsApp.AljsDatepickerFixtures.get('dayLabels')[parseInt(index)][format]);
                 } else {
                     return '';
                 }

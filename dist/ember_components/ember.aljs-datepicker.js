@@ -86,7 +86,7 @@ _AljsApp.AljsDatepickerFixtures = Ember.Object.create({
 });
 
 _AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
-    attributeBindings: ['selectedDate', 'selectedDateText', 'format', 'dayLabels', 'monthLabels', 'label'],
+    attributeBindings: ['selectedDate', 'selectedDateText', 'format', 'dayLabels', 'monthLabels', 'label', 'hasError', 'errorMessage'],
     init: function() {
         var self = this;
 
@@ -207,6 +207,8 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
                 calendarRows.push([]);
             }
 
+            day.headerText = _AljsApp.AljsDatepickerFixtures.dayLabels[index % 7]['full'];
+
             calendarRows[calendarRows.length - 1].push(day);
         });
         
@@ -214,12 +216,15 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
         if (calendarRows[calendarRows.length - 1].length < 7) {
             var iDate = moment(new Date(selectedYear, selectedMonth, i));
             var numColsToFill = 7 - calendarRows[calendarRows.length - 1].length;
+            var dayIndexReference = 7 - numColsToFill - 1; // This calculation figures out the first 'day index' to start with to properlly populate the day header.
+                                                           // Subtracting one to compensate for i starting at 1 below.
             for (var i = 1; i <= numColsToFill; i++) {
                 calendarRows[calendarRows.length - 1].push({
                     value: i,
                     isCurrentMonth: false,
                     isSelected: !Ember.isNone(selectedDate) && iDate.isSame(selectedDate, 'day'),
-                    isToday: iDate.isSame(moment(), 'day')
+                    isToday: iDate.isSame(moment(), 'day'),
+                    headerText: _AljsApp.AljsDatepickerFixtures.dayLabels[(dayIndexReference + i)]['full']
                 });
             }
         }
@@ -341,6 +346,9 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
 
                 this.$().find('input').trigger('selected.aljs.datepicker');
             }
+        },
+        clickEventIcon: function() {
+            this.$().find('input').focus();
         }
     }
 });
@@ -487,6 +495,8 @@ _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
                 });
             }
 
+            day.headerText = _AljsApp.AljsDatepickerFixtures.dayLabels[index % 7]['full'];
+
             calendarRows[calendarRows.length - 1].data.push(day);
         });
         
@@ -494,12 +504,15 @@ _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
         if (calendarRows[calendarRows.length - 1].data.length < 7) {
             var iDate = moment(new Date(selectedYear, selectedMonth, i));
             var numColsToFill = 7 - calendarRows[calendarRows.length - 1].data.length;
+            var dayIndexReference = 7 - numColsToFill - 1; // This calculation figures out the first 'day index' to start with to properlly populate the day header.
+                                                           // Subtracting one to compensate for i starting at 1 below.
             for (var i = 1; i <= numColsToFill; i++) {
                 calendarRows[calendarRows.length - 1].data.push({
                     value: i,
                     isCurrentMonth: false,
                     isSelected: !Ember.isNone(selectedDate) && (iDate.isSame(selectedDate, 'day') || iDate.isSame('selectedOtherDate', 'day') || iDate.isBetween(selectedDate, selectedOtherDate)),
-                    isToday: iDate.isSame(moment(), 'day')
+                    isToday: iDate.isSame(moment(), 'day'),
+                    headerText: _AljsApp.AljsDatepickerFixtures.dayLabels[(dayIndexReference + i)]['full']
                 });
             }
         }
@@ -641,6 +654,12 @@ _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
 
                 this.$().find('input').trigger('selected.aljs.datepicker');
             }
+        },
+        clickStartEventIcon: function() {
+            this.$().find('[data-aljs-multi-datepicker="start"]').focus();
+        },
+        clickEndEventIcon: function() {
+            this.$().find('[data-aljs-multi-datepicker="end"]').focus();
         }
     }
 });

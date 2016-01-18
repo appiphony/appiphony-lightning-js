@@ -282,7 +282,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         	if (this.settings.clickAddFunction) {
         		var $addItem = $resultsListContainer.after(addItemMarkup
-                                                           .replace('{{hasIcon}}', 'slds-icon')
+                                                           .replace('{{hasIcon}}', ' slds-icon')
                                                            .replace('{{objectLabel}}', this.settings.objectLabel)
                                                            .replace('{{assetsLocation}}', $.aljs.assetsLocation));
         	}

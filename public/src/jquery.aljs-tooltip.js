@@ -139,14 +139,34 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             return this.on('mouseenter', settings.selector, showTooltip)
                 .on('focusin', settings.selector, showTooltip)
                 .on('mouseleave', settings.selector, hideTooltip)
-                .on('blur', settings.selector, hideTooltip);
+                .on('blur', settings.selector, hideTooltip)
+                .on('touchstart', settings.selector, function(e) {
+                    e.stopPropagation();
+                
+                    if ($('.slds-tooltip').length == 0) {
+                        showTooltip();
+                    } else {
+                        hideTooltip();
+                    }
+                });
         } else {
             return this.each(function() {
                 $(this).on('mouseenter', showTooltip)
                        .on('focusin', showTooltip)
                        .on('mouseleave', hideTooltip)
-                       .on('blur', hideTooltip);
+                       .on('blur', hideTooltip)
+                       .on('touchstart', function(e) {
+                            e.stopPropagation();
+                    
+                            if ($('.slds-tooltip').length == 0) {
+                                showTooltip();
+                            } else {
+                                hideTooltip();
+                            }
+                        });
             });
         }
+        
+        $('body').on('touchstart', hideTooltip);
     };
 }(jQuery));

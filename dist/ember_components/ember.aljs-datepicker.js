@@ -465,7 +465,7 @@ _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
 
         // Fill previous month
         for (var i = numDaysInPrevMonth - (firstDayOfMonth - 1); i <= numDaysInPrevMonth; i++) {
-            var iDate = moment(new Date(selectedYear, selectedMonth, i));
+            var iDate = moment(new Date(selectedYear, selectedMonth - 1, i));
             allDays.push({
                 value: i,
                 isCurrentMonth: false,

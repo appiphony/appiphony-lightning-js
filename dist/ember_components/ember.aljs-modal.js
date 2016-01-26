@@ -101,7 +101,7 @@ _AljsApp.AljsModalComponent = Ember.Component.extend(Ember.Evented, {
         }
 
         $('body').on('keyup', function(e) {
-            if (e.keyCode === 27) {
+            if (e.which === 27) {
                 $(self).unbind('keyup');
                 self.closeModal();
             }

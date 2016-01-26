@@ -10,7 +10,7 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
     classNameBindings: ['slds-has-selection'],
     attributeBindings: ['data-select', 'data-scope', 'data-typeahead', 'objectPluralLabel', 'objectLabel', 'items', 'searchTerm', 'ctrl', 'disabled',
                         'emptySearchTermQuery', 'filledSearchTermQuery', 'objectIconUrl', 'isObjectIconCustom', 'objectIconClass',
-                        'showSearch', 'clearOnSelect', 'selectedResult', 'selectedResults'],
+                        'showSearch', 'clearOnSelect', 'selectedResult', 'selectedResults', 'hasError', 'errorMessage'],
     'slds-has-selection' : function() {
         return (!Ember.isEmpty(this.get('selectedResult')) && !this.get('clearOnSelect')) || !Ember.isEmpty(this.get('selectedResults'));
     }.property('selectedResult', 'selectedResults'),
@@ -19,19 +19,28 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
         this._super();
         var isSingle = this.get('data-select') === 'single';
         var initSelection = this.get('initSelection');
-        var items = this.get('items')
+        var items = this.get('items');
 
         if (initSelection) {
-            if (typeof initSelection[0] !== 'object') {
-                initSelection = initSelection.map(function(item) {
-                    return {
-                        label: item,
-                        id: item
+            if (isSingle) {
+                if (typeof initSelection !== 'object') {
+                    initSelection = {
+                        id: initSelection,
+                        label: initSelection
                     };
-                });
+                }
+                this.set('selectedResult', initSelection);
+            } else {
+                if (typeof initSelection[0] !== 'object') {
+                    initSelection = initSelection.map(function(item) {
+                        return {
+                            id: item,
+                            label: item
+                        };
+                    });
+                }
+                this.set('selectedResults', initSelection);
             }
-
-            this.set(isSingle ? 'selectedResult' : 'selectedResults', initSelection);
         } else {
             this.setProperties({
                 selectedResult: null,
@@ -78,7 +87,7 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
         var $relatedTarget = $(e.relatedTarget);
         var self = this;
         window.setTimeout(function() {
-            if (Ember.isEmpty(self.$().find($relatedTarget))) {
+            if (self && self.$() && Ember.isEmpty(self.$().find($relatedTarget))) {
                 self.set('searchResults', null);
             }
         }, 200);
@@ -101,12 +110,12 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
 
         // Variables for allowing creation of an item
         var allowNewItems = this.get('allowNewItems');
-        var tokenSeparators = this.get('tokenSeparators');
+        var tokenSeparators = this.get('tokenSeparators') || [];
         var searchTerm = this.getWithDefault('searchTerm', '');
         var minimumSearchLength = this.get('minimumSearchLength');
 
         if ((allowNewItems)
-                && (e.keyCode === ENTER || tokenSeparators.indexOf(String.fromCharCode(e.keyCode)) !== -1) 
+                && (e.which === ENTER || tokenSeparators.indexOf(String.fromCharCode(e.which)) !== -1) 
                 && (searchTerm.length >= minimumSearchLength) 
                 && (Ember.isEmpty($focusedA))) {
 
@@ -131,16 +140,16 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
         var actionKeys = [TAB, ENTER, SHIFT, ESCAPE, DOWN_ARROW, UP_ARROW, CMD, CTRL];
         var $focusedA = this.$().find('a:focus');
 
-        if (actionKeys.indexOf(e.keyCode) === -1) {
+        if (actionKeys.indexOf(e.which) === -1) {
             Ember.run.debounce(this, this.search, 200);
         }
 
-        if (e.keyCode === ESCAPE) {
+        if (e.which === ESCAPE) {
             this.set('searchResults', null);
             this.$().find('input').blur();
         }
 
-        if (e.keyCode === DOWN_ARROW) {
+        if (e.which === DOWN_ARROW) {
             // DOWN
             if ($focusedA.length > 0) {
                 this.$().find('a:focus').parent().next().find('a').focus();
@@ -149,7 +158,7 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
             }
         }
 
-        if (e.keyCode === UP_ARROW) {
+        if (e.which === UP_ARROW) {
             // UP
             if ($focusedA.length > 0) {
                 this.$().find('a:focus').parent().prev().find('a').focus();
@@ -212,6 +221,22 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
             this.get('filledSearchTermQuery').call(this, searchTerm, callback);
         }
     },
+    observeItems: function() {
+        var items = this.get('items');
+        
+        if (items) {
+            if (typeof items[0] !== 'object') {
+                items = items.map(function(item) {
+                    return {
+                        label: item,
+                        id: item
+                    };
+                });
+            }
+            
+            this.set('items', items);
+        }
+    }.observes('items'),
     searchResultsChanged: function() {
         if (!Ember.isEmpty(this.get('searchResults'))) {
             Ember.run.scheduleOnce('afterRender', this, function() {
@@ -247,6 +272,10 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
                     this.get('selectedResults').addObject(result);
                     this.notifyPropertyChange('selectedResults');
                 }
+
+                Ember.run.scheduleOnce('afterRender', this, function() {
+                    this.$().find('input').focus();
+                });
             }
 
             if (this.get('clearOnSelect')) {

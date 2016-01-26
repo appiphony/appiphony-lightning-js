@@ -242,16 +242,16 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
         }
     },
     keyPress: function(e) {
-        if (e.keyCode === 13) {
+        if (e.which === 13) {
             this.setDateFromInput();
         }
     },
     triggerClickNextOrPrev: function(e) {
         var self = e.data ? e.data : this;
         if(self.get('isOpen') === true && Ember.isEmpty(self.$().find('input:focus'))) {
-            if (e.keyCode === 37) {
+            if (e.which === 37) {
                 self.send('clickNextOrPrevMonth', 'prev');
-            } else if (e.keyCode === 39) {
+            } else if (e.which === 39) {
                 self.send('clickNextOrPrevMonth', 'next');
             }
         }
@@ -358,7 +358,8 @@ _AljsApp.MultiDatepickerInputComponent = Ember.TextField.extend({
 });
 
 _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
-    attributeBindings: ['selectedStartDate', 'selectedEndDate', 'format', 'dayLabels', 'monthLabels', 'startLabel', 'endLabel'],
+    attributeBindings: ['selectedStartDate', 'selectedEndDate', 'format', 'dayLabels', 'monthLabels', 'startLabel', 'endLabel', 
+                        'selectedStartDateText', 'seelctedEndDateText'],
     init: function() {
         var self = this;
 
@@ -533,16 +534,16 @@ _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
         }
     },
     keyPress: function(e) {
-        if (e.keyCode === 13) {
+        if (e.which === 13) {
             this.setDateFromInput();
         }
     },
     triggerClickNextOrPrev: function(e) {
         var self = e.data;
         if(self.get('isOpen') === true && Ember.isEmpty(self.$().find('input:focus'))) {
-            if (e.keyCode === 37) {
+            if (e.which === 37) {
                 self.send('clickNextOrPrevMonth', 'prev');
-            } else if (e.keyCode === 39) {
+            } else if (e.which === 39) {
                 self.send('clickNextOrPrevMonth', 'next');
             }
         }
@@ -596,14 +597,15 @@ _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
         this.get('years').findBy('value', this.get('selectedYear')).set('isSelected', true);
     }.observes('selectedYear'),
     setDateFromInput: function(){
-        var selectedDateText = this.get('selectedDateText');
+        var inputType = this.get('inputType');
+        var selectedDateText = this.get('selected' + inputType + 'DateText');
         var momentDate = moment(new Date(selectedDateText));
         var currentYear = (new Date()).getFullYear();
         var earliestCalendarYear = new Date(currentYear - this.get('numYearsBefore'), 0, 1);
         var latestCalendarYear = new Date(currentYear + this.get('numYearsAfter'), 11, 31);
 
         if (momentDate && momentDate.isValid() && momentDate.isAfter(earliestCalendarYear) && momentDate.isBefore(latestCalendarYear)) {
-            this.set('selectedDate', momentDate);
+            this.set('selected' + inputType + 'Date', momentDate);
             
             this.closeDatepicker();
             this.$().find('input').trigger('selected.aljs.datepicker');

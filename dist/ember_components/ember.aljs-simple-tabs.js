@@ -48,13 +48,13 @@ _AljsApp.AljsSimpleTabsComponent = Ember.Component.extend({
         var tabLinks = this.get('tabLinks');
         var activeTabIndex = tabLinks.indexOf(this.get('activeTab'));
 
-        if (e.keyCode === 37) {
+        if (e.which === 37) {
             // left
 
             var previousTabIndex = activeTabIndex === 0 ? tabLinks.length - 1 : activeTabIndex - 1;
 
             this.send('clickTab', tabLinks[previousTabIndex]);
-        } else if (e.keyCode === 39) {
+        } else if (e.which === 39) {
             // right
 
             var nextTabIndex = activeTabIndex === tabLinks.length - 1 ? 0 : activeTabIndex + 1;

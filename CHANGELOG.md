@@ -2,9 +2,6 @@
 
 ### Release 0.2.0 — January 19, 2016
 
-#### General
-* Added `jquery.aljs-master.min.js` and associated documentation
-
 #### jQuery
 * **Lookups**: Added a callback to the `emptySearchTermQuery` option's default function
 * **Lookups**: Edited pill container classes and markup to comply with 0.12.0 SLDS release
@@ -20,6 +17,7 @@
 * **Datepickers**: Fixed scoping issues with some UI events
 * **Datepickers**: Added a `label` attribute binding
 * **Datepickers**: Added an `isRequired` attribute binding
+* **Datepickers**: Multi Select datepickers now highlight the correct selected dates (previously highlighted previous month sometimes as well) <a href="https://github.com/appiphony/appiphony-lightning-js/issues/28">(Github Issue #28)</a>
 * **Lookups**: Added support to disable the lookup and bind a placeholder value <a href="https://github.com/appiphony/appiphony-lightning-js/issues/23">(GitHub Issue #23)</a>
 * **Lookups**: Edited pill container classes and markup to comply with 0.12.0 SLDS release <a href="https://github.com/appiphony/appiphony-lightning-js/issues/26">(GitHub Issue #26)</a>
 * **Lookups**: The `isObjectIconCustom` parameter is now `useImgTag`; `isObjectIconCustom` is no longer supported

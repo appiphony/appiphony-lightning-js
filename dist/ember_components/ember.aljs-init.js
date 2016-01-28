@@ -1,4 +1,4 @@
-if (typeof _AljsApp === 'undefined') { throw new Error("Please assign your Ember App's namespace to _AljsApp (e.g. _AljsApp = App)"); }
+if (typeof _AljsApp === 'undefined') { console.warn("Since you did not assign _AljsApp to your Ember application's global namespace, defaulting to App."); _AljsApp = App; }
 assetsLocation = typeof assetsLocation !== 'undefined' ? assetsLocation : '';
 
 Ember.Object.reopen({

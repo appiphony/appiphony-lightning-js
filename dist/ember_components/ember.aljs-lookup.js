@@ -73,6 +73,8 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
         return this.get('data-select') === 'single';
     }.property('data-select'),
     focusIn: function(e) {
+        this.set('blockFocusOut', true);
+
         if (e.target.nodeName.toLowerCase() === 'input') {
             var searchTerm = this.get('searchTerm');
 
@@ -85,12 +87,18 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
     },
     focusOut: function(e) {
         var $relatedTarget = $(e.relatedTarget);
+        var target = e.target;
         var self = this;
+
         window.setTimeout(function() {
-            if (self && self.$() && Ember.isEmpty(self.$().find($relatedTarget))) {
+            //var focusedAwayFromInput = self && self.$().find('input')[0] === target;
+            var blockFocusOut = self.get('blockFocusOut');
+            if (!blockFocusOut) {
                 self.set('searchResults', null);
+            } else {
+                self.set('blockFocusOut', false);
             }
-        }, 200);
+        }, 10);
     },
     search : function(){
         var searchTerm = this.get('searchTerm');

@@ -4,14 +4,14 @@
         <p class="slds-m-bottom--medium">To get started with ALJS, the provided init file must be included in your markup after jQuery. The purpose of this init file is establish common settings for each plugin to reference.</p>
 {{#aljs-pre-container type="vf"}}
 <script src="js/jquery-1.11.1.min.js"></script>
-<script src="{!URLFOR($Resource.aljs, '/js/aljs-init.min.css')}"></script>
+<script src="{!URLFOR($Resource.aljs, '/js/aljs-init.min.js')}"></script>
 {{/aljs-pre-container}}
     <h4 class="site-text-heading--large">Include the ALJS Plugins You Wish to Use</h4>
 {{#aljs-pre-container type="vf"}}
-<script src="{!URLFOR($Resource.aljs, '/js/aljs-datepicker.min.css')}"></script>
-<script src="{!URLFOR($Resource.aljs, '/js/aljs-modal.min.css')}"></script>
-<script src="{!URLFOR($Resource.aljs, '/js/aljs-pill.min.css')}"></script>
-<script src="{!URLFOR($Resource.aljs, '/js/aljs-tooltip.min.css')}"></script>
+<script src="{!URLFOR($Resource.aljs, '/js/aljs-datepicker.min.js')}"></script>
+<script src="{!URLFOR($Resource.aljs, '/js/aljs-modal.min.js')}"></script>
+<script src="{!URLFOR($Resource.aljs, '/js/aljs-pill.min.js')}"></script>
+<script src="{!URLFOR($Resource.aljs, '/js/aljs-tooltip.min.js')}"></script>
 {{/aljs-pre-container}}
     <h4 class="site-text-heading--large">Override Common Settings (Optional)</h4>
     <p class="slds-m-bottom--medium">Edit the ALJS settings with your own. If we are in a Visualforce Page, we want scoped to equal <code>true</code>, otherwise use <code>false</code></p>
@@ -64,13 +64,13 @@
 
     <!-- jQuery & ALJS Init -->
     <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="{!URLFOR($Resource.aljs, '/js/aljs-init.min.css')}"></script>
+    <script src="{!URLFOR($Resource.aljs, '/js/aljs-init.min.js')}"></script>
             
     <!-- Page-Specific ALJS Plugins -->
-    <script src="{!URLFOR($Resource.aljs, '/js/aljs-datepicker.min.css')}"></script>
-    <script src="{!URLFOR($Resource.aljs, '/js/aljs-modal.min.css')}"></script>
-    <script src="{!URLFOR($Resource.aljs, '/js/aljs-pill.min.css')}"></script>
-    <script src="{!URLFOR($Resource.aljs, '/js/aljs-tooltip.min.css')}"></script>
+    <script src="{!URLFOR($Resource.aljs, '/js/aljs-datepicker.min.js')}"></script>
+    <script src="{!URLFOR($Resource.aljs, '/js/aljs-modal.min.js')}"></script>
+    <script src="{!URLFOR($Resource.aljs, '/js/aljs-pill.min.js')}"></script>
+    <script src="{!URLFOR($Resource.aljs, '/js/aljs-tooltip.min.js')}"></script>
             
     <!-- Common Settings Overrides -->
     <script>

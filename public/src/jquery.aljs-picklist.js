@@ -125,6 +125,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         getValueId: function() {
             return this.obj.valueId;
         },
+        getValue: function() {
+            return this.obj;
+        },
         close: function() {
             this.obj.$dropdown.removeClass('slds-show')
                 .addClass('slds-hide');

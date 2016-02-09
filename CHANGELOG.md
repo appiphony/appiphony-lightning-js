@@ -10,6 +10,7 @@
 * **Lookups**: Fixed an issue where the Add Object button's icon was rendering too large
 * **Modals**: Fixed `tabindex` issues when modals are open
 * **Picklists**: Now close when the Esc key is pressed <a href="https://github.com/appiphony/appiphony-lightning-js/issues/20">(GitHub Issue #20)</a>
+* **Picklists**: Fixed an error when the `getValue` method is used <a href="https://github.com/appiphony/appiphony-lightning-js/issues/31">(GitHub Issue #31)</a>
 * **Tooltips**: Markup is now absolutely positioned with new position calculations; elements which trigger tooltips will no longer be wrapped in a relative-positioned span on hover
 
 #### Ember

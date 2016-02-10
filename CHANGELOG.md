@@ -1,6 +1,6 @@
 # Appiphony Lightning JS Beta
 
-### Release 0.2.0 — January 19, 2016
+### Release 0.2.0 — February 10, 2016
 
 #### jQuery
 * **Lookups**: Added a callback to the `emptySearchTermQuery` option's default function

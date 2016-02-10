@@ -1,7 +1,7 @@
 if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the ALJS initializer file") }
 
 (function($) {
-	var selectContainerMarkup = '<div class="slds-pill-container slds-hide"></div>';
+	var selectContainerMarkup = '<div class="slds-pill__container slds-hide"></div>';
 	var pillMarkup = 
     	'<span class="slds-pill">' +
       		'<a href="javascript:void(0)" class="slds-pill__label">' +
@@ -149,7 +149,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	var self = this;
         	var $multiSelect = this.$multiSelect.html('');
         	var $lookupContainer = this.$lookupContainer;
-            var conditionalPillMarkup = (self.settings.customObjectIcon) ? customPillMarkup : pillMarkup;
+            var conditionalPillMarkup = (self.settings.useImgTag) ? customPillMarkup : pillMarkup;
 
         	if (selectedResults.length > 0) {
         		selectedResults.forEach(function(result) {
@@ -177,7 +177,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         setSingleSelect: function(selectedResultLabel) {
         	var self = this;
         	var newResultLabel = selectedResultLabel || '';
-            var conditionalPillMarkup = (self.settings.customObjectIcon) ? customPillMarkup : pillMarkup;
+            var conditionalPillMarkup = (self.settings.useImgTag) ? customPillMarkup : pillMarkup;
 
         	this.$singleSelect.html(conditionalPillMarkup.replace('{{objectIconUrl}}', this.settings.objectIconUrl)
                                     .replace('{{objectIconClass}}', self.settings.objectIconClass)
@@ -246,7 +246,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	var searchTerm = this.$el.val();
         	var self = this;
 
-        	if (!this.isStringEmpty(searchTerm) && searchTerm.length > 1) {
+        	if (!this.isStringEmpty(searchTerm) && searchTerm.length > 1 && this.settings.showSearch === true) {
         		$resultsListContainer.before(useMarkup.replace('{{searchTerm}}', searchTerm)
                                             .replace('{{objectPluralLabel}}', this.settings.objectPluralLabel)
                                             .replace('{{assetsLocation}}', $.aljs.assetsLocation));
@@ -254,7 +254,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         	this.searchResults.forEach(function(result) {
         		var $lookupResultItem;
-                var conditionalLookupMarkup = (self.settings.customObjectIcon) ? customLookupResultItemMarkup : lookupResultItemMarkup;
+                var conditionalLookupMarkup = (self.settings.useImgTag) ? customLookupResultItemMarkup : lookupResultItemMarkup;
         		if (self.isSingle) {
         			$lookupResultItem = $resultsListContainer.append(conditionalLookupMarkup.replace('{{resultLabel}}', result.label)
                                                                     .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
@@ -282,7 +282,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         	if (this.settings.clickAddFunction) {
         		var $addItem = $resultsListContainer.after(addItemMarkup
-                                                           .replace('{{hasIcon}}', 'slds-icon')
+                                                           .replace('{{hasIcon}}', ' slds-icon')
                                                            .replace('{{objectLabel}}', this.settings.objectLabel)
                                                            .replace('{{assetsLocation}}', $.aljs.assetsLocation));
         	}
@@ -309,7 +309,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             	if ($(e.relatedTarget).closest('.slds-lookup__menu').length === 0 && self.$lookupSearchContainer) {
             		self.closeSearchDropdown();
             	}
-            }, 100);
+            }, 250);
         },
         clickResult: function(e) {
         	var self = e.data;
@@ -333,12 +333,18 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         		this.$el.val('');
         	}
 
-            this.settings.onChange(selectedResultArray.length > 0 ? selectedResultArray[0] : null);
+            if (this.isSingle) {
+                this.settings.onChange(this.selectedResult, true);
+            } else {
+                this.settings.onChange(this.selectedResults, true);
+            }
         },
         clearSingleSelect: function(e) {
         	var self = e.data;
-
+            self.selectedResult = null;
         	self.setSingleSelect();
+
+            self.settings.onChange(selectResult, false);
         },
         clearMultiSelectResult: function(e) {
         	var self = e.data;
@@ -354,8 +360,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         	if (typeof indexToRemove !== 'undefined' && indexToRemove !== null) {
         		self.selectedResults.splice(indexToRemove, 1);
-
         		self.setMultiSelect(self.selectedResults);
+
+                self.settings.onChange(self.selectedResults, false);
         	}
         },
         getSelection: function() {
@@ -398,16 +405,17 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             assetsLocation: $.aljs.assetsLocation,
             objectPluralLabel: 'Objects',
             objectLabel: 'Object',
-            customObjectIcon: false,
+            useImgTag: false,
             objectIconUrl: '/assets/icons/standard-sprite/svg/symbols.svg#account',
             objectIconClass: 'slds-icon-standard-account',
             searchTerm: '',
             items: [],
-            emptySearchTermQuery: function () { callback([]); },
+            emptySearchTermQuery: function (callback) { callback([]); },
             filledSearchTermQuery: function (searchTerm, callback) { callback([]); },
             clickAddFunction: null,
             onChange: function() {},
-            initialSelection: null
+            initialSelection: null,
+            showSearch: false
         }, typeof options === 'object' ? options : {});
 
         this.each(function() {

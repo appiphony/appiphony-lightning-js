@@ -40,6 +40,7 @@ _AljsApp.AljsModalComponent = Ember.Component.extend(Ember.Evented, {
         } else {
             this.$().find('headerYield').replaceWith(headerContents);
             this.$().find('modalHeader').remove();
+            //this.$().find('.slds-modal__header').addClass(this.get('headerClass'));
         }
 
         if (Ember.isEmpty(bodyContents)) {
@@ -47,7 +48,7 @@ _AljsApp.AljsModalComponent = Ember.Component.extend(Ember.Evented, {
         } else {
             this.$().find('bodyYield').replaceWith(bodyContents);
             this.$().find('modalBody').remove();
-            this.$().find('.slds-modal__content').addClass(this.get('bodyClass'));
+            //this.$().find('.slds-modal__content').addClass(this.get('bodyClass'));
         }
 
         if (Ember.isEmpty(footerContents)) {
@@ -74,6 +75,11 @@ _AljsApp.AljsModalComponent = Ember.Component.extend(Ember.Evented, {
     },
     openModal: function(e) {
         var self = this;
+        var tabTarget = $('[href], [contenteditable="true"], button, a, input, textarea, select', 'body');
+        var modalTabTarget = $('[href], [contenteditable="true"], button, a, input, textarea, select', '.slds-modal');
+        
+        tabTarget.attr('tabindex', '-1');
+        modalTabTarget.attr('tabindex', '1');
 
         if (e) {
             self = e.data;
@@ -100,7 +106,7 @@ _AljsApp.AljsModalComponent = Ember.Component.extend(Ember.Evented, {
         }
 
         $('body').on('keyup', function(e) {
-            if (e.keyCode === 27) {
+            if (e.which === 27) {
                 $(self).unbind('keyup');
                 self.closeModal();
             }
@@ -112,6 +118,9 @@ _AljsApp.AljsModalComponent = Ember.Component.extend(Ember.Evented, {
     },
     closeModal: function(e) {
         var self = this;
+        var tabTarget = $('[href], [contenteditable="true"], button, a, input, textarea, select', 'body');
+        
+        tabTarget.removeAttr('tabindex');
 
         if (e) {
             self = e.data;

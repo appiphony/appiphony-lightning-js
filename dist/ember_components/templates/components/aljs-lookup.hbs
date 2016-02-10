@@ -1,11 +1,11 @@
 <div class="slds-form-element">
 	<label class="slds-form-element__label" for="lookup">{{objectPluralLabel}}</label>
 	<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
-		<svg aria-hidden="true" class="slds-input__icon">
+		<svg aria-hidden="true" class="slds-input__icon" {{action "clickSearchIcon"}} style="cursor: pointer;" tabindex="1">
 			<use xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
 		</svg>
 
-		{{#if selectedResult}}
+		{{#if showSelectedResult}}
 			<div class="slds-pill-container slds-show">
 				<a href="#void" class="slds-pill">
 					{{#if isObjectIconCustom}}
@@ -25,7 +25,7 @@
 				</a>
 			</div>
 		{{else}}
-			{{aljs-lookup-input class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded=isExpanded aria-activedescendant=focusedSearchResult value=searchTerm}}
+			{{aljs-lookup-input class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded=isExpanded aria-activedescendant=focusedSearchResult value=searchTerm disabled=disabled placeholder=placeholder data-qa-input=data-qa-input}}
 		{{/if}}
 	</div>
 	{{#if selectedResults}}
@@ -65,7 +65,7 @@
 		{{/if}}
 		<ul class="slds-lookup__list" role="presentation">
 			{{#each result in searchResults}}
-				<li class="slds-lookup__item" {{action "clickResult" result}}>
+				<li class="slds-lookup__item" {{action "clickResult" result}} {{bind-attr data-qa-button="result.label"}}>
 					<a {{bind-attr id="result.id"}} href="javascript:void(0)" role="option">
 						{{#if isObjectIconCustom}}
 							<img src="{{unbound objectIconUrl}}" {{bind-attr class=":slds-icon :slds-icon--small objectIconClass objectIconUrl::slds-hide"}}></img>
@@ -74,7 +74,7 @@
 								<use xlink:href="{{unbound objectIconUrl}}"></use>
 							</svg>
 						{{/if}}
-						{{result.label}}
+						{{{result.label}}}
 					</a>
 				</li>
 			{{/each}}
@@ -83,7 +83,7 @@
 			<div class="slds-lookup__item">
 				<button class="slds-button">
 					<svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--small">
-						<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#add"></use>
+						<use xlink:href="{{unbound assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#add"></use>
 					</svg>Add {{objectLabel}}</button>
 			</div>
 		{{/if}}

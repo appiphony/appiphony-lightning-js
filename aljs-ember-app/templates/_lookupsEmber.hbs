@@ -85,13 +85,13 @@
                     </tr>
                     <tr>
                         <th scope="row"><code>objectIconUrl</code></th>
-                        <td data-label="Purpose">An optional string that represents a URL path to an image, if null no icon will be displayed./td>
+                        <td data-label="Purpose">An optional string that represents a URL path to an image, if null no icon will be displayed.</td>
                         <td data-label="Values">Any valid URL to any image with a transparent background</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
                     </tr>
                     <tr>
-                        <th scope="row"><code>isObjectIconCustom</code></th>
-                        <td data-label="Purpose">Determines whether the supplied <code>objectIconUrl</code> is a custom image or from SLDS. To specify <code>false</code>, just omit this attribute</td>
+                        <th scope="row"><code>useImgTag</code></th>
+                        <td data-label="Purpose">Determines whether the supplied <code>objectIconUrl</code> should be use with an <code>&lt;img&gt;</code> tag using the <code>src</code> attribute or with <code>&lt;svg&gt;</code> and <code>&lt;use&gt;</code> tags using the <code>xlink:href</code> attribute. To specify <code>false</code>, just omit this attribute</td>
                         <td data-label="Values"><code>"true"</code></td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
                     </tr>
@@ -111,6 +111,54 @@
                         <th scope="row"><code>selectedResults</code></th>
                         <td data-label="Purpose">When the Lookup's scope is multi, an array of objects that represent the currently selected lookup result</td>
                         <td data-label="Values">An array of result objects</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>disabled</code></th>
+                        <td data-label="Purpose">Bind this attribute to a boolean variable to control whether the input is disabled or not</td>
+                        <td data-label="Values"><code>true</code> or <code>false</code></td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>showSearch</code></th>
+                        <td data-label="Purpose">Bind this attribute to a boolean variable to control whether the search prompt appears or not</td>
+                        <td data-label="Values"><code>true</code> or <code>false</code></td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>placeholder</code></th>
+                        <td data-label="Purpose">The text that appears in the input when it is blank</td>
+                        <td data-label="Values">A valid string</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>minimumSearchLength</code></th>
+                        <td data-label="Purpose">The minimum number of characters required to perform a search or create a new item</td>
+                        <td data-label="Values">A valid integer</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>2</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>clearOnSelect</code></th>
+                        <td data-label="Purpose">An optional string/boolean that determines whether the lookup should clear the input after a user has selected a result</td>
+                        <td data-label="Values">A valid string or boolean, note - do not use "false" as string</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>allowNewItems</code></th>
+                        <td data-label="Purpose">An optional string/boolean that determines whether the user can type in a new value to be selected</td>
+                        <td data-label="Values">A valid string or boolean, note - do not use "false" as string</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>tokenSeparators</code></th>
+                        <td data-label="Purpose">If allowNewItems is truthy, tokenSeparators defines what characters would trigger creating a new item</td>
+                        <td data-label="Values">An array of single characters</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>canAdd</code></th>
+                        <td data-label="Purpose">If canAdd is truthy, a clickable section labeled "Add {objectLabel}" will appear in the search results. There is not default functionality on click, so this needs to be implemented by the developer enabling this option.</td>
+                        <td data-label="Values">A valid string or boolean, note - do not use "false" as string</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
                     </tr>
                 </tbody>

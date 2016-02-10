@@ -8,28 +8,63 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
     layoutName: 'components/aljs-lookup',
     classNames: 'slds-lookup',
     classNameBindings: ['slds-has-selection'],
-    attributeBindings: ['data-select', 'data-scope', 'data-typeahead', 'objectPluralLabel', 'objectLabel', 'items', 'searchTerm', 'ctrl',
-                        'emptySearchTermQuery', 'filledSearchTermQuery', 'initSelection', 'objectIconUrl', 'isObjectIconCustom', 'objectIconClass'],
+    attributeBindings: ['data-select', 'data-scope', 'data-typeahead', 'objectPluralLabel', 'objectLabel', 'items', 'searchTerm', 'ctrl', 'disabled',
+                        'emptySearchTermQuery', 'filledSearchTermQuery', 'objectIconUrl', 'isObjectIconCustom', 'objectIconClass',
+                        'showSearch', 'clearOnSelect', 'selectedResult', 'selectedResults', 'hasError', 'errorMessage'],
     'slds-has-selection' : function() {
-        return !Ember.isEmpty(this.get('selectedResult')) || !Ember.isEmpty(this.get('selectedResults'));
+        return (!Ember.isEmpty(this.get('selectedResult')) && !this.get('clearOnSelect')) || !Ember.isEmpty(this.get('selectedResults'));
     }.property('selectedResult', 'selectedResults'),
+    minimumSearchLength: 2,
     init: function() {
         this._super();
-
         var isSingle = this.get('data-select') === 'single';
         var initSelection = this.get('initSelection');
+        var items = this.get('items');
 
         if (initSelection) {
-            this.set(isSingle ? 'selectedResult' : 'selectedResults', initSelection);
+            if (isSingle) {
+                if (typeof initSelection !== 'object') {
+                    initSelection = {
+                        id: initSelection,
+                        label: initSelection
+                    };
+                }
+                this.set('selectedResult', initSelection);
+            } else {
+                if (typeof initSelection[0] !== 'object') {
+                    initSelection = initSelection.map(function(item) {
+                        return {
+                            id: item,
+                            label: item
+                        };
+                    });
+                }
+                this.set('selectedResults', initSelection);
+            }
         } else {
             this.setProperties({
                 selectedResult: null,
                 selectedResults: []
             });
         }
+        
+        if (items) {
+            if (typeof items[0] !== 'object') {
+                items = items.map(function(item) {
+                    return {
+                        label: item,
+                        id: item
+                    };
+                });
+            }
+            
+            this.set('items', items);
+        }
     },
     didInsertElement: function() {
-
+        if (!Ember.isEmpty(this.get('data-qa-input'))) {
+            this.$().attr('data-qa-input', null);
+        }
     },
     isExpanded: function() {
         return !Ember.isEmpty(this.get('searchResults')) ? 'true' : 'false';
@@ -37,7 +72,10 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
     isSingle: function() {
         return this.get('data-select') === 'single';
     }.property('data-select'),
+    focusTrackingArray: [],
     focusIn: function(e) {
+        this.get('focusTrackingArray').addObject(e.target);
+
         if (e.target.nodeName.toLowerCase() === 'input') {
             var searchTerm = this.get('searchTerm');
 
@@ -49,32 +87,79 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
         }
     },
     focusOut: function(e) {
-        var $relatedTarget = $(e.relatedTarget);
+        var self = this;
 
-        if (Ember.isEmpty(this.$().find($relatedTarget))) {
+        window.setTimeout(function() {
+            var focusTrackingArray = self.get('focusTrackingArray');
+            
+            focusTrackingArray.removeObject(e.target);
+            
+            var focusedAwayFromComponent = focusTrackingArray.length === 0;
+
+            if (focusedAwayFromComponent) {
+                self.set('searchResults', null);
+                self.set('blockFocusOut', null);
+            }
+        }, 10);
+    },
+    search : function(){
+        var searchTerm = this.get('searchTerm');
+        var minimumSearchLength = this.get('minimumSearchLength');
+
+        if (Ember.isEmpty(searchTerm)) {
+            this.getDefaultResults();
+        } else if (searchTerm.length >= minimumSearchLength) {
+            this.getSearchTermResults(searchTerm);
+        } else {
             this.set('searchResults', null);
         }
     },
-    keyUp: function(e) {
-        var actionKeys = [9, 13, 16, 27, 40, 38];
+    keyPress: function(e) {
+        const ENTER = 13;
         var $focusedA = this.$().find('a:focus');
 
-        if (actionKeys.indexOf(e.keyCode) === -1) {
-            var searchTerm = this.get('searchTerm');
+        // Variables for allowing creation of an item
+        var allowNewItems = this.get('allowNewItems');
+        var tokenSeparators = this.get('tokenSeparators') || [];
+        var searchTerm = this.getWithDefault('searchTerm', '');
+        var minimumSearchLength = this.get('minimumSearchLength');
 
-            if (Ember.isEmpty(searchTerm)) {
-                this.getDefaultResults();
-            } else {
-                this.getSearchTermResults(searchTerm);
-            }
+        if ((allowNewItems)
+                && (e.which === ENTER || tokenSeparators.indexOf(String.fromCharCode(e.which)) !== -1) 
+                && (searchTerm.length >= minimumSearchLength) 
+                && (Ember.isEmpty($focusedA))) {
+
+            var newItem = {
+                id: searchTerm,
+                label: searchTerm
+            };
+
+            this.send('clickResult', newItem);
+        }
+    },
+    keyUp: function(e) {                         
+        const TAB = 9;
+        const ENTER = 13;
+        const SHIFT = 16;
+        const ESCAPE = 27;
+        const DOWN_ARROW = 40;
+        const UP_ARROW = 38;
+        const CMD = 91;
+        const CTRL = 17;
+
+        var actionKeys = [TAB, ENTER, SHIFT, ESCAPE, DOWN_ARROW, UP_ARROW, CMD, CTRL];
+        var $focusedA = this.$().find('a:focus');
+
+        if (actionKeys.indexOf(e.which) === -1) {
+            Ember.run.debounce(this, this.search, 200);
         }
 
-        if (e.keyCode === 27) {
+        if (e.which === ESCAPE) {
             this.set('searchResults', null);
             this.$().find('input').blur();
         }
 
-        if (e.keyCode === 40) {
+        if (e.which === DOWN_ARROW) {
             // DOWN
             if ($focusedA.length > 0) {
                 this.$().find('a:focus').parent().next().find('a').focus();
@@ -83,7 +168,7 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
             }
         }
 
-        if (e.keyCode === 38) {
+        if (e.which === UP_ARROW) {
             // UP
             if ($focusedA.length > 0) {
                 this.$().find('a:focus').parent().prev().find('a').focus();
@@ -95,8 +180,10 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
     },
     showUse: function() {
         var searchTerm = this.get('searchTerm');
-        return !Ember.isEmpty(searchTerm) && searchTerm.length > 1;
-    }.property('searchTerm'),
+        var showSearch = this.get('showSearch') && this.get('showSearch').toString() == 'true';
+
+        return !Ember.isEmpty(searchTerm) && searchTerm.length > 1 && showSearch;
+    }.property('searchTerm', 'showSearch'),
     showSearchResult: function(result) {
         // Check if the search result has been selected and don't show otherwise.
 
@@ -119,6 +206,8 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
             };
 
             this.get('emptySearchTermQuery').call(this, callback);
+        } else {
+            this.set('searchResults', null);
         }
     },
     getSearchTermResults: function(searchTerm) {
@@ -142,23 +231,65 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
             this.get('filledSearchTermQuery').call(this, searchTerm, callback);
         }
     },
+    observeItems: function() {
+        var items = this.get('items');
+        
+        if (items) {
+            if (typeof items[0] !== 'object') {
+                items = items.map(function(item) {
+                    return {
+                        label: item,
+                        id: item
+                    };
+                });
+            }
+            
+            this.set('items', items);
+        }
+    }.observes('items'),
     searchResultsChanged: function() {
         if (!Ember.isEmpty(this.get('searchResults'))) {
             Ember.run.scheduleOnce('afterRender', this, function() {
                 var self = this;
-                console.log(this.$().find('li.slds-lookup__item'));
                 this.$().find('a[role="option"]').on('focus', function(e) {
                     self.set('focusedSearchResult', $(e.target).attr('id'));
                 });
             });
         }
     }.observes('searchResults'),
+    showSelectedResult: function() {
+        return !Ember.isEmpty(this.get('selectedResult')) && !this.get('clearOnSelect');
+    }.property('selectedResult', 'clearOnSelect'),
+    tokenSeparatorEntered: function() {
+        var tokenCheckObj = this.getProperties(['searchTerm', 'tokenSeparators', 'allowNewItems', 'clearOnSelect']);
+
+        if (!Ember.isEmpty(tokenCheckObj.searchTerm)
+            && (tokenCheckObj.allowNewItems) 
+            && (tokenCheckObj.clearOnSelect) 
+            && (!Ember.isEmpty(tokenCheckObj.tokenSeparators) && tokenCheckObj.tokenSeparators.indexOf(tokenCheckObj.searchTerm) !== -1)) {
+            this.set('searchTerm', null);
+        }
+    }.observes('searchTerm'),
     actions: {
         clickResult: function(result) {
             if (this.get('isSingle')) {
-                this.set('selectedResult', result);
+                this.set('selectedResult', result);  
             } else {
-                this.get('selectedResults').addObject(result);
+                var selectedResults = this.get('selectedResults');
+
+                if (selectedResults.getEach('id').indexOf(result.id) === -1
+                        && selectedResults.getEach('label').indexOf(result.label) === -1) {
+                    this.get('selectedResults').addObject(result);
+                    this.notifyPropertyChange('selectedResults');
+                }
+
+                Ember.run.scheduleOnce('afterRender', this, function() {
+                    this.$().find('input').focus();
+                });
+            }
+
+            if (this.get('clearOnSelect')) {
+                this.set('searchTerm', null);                
             }
 
             this.set('searchResults', null);
@@ -172,7 +303,11 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
                 });
             } else {
                 this.get('selectedResults').removeObject(selectedResult);
+                this.notifyPropertyChange('selectedResults');
             }
+        },
+        clickSearchIcon: function() {
+            this.$().find('input').focus();
         }
     }
 });

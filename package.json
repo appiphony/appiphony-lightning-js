@@ -1,7 +1,7 @@
 {
   "name": "salesforce-lightning-javascript-toolkit",
-  "version": "0.1.2",
-  "description": "Current release: 0.1.2   See it in action here: <a href=\"http://aljs.appiphony.com\" target=\"_blank\">http://aljs.appiphony.com</a>",
+  "version": "0.2.0",
+  "description": "Your JS Solution for the Lightning Design System",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

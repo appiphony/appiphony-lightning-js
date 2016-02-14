@@ -129,12 +129,18 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
                 && (searchTerm.length >= minimumSearchLength) 
                 && (Ember.isEmpty($focusedA))) {
 
-            var newItem = {
-                id: searchTerm,
-                label: searchTerm
-            };
+            var item = this.get('searchResults').find(function(result) {
+                return result.label.toLowerCase().trim() === searchTerm.toLowerCase().trim();
+            });
 
-            this.send('clickResult', newItem);
+            if (Ember.isNone(item)) {
+                var item = {
+                    id: searchTerm,
+                    label: searchTerm
+                };
+            }
+            
+            this.send('clickResult', item);
         }
     },
     keyUp: function(e) {                         

@@ -129,9 +129,21 @@ _AljsApp.AljsLookupComponent = Ember.Component.extend({
                 && (searchTerm.length >= minimumSearchLength) 
                 && (Ember.isEmpty($focusedA))) {
 
-            var item = this.get('searchResults').find(function(result) {
-                return result.label.toLowerCase().trim() === searchTerm.toLowerCase().trim();
-            });
+            var item;
+            var searchResults = this.get('searchResults');
+            var selectedResults = this.get('selectedResults');
+
+            if (!Ember.isEmpty(searchResults)) {
+                item = searchResults.find(function(result) {
+                    return result.label.toLowerCase().trim() === searchTerm.toLowerCase().trim();
+                });  
+            }
+            
+            if (Ember.isNone(item) && !Ember.isEmpty(selectedResults)) {
+                item = selectedResults.find(function(result) {
+                    return result.label.toLowerCase().trim() === searchTerm.toLowerCase().trim();
+                });
+            }
 
             if (Ember.isNone(item)) {
                 var item = {

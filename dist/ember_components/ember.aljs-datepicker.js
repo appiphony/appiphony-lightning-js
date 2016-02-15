@@ -141,7 +141,10 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
         var self = this;
         
         $('body').on('keyup.' + this.get('elementId'), this, this.triggerClickNextOrPrev);
-        $('body').on('click.' + this.get('elementId'), this, this.closeDatepicker);
+        $('body').on('click.' + this.get('elementId'), this, function() {
+            self.setDateFromInput();
+            self.closeDatepicker();
+        });
     },
     willClearRender: function() {
         $('body').off('.' + this.get('elementId'));
@@ -296,15 +299,22 @@ _AljsApp.AljsDatepickerComponent = Ember.Component.extend(Ember.Evented, {
     }.observes('selectedYear'),
     setDateFromInput: function(){
         var selectedDateText = this.get('selectedDateText');
-        var momentDate = moment(new Date(selectedDateText));
-        var currentYear = (new Date()).getFullYear();
-        var earliestCalendarYear = new Date(currentYear - this.get('numYearsBefore'), 0, 1);
-        var latestCalendarYear = new Date(currentYear + this.get('numYearsAfter'), 11, 31);
-
-        if (momentDate && momentDate.isValid() && momentDate.isAfter(earliestCalendarYear) && momentDate.isBefore(latestCalendarYear)) {
-            this.set('selectedDate', momentDate);
+        if (Ember.isEmpty(selectedDateText)) {
+            this.set('selectedDate', null);
             this.closeDatepicker();
             this.$().find('input').trigger('selected.aljs.datepicker');
+
+        } else {
+            var momentDate = moment(new Date(selectedDateText));
+            var currentYear = (new Date()).getFullYear();
+            var earliestCalendarYear = new Date(currentYear - this.get('numYearsBefore'), 0, 1);
+            var latestCalendarYear = new Date(currentYear + this.get('numYearsAfter'), 11, 31);
+
+            if (momentDate && momentDate.isValid() && momentDate.isAfter(earliestCalendarYear) && momentDate.isBefore(latestCalendarYear)) {
+                this.set('selectedDate', momentDate);
+                this.closeDatepicker();
+                this.$().find('input').trigger('selected.aljs.datepicker');
+            } 
         }
     },
     actions: {
@@ -599,17 +609,25 @@ _AljsApp.AljsMultiDatepickerComponent = Ember.Component.extend(Ember.Evented, {
     setDateFromInput: function(){
         var inputType = this.get('inputType');
         var selectedDateText = this.get('selected' + inputType + 'DateText');
-        var momentDate = moment(new Date(selectedDateText));
-        var currentYear = (new Date()).getFullYear();
-        var earliestCalendarYear = new Date(currentYear - this.get('numYearsBefore'), 0, 1);
-        var latestCalendarYear = new Date(currentYear + this.get('numYearsAfter'), 11, 31);
 
-        if (momentDate && momentDate.isValid() && momentDate.isAfter(earliestCalendarYear) && momentDate.isBefore(latestCalendarYear)) {
-            this.set('selected' + inputType + 'Date', momentDate);
+        if (Ember.isEmpty(selectedDateText)) {
+            this.set('selected' + inputType + 'Date', null);
             
             this.closeDatepicker();
             this.$().find('input').trigger('selected.aljs.datepicker');
-        }
+        } else {
+            var momentDate = moment(new Date(selectedDateText));
+            var currentYear = (new Date()).getFullYear();
+            var earliestCalendarYear = new Date(currentYear - this.get('numYearsBefore'), 0, 1);
+            var latestCalendarYear = new Date(currentYear + this.get('numYearsAfter'), 11, 31);
+
+            if (momentDate && momentDate.isValid() && momentDate.isAfter(earliestCalendarYear) && momentDate.isBefore(latestCalendarYear)) {
+                this.set('selected' + inputType + 'Date', momentDate);
+                
+                this.closeDatepicker();
+                this.$().find('input').trigger('selected.aljs.datepicker');
+            }
+        }  
     },
     actions: {
         clickSelectYear: function(year) {

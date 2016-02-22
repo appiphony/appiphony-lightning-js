@@ -8,7 +8,7 @@
 
 .aljs-section-icon {
     display: inline-block;
-    max-height: 60px;
+    max-height: 100%;
     max-width: 60px;
     height: auto;
     width: auto;
@@ -180,6 +180,7 @@ a.aljs-home-link {
     .aljs-section-icon {
         top: -15px;
         left: 0;
+        max-height: 60px;
     }
     .site-masthead {
         min-height: 100px;

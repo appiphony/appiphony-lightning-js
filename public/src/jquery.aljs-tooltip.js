@@ -24,15 +24,13 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         };
         var tooltipPositioningCSS = 'overflow: visible; display: inline-block; position: absolute; z-index:9999;';
         
-        var tooltipMarkup = '<div id="' + tooltipId + '" aria-describedby="' + tooltipId + '" class="slds-tooltip slds-nubbin--' + (tooltipNubbins[tooltipPosition] || 'top') + '" role="tooltip" style="' + tooltipPositioningCSS +'">' +
-                                '<div class="slds-tooltip__content">' +
-                                    '<div class="slds-tooltip__body"' + lineHeightFix + '>' +
-                                    tooltipContent +
-                                    '</div>' +
+        var tooltipMarkup = '<div id="' + tooltipId + '" aria-describedby="' + tooltipId + '" class="slds-popover slds-popover--tooltip slds-nubbin--' + (tooltipNubbins[tooltipPosition] || 'top') + '" role="tooltip" style="' + tooltipPositioningCSS +'">' +
+                                '<div class="slds-popover__body"' + lineHeightFix + '>' +
+                                tooltipContent +
                                 '</div>' +
                             '</div>';
         
-        if ($target.next('.slds-tooltip').length === 0) {
+        if ($target.next('.slds-popover--tooltip').length === 0) {
             var $tooltipNode = $(tooltipMarkup).appendTo('.slds');
             var actualWidth  = $tooltipNode[0].offsetWidth;
             var actualHeight = $tooltipNode[0].offsetHeight;// + 15;
@@ -121,7 +119,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     }
     
     var hideTooltip = function(e) {
-        var $tooltipNode = $('body').find('.slds-tooltip');
+        var $tooltipNode = $('body').find('.slds-popover--tooltip');
         
         if ($tooltipNode.length > 0) {
             $tooltipNode.remove();
@@ -143,7 +141,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 .on('touchstart', settings.selector, function(e) {
                     e.stopPropagation();
                 
-                    if ($('.slds-tooltip').length == 0) {
+                    if ($('.slds-popover--tooltip').length == 0) {
                         showTooltip();
                     } else {
                         hideTooltip();
@@ -158,7 +156,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                        .on('touchstart', function(e) {
                             e.stopPropagation();
                     
-                            if ($('.slds-tooltip').length == 0) {
+                            if ($('.slds-popover--tooltip').length == 0) {
                                 showTooltip();
                             } else {
                                 hideTooltip();

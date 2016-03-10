@@ -344,7 +344,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             self.selectedResult = null;
         	self.setSingleSelect();
 
-            self.settings.onChange(selectResult, false);
+            self.settings.onChange(self.selectedResult, false);
         },
         clearMultiSelectResult: function(e) {
         	var self = e.data;
@@ -374,20 +374,32 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         },
         setSelection: function(selection) {
             var self = this;
-
+            
             if (selection && typeof selection === 'object') {
-
-                if (selection instanceof Array) {
-                    this.searchResults = selection;
-                    this.selectedResults = [];
-
-                    selection.forEach(function(s) {
-                        self.selectResult(s.id);
-                    });
+                if ($.isEmptyObject(selection)) {
+                    console.log(self);
+                    if (self.isSingle) {
+                        self.selectedResult = null;
+                        self.setSingleSelect();
+                        self.settings.onChange(self.selectedResult, false);
+                    } else {
+                        self.selectedResults = null;
+                        self.setMultiSelect(self.selectedResults);
+                        self.settings.onChange(self.selectedResults, false);
+                    }
                 } else {
-                    this.selectedResult = null;
-                    this.searchResults = [selection];
-                    self.selectResult(selection.id);
+                    if (selection instanceof Array) {
+                        this.searchResults = selection;
+                        this.selectedResults = [];
+                        
+                        selection.forEach(function(s) {
+                            self.selectResult(s.id);
+                        });
+                    } else {
+                        this.selectedResult = null;
+                        this.searchResults = [selection];
+                        self.selectResult(selection.id);
+                    }
                 }
             } else {
                 throw new Error('setSelection must be called with either a valid result object or an array of result objects.')

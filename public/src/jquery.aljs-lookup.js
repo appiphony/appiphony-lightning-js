@@ -344,7 +344,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             self.selectedResult = null;
         	self.setSingleSelect();
 
-            self.settings.onChange(selectResult, false);
+            self.settings.onChange(self.selectedResult, false);
         },
         clearMultiSelectResult: function(e) {
         	var self = e.data;

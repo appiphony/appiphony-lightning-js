@@ -377,13 +377,12 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             
             if (selection && typeof selection === 'object') {
                 if ($.isEmptyObject(selection)) {
-                    console.log(self);
                     if (self.isSingle) {
                         self.selectedResult = null;
                         self.setSingleSelect();
                         self.settings.onChange(self.selectedResult, false);
                     } else {
-                        self.selectedResults = null;
+                        self.selectedResults = [];
                         self.setMultiSelect(self.selectedResults);
                         self.settings.onChange(self.selectedResults, false);
                     }

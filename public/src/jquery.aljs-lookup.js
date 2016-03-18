@@ -285,6 +285,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                                                            .replace('{{hasIcon}}', ' slds-icon')
                                                            .replace('{{objectLabel}}', this.settings.objectLabel)
                                                            .replace('{{assetsLocation}}', $.aljs.assetsLocation));
+                $addItem.next().on('click', function() {
+                    $addItem.off('click');
+
+                    self.settings.clickAddFunction();
+                });
         	}
 
         	$resultsListContainer.one('click', 'a', this, this.clickResult)

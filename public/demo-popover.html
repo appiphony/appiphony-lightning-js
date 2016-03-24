@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Popover Demo | Appiphony Lightning JS</title>
+    <title>Tootip Demo | Appiphony Lightning JS</title>
     <link rel="stylesheet" type="text/css" href="assets/styles/salesforce-lightning-design-system-vf.css">
     <style type="text/css">
         html, body {
@@ -18,26 +18,11 @@
 
 <body>
     <div class="slds">
-    	<div class="slds-m-around--x-large">
-            <button class="slds-button slds-button--neutral slds-button--small" data-aljs="popover" data-aljs-show="popover-1" data-aljs-placement="right" aria-describedby="popover-1">Open Popover 1</button>
-            <div id="popover-1" class="slds-popover slds-nubbin--left slds-hide" role="dialog">
-                <div class="slds-popover__content">
-                    <div class="slds-popover__body">
-                        <p>Nostrud deserunt aute id consequat veniam incididunt duis in sint irure nisi.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    	<div class="slds-m-around--x-large">
-            <button class="slds-button slds-button--neutral slds-button--small" data-aljs="popover" data-aljs-show="popover-2" data-aljs-placement="right" aria-describedby="popover-2">Open Popover 2</button>
-            <div id="popover-2" class="slds-popover slds-nubbin--left slds-hide" role="dialog">
-                <div class="slds-popover__content">
-                    <div class="slds-popover__body">
-                        <h3 class="slds-text-heading--small slds-m-bottom--xx-small">Popover 2</h3>
-                        <p>Sit nulla est ex deserunt exercitation.</p>
-                    </div>
-                </div>
-            </div>
+    	<div class="slds-m-around--xx-large slds-p-around--small slds-text-align--center">
+            <span class="slds-show--inline-block slds-p-around--x-small" tabindex="1" data-aljs="popover" data-aljs-placement="top" title="Up top!">Top</span>
+            <span class="slds-show--inline-block slds-p-around--x-small" tabindex="1" data-aljs="popover" data-aljs-placement="right" title="Right here!">Right</span>
+            <span class="slds-show--inline-block slds-p-around--x-small" tabindex="1" data-aljs="popover" data-aljs-placement="bottom" title="Down low!">Bottom</span>
+            <span class="slds-show--inline-block slds-p-around--x-small" tabindex="1" data-aljs="popover" data-aljs-placement="left" title="To the left, to the left.">Left</span>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -49,15 +34,10 @@
         });
     </script>
     <!--<script type="text/javascript">
-        $(document).ready(function() {
-            $('[data-aljs="popover"]').popover({
-                useClick: true,
-                dismissOthers: false,
-                backgroundDismiss: true,
-                wrapperDisplay: 'block'
-            });
-            $('body').on('dismissed.aljs.popover', '#popover-1', function() { console.log('dismissed'); });
-            $('body').on('shown.aljs.popover', '#popover-1', function() { console.log('shown'); });
+    	$('body').popover({
+            selector: '[data-aljs="popover"]',
+            modifier: 'tooltip',
+            theme: 'error'
         });
     </script>-->
     <script>

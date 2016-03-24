@@ -4,44 +4,47 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     var nubbinHeight = 15;
     var nubbinWidth = 15;
 
-    var showTooltip = function(e) {
+    var showPopover = function(e) {
         var $target = $(e.target).closest('[data-aljs="popover"]');
+        var settings = e.data;
         
         if (!$target.attr('data-aljs-title')) {
             $target.attr('data-aljs-title', $target.attr('title'));
             $target.attr('title', ''); 
             //$target.css('position', 'relative');
         }
-        var lineHeightFix = ($target.parent().hasClass('slds-button')) ? ' style="line-height: normal;"' : ''; // Adjust line height if tooltip is inside a button
-        var tooltipId = $target.attr('data-aljs-id') || 'aljs-' + (new Date()).valueOf();
-        var tooltipContent = $target.attr('data-aljs-title');
-        var tooltipPosition = $target.attr('data-aljs-placement') || 'top';
-        var tooltipNubbins = {
+        var lineHeightFix = ($target.parent().hasClass('slds-button')) ? ' style="line-height: normal;"' : ''; // Adjust line height if popover is inside a button
+        var popoverId = $target.attr('data-aljs-id') || 'aljs-' + (new Date()).valueOf();
+        var popoverContent = $target.attr('data-aljs-title');
+        var popoverPosition = $target.attr('data-aljs-placement') || 'top';
+        var popoverNubbins = {
             top: 'bottom',
             bottom: 'top',
             left: 'right',
             right: 'left'
         };
-        var tooltipPositioningCSS = 'overflow: visible; display: inline-block; position: absolute;';
+        var popoverPositioningCSS = 'overflow: visible; display: inline-block; position: absolute;';
+        var modifier = (settings.modifier != '') ? ' slds-popover--' + settings.modifier : '';
+        var theme = (settings.theme != '') ? ' slds-theme--' + settings.theme : '';
         
-        var tooltipMarkup = '<div id="' + tooltipId + '" aria-describedby="' + tooltipId + '" class="slds-popover slds-nubbin--' + (tooltipNubbins[tooltipPosition] || 'top') + '" role="tooltip" style="' + tooltipPositioningCSS +'">' +
+        var popoverMarkup = '<div id="' + popoverId + '" aria-describedby="' + popoverId + '" class="slds-popover' + modifier + theme + ' slds-nubbin--' + (popoverNubbins[popoverPosition] || 'top') + '" style="' + popoverPositioningCSS +'">' +
                                 '<div class="slds-popover__body"' + lineHeightFix + '>' +
-                                tooltipContent +
+                                popoverContent +
                                 '</div>' +
                             '</div>';
         
         if ($target.next('.slds-popover').length === 0) {
-            var $tooltipNode = $(tooltipMarkup).appendTo('.slds');
-            var actualWidth  = $tooltipNode[0].offsetWidth;
-            var actualHeight = $tooltipNode[0].offsetHeight;// + 15;
+            var $popoverNode = $(popoverMarkup).appendTo('.slds');
+            var actualWidth  = $popoverNode[0].offsetWidth;
+            var actualHeight = $popoverNode[0].offsetHeight;// + 15;
 
             var targetPos = getPosition($target)
-            var calculatedOffset = getCalculatedOffset(tooltipPosition, targetPos, actualWidth, actualHeight);
-            applyPlacement(calculatedOffset, tooltipPosition, actualWidth, actualHeight, $tooltipNode);
+            var calculatedOffset = getCalculatedOffset(popoverPosition, targetPos, actualWidth, actualHeight);
+            applyPlacement(calculatedOffset, popoverPosition, actualWidth, actualHeight, $popoverNode);
         } 
     };
 
-    var applyPlacement = function (offset, placement, actualWidth, actualHeight, tooltip) {
+    var applyPlacement = function (offset, placement, actualWidth, actualHeight, popover) {
         var delta = getViewportAdjustedDelta(placement, offset, actualWidth, actualHeight)
 
         if (delta.left) {
@@ -50,7 +53,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             offset.top += delta.top;
         }
 
-        tooltip.offset(offset);
+        popover.offset(offset);
     }
 
 
@@ -118,54 +121,56 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         return delta;
     }
     
-    var hideTooltip = function(e) {
-        var $tooltipNode = $('body').find('.slds-popover');
+    var hidePopover = function(e) {
+        var $popoverNode = $('body').find('.slds-popover');
         
-        if ($tooltipNode.length > 0) {
-            $tooltipNode.remove();
+        if ($popoverNode.length > 0) {
+            $popoverNode.remove();
         }
     };
     
     $.fn.popover = function(options) {
         var settings = $.extend({
             assetsLocation: $.aljs.assetsLocation,
-            popoverModifier: '',
-            popoverTheme: ''
+            modifier: '',
+            theme: ''
             // These are the defaults
         }, options );
         
         if (settings.selector && this.length === 1) {
-            return this.on('mouseenter', settings.selector, showTooltip)
-                .on('focusin', settings.selector, showTooltip)
-                .on('mouseleave', settings.selector, hideTooltip)
-                .on('blur', settings.selector, hideTooltip)
-                .on('touchstart', settings.selector, function(e) {
+            return this.on('mouseenter', settings.selector, settings, showPopover)
+                .on('focusin', settings.selector, settings, showPopover)
+                .on('mouseleave', settings.selector, settings, hidePopover)
+                .on('blur', settings.selector, settings, hidePopover)
+                .on('touchstart', settings.selector, settings, function(e) {
                     e.stopPropagation();
+                    var selector = (settings.modifier == 'tooltip') ? '.slds-popover--tooltip' : '.slds-popover';
                 
-                    if ($('.slds-popover').length == 0) {
-                        showTooltip();
+                    if ($(selector).length == 0) {
+                        showPopover();
                     } else {
-                        hideTooltip();
+                        hidePopover();
                     }
                 });
         } else {
             return this.each(function() {
-                $(this).on('mouseenter', showTooltip)
-                       .on('focusin', showTooltip)
-                       .on('mouseleave', hideTooltip)
-                       .on('blur', hideTooltip)
-                       .on('touchstart', function(e) {
+                $(this).on('mouseenter', settings, showPopover)
+                       .on('focusin', settings, showPopover)
+                       .on('mouseleave', settings, hidePopover)
+                       .on('blur', settings, hidePopover)
+                       .on('touchstart', settings, function(e) {
                             e.stopPropagation();
+                            var selector = (settings.modifier == 'tooltip') ? '.slds-popover--tooltip' : '.slds-popover';
                     
-                            if ($('.slds-popover').length == 0) {
-                                showTooltip();
+                            if ($(selector).length == 0) {
+                                showPopover();
                             } else {
-                                hideTooltip();
+                                hidePopover();
                             }
                         });
             });
         }
         
-        $('body').on('touchstart', hideTooltip);
+        $('body').on('touchstart', hidePopover);
     };
 }(jQuery));

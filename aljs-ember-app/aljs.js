@@ -147,9 +147,9 @@ App.PicklistsController = Ember.ObjectController.extend(App.SelectedSectionMixin
     routeName: 'picklists'
 });
 
-App.TooltipsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
+/*App.TooltipsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
     routeName: 'tooltips'
-});
+});*/
 
 App.ModalsController = Ember.ObjectController.extend(App.SelectedSectionMixin, {
     routeName: 'modals'
@@ -249,10 +249,10 @@ App.AljsRoute = Ember.Route.extend({
                     path: 'tabs',
                     name: 'Tabs'
                 },
-                {
+                /*{
                     path: 'tooltips',
                     name: 'Tooltips'
-                },
+                },*/
                 {
                     path: 'changelog',
                     name: 'Changelog'
@@ -283,7 +283,7 @@ App.Router.map(function() {
     	this.resource('gettingStarted');
     	this.resource('modals');
     	this.resource('picklists');
-    	this.resource('tooltips');
+    	/*this.resource('tooltips');*/
     	this.resource('popovers');
     	this.resource('datepickers');
         this.resource('tabs');

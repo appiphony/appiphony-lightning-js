@@ -21,6 +21,26 @@ gulp.task('neuter', function() {
 		.pipe(gulp.dest('./public/js'));
 });
 
+gulp.task('concatAll', function() {
+    var buildOrder = [
+        './public/src/jquery.aljs-init.js',
+        './public/src/jquery.aljs-datepicker.js',
+        './public/src/jquery.aljs-icon-group.js',
+        './public/src/jquery.aljs-lookup.js',
+        './public/src/jquery.aljs-modal.js',
+        './public/src/jquery.aljs-multi-select.js',
+        './public/src/jquery.aljs-notification.js',
+        './public/src/jquery.aljs-picklist.js',
+        './public/src/jquery.aljs-pill.js',
+        './public/src/jquery.aljs-popover.js',
+        './public/src/jquery.aljs-tabs.js'
+    ]
+    
+    return gulp.src(buildOrder)
+        .pipe(concat('jquery.aljs-all.js'))
+		.pipe(gulp.dest('./public/src'));
+});
+
 gulp.task('neuterDev', function() {
     gulp.src('aljs-ember-app/aljs-compiler.js')
         .pipe(neuter('aljs.pck.js', null, {
@@ -43,6 +63,7 @@ gulp.task('zip', function() {
 });
 
 gulp.task('watch', function() {
+    gulp.watch(['./public/src/**/*.js', '!./public/src/**/*.min.js', '!./public/src/jquery.aljs-all.js'], ['concatAll']);
     gulp.watch(['./public/src/**/*.js', '!./public/src/**/*.min.js'], ['uglify']);
     gulp.watch('./aljs-ember-app/templates/**/*.hbs', ['emberTemplates']);
     gulp.watch('./aljs-ember-app/**/*.js', ['neuter']);
@@ -50,11 +71,12 @@ gulp.task('watch', function() {
 });
 
 gulp.task('watchDev', function() {
+    gulp.watch(['./public/src/**/*.js', '!./public/src/**/*.min.js', '!./public/src/jquery.aljs-all.js'], ['concatAll']);
     gulp.watch(['./public/src/**/*.js', '!./public/src/**/*.min.js'], ['uglify']);
     gulp.watch('./aljs-ember-app/templates/**/*.hbs', ['emberTemplates']);
     gulp.watch('./aljs-ember-app/**/*.js', ['neuterDev']);
     gulp.watch('./dist/**/*', ['zip']);
 });
 
-gulp.task('default', ['emberTemplates', 'neuter', 'uglify', 'zip', 'watch']);
-gulp.task('dev', ['emberTemplates', 'neuterDev', 'uglify', 'zip', 'watchDev']);
+gulp.task('default', ['emberTemplates', 'concatAll', 'neuter', 'uglify', 'zip', 'watch']);
+gulp.task('dev', ['emberTemplates', 'concatAll', 'neuterDev', 'uglify', 'zip', 'watchDev']);

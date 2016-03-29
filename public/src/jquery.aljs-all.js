@@ -1837,6 +1837,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     var showPopover = function(e) {
         var $target = $(e.target).closest('[data-aljs="popover"]');
         var settings = e.data;
+        var isMarkup = ($target.attr('data-aljs-show')) ? true : false;
         
         if (!$target.attr('data-aljs-title')) {
             $target.attr('data-aljs-title', $target.attr('title'));
@@ -1845,7 +1846,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         }
         var lineHeightFix = ($target.parent().hasClass('slds-button')) ? ' style="line-height: normal;"' : ''; // Adjust line height if popover is inside a button
         var popoverId = $target.attr('data-aljs-id') || 'aljs-' + (new Date()).valueOf();
-        var popoverContent = $target.attr('data-aljs-title');
+        var popoverContent = (!isMarkup) ? $target.data('aljs-title') : $('#' + $target.data('aljs-show')).html();
         var popoverPosition = $target.attr('data-aljs-placement') || 'top';
         var popoverNubbins = {
             top: 'bottom',
@@ -1966,6 +1967,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             theme: ''
             // These are the defaults
         }, options );
+        
+        this.each(function() {
+            $('#' + $(this).data('aljs-show')).addClass('slds-hide'); // Hide custom popover markup on init
+        });
         
         if (settings.selector && this.length === 1) {
             return this.on('mouseenter', settings.selector, settings, showPopover)

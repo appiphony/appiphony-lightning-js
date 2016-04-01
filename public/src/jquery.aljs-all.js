@@ -1909,18 +1909,18 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     }
 
     var getPosition = function ($element) {
-        $element   = $element || this.$element;
+        $element = $element || this.$element;
 
-        var el     = $element[0];
+        var el = $element[0];
         var isBody = el.tagName == 'BODY';
 
-        var elRect    = el.getBoundingClientRect();
+        var elRect = el.getBoundingClientRect();
         if (elRect.width == null) {
             // width and height are missing in IE8, so compute them manually; see https://github.com/twbs/bootstrap/issues/14093
             elRect = $.extend({}, elRect, { width: elRect.right - elRect.left, height: elRect.bottom - elRect.top });
         }
-        var elOffset  = isBody ? { top: 0, left: 0 } : $element.offset();
-        var scroll    = { scroll: isBody ? document.documentElement.scrollTop || document.body.scrollTop : $element.scrollTop() };
+        var elOffset = isBody ? { top: 0, left: 0 } : $element.offset();
+        var scroll = { scroll: isBody ? document.documentElement.scrollTop || document.body.scrollTop : $element.scrollTop() };
         var outerDims = isBody ? { width: $(window).width(), height: $(window).height() } : null;
 
         return $.extend({}, elRect, scroll, outerDims, elOffset);
@@ -1929,7 +1929,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
     var getViewportAdjustedDelta = function (placement, pos, actualWidth, actualHeight) {
         var delta = { top: 0, left: 0 };
-        var viewportDimensions = getPosition($('.slds'));
+        var viewportDimensions = getPosition($('body'));
 
         if (/right|left/.test(placement)) {
           var topEdgeOffset    = pos.top - viewportDimensions.scroll;

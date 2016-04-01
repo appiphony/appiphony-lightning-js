@@ -1842,8 +1842,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     var nubbinWidth = 15;
 
     var showPopover = function(e) {
-        var $target = $(e.target).closest('[data-aljs="popover"]');
         var settings = e.data;
+        var $target = $(e.target).is($(settings.selector)) ? $(e.target) : $(e.target).closest(settings.selector || '[data-aljs="popover"]');
+        console.log(settings.selector);
+
         var isMarkup = ($target.attr('data-aljs-show')) ? true : false;
         
         if (!$target.attr('data-aljs-title')) {
@@ -1997,13 +1999,15 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 });
         } else {
             return this.each(function() {
-                $(this).on('mouseenter', settings, showPopover)
-                       .on('focusin', settings, showPopover)
-                       .on('mouseleave', settings, hidePopover)
-                       .on('blur', settings, hidePopover)
-                       .on('touchstart', settings, function(e) {
+                var thisSettings = JSON.parse(JSON.stringify(settings));
+                thisSettings.selector = this;
+                $(this).on('mouseenter', thisSettings, showPopover)
+                       .on('focusin', thisSettings, showPopover)
+                       .on('mouseleave', thisSettings, hidePopover)
+                       .on('blur', thisSettings, hidePopover)
+                       .on('touchstart', thisSettings, function(e) {
                             e.stopPropagation();
-                            var selector = (settings.modifier == 'tooltip') ? '.slds-popover--tooltip' : '.slds-popover';
+                            var selector = (thisSettings.modifier == 'tooltip') ? '.slds-popover--tooltip' : '.slds-popover';
                     
                             if ($(selector).length == 0) {
                                 showPopover();

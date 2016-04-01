@@ -245,8 +245,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	var $resultsListContainer = $lookupSearchContainer.find('ul.slds-lookup__list');
         	var searchTerm = this.$el.val();
         	var self = this;
-
+            var showUseSection = false;
+            
         	if (!this.isStringEmpty(searchTerm) && searchTerm.length > 1 && this.settings.showSearch === true) {
+                showUseSection = true;
+                
         		$resultsListContainer.before(useMarkup.replace('{{searchTerm}}', searchTerm)
                                             .replace('{{objectPluralLabel}}', this.settings.objectPluralLabel)
                                             .replace('{{assetsLocation}}', $.aljs.assetsLocation));
@@ -293,10 +296,14 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	}
 
         	$resultsListContainer.one('click', 'a', this, this.clickResult)
-        						 
-        	this.$lookupSearchContainer = $lookupSearchContainer;
-        	$lookupSearchContainer.appendTo(this.$lookupContainer);
-        	this.$el.attr('aria-expanded', 'true');
+            
+            var shouldAppendSearchContainer = this.searchResults.length > 0 || this.settings.clickAddFunction || showUseSection;
+            
+            if (shouldAppendSearchContainer) {
+                this.$lookupSearchContainer = $lookupSearchContainer;
+                $lookupSearchContainer.appendTo(this.$lookupContainer);
+                this.$el.attr('aria-expanded', 'true');
+            }
         },
         closeSearchDropdown: function() {
         	if (this.$lookupSearchContainer) {

@@ -8,10 +8,10 @@
 * **Lookups**: `setSelection` now accepts an empty array or object to clear the Lookup <a href="https://github.com/appiphony/appiphony-lightning-js/issues/27">(GitHub Issue #27)</a>
 * **Lookups**: Added additional functionality for `clickAddFunction` <a href="https://github.com/appiphony/appiphony-lightning-js/issues/35">(GitHub Issue #35)</a>
 * **Lookups**: Fixed an issue where filtering produces an empty results container if `showSearch` and `clickAddFunction` settings are not used
-* **Popovers**: Refactored Popovers to accept new SLDS 1.0.0 Popover markup, including its BEM class modifiers (e.g., Tooltips)
+* **Popovers**: Refactored Popovers to accept new SLDS 1.0.0 Popover markup, including its BEM class modifiers <a href="https://github.com/appiphony/appiphony-lightning-js/issues/34">(GitHub Issue #34)</a>
 * **Tabs**: Fixed an issue involving focus and keyup events when selecting tabs with the keyboard
 * **Tabs**: Added support for nested tabs <a href="https://github.com/appiphony/appiphony-lightning-js/issues/37">(GitHub Issue #37)</a>
-* **Tooltips**: Plugin removed in favor of SLDS 1.0.0 Popover markup (see Popovers for new Tooltip support)
+* **Tooltips**: Plugin removed in favor of SLDS 1.0.0 Popover markup; see Popovers for new tooltip support <a href="https://github.com/appiphony/appiphony-lightning-js/issues/34">(GitHub Issue #34)</a>
 
 #### Ember
 * **Datepickers**: Added support for removing a selected date and setting a typed date on blur instead of just on enter

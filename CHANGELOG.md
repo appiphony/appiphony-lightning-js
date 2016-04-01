@@ -1,5 +1,24 @@
 # Appiphony Lightning JS Beta
 
+### Release 1.0.0 — April 1, 2016
+
+#### jQuery
+* **General**: Created the `jquery.aljs-init.min.js` which includes all ALJS jQuery plugins
+* **Lookups**: Updated `onChange` to reference `self.selectedResult` instead of `selectResult` <a href="https://github.com/appiphony/appiphony-lightning-js/issues/27">(GitHub Issue #27)</a>
+* **Lookups**: `setSelection` now accepts an empty array or object to clear the Lookup <a href="https://github.com/appiphony/appiphony-lightning-js/issues/27">(GitHub Issue #27)</a>
+* **Lookups**: Added additional functionality for `clickAddFunction` <a href="https://github.com/appiphony/appiphony-lightning-js/issues/35">(GitHub Issue #35)</a>
+* **Lookups**: Fixed an issue where filtering produces an empty results container if `showSearch` and `clickAddFunction` settings are not used
+* **Popovers**: Refactored Popovers to accept new SLDS 1.0.0 Popover markup, including its BEM class modifiers (e.g., Tooltips)
+* **Tabs**: Fixed an issue involving focus and keyup events when selecting tabs with the keyboard
+* **Tabs**: Added support for nested tabs <a href="https://github.com/appiphony/appiphony-lightning-js/issues/37">(GitHub Issue #37)</a>
+* **Tooltips**: Plugin removed in favor of SLDS 1.0.0 Popover markup (see Popovers for new Tooltip support)
+
+#### Ember
+* **Datepickers**: Added support for removing a selected date and setting a typed date on blur instead of just on enter
+* **Lookups**: Multi Select Lookups now prevent duplicates if user is allowed to enter new items and presses enter
+
+---
+
 ### Release 0.2.0 — February 10, 2016
 
 #### jQuery

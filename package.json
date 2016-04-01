@@ -1,6 +1,6 @@
 {
   "name": "salesforce-lightning-javascript-toolkit",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Your JS Solution for the Lightning Design System",
   "main": "gulpfile.js",
   "scripts": {

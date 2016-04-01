@@ -37,11 +37,19 @@
     <script src="../public/lib/moment/moment.js"></script>
     <script src="./src/jquery.aljs-all.js"></script>
     <script type="text/javascript">
+        $.aljsInit({
+            scoped: true
+        });
+        
         $(document).ready(function() {
     	   $('[data-aljs="popover"]').popover();
         });
     </script>
     <!--<script type="text/javascript">
+        $.aljsInit({
+            scoped: true
+        });
+
     	$('body').popover({
             selector: '[data-aljs="popover"]',
             modifier: 'tooltip',

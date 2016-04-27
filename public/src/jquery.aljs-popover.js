@@ -7,18 +7,17 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     var showPopover = function(e) {
         var settings = e.data;
         var $target = $(e.target).is($(settings.selector)) ? $(e.target) : $(e.target).closest(settings.selector || '[data-aljs="popover"]');
-        console.log(settings.selector);
 
         var isMarkup = ($target.attr('data-aljs-show')) ? true : false;
-        
+
         if (!$target.attr('data-aljs-title')) {
             $target.attr('data-aljs-title', $target.attr('title'));
-            $target.attr('title', ''); 
+            $target.attr('title', '');
             //$target.css('position', 'relative');
         }
         var lineHeightFix = ($target.parent().hasClass('slds-button')) ? ' style="line-height: normal;"' : ''; // Adjust line height if popover is inside a button
         var popoverId = $target.attr('data-aljs-id') || 'aljs-' + (new Date()).valueOf();
-        var popoverContent = (!isMarkup) ? $target.data('aljs-title') : $('#' + $target.data('aljs-show')).html();
+        var popoverContent = (!isMarkup) ? htmlEncode($target.data('aljs-title')) : $('#' + $target.data('aljs-show')).html();
         var popoverPosition = $target.attr('data-aljs-placement') || 'top';
         var popoverNubbins = {
             top: 'bottom',
@@ -29,24 +28,35 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         var popoverPositioningCSS = 'overflow: visible; display: inline-block; position: absolute;';
         var modifier = (settings.modifier != '') ? ' slds-popover--' + settings.modifier : '';
         var theme = (settings.theme != '') ? ' slds-theme--' + settings.theme : '';
-        
+
         var popoverMarkup = '<div id="' + popoverId + '" aria-describedby="' + popoverId + '" class="slds-popover' + modifier + theme + ' slds-nubbin--' + (popoverNubbins[popoverPosition] || 'top') + '" style="' + popoverPositioningCSS +'">' +
                                 '<div class="slds-popover__body"' + lineHeightFix + '>' +
                                 popoverContent +
                                 '</div>' +
                             '</div>';
-        
+
         if ($target.next('.slds-popover').length === 0) {
             var $popoverNode = ($.aljs.scoped) ? $(popoverMarkup).appendTo('.slds') : $(popoverMarkup).appendTo('body');
-            
+
             var actualWidth  = $popoverNode[0].offsetWidth;
             var actualHeight = $popoverNode[0].offsetHeight;// + 15;
 
             var targetPos = getPosition($target)
             var calculatedOffset = getCalculatedOffset(popoverPosition, targetPos, actualWidth, actualHeight);
             applyPlacement(calculatedOffset, popoverPosition, actualWidth, actualHeight, $popoverNode);
-        } 
+        }
     };
+
+    var htmlEncode = function(val) {
+        var str = String(val);
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/\//g, '&#x2F;');
+    }
 
     var applyPlacement = function (offset, placement, actualWidth, actualHeight, popover) {
         var delta = getViewportAdjustedDelta(placement, offset, actualWidth, actualHeight)
@@ -124,15 +134,15 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         return delta;
     }
-    
+
     var hidePopover = function(e) {
         var $popoverNode = $('body').find('.slds-popover');
-        
+
         if ($popoverNode.length > 0) {
             $popoverNode.remove();
         }
     };
-    
+
     $.fn.popover = function(options) {
         var settings = $.extend({
             assetsLocation: $.aljs.assetsLocation,
@@ -140,11 +150,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             theme: ''
             // These are the defaults
         }, options );
-        
+
         this.each(function() {
             $('#' + $(this).data('aljs-show')).addClass('slds-hide'); // Hide custom popover markup on init
         });
-        
+
         if (settings.selector && this.length === 1) {
             return this.on('mouseenter', settings.selector, settings, showPopover)
                 .on('focusin', settings.selector, settings, showPopover)
@@ -153,7 +163,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 .on('touchstart', settings.selector, settings, function(e) {
                     e.stopPropagation();
                     var selector = (settings.modifier == 'tooltip') ? '.slds-popover--tooltip' : '.slds-popover';
-                
+
                     if ($(selector).length == 0) {
                         showPopover();
                     } else {
@@ -171,7 +181,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                        .on('touchstart', thisSettings, function(e) {
                             e.stopPropagation();
                             var selector = (thisSettings.modifier == 'tooltip') ? '.slds-popover--tooltip' : '.slds-popover';
-                    
+
                             if ($(selector).length == 0) {
                                 showPopover();
                             } else {
@@ -180,7 +190,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         });
             });
         }
-        
+
         $('body').on('touchstart', hidePopover);
     };
 }(jQuery));

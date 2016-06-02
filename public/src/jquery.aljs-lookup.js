@@ -94,7 +94,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         this.initLookup();
     };
-
+	var searchTimer;
     Lookup.prototype = {
         constructor: Lookup,
         isStringEmpty: function(stringVal) {
@@ -136,14 +136,26 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 			});
         },
         runSearch: function(e) {
-        	var self = e.data;
-        	var searchTerm = self.$el.val();
-
-        	if (!self.isStringEmpty(searchTerm)) {
-        		self.getSearchTermResults(searchTerm);
-        	} else {
-        		self.getDefaultResults();
-        	}
+            var self = e.data;
+            
+            if (searchTimer) {
+                if (self.settings.showDebugLog)
+                console.log ('Cancelling search ', searchTimer);
+                clearTimeout(searchTimer);
+            }
+            
+            searchTimer = setTimeout(function() {
+            
+                
+                var searchTerm = self.$el.val();
+                if (!self.isStringEmpty(searchTerm) && searchTerm.length > 2) {
+                    self.getSearchTermResults(searchTerm);
+                    
+                } else {
+                    self.getDefaultResults();
+                }
+                              
+            }, (self.settings.searchDelayMs) ? self.settings.searchDelayMs : 500);   
         },
         setMultiSelect: function(selectedResults) {
         	var self = this;

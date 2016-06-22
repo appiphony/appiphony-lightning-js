@@ -2,8 +2,6 @@
 {{#aljs-main-content}}
     <p class="site-text-introduction slds-m-bottom--xx-large">Enabling Appiphony Lightning JS on your Visualforce pages is simple.</p>
     <div class="slds-m-bottom--xx-large slds-text-longform">
-        <h4 class="site-text-heading--large">Install the <a href="https://www.lightningdesignsystem.com/resources/downloads/#unmanaged" target="_blank">SLDS Unmanaged Package</a></h4>
-        <h5 class="slds-m-top--xx-large">&mdash;or&mdash;</h5>
         <h4 class="site-text-heading--large">Import the SLDS Library as a Static Resource</h4>
         <ol>
             <li><a href="http://www.lightningdesignsystem.com/resources/downloads" target="_blank">Download</a> the SLDS Library from their website.</li>
@@ -30,19 +28,19 @@
         </ol>
         <h4 class="site-text-heading--large">Setup a VF page to use SLDS and ALJS</h4>
         <p>Now that you have both SLDS and ALJS available in your org, you can import and configure them in a Visualforce page using the URLFOR apex helper.</p>
-        <p class="slds-m-top--large site-text-heading--small">Importing CSS:</p>
+        <p class="slds-m-top--large site-text-heading--small">Importing CSS</p>
 {{#aljs-pre-container type="vf"}}
 <apex:page sidebar="false" standardStylesheets="false" showHeader="false" docType="html-5.0">
-    <link rel="stylesheet" href="{!URLFOR($Resource.slds, '/assets/styles/salesforce-lightning-design-system-vf.min.css')}"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.slds, '/assets/styles/salesforce-lightning-design-system.min.css')}"/>
 </apex:page>
 {{/aljs-pre-container}}
-    <p class="slds-m-top--large site-text-heading--small">Define the assets location for SLDS (this enables the user to use SLDS' fonts and icons):</p>
+    <p class="slds-m-top--large site-text-heading--small">Define the assets location for SLDS (this gives ALJS access to SLDS' fonts and icons)</p>
 {{#aljs-pre-container type="vf"}}
 <script>
     var assetsLocation = '{!URLFOR($Resource.slds}';
 </script>
 {{/aljs-pre-container}}
-    <p class="slds-m-top--large site-text-heading--small">Scope your page's content inside of the <code>"slds"</code> class:</p>
+    <p class="slds-m-top--large site-text-heading--small">Scope your page's content inside of the <code>"slds"</code> class (optional)</p>
 {{#aljs-pre-container type="vf"}}
 <div class="slds">Your content here</div>
 {{/aljs-pre-container}}

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Lookup Demo | Appiphony Lightning JS</title>
-    <link rel="stylesheet" type="text/css" href="assets/styles/salesforce-lightning-design-system-vf.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/salesforce-lightning-design-system.css">
     <style type="text/css">
         html, body {
             margin: 0;
@@ -18,49 +18,45 @@
 
 <body>
     <div class="slds">
-        <div class="slds-lookup" data-select="single" data-scope="single" data-typeahead="true">
-            <p class="slds-text-heading--small slds-m-bottom--x-small">Passing in an Items List</p>
-			<div class="slds-form-element">
-				<label class="slds-form-element__label" for="lookup-1">Objects</label>
-				<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
-					<svg aria-hidden="true" class="slds-input__icon">
-						<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#search"></use>
-					</svg>
-					<input id="lookup-1" class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" />
-				</div>
-			</div>	
-		</div>
-		<div class="slds-lookup" data-select="single" data-scope="single" data-typeahead="true">
-            <p class="slds-text-heading--small slds-m-bottom--x-small slds-m-top--large">Passing in Functions to Get Items</p>
-			<div class="slds-form-element">
-				<label class="slds-form-element__label" for="lookup-2">Things</label>
-				<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
-					<svg aria-hidden="true" class="slds-input__icon">
-						<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#search"></use>
-					</svg>
-					<input id="lookup-2" class="slds-input" type="text" aria-autocomplete="list" role="combobox"/>
-				</div>
-			</div>	
-		</div>
-		<div class="slds-lookup" data-select="multi" data-scope="single" data-typeahead="true">
+        <p class="slds-text-heading--small slds-m-bottom--x-small">Passing in an Items List</p>
+        <div class="slds-form-element slds-lookup" data-select="single" data-scope="single">
+            <label class="slds-form-element__label" for="lookup-01">Objects</label>
+            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
+                    <use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                </svg>
+                <input id="lookup-01" class="slds-lookup__search-input slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" placeholder="Search Accounts" />
+            </div>
+        </div>
+        <p class="slds-text-heading--small slds-m-bottom--x-small slds-m-top--large">Passing in Functions to Get Items</p>
+        <div class="slds-form-element slds-lookup" data-select="single" data-scope="single">
+            <label class="slds-form-element__label" for="lookup-02">Things</label>
+            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
+                    <use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                </svg>
+                <input id="lookup-02" class="slds-lookup__search-input slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" placeholder="Search Accounts" />
+            </div>
+        </div>
+		<!--<div class="slds-lookup" data-select="multi" data-scope="single" data-typeahead="true">
             <p class="slds-text-heading--small slds-m-bottom--x-small slds-m-top--large">Multi Select Lookup</p>
 			<div class="slds-form-element">
-				<label class="slds-form-element__label" for="lookup-3">Entities</label>
+				<label class="slds-form-element__label" for="lookup-03">Entities</label>
 				<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
 					<svg aria-hidden="true" class="slds-input__icon">
 						<use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#search"></use>
 					</svg>
-					<input id="lookup-3" class="slds-input" type="text" aria-autocomplete="list" role="combobox"/>
+					<input id="lookup-03" class="slds-input" type="text" aria-autocomplete="list" role="combobox"/>
 				</div>
 			</div>	
-		</div>
+		</div>-->
         <div class="slds-text-longform slds-m-top--large">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum porta sem, a eleifend sapien placerat non. Phasellus at sapien commodo, commodo risus quis, laoreet lectus. Mauris dictum sodales fringilla. Nam mi dolor, egestas vel lobortis sed, mattis vitae risus. Aenean eget lorem arcu. Nulla erat purus, consequat a lacus id, consequat molestie arcu. Fusce volutpat dui mattis rhoncus pellentesque. Nulla iaculis turpis in dolor rhoncus euismod nec ut ligula. Ut vel pulvinar nulla, in aliquam ante. Proin mollis, tortor eu semper maximus, urna sem vehicula ante, vel aliquam diam ipsum sed justo. Etiam finibus tortor orci, sed molestie lectus efficitur sed. Aenean euismod ipsum sit amet enim rutrum feugiat.</p>
             <p>Fusce ut egestas tellus, in facilisis dui. Sed at urna sed nisi pharetra maximus et eu est. Etiam condimentum magna eget nulla lacinia, sit amet ultricies ligula congue. Cras pretium metus a eros ornare vehicula sed non metus. Pellentesque nec nisl nec justo dapibus aliquam a nec quam. Nunc et bibendum lacus. Maecenas at venenatis nibh. Nullam mollis, enim quis dictum luctus, sem turpis egestas dolor, ut interdum risus mi vitae quam. Aenean eu nibh ullamcorper, fermentum sem eget, mollis arcu. Nullam vulputate, ante in ullamcorper ultricies, ipsum augue imperdiet ante, ut iaculis magna mi in eros. Ut vel pulvinar nulla, in aliquam ante. Aliquam convallis, dui quis varius gravida, urna turpis tempor nibh, sit amet tempus.</p>
         </div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!--    <script src="./src/jquery.aljs-init.js"></script>
+    <!--<script src="./src/jquery.aljs-init.js"></script>
     <script src="./src/jquery.aljs-lookup.js"></script>-->
     <script src="./lib/moment/moment.js"></script>
     <script src="./src/jquery.aljs-all.js"></script>
@@ -69,7 +65,7 @@
             assetsLocation: '.'
         });
         $(document).ready(function() {
-        	$('#lookup-1').lookup({
+        	$('#lookup-01').lookup({
         		items: [
         			{
         				id: 'result-1',
@@ -86,14 +82,6 @@
         			{
         				id: 'result-4',
         				label: 'Result 4'
-        			},
-        			{
-        				id: 'result-5',
-        				label: 'Result 5'
-        			},
-        			{
-        				id: 'result-6',
-        				label: 'Result 6'
         			}
         		],
                 objectIconUrl: 'assets/icons/standard-sprite/svg/symbols.svg#account',
@@ -116,18 +104,10 @@
                 {
                     id: 'ajax-result-4',
                     label: 'ajaxResult4'
-                },
-                {
-                    id: 'ajax-result-5',
-                    label: 'ajaxResult5'
-                },
-                {
-                    id: 'ajax-result-6',
-                    label: 'ajaxResult6'
                 }
             ];
 
-        	$('#lookup-2').lookup({
+        	$('#lookup-02').lookup({
         		objectPluralLabel: 'Things',
         		objectLabel: 'Thing',
         		objectIconUrl: 'assets/icons/standard-sprite/svg/symbols.svg#account',
@@ -141,12 +121,12 @@
         			}));
         		},
         		clickAddFunction: function() {
-        			console.log('redirect or do something to add something');
+        			console.log('redirect or run something');
         		},
                 initialSelection: { id: 'ajax-result-1', label: 'ajaxResult1' }
         	});
 
-        	$('#lookup-3').lookup({
+        	/*$('#lookup-03').lookup({
         		objectPluralLabel: 'Entities',
         		objectLabel: 'Entity',
         		objectIconUrl: 'assets/icons/standard-sprite/svg/symbols.svg#account',
@@ -162,7 +142,7 @@
         		clickAddFunction: function() {
         			console.log('redirect or do something to add something');
         		}
-        	});
+        	});*/
             /*$('#pl1').multipicklist({
                 onChange: function(obj) {
                     console.log('picklist 1');

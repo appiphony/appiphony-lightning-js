@@ -138,7 +138,7 @@ App.AljsPreContainerComponent = Ember.Component.extend({
         //                     .replace(/<\/highlight>/g, '<\/span>');
         var markup = $this.find('[data-aljs="yield"]').remove().html().trim()
                                 .replace(/<([^>]+)>/g, '&lt;$1&gt;')
-                                .replace(/(data[\S]+")/g, '<span class="highlight">$1</span>');
+                                .replace(/(data-aljs[\S]+")/g, '<span class="highlight">$1</span>');
         $this.find('pre:first').append(markup);
     }
 });

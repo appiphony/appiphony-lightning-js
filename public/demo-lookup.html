@@ -120,10 +120,10 @@
         				return result.label.match(searchTerm) !== null;
         			}));
         		},
+                initialSelection: { id: 'ajax-result-1', label: 'ajaxResult1' },
         		clickAddFunction: function() {
         			console.log('redirect or run something');
-        		},
-                initialSelection: { id: 'ajax-result-1', label: 'ajaxResult1' }
+        		}
         	});
 
         	/*$('#lookup-03').lookup({

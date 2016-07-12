@@ -841,8 +841,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	var self = this;
 
         	this.$el.on('focus', this, this.runSearch)
-        			.on('keyup', this, this.runSearch)
-        			.on('blur', this, this.handleBlur);
+                .on('keyup', this, this.runSearch)
+                .on('blur', this, this.handleBlur);
 
 			this.$lookupContainer.on('keyup', function(e) {
 				e.stopPropagation();
@@ -891,11 +891,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	if (selectedResults.length > 0) {
         		selectedResults.forEach(function(result) {
         			var $pill = $(conditionalPillMarkup.replace('{{objectIconUrl}}', self.settings.objectIconUrl)
-                                .replace('{{objectIconClass}}', self.settings.objectIconClass)
-                                .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
-                                .replace('{{assetsLocation}}', self.settings.assetsLocation)
-                                .replace(/{{objectPluralLabel}}/g, self.settings.objectPluralLabel)
-                                .replace(/{{selectedResultLabel}}/g, result.label));
+                        .replace('{{objectIconClass}}', self.settings.objectIconClass)
+                        .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
+                        .replace('{{assetsLocation}}', self.settings.assetsLocation)
+                        .replace(/{{objectPluralLabel}}/g, self.settings.objectPluralLabel)
+                        .replace(/{{selectedResultLabel}}/g, result.label));
         			$pill.removeClass('slds-pill--bare')
                         .attr('id', result.id)
                         .on('click', 'a, button', self, self.clearMultiSelectResult);
@@ -918,10 +918,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             var conditionalPillMarkup = (self.settings.useImgTag) ? customPillMarkup : pillMarkup;
 
         	this.$singleSelect.html(conditionalPillMarkup.replace('{{objectIconUrl}}', this.settings.objectIconUrl)
-                                    .replace('{{objectIconClass}}', self.settings.objectIconClass)
-                                    .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
-                                    .replace('{{assetsLocation}}', this.settings.assetsLocation)
-                                    .replace(/{{selectedResultLabel}}/g, newResultLabel));
+                .replace('{{objectIconClass}}', self.settings.objectIconClass)
+                .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
+                .replace('{{assetsLocation}}', this.settings.assetsLocation)
+                .replace(/{{selectedResultLabel}}/g, newResultLabel));
 
         	if (selectedResultLabel) {
         		this.$singleSelect.addClass('slds-show')
@@ -989,12 +989,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	if (!this.isStringEmpty(searchTerm) && searchTerm.length > 1 && this.settings.showSearch === true) {
                 showUseSection = true;
                 
-                self.$el.closest('.slds-lookup')
-                    .addClass('slds-is-open');
-                
         		$resultsListContainer.before(searchMarkup.replace('{{searchTerm}}', searchTerm)
-                                            .replace('{{objectPluralLabel}}', this.settings.objectPluralLabel)
-                                            .replace('{{assetsLocation}}', $.aljs.assetsLocation));
+                    .replace('{{objectPluralLabel}}', this.settings.objectPluralLabel)
+                    .replace('{{assetsLocation}}', $.aljs.assetsLocation));
         	}
 
         	this.searchResults.forEach(function(result) {
@@ -1004,19 +1001,19 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 
         		if (self.isSingle) {
         			$lookupResultItem = $resultsListContainer.append(conditionalLookupMarkup.replace('{{resultLabel}}', markedResultLabel)
-                                                                    .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
-                                                                    .replace('{{resultId}}', result.id)
-                                                                    .replace('{{objectIconUrl}}', self.settings.objectIconUrl)
-                                                                    .replace('{{objectIconClass}}', self.settings.objectIconClass));
+                        .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
+                        .replace('{{resultId}}', result.id)
+                        .replace('{{objectIconUrl}}', self.settings.objectIconUrl)
+                        .replace('{{objectIconClass}}', self.settings.objectIconClass));
         		} else if (self.selectedResults) {
         			var selectedResultsIds = self.selectedResults.map(function(result) { return result.id; });
 
         			if (selectedResultsIds.length === 0 || selectedResultsIds.indexOf(result.id) === -1) {
         				$lookupResultItem = $resultsListContainer.append(conditionalLookupMarkup.replace('{{resultLabel}}', markedResultLabel)
-                                                                        .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
-                                                                        .replace('{{resultId}}', result.id)
-                                                                        .replace('{{objectIconUrl}}', self.settings.objectIconUrl)
-                                                                        .replace('{{objectIconClass}}', self.settings.objectIconClass));
+                            .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
+                            .replace('{{resultId}}', result.id)
+                            .replace('{{objectIconUrl}}', self.settings.objectIconUrl)
+                            .replace('{{objectIconClass}}', self.settings.objectIconClass));
         			}
         		}
 
@@ -1029,9 +1026,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         	if (this.settings.clickAddFunction) {
         		var $addItem = $resultsListContainer.after(addItemMarkup
-                                                           .replace('{{hasIcon}}', ' slds-icon')
-                                                           .replace('{{objectLabel}}', this.settings.objectLabel)
-                                                           .replace('{{assetsLocation}}', $.aljs.assetsLocation));
+                   .replace('{{hasIcon}}', ' slds-icon')
+                   .replace('{{objectLabel}}', this.settings.objectLabel)
+                   .replace('{{assetsLocation}}', $.aljs.assetsLocation));
                 $addItem.next().on('click', function() {
                     $addItem.off('click');
 
@@ -1046,7 +1043,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             if (shouldAppendSearchContainer) {
                 this.$lookupSearchContainer = $lookupSearchContainer;
                 $lookupSearchContainer.appendTo(this.$lookupContainer);
-                this.$el.attr('aria-expanded', 'true');
+                this.$el.attr('aria-expanded', 'true')
+                    .closest('.slds-lookup')
+                    .addClass('slds-is-open');
             }
         },
         closeSearchDropdown: function() {
@@ -1058,7 +1057,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             this.$el.attr('aria-expanded', 'false')
                 .attr('aria-activedescendant', null)
                 .closest('.slds-lookup')
-                .addClass('slds-is-open');
+                .removeClass('slds-is-open');
         },
         handleBlur: function(e) {
         	var self = e.data;

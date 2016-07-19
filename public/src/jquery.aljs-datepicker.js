@@ -28,14 +28,11 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 '</div>' +
             '</div>' +
             '<div class="slds-form-element"><div class="slds-form-element__control">' +
-                '<div class="slds-picklist datepicker__filter--year slds-shrink-none">' +
-                // '<button id="year" class="slds-button slds-button--neutral slds-picklist__label" aria-haspopup="true">' +
-                //     '<span id="aljs-year"></span>' +
-                //     '<svg aria-hidden="true" class="slds-icon slds-icon--small">' +
-                //         '<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#down"></use>' +
-                //     '</svg>' +
-                // '</button>' +
-            '</div></div>' +
+                '<div class="slds-shrink-none">' +
+                    '<div class="slds-select_container">' + 
+                    '</div>' +
+                '</div>' +
+            '</div>' +
             '</div>' +
         '</div>';
 
@@ -67,10 +64,15 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 '</tr>' +
             '</thead>' +
             '<tbody>' +
-                
+        
             '</tbody>' +
         '</table>' +
     '</div>';
+    
+    var todayLinkMarkup = 
+      '<tr>' + 
+        '<td colspan="7" role="gridcell" data-aljs-date="{{todaysDate}}"><a href="javascript:void(0);" class="slds-show--inline-block slds-p-bottom--x-small">Today</a></td>' +
+      '</tr>';
 
     var Datepicker = function(el, options) {
         this.$el = $(el);
@@ -137,12 +139,12 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     //if ()
                     self.$selectedInput.blur();
 
-                    $('body').on('click', self, self.closeDatepicker); 
+                    $('body').on('click', self, self.closeDatepicker);
                 }  
             };
 
             // Opening datepicker
-            $($el).on('focus', openDatepicker);
+            $el.on('focus', openDatepicker);
             $($el.prev('svg')).on('click', openDatepicker);
             $el.prev('svg').css('cursor', 'pointer');
 
@@ -209,6 +211,9 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
                 });
             });
+            
+            // Today link
+            $monthTableBody.append(todayLinkMarkup.replace(/{{todaysDate}}/g, this.getMMDDYYYY(moment().month() + 1, moment().date(), moment().year())));
 
             this.$datepickerEl.find('tbody').replaceWith($monthTableBody);
             this.$datepickerEl.find('#month').text(this.settings.monthLabels[this.viewedMonth].full);
@@ -240,7 +245,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
                 $yearSelect.val(viewedYear);
 
-                this.$datepickerEl.find('.datepicker__filter--year').append($yearDropdown);
+                this.$datepickerEl.find('.slds-select_container').append($yearDropdown);
             }
 
             $yearSelect.on('change', function(e) {
@@ -426,6 +431,11 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             if (self.viewedMonth === 0) {
                 self.viewedMonth = 11;
                 self.viewedYear--;
+                
+                self.$datepickerEl.find('.slds-select option:selected')
+                    .prop('selected', false)
+                    .prev()
+                    .prop('selected', 'selected');
             } else {
                 self.viewedMonth--;
             }
@@ -438,6 +448,11 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             if (self.viewedMonth === 11) {
                 self.viewedMonth = 0;
                 self.viewedYear++;
+                
+                self.$datepickerEl.find('.slds-select option:selected')
+                    .prop('selected', false)
+                    .next()
+                    .prop('selected', 'selected');
             } else {
                 self.viewedMonth++;
             }

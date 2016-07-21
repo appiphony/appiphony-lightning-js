@@ -13,14 +13,6 @@ gulp.task('emberTemplates', function() {
     .pipe(gulp.dest('./aljs-ember-app/'));
 });
 
-gulp.task('neuter', function() {
-	gulp.src('./aljs-ember-app/aljs-compiler.js')
-		.pipe(neuter('aljs.pck.js'))
-        .pipe(rename({ suffix: '.min' }))
-        .pipe(uglify())
-		.pipe(gulp.dest('./public/js'));
-});
-
 gulp.task('concatAll', function() {
     var buildOrder = [
         './public/src/jquery.aljs-init.js',
@@ -39,6 +31,14 @@ gulp.task('concatAll', function() {
     return gulp.src(buildOrder)
         .pipe(concat('jquery.aljs-all.js'))
 		.pipe(gulp.dest('./public/src'));
+});
+
+gulp.task('neuter', function() {
+	gulp.src('./aljs-ember-app/aljs-compiler.js')
+		.pipe(neuter('aljs.pck.js'))
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(uglify())
+		.pipe(gulp.dest('./public/js'));
 });
 
 gulp.task('neuterDev', function() {

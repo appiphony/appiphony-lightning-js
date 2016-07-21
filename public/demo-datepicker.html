@@ -6,13 +6,15 @@
     <title>Datepicker Demo | Appiphony Lightning JS</title>
     <link rel="stylesheet" type="text/css" href="assets/styles/salesforce-lightning-design-system.css">
     <style type="text/css">
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 2px;
             width: 100%;
             height: 100%;
             box-sizing: border-box;
         }
+
     </style>
 </head>
 
@@ -20,7 +22,7 @@
     <div class="slds">
         <div class="slds-form--stacked slds-float--left slds-m-right--medium">
             <div class="slds-form-element">
-		    	<label class="slds-form-element__label" for="date">Date Picker Label</label>
+                <label class="slds-form-element__label" for="date">Date Picker Label</label>
                 <div class="slds-form-element__control">
                     <div class="slds-input-has-icon slds-input-has-icon--right">
                         <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
@@ -50,18 +52,19 @@
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="./lib/moment/moment.js"></script>
-    <script src="./src/jquery.aljs-init.js"></script>
-    <script src="./src/jquery.aljs-datepicker.js"></script>
     <!--<script src="./lib/moment/moment.js"></script>
-    <script src="./src/jquery.aljs-all.js"></script>-->
+    <script src="./src/jquery.aljs-init.js"></script>
+    <script src="./src/jquery.aljs-datepicker.js"></script>-->
+    <script src="./lib/moment/moment.js"></script>
+    <script src="./src/jquery.aljs-all.js"></script>
     <script type="text/javascript">
-    	$.aljsInit({
+        $.aljsInit({
             assetsLocation: '.'
         });
 
-    	$('#date').datepicker();
+        $('#date').datepicker();
         $('#date2').datepicker();
+
     </script>
     <!--<script type="text/javascript">
     	$.aljsInit({
@@ -81,14 +84,96 @@
             }
         });
     </script>-->
-    <script>
+    <!--<script type="text/javascript">
+        $.aljsInit({
+            assetsLocation: '.'
+        });
+
+        $('#date').datepicker({
+            numYearsBefore: 2,
+            numYearsAfter: 2,
+            format: 'MM/DD/YYYY',
+            initDate: moment(),
+            dayLabels: [{
+                full: 'Domenica',
+                abbr: 'Dom'
+            }, {
+                full: 'Luned&#236',
+                abbr: 'Lun'
+            }, {
+                full: 'Marted&#236',
+                abbr: 'Mar'
+            }, {
+                full: 'Mercoled&#236',
+                abbr: 'Mer'
+            }, {
+                full: 'Gioved&#236',
+                abbr: 'Gio'
+            }, {
+                full: 'Venerd&#236',
+                abbr: 'Ven'
+            }, {
+                full: 'Sabato',
+                abbr: 'Sab'
+            }],
+            monthLabels: [{
+                full: 'Gennaio',
+                abbr: 'Gen'
+            }, {
+                full: 'Febbraio',
+                abbr: 'Feb'
+            }, {
+                full: 'Marzo',
+                abbr: 'Mar'
+            }, {
+                full: 'Aprile',
+                abbr: 'Apr'
+            }, {
+                full: 'Maggio',
+                abbr: 'Mag'
+            }, {
+                full: 'Giugno',
+                abbr: 'Giu'
+            }, {
+                full: 'Luglio',
+                abbr: 'Lug'
+            }, {
+                full: 'Agosto',
+                abbr: 'Ago'
+            }, {
+                full: 'Settembre',
+                abbr: 'Set'
+            }, {
+                full: 'Ottobre',
+                abbr: 'Ott'
+            }, {
+                full: 'Novembre',
+                abbr: 'Nov'
+            }, {
+                full: 'Dicembre',
+                abbr: 'Dic'
+            }],
+            onChange: function(datepicker) {
+                console.log(datepicker);
+            }
+        });
+
+        $('#date2').datepicker({
+            onChange: function(datepicker) {
+                console.log(datepicker);
+                console.log(this);
+            }
+        });
+
+    </script>-->
+    <!--<script>
         $(document).ready(function() {
             $('a[href="#"]').click(function(e) {
                e.preventDefault();
                 return false;
             });
         });
-    </script>
+    </script>-->
 </body>
 
 </html>

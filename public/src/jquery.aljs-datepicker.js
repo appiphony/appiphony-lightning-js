@@ -40,26 +40,26 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
         '<table class="datepicker__month" role="grid" aria-labelledby="month">' +
             '<thead>' +
                 '<tr id="weekdays">' +
-                    '<th id="Sunday">' +
-                        '<abbr title="Sunday">S</abbr>' +
+                    '<th id="{{label0Full}}">' +
+                        '<abbr title="{{label0Full}}">{{label0Abbr}}</abbr>' +
                     '</th>' +
-                    '<th id="Monday">' +
-                        '<abbr title="Monday">M</abbr>' +
+                    '<th id="{{label1Full}}">' +
+                        '<abbr title="{{label1Full}}">{{label1Abbr}}</abbr>' +
                     '</th>' +
-                    '<th id="Tuesday">' +
-                        '<abbr title="Tuesday">T</abbr>' +
+                    '<th id="{{label2Full}}">' +
+                        '<abbr title="{{label2Full}}">{{label2Abbr}}</abbr>' +
                     '</th>' +
-                    '<th id="Wednesday">' +
-                        '<abbr title="Wednesday">W</abbr>' +
+                    '<th id="{{label3Full}}">' +
+                        '<abbr title="{{label3Full}}">{{label3Abbr}}</abbr>' +
                     '</th>' +
-                    '<th id="Thursday">' +
-                        '<abbr title="Thursday">T</abbr>' +
+                    '<th id="{{label4Full}}">' +
+                        '<abbr title="{{label4Full}}">{{label4Abbr}}</abbr>' +
                     '</th>' +
-                    '<th id="Friday">' +
-                        '<abbr title="Friday">F</abbr>' +
+                    '<th id="{{label5Full}}">' +
+                        '<abbr title="{{label5Full}}">{{label5Abbr}}</abbr>' +
                     '</th>' +
-                    '<th id="Saturday">' +
-                        '<abbr title="Saturday">S</abbr>' +
+                    '<th id="{{label6Full}}">' +
+                        '<abbr title="{{label6Full}}">{{label6Abbr}}</abbr>' +
                     '</th>' +
                 '</tr>' +
             '</thead>' +
@@ -76,12 +76,22 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
     var Datepicker = function(el, options) {
         this.$el = $(el);
-
+        this.settings = options;
+        
         var initDate = moment(options.initDate) || moment();
         var endDateId = options.endDateInputId;
-
-        this.$datepickerEl = $(datepickerMenuMarkup.replace(/{{assetsLocation}}/g, options.assetsLocation) + datepickerTableMarkup);
-        this.settings = options;
+        var labeledTableMarkup = datepickerTableMarkup;
+        
+        for (var i = 0; i < this.settings.dayLabels.length; i++) {
+            var thisLabel = this.settings.dayLabels[i];
+            var fullLabelExp = new RegExp('{{label' + i + 'Full}}', 'g');
+            var abbrLabelExp = new RegExp('{{label' + i + 'Abbr}}', 'g');
+            
+            labeledTableMarkup = labeledTableMarkup.replace(fullLabelExp, thisLabel.full)
+                .replace(abbrLabelExp, thisLabel.abbr);
+        }
+        
+        this.$datepickerEl = $(datepickerMenuMarkup.replace(/{{assetsLocation}}/g, options.assetsLocation) + labeledTableMarkup);
 
         if (options.initDate) {
             this.setSelectedFullDate(initDate);
@@ -541,7 +551,6 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
         var internalReturn;
         var settings = $.extend({
             // These are the defaults
-
             assetsLocation: $.aljs.assetsLocation,
             numYearsBefore: 50,
             numYearsAfter: 10,
@@ -551,81 +560,81 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             dayLabels: [
                 {
                     full: 'Sunday',
-                    abbv: 'S'
+                    abbr: 'S'
                 },
                 {
                     full: 'Monday',
-                    abbv: 'M'
+                    abbr: 'M'
                 },
                 {
                     full: 'Tuesday',
-                    abbv: 'T'
+                    abbr: 'T'
                 },
                 {
                     full: 'Wednesday',
-                    abbv: 'W'
+                    abbr: 'W'
                 },
                 {
                     full: 'Thursday',
-                    abbv: 'T'
+                    abbr: 'T'
                 },
                 {
                     full: 'Friday',
-                    abbv: 'F'
+                    abbr: 'F'
                 },
                 {
                     full: 'Saturday',
-                    abbv: 'S'
+                    abbr: 'S'
                 }
             ],
             monthLabels: [
                 {
                     full: 'January',
-                    abbv: ''
+                    abbr: ''
                 },
                 {
                     full: 'February',
-                    abbv: ''
+                    abbr: ''
                 },
                 {
                     full: 'March',
-                    abbv: ''
+                    abbr: ''
                 },
                 {
                     full: 'April',
-                    abbv: ''
+                    abbr: ''
                 },
                 {
                     full: 'May',
-                    abbv: ''
+                    abbr: ''
                 },
                 {
                     full: 'June',
-                    abbv: ''
+                    abbr: ''
                 },
                 {
                     full: 'July',
-                    abbv: ''
+                    abbr: ''
                 },
                 {
                     full: 'August',
-                    abbv: ''
+                    abbr: ''
                 },
                 {
                     full: 'September',
-                    abbv: ''
+                    abbr: ''
                 },
                 {
                     full: 'October',
-                    abbv: ''
+                    abbr: ''
                 },
                 {
                     full: 'November',
-                    abbv: ''
+                    abbr: ''
                 },
                 {
                     full: 'December',
-                    abbv: ''
+                    abbr: ''
                 }
             ]
             

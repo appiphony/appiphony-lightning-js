@@ -87,8 +87,8 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             var fullLabelExp = new RegExp('{{label' + i + 'Full}}', 'g');
             var abbrLabelExp = new RegExp('{{label' + i + 'Abbr}}', 'g');
             
-            labeledTableMarkup = labeledTableMarkup.replace(fullLabelExp, thisLabel.full)
-                .replace(abbrLabelExp, thisLabel.abbr);
+            labeledTableMarkup = labeledTableMarkup.replace(fullLabelExp, thisLabel.full.toString())
+                .replace(abbrLabelExp, thisLabel.abbr.toString());
         }
         
         this.$datepickerEl = $(datepickerMenuMarkup.replace(/{{assetsLocation}}/g, options.assetsLocation) + labeledTableMarkup);
@@ -223,7 +223,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             });
             
             // Today link
-            $monthTableBody.append(todayLinkMarkup.replace(/{{todaysDate}}/g, this.getMMDDYYYY(moment().month() + 1, moment().date(), moment().year())).replace(/{{todayLabel}}/g, this.settings.todayLabel));
+            $monthTableBody.append(todayLinkMarkup.replace(/{{todaysDate}}/g, this.getMMDDYYYY(moment().month() + 1, moment().date(), moment().year())).replace(/{{todayLabel}}/g, this.settings.todayLabel.toString()));
 
             this.$datepickerEl.find('tbody').replaceWith($monthTableBody);
             this.$datepickerEl.find('#month').text(this.settings.monthLabels[this.viewedMonth].full);

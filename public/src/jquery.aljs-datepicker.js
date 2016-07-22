@@ -71,7 +71,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
     
     var todayLinkMarkup = 
       '<tr>' + 
-        '<td colspan="7" role="gridcell" data-aljs-date="{{todaysDate}}"><a href="javascript:void(0);" class="slds-show--inline-block slds-p-bottom--x-small">Today</a></td>' +
+        '<td colspan="7" role="gridcell" data-aljs-date="{{todaysDate}}"><a href="javascript:void(0);" class="slds-show--inline-block slds-p-bottom--x-small">{{todayLabel}}</a></td>' +
       '</tr>';
 
     var Datepicker = function(el, options) {
@@ -223,7 +223,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             });
             
             // Today link
-            $monthTableBody.append(todayLinkMarkup.replace(/{{todaysDate}}/g, this.getMMDDYYYY(moment().month() + 1, moment().date(), moment().year())));
+            $monthTableBody.append(todayLinkMarkup.replace(/{{todaysDate}}/g, this.getMMDDYYYY(moment().month() + 1, moment().date(), moment().year())).replace(/{{todayLabel}}/g, this.settings.todayLabel));
 
             this.$datepickerEl.find('tbody').replaceWith($monthTableBody);
             this.$datepickerEl.find('#month').text(this.settings.monthLabels[this.viewedMonth].full);
@@ -636,8 +636,8 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     full: 'December',
                     abbr: ''
                 }
-            ]
-            
+            ],
+            todayLabel: 'Today'
         }, typeof options === 'object' ? options : {});
 
 

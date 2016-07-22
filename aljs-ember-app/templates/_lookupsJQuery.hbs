@@ -166,73 +166,73 @@ $(document).ready(function() {
                     <tr>
                         <th scope="row"><code>items</code></th>
                         <td data-label="Behavior">Populates the list of lookup items on page load</td>
-                        <td data-label="Accepted values">An array of objects with <code>id</code> (unique) and <code>label</code> properties</td>
+                        <td data-label="Values">An array of objects with <code>id</code> (unique) and <code>label</code> properties</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>[]</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>objectLabel</code></th>
                         <td data-label="Behavior">Sets the singular label for the searchable object</td>
-                        <td data-label="Accepted values">Any string</td>
+                        <td data-label="Values">Any string</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>'Object'</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>objectPluralLabel</code></th>
                         <td data-label="Behavior">Sets the plural label for the searchable object</td>
-                        <td data-label="Accepted values">Any string</td>
+                        <td data-label="Values">Any string</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>'Objects'</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>useImgTag</code></th>
                         <td data-label="Behavior">Adjusts the generated markup accept images with transparent backgrounds for object icons</td>
-                        <td data-label="Accepted values"><code>true</code>, <code>false</code></td>
+                        <td data-label="Values"><code>true</code>, <code>false</code></td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>false</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>objectIconUrl</code></th>
                         <td data-label="Behavior">Sets the icon of the searchable object</td>
-                        <td data-label="Accepted values">Any string representing an icon URL; use <code>''</code> (empty string) to exclude icons</td>
+                        <td data-label="Values">Any string representing an icon URL; use <code>''</code> (empty string) to exclude icons</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>'/assets/icons/standard-sprite/svg/symbols.svg#account'</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>objectIconClass</code></th>
                         <td data-label="Behavior">Sets the icon background color of the searchable object</td>
-                        <td data-label="Accepted values">Any string representing an icon class (see <a href="https://www.lightningdesignsystem.com/components/icons" target="_blank">https://www.lightningdesignsystem.com/components/icons</a> for more details)</td>
+                        <td data-label="Values">Any string representing an icon class (see <a href="https://www.lightningdesignsystem.com/components/icons" target="_blank">https://www.lightningdesignsystem.com/components/icons</a> for more details)</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>'slds-icon-standard-account'</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>emptySearchTermQuery</code></th>
                         <td data-label="Behavior">A function that runs <code>callback</code> passing an array of items when an empty search is performed.</td>
-                        <td data-label="Accepted values"><code>function(callback) { callback([{id: 1, label: 'One'}]); })</code></td>
+                        <td data-label="Values"><code>function(callback) { callback([{id: 1, label: 'One'}]); })</code></td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>function () { callback([]); }</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>filledSearchTermQuery</code></th>
                         <td data-label="Behavior">A function that runs <code>callback</code> passing an array of items when a filled search is performed.</td>
-                        <td data-label="Accepted values"><code>function(searchTerm, callback) { callback([{id: 1, label: 'One'}]); })</code></td>
+                        <td data-label="Values"><code>function(searchTerm, callback) { callback([{id: 1, label: 'One'}]); })</code></td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>function (searchTerm, callback) { callback([]); }</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>initialSelection</code></th>
                         <td data-label="Behavior">An object or array of objects that the lookup will initially have selected</td>
-                        <td data-label="Accepted values">Either a valid search result object or an array of result objects</td>
+                        <td data-label="Values">Either a valid search result object or an array of result objects</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>clickAddFunction</code></th>
                         <td data-label="Behavior">A function that runs when a user clicks the "Add" link in the search results</td>
-                        <td data-label="Accepted values">Any callback function</td>
+                        <td data-label="Values">Any callback function</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>onChange</code></th>
                         <td data-label="Behavior">A function that runs when a user selects or clears a search result. It can receive two parameters - <code>currentSelection</code>: the current item object that is passed in, and <code>isAdd</code>: a boolean that is true on addition of a selection and false on removal.</td>
-                        <td data-label="Accepted values">Any callback function</td>
+                        <td data-label="Values">Any callback function</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>function(currentSelection, isAdd) {}</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>showSearch</code></th>
                         <td data-label="Behavior">Determines whether the search prompt appears when a user has typed in search term text</td>
-                        <td data-label="Accepted values"><code>true</code> or <code>false</code></td>
+                        <td data-label="Values"><code>true</code> or <code>false</code></td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>false</code></td>
                     </tr>
                 </tbody>

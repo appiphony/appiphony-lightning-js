@@ -801,7 +801,13 @@ pre[class*="language-"] code {
 
 .site-masthead {
     padding: 1rem 2rem;
-    background-color: #16325c;
+    background: #224C5E;
+    color: #fff
+}
+
+.site-masthead.aljs-home-header {
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg,rgb(105,159,126) 0,rgb(23, 66, 92) 75%);
     color: #fff
 }
 

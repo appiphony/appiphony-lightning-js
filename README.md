@@ -1,12 +1,11 @@
 # Appiphony Lightning JS Beta
 ### Your JS Solution for the Lightning Design System
-Current release: 1.0.0
+Current release: 2.0.0
 See it in action here: <a href="http://aljs.appiphony.com" target="_blank">http://aljs.appiphony.com</a>
 
 ---
 
-### Available as jQuery Plugins and Ember.js Components
-Currently Supported SLDS Components:
+### Available as jQuery Plugins
 * Datepickers
 * Icon Groups
 * Lookups

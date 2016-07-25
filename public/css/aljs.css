@@ -4,6 +4,11 @@
 
 .aljs-header-container {
     padding: 8vw;
+    color: white;
+}
+
+.aljs-header-container * {
+    color: white;
 }
 
 .aljs-section-icon {
@@ -105,7 +110,7 @@ a.aljs-home-link {
     left: 0;
     background: no-repeat center center url(../images/home-hero-bg.jpg);
     background-size: cover;
-    opacity: 0.25;
+    opacity: 0.1;
 }
 
 .site-resources--landing .grid-card {

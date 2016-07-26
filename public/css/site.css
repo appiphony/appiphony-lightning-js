@@ -652,7 +652,7 @@ pre[class*="language-"] code {
     .site-banner {
         position: fixed;
         top: 0;
-        border-right: 1px solid #f4f6f9;
+        border-right: 1px solid #d8dde6;
         width: 15rem;
         height: 6rem;
         text-align: left;
@@ -776,7 +776,7 @@ pre[class*="language-"] code {
         position: fixed;
         top: 6rem;
         bottom: 0;
-        border-right: 1px solid #f4f6f9;
+        border-right: 1px solid #d8dde6;
         padding-top: 0;
         width: 15rem;
         overflow: hidden;

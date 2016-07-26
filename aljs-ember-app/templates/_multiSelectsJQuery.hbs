@@ -1,6 +1,6 @@
-<div class="site-example--content slds-scrollable--x slds-tabs__content slds-show" role="tabpanel">
-    <div class="slds-p-horizontal--medium">
-        <h4 class="site-text-heading--large">Markup</h4>
+{{!--<div class="site-example--content slds-scrollable--x slds-tabs__content slds-show" role="tabpanel">
+    <div class="slds-p-horizontal--medium">--}}
+        <h4 class="site-text-heading--medium">Markup</h4>
 {{#aljs-pre-container type="html"}}
 <div class="slds-form-element">
     <div class="slds-picklist--draggable slds-grid" data-aljs="multi-select">
@@ -133,7 +133,7 @@
                 </tbody>
             </table>
         </div>
-        <h4 class="site-text-heading--large">Initialize</h4>
+        <h4 class="site-text-heading--medium">Initialize</h4>
 {{#aljs-pre-container type="js"}}
 var unselectedItems = [
     {
@@ -191,7 +191,7 @@ $(document).ready(function() {
                 </tbody>
             </table>
         </div>
-        <h4 class="site-text-heading--large">Methods</h4>
+        <h4 class="site-text-heading--medium">Methods</h4>
 {{#aljs-pre-container type="js"}}
 var idsToSelect = ['option-1', 'option-2'];
 var idsToUnselect = ['option-3', 'option-4'];
@@ -240,5 +240,5 @@ $('[data-aljs="multi-select"]').multiPicklist('getUnselectedItems');
                 </tbody>
             </table>
         </div>
-    </div>
-</div>
+    {{!--</div>
+</div>--}}

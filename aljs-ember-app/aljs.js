@@ -262,7 +262,7 @@ App.AljsRoute = Ember.Route.extend({
     },
     setupController: function(controller, model) {
         var selectedSection = App.getCookie('aljs_selected_lib');
-        var selectedSectionIsValid = !Ember.isEmpty(selectedSection) && (selectedSection === 'jQuery' || selectedSection === 'ember');
+        var selectedSectionIsValid = !Ember.isEmpty(selectedSection) && (selectedSection === 'jQuery'/* || selectedSection === 'ember'*/);
         controller.set('model', model);
         controller.set('selectedSection', selectedSectionIsValid ? selectedSection : 'jQuery');
     },

@@ -53,7 +53,7 @@ gulp.task('uglify', function() {
     return gulp.src(['./public/src/**/*.js', '!./public/src/**/*.min.js'])
         .pipe(rename({ suffix: '.min' }))
         .pipe(uglify())
-        .pipe(gulp.dest('dist/jquery'));
+        .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('zip', function() {

@@ -1,17 +1,18 @@
 {{aljs-header label="Changelog" icon="images/icon-changelog.svg"}}
 {{#aljs-main-content}}
-    <h2 class="site-text-heading--medium">Release 2.0.0 — July 26, 2016</h2>
+    <h2 class="site-text-heading--medium">Release 2.0.0 — July 28, 2016</h2>
     <h4 class="slds-text-heading--small slds-m-bottom--x-small">jQuery</h4>
     <ul class="slds-m-bottom--small">
-        <li><strong>General</strong>: Created the <code>jquery.aljs-init.min.js</code> which includes all ALJS jQuery plugins</li>
-        <li><strong>Lookups</strong>: Updated <code>onChange</code> to reference <code>self.selectedResult</code> instead of <code>selectResult</code> <a href="https://github.com/appiphony/appiphony-lightning-js/issues/27">(GitHub Issue #27)</a></li>
-        <li><strong>Lookups</strong>: <code>setSelection</code> now accepts an empty array or object to clear the Lookup <a href="https://github.com/appiphony/appiphony-lightning-js/issues/27">(GitHub Issue #27)</a></li>
-        <li><strong>Lookups</strong>: Added additional functionality for <code>clickAddFunction</code> <a href="https://github.com/appiphony/appiphony-lightning-js/issues/35">(GitHub Issue #35)</a></li>
-        <li><strong>Lookups</strong>: Fixed an issue where filtering produces an empty results container if <code>showSearch</code> and <code>clickAddFunction</code> settings are not used</li>
-        <li><strong>Popovers</strong>: Refactored Popovers to accept new SLDS 1.0.0 Popover markup, including its BEM class modifiers <a href="https://github.com/appiphony/appiphony-lightning-js/issues/34">(GitHub Issue #34)</a></li>
-        <li><strong>Tabs</strong>: Fixed an issue involving focus and keyup events when selecting tabs with the keyboard</li>
-        <li><strong>Tabs</strong>: Added support for nested tabs <a href="https://github.com/appiphony/appiphony-lightning-js/issues/37">(GitHub Issue #37)</a></li>
-        <li><strong>Tooltips</strong>: Plugin removed in favor of SLDS 1.0.0 Popover markup; see Popovers for new tooltip support <a href="https://github.com/appiphony/appiphony-lightning-js/issues/34">(GitHub Issue #34)</a></li>
+        <li><strong>Datepickers</strong>: Added markup and functionality for the 'Today' link</li>
+        <li><strong>Datepickers</strong>: Added the <code>todayLabel</code> option</li>
+        <li><strong>Datepickers</strong>: Updated the name of the <code>abbv</code> property (for objects passed into the <code>dayLabels</code> and <code>monthLabels</code> options) to <code>abbr</code></li>
+        <li><strong>Datepickers</strong>: Fixed an issue where clicking previous/next buttons to a new year did not update the select element's year <a href="https://github.com/appiphony/appiphony-lightning-js/issues/38">(GitHub Issue #38)</a></li>
+        <li><strong>Datepickers</strong>: Fixed an issue where the <code>dayLabels</code> option was not appropriately updating the markup <a href="https://github.com/appiphony/appiphony-lightning-js/issues/43">(GitHub Issue #43)</a></li>
+        <li><strong>Lookups</strong>: Updated dropdown and pill container classes and markup to comply with the SLDS 2.0.0 release</li>
+        <li><strong>Lookups</strong>: Added 'Typeahead' highlighting functionality</li>
+        <li><strong>Lookups</strong>: Removed support for Multi Select Lookups (no longer supported by SLDS)</li>
+        <li><strong>Lookups</strong>: Fixed an issue where Lookups were receiving incorrect classes for its separate states</li>
+        <li><strong>Picklists</strong>: The <code>bindChoices</code> method is now publicly available and documented; allows you to bind dynamically added options <a href="https://github.com/appiphony/appiphony-lightning-js/issues/40">(GitHub Issue #40)</a></li>
     </ul>
     <h4 class="slds-text-heading--small slds-m-bottom--x-small">Ember</h4>
     <ul>
@@ -39,7 +40,7 @@
     <h4 class="slds-text-heading--small slds-m-bottom--x-small">jQuery</h4>
     <ul class="slds-m-bottom--small">
         <li><strong>Lookups</strong>: Added a callback to the <code>emptySearchTermQuery</code> option's default function</li>
-        <li><strong>Lookups</strong>: Edited pill container classes and markup to comply with 0.12.0 SLDS release</li>
+        <li><strong>Lookups</strong>: Updated pill container classes and markup to comply with the SLDS 0.12.0 release</li>
         <li><strong>Lookups</strong>: The <code>customObjectIcon</code> option is now <code>useImgTag</code>; <code>customObjectIcon</code> is no longer supported</li>
         <li><strong>Lookups</strong>: Added a <code>showSearch</code> option</li>
         <li><strong>Lookups</strong>: Fixed an issue where the Add Object button's icon was rendering too large</li>
@@ -58,7 +59,7 @@
         <li><strong>Datepickers</strong>: Added an <code>isRequired</code> attribute binding</li>
         <li><strong>Datepickers</strong>: Multi Select datepickers now highlight the correct selected dates (previously highlighted previous month sometimes as well) <a href="https://github.com/appiphony/appiphony-lightning-js/issues/28">(Github Issue #28)</a></li>
         <li><strong>Lookups</strong>: Added support to disable the lookup and bind a placeholder value <a href="https://github.com/appiphony/appiphony-lightning-js/issues/23">(GitHub Issue #23)</a></li>
-        <li><strong>Lookups</strong>: Edited pill container classes and markup to comply with 0.12.0 SLDS release <a href="https://github.com/appiphony/appiphony-lightning-js/issues/26">(GitHub Issue #26)</a></li>
+        <li><strong>Lookups</strong>: Edited pill container classes and markup to comply with the SLDS 0.12.0 release <a href="https://github.com/appiphony/appiphony-lightning-js/issues/26">(GitHub Issue #26)</a></li>
         <li><strong>Lookups</strong>: The <code>isObjectIconCustom</code> parameter is now <code>useImgTag</code>; <code>isObjectIconCustom</code> is no longer supported</li>
         <li><strong>Lookups</strong>: Lookups now properly populate when selecting a result on Safari/Firefox/IE 10/IE 11 <a href="https://github.com/appiphony/appiphony-lightning-js/issues/9">(GitHub Issue #9)</a></li>
         <li><strong>Lookups</strong>: Multi select lookups are now properly binding to the <code>selectedResults</code> attribute; now allows multi select lookups to pass in just an array of text</li>
@@ -92,24 +93,24 @@
     <h4 class="slds-text-heading--small slds-m-bottom--x-small">jQuery</h4>
     <ul class="slds-m-bottom--small">
         <li><strong>Lookups</strong>: Lookups now properly populate when selecting a result on Safari/Firefox/IE 10/IE 11 <a href="https://github.com/appiphony/appiphony-lightning-js/issues/9">(GitHub Issue #9)</a></li>
-        <li><strong>Lookups</strong>: Updated single selected result markup to comply with 0.12.0 SLDS release</li>
+        <li><strong>Lookups</strong>: Updated single selected result markup to comply with the SLDS 0.12.0 release</li>
         <li><strong>Lookups</strong>: Added an <code>onChange</code> option to run when a user selects a result</li>
         <li><strong>Lookups</strong>: Added an <code>initialSelection</code> option to set the selected result on load</li>
         <li><strong>Lookups</strong>: Added a <code>setSelection</code> method to programmatically set the selected result</li>
         <li><strong>Lookups</strong>: Added support for custom object icons and hiding icons from results markup <a href="https://github.com/appiphony/appiphony-lightning-js/issues/8">(GitHub Issue #8)</a></li>
-        <li><strong>Modals</strong>: Updated backdrop markup to comply with 0.12.0 SLDS release</li>
-        <li><strong>Tabs</strong>: Updated template classes to comply with 0.12.0 SLDS release</li>
-        <li><strong>Tabs</strong>: Updated docs to comply with 0.12.0 SLDS release</li>
+        <li><strong>Modals</strong>: Updated backdrop markup to comply with the SLDS 0.12.0 release</li>
+        <li><strong>Tabs</strong>: Updated template classes to comply with the SLDS 0.12.0 release</li>
+        <li><strong>Tabs</strong>: Updated docs to comply with the SLDS 0.12.0 release</li>
     </ul>
     <h4 class="slds-text-heading--small slds-m-bottom--x-small">Ember</h4>
     <ul>
         <li><strong>Lookups</strong>: Added support for a custom icon URL and class</li>
-        <li><strong>Lookups</strong>: Updated single selected result markup to comply with 0.12.0 SLDS release</li>
+        <li><strong>Lookups</strong>: Updated single selected result markup to comply with the SLDS 0.12.0 release</li>
         <li><strong>Lookups</strong>: Added support to bind to a route's controller and fixed calling the search methods</li>
         <li><strong>Lookups</strong>: Added support for custom object icons and hiding icons from results markup <a href="https://github.com/appiphony/appiphony-lightning-js/issues/8">(GitHub Issue #8)</a></li>
-        <li><strong>Modals</strong>: Updated backdrop markup to comply with 0.12.0 SLDS release</li>
+        <li><strong>Modals</strong>: Updated backdrop markup to comply with the SLDS 0.12.0 release</li>
         <li><strong>Modals</strong>: Added a <code>show</code> method to the jQuery call</li>
-        <li><strong>Tabs</strong>: Updated template classes to comply with 0.12.0 SLDS release</li>
+        <li><strong>Tabs</strong>: Updated template classes to comply with the SLDS 0.12.0 release</li>
         <li><strong>Notifications</strong>: Added support to customize classes applied to the <code>.slds-notify</code> div</li>
     </ul>
     <h2 class="site-text-heading--medium">Release 0.1.1 — November 12, 2015</h2>

@@ -1,3 +1,6 @@
+/* ------------------------------------------------------------
+ALJS Tab
+------------------------------------------------------------ */
 if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the ALJS initializer file") }
 
 (function($) {

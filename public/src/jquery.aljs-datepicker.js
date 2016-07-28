@@ -1,3 +1,6 @@
+/* ------------------------------------------------------------
+ALJS Datepicker
+------------------------------------------------------------ */
 if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the ALJS initializer file") }
 if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin requires moment.js") }
 

@@ -73,6 +73,12 @@ App.AljsView = Ember.View.extend({
             e.preventDefault();
             return false;
         });
+        
+        $('.aljs-toggle-dropdown').click(function() {
+            $(this).parent()
+                .find('.aljs-nav-dropdown')
+                .toggleClass('slds-hide');
+        });
     }
 });
 
@@ -198,7 +204,7 @@ App.ChangelogController = Ember.ObjectController.extend(App.SelectedSectionMixin
 App.AljsController = Ember.ObjectController.extend({
     init: function() {
         this._super();
-    } 
+    }
 });
 
 App.AljsRoute = Ember.Route.extend({
@@ -210,49 +216,55 @@ App.AljsRoute = Ember.Route.extend({
                     name: 'Getting Started'
                 },
                 {
-                    path: 'datepickers',
-                    name: 'Datepickers'
+                    isDropdown: true,
+                    name: 'Plugins',
+                    subSections: [
+                        {
+                            path: 'datepickers',
+                            name: 'Datepickers'
+                        },
+                        {
+                            path: 'iconGroups',
+                            name: 'Icon Groups'
+                        },
+                        {
+                            path: 'lookups',
+                            name: 'Lookups'
+                        },
+                        {
+                            path: 'modals',
+                            name: 'Modals'
+                        },
+                        {
+                            path: 'multiSelects',
+                            name: 'Multi Selects'
+                        },
+                        {
+                            path: 'notifications',
+                            name: 'Notifications'
+                        },
+                        {
+                            path: 'picklists',
+                            name: 'Picklists'
+                        },
+                        {
+                            path: 'pills',
+                            name: 'Pills'
+                        },
+                        {
+                            path: 'popovers',
+                            name: 'Popovers'
+                        },
+                        {
+                            path: 'tabs',
+                            name: 'Tabs'
+                        },
+                        /*{
+                            path: 'tooltips',
+                            name: 'Tooltips'
+                        },*/
+                    ]
                 },
-                {
-                    path: 'iconGroups',
-                    name: 'Icon Groups'
-                },
-                {
-                    path: 'lookups',
-                    name: 'Lookups'
-                },
-                {
-                    path: 'modals',
-                    name: 'Modals'
-                },
-                {
-                    path: 'multiSelects',
-                    name: 'Multi Selects'
-                },
-                {
-                    path: 'notifications',
-                    name: 'Notifications'
-                },
-                {
-                    path: 'picklists',
-                    name: 'Picklists'
-                },
-                {
-                    path: 'pills',
-                    name: 'Pills'
-                },
-                {
-                    path: 'popovers',
-                    name: 'Popovers'
-                },
-                {
-                    path: 'tabs',
-                    name: 'Tabs'
-                },
-                /*{
-                    path: 'tooltips',
-                    name: 'Tooltips'
-                },*/
                 {
                     path: 'changelog',
                     name: 'Changelog'

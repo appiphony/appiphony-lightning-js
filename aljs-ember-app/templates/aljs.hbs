@@ -9,7 +9,18 @@
 <nav id="navigation" class="site-navigation" role="navigation">
     <ul class="slds-list--vertical slds-has-block-links">
         {{#each section in sections}}
-        	{{#link-to section.path tagName="li" class="slds-list__item" activeClass="slds-is-selected slds-is-active"}}<a href="#">{{section.name}}</a>{{/link-to}}
+            {{#if section.isDropdown}}
+                <li class="slds-list__item">
+                    <a href="#" class="aljs-toggle-dropdown">{{section.name}}</a>
+                    <ul class="slds-list--vertical slds-has-block-links aljs-nav-dropdown slds-hide">
+                        {{#each subSection in section.subSections}}
+                            {{#link-to subSection.path tagName="li" class="slds-list__item" activeClass="slds-is-selected slds-is-active"}}<a href="#">{{subSection.name}}</a>{{/link-to}}
+                        {{/each}}
+                    </ul>
+                </li>
+            {{else}}
+        	    {{#link-to section.path tagName="li" class="slds-list__item" activeClass="slds-is-selected slds-is-active"}}<a href="#">{{section.name}}</a>{{/link-to}}
+            {{/if}}
         {{/each}}
     </ul>
 </nav>

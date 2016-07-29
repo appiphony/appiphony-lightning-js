@@ -831,6 +831,15 @@ pre[class*="language-"] code {
     line-height: 1.25
 }
 
+@media (max-width: 768px) {
+    .site-navigation {
+        margin-top: 12px;
+        border-top: 1px solid #d8dde6;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+}
+
 @media (max-width: 47.9375em) {
     .site-masthead {
         display: block

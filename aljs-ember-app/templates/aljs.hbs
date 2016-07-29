@@ -19,7 +19,11 @@
                     </ul>
                 </li>
             {{else}}
-        	    {{#link-to section.path tagName="li" class="slds-list__item" activeClass="slds-is-selected slds-is-active"}}<a href="#">{{section.name}}</a>{{/link-to}}
+                {{#if section.externalPath}}
+                    <li class="slds-list__item"><a {{bind-attr href=section.externalPath}} target="_blank">{{section.name}}</a></li>
+                {{else}}
+                    {{#link-to section.path tagName="li" class="slds-list__item" activeClass="slds-is-selected slds-is-active"}}<a href="#">{{section.name}}</a>{{/link-to}}
+                {{/if}}
             {{/if}}
         {{/each}}
     </ul>

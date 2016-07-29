@@ -289,6 +289,10 @@ App.AljsRoute = Ember.Route.extend({
                 {
                     path: 'changelog',
                     name: 'Changelog'
+                },
+                {
+                    externalPath: 'https://github.com/appiphony/appiphony-lightning-js/issues',
+                    name: 'Feedback'
                 }
             ]
         };

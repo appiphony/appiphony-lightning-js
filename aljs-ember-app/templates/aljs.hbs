@@ -10,7 +10,7 @@
     <ul class="slds-list--vertical slds-has-block-links">
         {{#each section in sections}}
             {{#if section.isDropdown}}
-                <li class="slds-list__item">
+                <li class="slds-list__item aljs-has-nav-dropdown">
                     <a href="#" class="aljs-toggle-dropdown">{{section.name}}</a>
                     <ul class="slds-list--vertical slds-has-block-links aljs-nav-dropdown slds-hide">
                         {{#each subSection in section.subSections}}

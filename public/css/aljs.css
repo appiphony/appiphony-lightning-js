@@ -1,16 +1,13 @@
 .aljs-home-header {
     height: auto;
 }
-
 .aljs-header-container {
     padding: 8vw;
     color: white;
 }
-
 .aljs-header-container * {
     color: white;
 }
-
 .aljs-section-icon {
     display: inline-block;
     max-height: 100%;
@@ -21,25 +18,20 @@
     left: 20px;
     top: -2px;
 }
-
 .aljs-screenshot {
     display: block;
     border: 1px solid #d8dde6;
 }
-
 .aljs-section-title {
     display: inline-block;
 }
-
 .aljs-section-divider {
     margin: 3rem -3rem 0;
 }
-
 .aljs-section-icon + .aljs-section-title {
     position: relative;
     left: 80px;
 }
-
 pre {
     font-family: Consolas, Monaco, 'Andale Mono', monospace;
     text-align: left;
@@ -52,7 +44,6 @@ pre {
     position: relative;
     padding: 1rem;
 }
-
 pre[type]:before {
     font-family: 'Salesforce Sans', Arial, sans-serif;
     font-weight: bold;
@@ -68,41 +59,32 @@ pre[type]:before {
     min-width: 100px;
     opacity: 0.5;
 }
-
 pre[type="html"]:before {
     content: 'HTML';
 }
-
 pre[type="js"]:before {
     content: 'JS';
 }
-
 pre[type="vf"]:before {
     content: 'VF';
 }
-
 pre .highlight {
     color: #ef7ead;
     font-weight: bold;
 }
-
 .aljs-pre-container + .aljs-pre-container {
     margin-top: 1rem;
 }
-
 #app {
     color: #5876a3;
 }
-
 a.aljs-home-link {
     color: #16325c;
 }
-
 .site-main-content {
     margin-top: inherit;
     margin-bottom: inherit;
 }
-
 .aljs-home-header:before {
     display: block;
     content: '';
@@ -116,63 +98,111 @@ a.aljs-home-link {
     background-size: cover;
     opacity: 0.15;
 }
-
 .site-resources--landing .grid-card {
     min-height: initial;
 }
-
 .ember-logo,
 .jquery-logo {
     max-height: 50px;
     width: auto;
     margin-bottom: 30px;
 }
-
 .grid-card > img {
     max-height: 50px;
 }
-
 .jquery-logo {
     margin-top: 10px;
     margin-bottom: 20px;
 }
-
 .aljs-home-header .slds-media__body {
     position: relative;
     z-index: 2;
 }
-
 .aljs-logo {
     max-width: 600px;
 }
-
 .aljs-icon {
     max-width: 18px;
     height: auto;
     display: inline-block;
     margin-right: 2px;
 }
-
+.aljs-has-nav-dropdown {
+    position: relative;
+}
+.aljs-has-nav-dropdown.selected {
+    background-color: #f4f6f9;
+}
+.aljs-has-nav-dropdown:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 18px;
+    right: 30px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 3px 0 4px 4px;
+    border-color: transparent transparent transparent #AAB4C7;
+}
+#navigation .aljs-nav-icons {
+    padding: 2rem;
+    position: absolute;
+    bottom: 0;
+}
+#navigation .aljs-nav-icon {
+    display: inline-block;
+    width: auto;
+    margin-right: 4px;
+    padding: 0;
+    opacity: 0.25;
+}
+#navigation .aljs-nav-icon:hover {
+    opacity: 1;
+}
+.aljs-nav-icon img {
+    width: 20px;
+    height: 20px;
+}
+.aljs-nav-dropdown > li {
+    padding-left: 20px;
+}
+.aljs-nav-dropdown > li.slds-is-active, .aljs-nav-dropdown > li.slds-is-selected {
+    background-color: #e4e9f0;
+}
+#app .aljs-nav-dropdown > li.slds-is-active:hover, .aljs-nav-dropdown > li.slds-is-selected:hover {
+    background-color: #dae1eb;
+}
+#app .aljs-nav-dropdown .slds-is-selected a:hover {
+    background: transparent;
+}
+.aljs-nav-dropdown > li:hover {
+    background-color: rgba(244, 246, 249, 0.5);
+}
+.aljs-has-nav-dropdown.selected .aljs-nav-dropdown > li:hover {
+    background-color: #eef1f6;
+}
+.aljs-nav-dropdown > li a:hover {
+    background-color: transparent;
+}
 .slds-is-selected,
 .slds-is-active {
     background-color: #f4f6f9;
 }
-
 #app .slds-is-selected:focus,
 #app .slds-is-selected:hover,
 #app .slds-is-active:focus,
 #app .slds-is-active:hover {
     background-color: #eceff5;
 }
-
 #navigation a {
     color: #16325c;
 }
-
+#navigation hr {
+    margin: 12px 28px;
+}
 @media only screen and (max-width: 1024px) {}
-
 @media only screen and (min-width: 1024px) {}
-
 @media only screen and (max-width: 768px) {
     .aljs-header-container {
         padding: 12vw;
@@ -213,13 +243,8 @@ a.aljs-home-link {
         margin-bottom: 10px;
     }
 }
-
 @media only screen and (min-width: 768px) {}
-
 @media only screen and (max-width: 480px) {}
-
 @media only screen and (min-width: 480px) {}
-
 @media only screen and (max-width: 320px) {}
-
 @media only screen and (min-width: 320px) {}

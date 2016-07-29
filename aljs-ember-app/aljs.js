@@ -58,10 +58,22 @@ App.getCookie = function(name) {
 
 App.AljsView = Ember.View.extend({
     didInsertElement: function() {
-        var navLink = $('[href="#navigation"]'),
-            nav = $('#navigation');
+        var mobileNavLink = $('[href="#navigation"]'),
+            navLink = $('.aljs-home-link, #navigation a'),
+            nav = $('#navigation'),
+            toggleDropdown = $('.aljs-toggle-dropdown'),
+            hasDropdown = $('.aljs-has-nav-dropdown'),
+            dropdown = $('.aljs-nav-dropdown'),
+            dropdownLink = $('.aljs-nav-dropdown > li a');
+        
+        if ($('li.slds-is-active', dropdown).length > 0) {
+            $('li.slds-is-active', dropdown).parent()
+                .removeClass('slds-hide')
+                .closest('li')
+                .addClass('selected');
+        }
 
-        navLink.click(function(e) {
+        mobileNavLink.click(function(e) {
             e.preventDefault();
 
             $('html, body').animate({
@@ -74,10 +86,19 @@ App.AljsView = Ember.View.extend({
             return false;
         });
         
-        $('.aljs-toggle-dropdown').click(function() {
+        toggleDropdown.click(function() {
             $(this).parent()
                 .find('.aljs-nav-dropdown')
                 .toggleClass('slds-hide');
+        });
+        
+        navLink.click(function() {
+            if (!$(this).is(toggleDropdown)) {
+                hasDropdown.removeClass('selected');
+
+                $(this).closest('.aljs-has-nav-dropdown')
+                    .addClass('selected');
+            }
         });
     }
 });
@@ -268,7 +289,7 @@ App.AljsRoute = Ember.Route.extend({
                 {
                     path: 'changelog',
                     name: 'Changelog'
-                },
+                }
             ]
         };
     },

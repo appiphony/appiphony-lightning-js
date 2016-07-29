@@ -8,7 +8,7 @@
 * **Datepickers**: Updated the name of the `abbv` property (for objects passed into the `dayLabels` and `monthLabels` options) to `abbr`
 * **Datepickers**: Fixed an issue where clicking previous/next buttons to a new year did not update the select element's year <a href="https://github.com/appiphony/appiphony-lightning-js/issues/38">(GitHub Issue #38)</a>
 * **Datepickers**: Fixed an issue where the `dayLabels` option was not appropriately updating the markup <a href="https://github.com/appiphony/appiphony-lightning-js/issues/43">(GitHub Issue #43)</a>
-* **Lookups**: Updated dropdown and pill container classes and markup to comply with the SLDS 2.0.1 release
+* **Lookups**: Updated dropdown and pill container markup/classes to comply with the SLDS 2.0.1 release
 * **Lookups**: Added `title` attributes for icons
 * **Lookups**: Added 'Typeahead' highlighting functionality
 * **Lookups**: Removed support for Multi Select Lookups (no longer supported by SLDS)
@@ -43,7 +43,7 @@
 
 #### jQuery
 * **Lookups**: Added a callback to the `emptySearchTermQuery` option's default function
-* **Lookups**: Edited pill container classes and markup to comply with 0.12.0 SLDS release
+* **Lookups**: Edited pill container markup/classes to comply with 0.12.0 SLDS release
 * **Lookups**: The `customObjectIcon` option is now `useImgTag`; `customObjectIcon` is no longer supported
 * **Lookups**: Added a `showSearch` option
 * **Lookups**: Fixed an issue where the Add Object button's icon was rendering too large
@@ -60,7 +60,7 @@
 * **Datepickers**: Added an `isRequired` attribute binding
 * **Datepickers**: Multi Select datepickers now highlight the correct selected dates (previously highlighted previous month sometimes as well) <a href="https://github.com/appiphony/appiphony-lightning-js/issues/28">(Github Issue #28)</a>
 * **Lookups**: Added support to disable the lookup and bind a placeholder value <a href="https://github.com/appiphony/appiphony-lightning-js/issues/23">(GitHub Issue #23)</a>
-* **Lookups**: Edited pill container classes and markup to comply with 0.12.0 SLDS release <a href="https://github.com/appiphony/appiphony-lightning-js/issues/26">(GitHub Issue #26)</a>
+* **Lookups**: Edited pill container markup/classes to comply with 0.12.0 SLDS release <a href="https://github.com/appiphony/appiphony-lightning-js/issues/26">(GitHub Issue #26)</a>
 * **Lookups**: The `isObjectIconCustom` parameter is now `useImgTag`; `isObjectIconCustom` is no longer supported
 * **Lookups**: Lookups now properly populate when selecting a result on Safari/Firefox/IE 10/IE 11 <a href="https://github.com/appiphony/appiphony-lightning-js/issues/9">(GitHub Issue #9)</a>
 * **Lookups**: Multi select lookups are now properly binding to the `selectedResults` attribute; now allows multi select lookups to pass in just an array of text

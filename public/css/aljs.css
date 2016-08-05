@@ -8,6 +8,10 @@
 .aljs-header-container * {
     color: white;
 }
+.aljs-header-container a:not(.slds-button) {
+    text-decoration: underline;
+    color: white;
+}
 .aljs-section-icon {
     display: inline-block;
     max-height: 100%;

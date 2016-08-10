@@ -158,7 +158,7 @@ var selectedItems = [
 ];
 
 $(document).ready(function() {
-    $('[data-aljs="multi-select"]').multiPicklist({
+    $('[data-aljs="multi-select"]').multiSelect({
         unselectedItems: unselectedItems,
         selectedItems: selectedItems
     });
@@ -196,10 +196,10 @@ $(document).ready(function() {
 var idsToSelect = ['option-1', 'option-2'];
 var idsToUnselect = ['option-3', 'option-4'];
 
-$('[data-aljs="multi-select"]').multiPicklist('setSelectedItems', idsToSelect);
-$('[data-aljs="multi-select"]').multiPicklist('setUnselectedItems', idsToUnselect);
-$('[data-aljs="multi-select"]').multiPicklist('getSelectedItems');
-$('[data-aljs="multi-select"]').multiPicklist('getUnselectedItems');
+$('[data-aljs="multi-select"]').multiSelect('setSelectedItems', idsToSelect);
+$('[data-aljs="multi-select"]').multiSelect('setUnselectedItems', idsToUnselect);
+$('[data-aljs="multi-select"]').multiSelect('getSelectedItems');
+$('[data-aljs="multi-select"]').multiSelect('getUnselectedItems');
 {{/aljs-pre-container}}
         <p class="slds-m-top--medium">This table details the methods available for the jQuery function.</p>
         <div class="slds-scrollable--x">
@@ -215,25 +215,25 @@ $('[data-aljs="multi-select"]').multiPicklist('getUnselectedItems');
                 <tbody>
                     <tr>
                         <th scope="row"><code>setSelectedItems</code></th>
-                        <td data-label="jQuery object">The multipicklist</td>
+                        <td data-label="jQuery object">The multiSelect</td>
                         <td data-label="Additional params">An array of strings that are option Ids to select</td>
                         <td data-label="Outcome">The items that match the passed in ids are selected</td>
                     </tr>
                     <tr>
                         <th scope="row"><code>setUnselectedItems</code></th>
-                        <td data-label="jQuery object">The multipicklist</td>
+                        <td data-label="jQuery object">The multiSelect</td>
                         <td data-label="Additional params">An array of strings that are option Ids to unselect</td>
                         <td data-label="Outcome">The items that match the passed in ids are unselected</td>
                     </tr>
                     <tr>
                         <th scope="row"><code>getSelectedItems</code></th>
-                        <td data-label="jQuery object">The multipicklist</td>
+                        <td data-label="jQuery object">The multiSelect</td>
                         <td data-label="Additional params">N/A</td>
                         <td data-label="Outcome">An array of objects that represent the selected items is returned</td>
                     </tr>
                     <tr>
                         <th scope="row"><code>getUnselectedItems</code></th>
-                        <td data-label="jQuery object">The multipicklist</td>
+                        <td data-label="jQuery object">The multiSelect</td>
                         <td data-label="Additional params">N/A</td>
                         <td data-label="Outcome">An array of objects that represent the unselected items is returned</td>
                     </tr>

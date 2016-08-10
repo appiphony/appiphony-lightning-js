@@ -833,7 +833,7 @@ pre[class*="language-"] code {
 
 @media (max-width: 768px) {
     .site-navigation {
-        margin-top: 12px;
+        margin-top: 0;
         border-top: 1px solid #d8dde6;
         padding-top: 12px;
         padding-bottom: 12px;

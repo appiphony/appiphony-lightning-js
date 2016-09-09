@@ -1,9 +1,9 @@
 {
   "name": "appiphony-lightning-js",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Your JS Solution for the Lightning Design System",
   "authors": [
-    "Appiphony, LLC <info@appiphony.com>"
+    "Appiphony <info@appiphony.com>"
   ],
   "license": "BSD 2-Clause License",
   "keywords": [

@@ -1,5 +1,5 @@
 {
-  "name": "salesforce-lightning-javascript-toolkit",
+  "name": "appiphony-lightning-js",
   "version": "1.0.0",
   "description": "Your JS Solution for the Lightning Design System",
   "main": "gulpfile.js",
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://kevinberonilla@github.com/appiphony/salesforce-lightning-javascript-toolkit.git"
   },
-  "author": "",
+  "author": "Appiphony <info@appiphony.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/appiphony/salesforce-lightning-javascript-toolkit/issues"

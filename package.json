@@ -1,6 +1,6 @@
 {
   "name": "appiphony-lightning-js",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Your JS Solution for the Lightning Design System",
   "main": "gulpfile.js",
   "scripts": {
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://kevinberonilla@github.com/appiphony/salesforce-lightning-javascript-toolkit.git"
+    "url": "git+https://appiphony@github.com/appiphony/appiphony-lightning-js.git"
   },
   "author": "Appiphony <info@appiphony.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/appiphony/salesforce-lightning-javascript-toolkit/issues"
+    "url": "https://github.com/appiphony/appiphony-lightning-js/issues"
   },
-  "homepage": "https://github.com/appiphony/salesforce-lightning-javascript-toolkit#readme",
+  "homepage": "https://github.com/appiphony/appiphony-lightning-js#readme",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",

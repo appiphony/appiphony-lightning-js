@@ -781,8 +781,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	var selectContainerMarkup = '<div class="slds-pill_container slds-hide"></div>';
 	var pillMarkup = 
     	'<span class="slds-pill slds-size--1-of-1">' +
-      		'<span class="slds-icon_container slds-icon-standard-account slds-pill__icon_container" title="{{objectLabel}}">' +
-        		'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-pill__icon{{hasIcon}}">' +
+      		'<span class="slds-icon_container slds-icon-standard-account slds-pill__icon_container{{hasIcon}}" title="{{objectLabel}}">' +
+        		'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-pill__icon">' +
           			'<use xlink:href="{{objectIconUrl}}"></use>' +
         		'</svg>' +
                 '<span class="slds-assistive-text">{{objectLabel}}</span>' + 
@@ -798,8 +798,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
 	var customPillMarkup = 
     	'<span class="slds-pill slds-size--1-of-1">' +
-      		'<span class="slds-icon_container slds-icon-standard-account slds-pill__icon_container" title="{{objectLabel}}">' +
-                '<img class="{{objectIconClass}} slds-icon slds-pill__icon{{hasIcon}}" src="{{objectLabel}}"/>' +
+      		'<span class="slds-icon_container slds-icon-standard-account slds-pill__icon_container{{hasIcon}}" title="{{objectLabel}}">' +
+                '<img class="{{objectIconClass}} slds-icon slds-pill__icon" src="{{objectLabel}}"/>' +
                 '<span class="slds-assistive-text">{{objectLabel}}</span>' + 
             '</span>' +
             '<span class="slds-pill__label" title="{{selectedResultLabel}}">{{selectedResultLabel}}</span>' +

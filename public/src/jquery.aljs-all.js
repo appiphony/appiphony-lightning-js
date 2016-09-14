@@ -1219,7 +1219,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             objectPluralLabel: 'Objects',
             objectLabel: 'Object',
             useImgTag: false,
-            objectIconUrl: '/assets/icons/standard-sprite/svg/symbols.svg#account',
+            objectIconUrl: $.aljs.assetsLocation + '/assets/icons/standard-sprite/svg/symbols.svg#account',
             objectIconClass: 'slds-icon-standard-account',
             searchTerm: '',
             items: [],

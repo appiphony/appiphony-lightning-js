@@ -826,12 +826,12 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 			'</a>' +
 		'</div>';
 
-	var addItemMarkup = 
+	var newItemMarkup = 
 		'<div>' +
 			'<a href="javascript:void(0);" class="slds-lookup__item-action slds-lookup__item-action--label">' +
 				'<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default slds-m-right--small{{hasIcon}}">' +
 					'<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#add"></use>' +
-				'</svg>Add {{objectLabel}}' +
+				'</svg>New {{objectLabel}}' +
 			'</a>' +
 		'</div>';
 
@@ -1069,21 +1069,21 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         		}
         	});
 
-        	if (this.settings.clickAddFunction) {
-        		var $addItem = $resultsListContainer.after(addItemMarkup
+        	if (this.settings.onClickNew) {
+        		var $newItem = $resultsListContainer.after(newItemMarkup
                     .replace('{{hasIcon}}', ' slds-icon')
                     .replace('{{objectLabel}}', this.settings.objectLabel)
                     .replace('{{assetsLocation}}', $.aljs.assetsLocation));
-                $addItem.next().on('click', function() {
-                    $addItem.off('click');
+                $newItem.next().on('click', function() {
+                    $newItem.off('click');
 
-                    self.settings.clickAddFunction();
+                    self.settings.onClickNew();
                 });
         	}
 
         	$resultsListContainer.one('click', 'a', this, this.clickResult)
             
-            var shouldAppendSearchContainer = this.searchResults.length > 0 || this.settings.clickAddFunction || showUseSection;
+            var shouldAppendSearchContainer = this.searchResults.length > 0 || this.settings.onClickNew || showUseSection;
             
             if (shouldAppendSearchContainer) {
                 this.$lookupSearchContainer = $lookupSearchContainer;
@@ -1225,7 +1225,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             items: [],
             emptySearchTermQuery: function (callback) { callback([]); },
             filledSearchTermQuery: function (searchTerm, callback) { callback([]); },
-            clickAddFunction: null,
+            onClickNew: null,
             onChange: function() {},
             initialSelection: null,
             showSearch: false

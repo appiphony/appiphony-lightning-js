@@ -16,10 +16,8 @@
     "url": "https://github.com/appiphony/appiphony-lightning-js/issues"
   },
   "homepage": "https://github.com/appiphony/appiphony-lightning-js#readme",
-  "dependencies": {
-    "gulp": "^3.9.0"
-  },
   "devDependencies": {
+    "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-ember-templates": "^0.5.2",
     "gulp-neuter": "^0.1.3",

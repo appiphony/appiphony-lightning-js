@@ -4,7 +4,16 @@ var gulp = require('gulp'),
     neuter = require('gulp-neuter'),
     concat = require('gulp-concat'),
     emberTemplates = require('gulp-ember-templates'),
-    zip = require('gulp-zip');
+    zip = require('gulp-zip'),
+    runSequence = require('run-sequence');
+
+gulp.task('build', function() {
+    /* ----------------------------------------
+    Salesforce Lightning Design System
+    ---------------------------------------- */
+    return gulp.src('node_modules/@salesforce-ux/design-system/assets/**/*')
+        .pipe(gulp.dest('assets'));
+});
 
 gulp.task('emberTemplates', function() {
 	gulp.src('./aljs-ember-app/templates/**/*.hbs')
@@ -80,3 +89,7 @@ gulp.task('watchDev', function() {
 
 gulp.task('default', ['emberTemplates', 'concatAll', 'neuter', 'uglify', 'zip', 'watch']);
 gulp.task('dev', ['emberTemplates', 'concatAll', 'neuterDev', 'uglify', 'zip', 'watchDev']);
+
+gulp.task('dev', ['build'], function() {
+    runSequence();
+});

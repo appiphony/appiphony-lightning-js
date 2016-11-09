@@ -23,11 +23,11 @@ gulp.task('emberTemplates', function() {
 });
 
 gulp.task('neuter', function() {
-	gulp.src('./aljs-ember-app/aljs-compiler.js')
-		.pipe(neuter('aljs.pck.js'))
-        .pipe(rename({ suffix: '.min' }))
-        .pipe(uglify())
-		.pipe(gulp.dest('./public/js'));
+    gulp.src('aljs-ember-app/aljs-compiler.js')
+        .pipe(neuter('aljs.pck.js', null, {
+            basePath: 'aljs-ember-app/'
+        }))
+        .pipe(gulp.dest('./public/js'));
 });
 
 gulp.task('concat', function() {

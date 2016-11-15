@@ -1,5 +1,7 @@
 # Appiphony Lightning JS Beta
 
+### Release 3.0.0 — November 15, 2016
+
 ### Release 2.0.0 — July 29, 2016
 
 #### jQuery

@@ -25,6 +25,8 @@
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^2.0.0",
     "gulp-zip": "^3.0.2",
+    "merge-stream": "^1.0.0",
+    "moment": "^2.16.0",
     "run-sequence": "^1.2.2"
   }
 }

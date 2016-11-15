@@ -5,14 +5,23 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     emberTemplates = require('gulp-ember-templates'),
     zip = require('gulp-zip'),
+    mergeStream = require('merge-stream'),
     runSequence = require('run-sequence');
 
 gulp.task('build', function() {
     /* ----------------------------------------
     Salesforce Lightning Design System
     ---------------------------------------- */
-    return gulp.src('node_modules/@salesforce-ux/design-system/assets/**/*')
+    var slds = gulp.src('node_modules/@salesforce-ux/design-system/assets/**/*')
         .pipe(gulp.dest('./public/assets'));
+    
+    /* ----------------------------------------
+    Moment.js
+    ---------------------------------------- */
+    var moment = gulp.src('node_modules/moment/moment.js')
+        .pipe(gulp.dest('./public/lib/moment'));
+    
+    return mergeStream(slds, moment);
 });
 
 gulp.task('emberTemplates', function() {
@@ -50,6 +59,27 @@ gulp.task('concat', function() {
 		.pipe(gulp.dest('./public/src'));
 });
 
+gulp.task('concatWithMoment', function() {
+    var buildOrder = [
+        './public/lib/moment/moment.js',
+        './public/src/jquery.aljs-init.js',
+        './public/src/jquery.aljs-datepicker.js',
+        './public/src/jquery.aljs-icon-group.js',
+        './public/src/jquery.aljs-lookup.js',
+        './public/src/jquery.aljs-modal.js',
+        './public/src/jquery.aljs-multi-select.js',
+        './public/src/jquery.aljs-notification.js',
+        './public/src/jquery.aljs-picklist.js',
+        './public/src/jquery.aljs-pill.js',
+        './public/src/jquery.aljs-popover.js',
+        './public/src/jquery.aljs-tabs.js'
+    ]
+    
+    return gulp.src(buildOrder)
+        .pipe(concat('jquery.aljs-all-with-moment.js'))
+		.pipe(gulp.dest('./public/src'));
+});
+
 gulp.task('uglify', function() {
     return gulp.src(['./public/src/**/*.js', '!./public/src/**/*.min.js'])
         .pipe(rename({ suffix: '.min' }))
@@ -64,7 +94,7 @@ gulp.task('zip', function() {
 });
 
 gulp.task('dist', function() {
-    runSequence('concat', 'uglify', 'zip');
+    runSequence('concat', 'concatWithMoment', 'uglify', 'zip');
 });
 
 gulp.task('watch', function() {

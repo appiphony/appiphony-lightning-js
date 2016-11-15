@@ -52,7 +52,7 @@ gulp.task('concat', function() {
         './public/src/jquery.aljs-pill.js',
         './public/src/jquery.aljs-popover.js',
         './public/src/jquery.aljs-tabs.js'
-    ]
+    ];
     
     return gulp.src(buildOrder)
         .pipe(concat('jquery.aljs-all.js'))
@@ -62,18 +62,8 @@ gulp.task('concat', function() {
 gulp.task('concatWithMoment', function() {
     var buildOrder = [
         './public/lib/moment/moment.js',
-        './public/src/jquery.aljs-init.js',
-        './public/src/jquery.aljs-datepicker.js',
-        './public/src/jquery.aljs-icon-group.js',
-        './public/src/jquery.aljs-lookup.js',
-        './public/src/jquery.aljs-modal.js',
-        './public/src/jquery.aljs-multi-select.js',
-        './public/src/jquery.aljs-notification.js',
-        './public/src/jquery.aljs-picklist.js',
-        './public/src/jquery.aljs-pill.js',
-        './public/src/jquery.aljs-popover.js',
-        './public/src/jquery.aljs-tabs.js'
-    ]
+        './public/src/jquery.aljs-all.js'
+    ];
     
     return gulp.src(buildOrder)
         .pipe(concat('jquery.aljs-all-with-moment.js'))
@@ -94,15 +84,15 @@ gulp.task('zip', function() {
 });
 
 gulp.task('dist', function() {
-    runSequence('concat', 'concatWithMoment', 'uglify', 'zip');
+    return runSequence('concat', 'concatWithMoment', 'uglify', 'zip');
 });
 
 gulp.task('watch', function() {
     gulp.watch('./aljs-ember-app/templates/**/*.hbs', ['emberTemplates']);
     gulp.watch('./aljs-ember-app/**/*.js', ['neuter']);
-    gulp.watch(['./public/src/**/*.js', '!./public/src/**/*.min.js'], ['dist']);
+    gulp.watch(['./public/src/**/*.js', '!./public/src/**/*.min.js', '!./public/src/jquery.aljs-all.js', '!./public/src/jquery.aljs-all-with-moment.js'], ['dist']);
 });
 
 gulp.task('default', ['build'], function() {
-    runSequence('emberTemplates', 'neuter', ['dist', 'watch']);
+    return runSequence('emberTemplates', 'neuter', 'dist', 'watch');
 });

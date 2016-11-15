@@ -18,14 +18,14 @@
 * **Picklists**: The `bindChoices` method is now publicly available and documented; allows you to bind dynamically added options <a href="https://github.com/appiphony/appiphony-lightning-js/issues/40">(GitHub Issue #40)</a>
 
 #### Ember
-* **General**: Ember is no longer supported
+* **All**: Ember is no longer supported
 
 ---
 
 ### Release 1.0.0 — April 1, 2016
 
 #### jQuery
-* **General**: Created the `jquery.aljs-init.min.js` which includes all ALJS jQuery plugins
+* **All**: Created the `jquery.aljs-init.min.js` which includes all ALJS jQuery plugins
 * **Lookups**: Updated `onChange` to reference `self.selectedResult` instead of `selectResult` <a href="https://github.com/appiphony/appiphony-lightning-js/issues/27">(GitHub Issue #27)</a>
 * **Lookups**: `setSelection` now accepts an empty array or object to clear the Lookup <a href="https://github.com/appiphony/appiphony-lightning-js/issues/27">(GitHub Issue #27)</a>
 * **Lookups**: Added additional functionality for `clickAddFunction` <a href="https://github.com/appiphony/appiphony-lightning-js/issues/35">(GitHub Issue #35)</a>

@@ -31,9 +31,9 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
 (function($) {
     var datepickerMenuMarkup = 
-    '<div class="slds-dropdown slds-dropdown--left slds-datepicker" aria-hidden="false" data-selection="single">' +
+    '<div class="slds-datepicker slds-dropdown slds-dropdown--left" aria-hidden="false">' +
         '<div class="slds-datepicker__filter slds-grid">' +
-            '<div class="slds-datepicker__filter--month slds-grid slds-grid--align-spread slds-size--3-of-4">' +
+            '<div class="slds-datepicker__filter--month slds-grid slds-grid--align-spread slds-grow">' +
                 '<div class="slds-align-middle">' +
                     '<button id="aljs-prevButton" class="slds-button slds-button--icon-container">' +
                         '<svg aria-hidden="true" class="slds-button__icon slds-button__icon--small">' +
@@ -42,22 +42,19 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                         '<span class="slds-assistive-text">Previous Month</span>' +
                     '</button>' +
                 '</div>' +
-                '<h2 id="month" class="slds-align-middle" aria-live="assertive" aria-atomic="true"></h2>' +
+                '<h2 id="aljs-month" class="slds-align-middle" aria-live="assertive" aria-atomic="true"></h2>' +
                 '<div class="slds-align-middle">' +
-                    '<button id="aljs-nextButton" class="slds-button slds-button--icon-container">' +
-                        '<svg aria-hidden="true" class="slds-button__icon slds-button__icon--small">' +
+                    '<button id="aljs-nextButton" class="slds-button slds-button--icon-container" title="Next Month">' +
+                        '<svg aria-hidden="true" class="slds-button__icon">' +
                             '<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#right"></use>' +
                         '</svg>' +
                         '<span class="slds-assistive-text">Next Month</span>' +
                     '</button>' +
                 '</div>' +
             '</div>' +
-            '<div class="slds-form-element"><div class="slds-form-element__control">' +
-                '<div class="slds-shrink-none">' +
-                    '<div class="slds-select_container">' + 
-                    '</div>' +
+            '<div class="slds-shrink-none">' +
+                '<div class="slds-select_container">' + 
                 '</div>' +
-            '</div>' +
             '</div>' +
         '</div>';
 
@@ -65,31 +62,30 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
         '<table class="datepicker__month" role="grid" aria-labelledby="month">' +
             '<thead>' +
                 '<tr id="weekdays">' +
-                    '<th id="{{label0Full}}">' +
+                    '<th id="{{label0Full}}" scope="col">' +
                         '<abbr title="{{label0Full}}">{{label0Abbr}}</abbr>' +
                     '</th>' +
-                    '<th id="{{label1Full}}">' +
+                    '<th id="{{label1Full}}" scope="col">' +
                         '<abbr title="{{label1Full}}">{{label1Abbr}}</abbr>' +
                     '</th>' +
-                    '<th id="{{label2Full}}">' +
+                    '<th id="{{label2Full}}" scope="col">' +
                         '<abbr title="{{label2Full}}">{{label2Abbr}}</abbr>' +
                     '</th>' +
-                    '<th id="{{label3Full}}">' +
+                    '<th id="{{label3Full}}" scope="col">' +
                         '<abbr title="{{label3Full}}">{{label3Abbr}}</abbr>' +
                     '</th>' +
-                    '<th id="{{label4Full}}">' +
+                    '<th id="{{label4Full}}" scope="col">' +
                         '<abbr title="{{label4Full}}">{{label4Abbr}}</abbr>' +
                     '</th>' +
-                    '<th id="{{label5Full}}">' +
+                    '<th id="{{label5Full}}" scope="col">' +
                         '<abbr title="{{label5Full}}">{{label5Abbr}}</abbr>' +
                     '</th>' +
-                    '<th id="{{label6Full}}">' +
+                    '<th id="{{label6Full}}" scope="col">' +
                         '<abbr title="{{label6Full}}">{{label6Abbr}}</abbr>' +
                     '</th>' +
                 '</tr>' +
             '</thead>' +
             '<tbody>' +
-        
             '</tbody>' +
         '</table>' +
     '</div>';
@@ -227,17 +223,17 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     $('<span class="slds-day">' + col.value + '</span>').appendTo($dayCol);
                     
                     if (!col.isCurrentMonth) {
-                        $dayCol.addClass('slds-disabled-text');
-                        $dayCol.prop('aria-disabled', 'true');
+                        $dayCol.addClass('slds-disabled-text')
+                            .attr('aria-disabled', 'true');
                     }
 
                     if (col.isSelected || col.isSelectedEndDate || col.isSelectedMulti) {// || 
                                 //(!isMultiSelect && !selectedFullDate && col.isToday) ||
                                 //(isMultiSelect && !selectedEndDate && col.isToday)) {
-                        $dayCol.prop('aria-selected', 'true');
-                        $dayCol.addClass(isMultiSelect ? 'slds-is-selected-multi slds-is-selected' : 'slds-is-selected');
+                        $dayCol.addClass(isMultiSelect ? 'slds-is-selected-multi slds-is-selected' : 'slds-is-selected')
+                            .attr('aria-selected', 'true');
                     } else {
-                        $dayCol.prop('aria-selected', 'false');
+                        $dayCol.attr('aria-selected', 'false');
                     }
 
                     if (col.isToday) {
@@ -251,7 +247,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             $monthTableBody.append(todayLinkMarkup.replace(/{{todaysDate}}/g, this.getMMDDYYYY(moment().month() + 1, moment().date(), moment().year())).replace(/{{todayLabel}}/g, this.settings.todayLabel.toString()));
 
             this.$datepickerEl.find('tbody').replaceWith($monthTableBody);
-            this.$datepickerEl.find('#month').text(this.settings.monthLabels[this.viewedMonth].full);
+            this.$datepickerEl.find('#aljs-month').text(this.settings.monthLabels[this.viewedMonth].full);
             this.$datepickerEl.find('#aljs-year').text(this.viewedYear);
         },
         initYearDropdown: function() {
@@ -585,31 +581,31 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             dayLabels: [
                 {
                     full: 'Sunday',
-                    abbr: 'S'
+                    abbr: 'Sun'
                 },
                 {
                     full: 'Monday',
-                    abbr: 'M'
+                    abbr: 'Mon'
                 },
                 {
                     full: 'Tuesday',
-                    abbr: 'T'
+                    abbr: 'Tue'
                 },
                 {
                     full: 'Wednesday',
-                    abbr: 'W'
+                    abbr: 'Wed'
                 },
                 {
                     full: 'Thursday',
-                    abbr: 'T'
+                    abbr: 'Thu'
                 },
                 {
                     full: 'Friday',
-                    abbr: 'F'
+                    abbr: 'Fri'
                 },
                 {
                     full: 'Saturday',
-                    abbr: 'S'
+                    abbr: 'Sat'
                 }
             ],
             monthLabels: [
@@ -1295,9 +1291,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     
     $.fn.modal = function(args, options) {
         var modalObj = {};
-        modalObj.self = this;
-        modalObj.tabTarget = $('[href], [contenteditable="true"], button, a, input, textarea, select', aljsScope);
-        modalObj.modalTabTarget = $('[href], [contenteditable="true"], button, a, input, textarea, select', modalObj.self);
+        modalObj.$el = this;
         modalObj.hasSelector = (args && args.hasOwnProperty('selector')) ? true : false;
         
         if (args !== null && typeof args === 'string') { // If calling a method
@@ -1319,7 +1313,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             }
             
             function dismissModal() {
-                modalObj.self.modal('dismiss', settings)
+                modalObj.$el.modal('dismiss', settings)
                     .unbind('click');
                 $(aljsBodyTag).unbind('keyup', keyUpCheck);
                 aljsModals.unbind('click');
@@ -1333,14 +1327,19 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     modalObj.id = this.attr('id');
                     
                     // Close existing modals
-                    $('.slds-modal').removeClass('slds-fade-in-open')
-                                    .attr('aria-hidden', 'false');
+                    $('.slds-modal').removeClass('slds-fade-in-open slds-show')
+                                    .addClass('slds-hide')
+                                    .attr('aria-hidden', 'true')
+                                    .attr('tabindex', -1);
 
                     $('.slds-backdrop').remove(); // Remove any existing backdrops
                     $('.aljs-modal-container').append('<div class="slds-backdrop"></div>');
                     
                     $(aljsBodyTag).keyup(keyUpCheck);
-                    modalObj.self.addClass('slds-show');
+                    modalObj.$el.addClass('slds-show')
+                        .removeClass('slds-hide')
+                        .attr('aria-hidden', 'false')
+                        .attr('tabindex', 1);
                     
                     dismissModalElement.click(function(e) { // Bind events based on options
                         e.preventDefault();
@@ -1352,16 +1351,13 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         modalElements.click(function(e) { e.stopPropagation(); });
                     }
                     
-                    modalObj.tabTarget.attr('tabindex', '-1');
-                    modalObj.modalTabTarget.attr('tabindex', '1');
-                    
                     setTimeout(function() { // Ensure elements are displayed and rendered before adding classes
                         $('.slds-backdrop').addClass('slds-backdrop--open');
-                        modalObj.self.addClass('slds-fade-in-open')
+                        modalObj.$el.addClass('slds-fade-in-open')
                             .trigger('show.aljs.modal'); // Custom aljs event
                         settings.onShow(modalObj);
                         setTimeout(function() {
-                            modalObj.self.trigger('shown.aljs.modal'); // Custom aljs event
+                            modalObj.$el.trigger('shown.aljs.modal'); // Custom aljs event
                             settings.onShown(modalObj);
                             isShowing = false;
                         }, 400);
@@ -1373,26 +1369,27 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         $('.slds-backdrop').removeClass('slds-backdrop--open');
                     }
                     settings.onDismiss(modalObj);
-                    modalObj.tabTarget.removeAttr('tabindex');
-                    modalObj.self.removeClass('slds-fade-in-open')
-                        .attr('aria-hidden', 'true');
+                    modalObj.$el.removeClass('slds-fade-in-open')
+                        .attr('aria-hidden', 'true')
+                        .attr('tabindex', -1);
                     
                     if (aljsRefocusTarget !== null) aljsRefocusTarget.focus();
-                    modalObj.self.trigger('dismiss.aljs.modal'); // Custom aljs event
+                    modalObj.$el.trigger('dismiss.aljs.modal'); // Custom aljs event
                     
                     setTimeout(function() {
                         if(!isShowing) {
                             $('.slds-backdrop').remove();
                         }
                         aljsRefocusTarget = null;
-                        modalObj.self.addClass('slds-hide')
+                        modalObj.$el.addClass('slds-hide')
+                            .removeClass('slds-show')
                             .trigger('dismissed.aljs.modal'); // Custom aljs event
                         settings.onDismissed(modalObj);
                     }, 200);
                     break;
                     
                 case 'trigger':
-                    var modalId = modalObj.self.data('aljs-show');
+                    var modalId = modalObj.$el.data('aljs-show');
                     var targetModal = $('#' + modalId);
                     
                     targetModal.modal('show', settings);
@@ -1408,7 +1405,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             this.on('click', args.selector, clickEvent);
         } else { // If initializing plugin with options
             initModals();
-            modalObj.self.click(function() { showModal($(this), args); });
+            modalObj.$el.click(function() { showModal($(this), args); });
         }
         
         return this;

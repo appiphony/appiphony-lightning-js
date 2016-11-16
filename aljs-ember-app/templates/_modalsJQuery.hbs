@@ -10,10 +10,10 @@
 {{#aljs-pre-container type="html"}}
 <button class="slds-button slds-button--neutral" data-aljs="modal" data-aljs-show="modal-1">Open Modal 1</button>
 <button class="slds-button slds-button--neutral" data-aljs="modal" data-aljs-show="modal-2">Open Modal 2</button>
-<div aria-hidden="true" role="dialog" class="slds-modal slds-fade-in-open slds-hide" id="modal-1">
+<div id="modal-1" aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="modal-heading-1" class="slds-modal slds-fade-in-open slds-hide">
     <div class="slds-modal__container">
         <div class="slds-modal__header">
-            <h2 class="slds-text-heading--medium">Modal 1</h2>
+            <h2 id="modal-heading-1" class="slds-text-heading--medium">Modal 1</h2>
             <button class="slds-button slds-button--icon-inverse slds-modal__close" data-aljs-dismiss="modal">
                 <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
                     <use xlink:href="/assets/icons/action-sprite/svg/symbols.svg#close"></use>
@@ -32,10 +32,10 @@
         </div>
     </div>
 </div>
-<div aria-hidden="true" role="dialog" class="slds-modal slds-fade-in-open slds-hide" id="modal-2">
+<div id="modal-2" aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="modal-heading-2" class="slds-modal slds-fade-in-open slds-hide">
     <div class="slds-modal__container">
         <div class="slds-modal__header">
-            <h2 class="slds-text-heading--medium">Modal 2</h2>
+            <h2 id="modal-heading-2" class="slds-text-heading--medium">Modal 2</h2>
             <button class="slds-button slds-button--icon-inverse slds-modal__close" data-aljs-dismiss="modal">
                 <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
                     <use xlink:href="/assets/icons/action-sprite/svg/symbols.svg#close"></use>

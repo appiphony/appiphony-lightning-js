@@ -1,7 +1,5 @@
 # Appiphony Lightning JS Beta
 
-### Release 3.0.0 — November 15, 2016
-
 ### Release 2.0.0 — July 29, 2016
 
 #### jQuery
@@ -25,7 +23,7 @@
 ### Release 1.0.0 — April 1, 2016
 
 #### jQuery
-* **All**: Created the `jquery.aljs-init.min.js` which includes all ALJS jQuery plugins
+* **All**: Created the `jquery.aljs-all.min.js` which includes all ALJS jQuery plugins
 * **Lookups**: Updated `onChange` to reference `self.selectedResult` instead of `selectResult` <a href="https://github.com/appiphony/appiphony-lightning-js/issues/27">(GitHub Issue #27)</a>
 * **Lookups**: `setSelection` now accepts an empty array or object to clear the Lookup <a href="https://github.com/appiphony/appiphony-lightning-js/issues/27">(GitHub Issue #27)</a>
 * **Lookups**: Added additional functionality for `clickAddFunction` <a href="https://github.com/appiphony/appiphony-lightning-js/issues/35">(GitHub Issue #35)</a>

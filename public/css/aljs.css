@@ -42,35 +42,42 @@ pre {
     word-spacing: normal;
     font-weight: normal;
     white-space: pre-wrap;
-    background-color: #eef1f6;
     margin-bottom: 0;
     margin-top: 0;
-    position: relative;
     padding: 1rem;
+    white-space: pre;
+    padding-top: 50px;
 }
-pre[type]:before {
+.aljs-pre-container {
+    position: relative;
+    background-color: #eef1f6;
+}
+.aljs-pre-container[type]:before {
     font-family: 'Salesforce Sans', Arial, sans-serif;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 12px;
     display: block;
     position: absolute;
     top: 0;
     right: 0;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     background-color: #16325c;
     color: #fff;
-    text-align: center;
     min-width: 100px;
+    width: 100%;
     opacity: 0.5;
 }
-pre[type="html"]:before {
-    content: 'HTML';
+.aljs-pre-container[type="html"]:before {
+    content: 'Code Sample (HTML)';
 }
-pre[type="js"]:before {
-    content: 'JS';
+.aljs-pre-container[type="css"]:before {
+    content: 'Code Sample (CSS)';
 }
-pre[type="vf"]:before {
-    content: 'VF';
+.aljs-pre-container[type="js"]:before {
+    content: 'Code Sample (JavaScript)';
+}
+.aljs-pre-container[type="vf"]:before {
+    content: 'Code Sample (Visualforce)';
 }
 pre .highlight {
     color: #ef7ead;

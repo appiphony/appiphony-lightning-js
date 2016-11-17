@@ -1727,12 +1727,14 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 
                     self.obj.id = $(this).attr('id');
                 
-                    if (self.obj.$dropdown.hasClass('slds-hide')) {
+                    if (self.$el.hasClass('slds-is-open')) {
+                        self.$el.removeClass('slds-is-open');
+                        self.obj.$dropdown.unbind('keyup', self.processKeypress);
+                    } else {
                         // Close other picklists
                         $('[data-aljs="picklist"]').not(self.$el).picklist('close');
                         
-                        self.obj.$dropdown.removeClass('slds-hide')
-                            .addClass('slds-show');
+                        self.$el.addClass('slds-is-open');
                         
                         if (self.obj.valueId === null || typeof self.obj.valueId === 'undefined') {
                             self.focusedIndex = null;
@@ -1742,17 +1744,12 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         
                         self.focusOnElement();
                         self.obj.$dropdown.on('keyup', self, self.processKeypress);
-                    } else {
-                        self.obj.$dropdown.removeClass('slds-show')
-                            .addClass('slds-hide');
-                        self.obj.$dropdown.unbind('keyup', self.processKeypress);
                     }
                 return false; // Prevent scrolling on keypress
                 });
             
             $('body').click(function() { 
-                self.obj.$dropdown.removeClass('slds-show')
-                    .addClass('slds-hide');
+                self.$el.removeClass('slds-is-open');
                 self.obj.$dropdown.unbind('keyup', self.processKeypress);
             }).keyup(function(e) {
                 if (e.keyCode === 27) { // Esc
@@ -1804,8 +1801,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             var $li = this.$el.find('#' + optionId);
             this.obj.value = $li.find('a').text();
             this.obj.valueId = optionId;
-            this.obj.$dropdown.removeClass('slds-show')
-                .addClass('slds-hide');
+            this.$el.removeClass('slds-is-open');
             this.obj.$dropdown.unbind('keyup', this.processKeypress);
             
             this.obj.$trigger.trigger('change.aljs.picklist') // Custom aljs event
@@ -1831,8 +1827,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             return this.obj;
         },
         close: function() {
-            this.obj.$dropdown.removeClass('slds-show')
-                .addClass('slds-hide');
+            this.$el.removeClass('slds-is-open');
             this.obj.$dropdown.unbind('keyup', this.processKeypress);
         }
     };
@@ -1851,8 +1846,6 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         this.each(function() {
             var $this = $(this);
             var data = $this.data('aljs-picklist');
-            var dropdown = $this.find('.slds-dropdown')
-                .addClass('slds-hide');
             
             if (!data) {
                 var picklistData = new Picklist(this, settings);

@@ -274,7 +274,7 @@ App.AljsRoute = Ember.Route.extend({
                         },
                         {
                             path: 'popovers',
-                            name: 'Popovers'
+                            name: 'Popovers/Tooltips'
                         },
                         {
                             path: 'tabs',

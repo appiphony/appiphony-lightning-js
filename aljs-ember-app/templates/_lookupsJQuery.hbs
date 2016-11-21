@@ -92,7 +92,7 @@ $(document).ready(function() {
         ],
     });
 
-    var results = [
+    <!--var results = [
         {
             id: 'ajax-result-1',
             label: 'ajaxResult1'
@@ -108,6 +108,30 @@ $(document).ready(function() {
         {
             id: 'ajax-result-4',
             label: 'ajaxResult4'
+        }
+    ];-->
+
+    var results = [
+        {
+            groupLabel: 'Recent Accounts',
+            groupItems: [
+                {
+                    id: 'ajax-result-1',
+                    label: 'ajaxResult1'
+                },
+                {
+                    id: 'ajax-result-2',
+                    label: 'ajaxResult2'
+                },
+                {
+                    id: 'ajax-result-3',
+                    label: 'ajaxResult3'
+                },
+                {
+                    id: 'ajax-result-4',
+                    label: 'ajaxResult4'
+                }
+            ]
         }
     ];
 
@@ -166,7 +190,8 @@ $(document).ready(function() {
                     <tr>
                         <th scope="row"><code>items</code></th>
                         <td data-label="Behavior">Populates the list of lookup items on page load</td>
-                        <td data-label="Values">An array of objects with <code>id</code> (unique) and <code>label</code> properties</td>
+<!--                        <td data-label="Values">An array of objects with <code>id</code> (unique) and <code>label</code> properties</td>-->
+                        <td data-label="Values">An array of objects with <code>id</code> (unique string) and <code>label</code> (string) properties, or groups of said objects with <code>groupLabel</code> (optional string) and <code>groupItmes</code> (array of objects) properties</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>[]</code></td>
                     </tr>
                     <tr>
@@ -234,6 +259,12 @@ $(document).ready(function() {
                         <td data-label="Behavior">Determines whether the search prompt appears when a user has typed in search term text</td>
                         <td data-label="Values"><code>true</code> or <code>false</code></td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>false</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>searchDelay</code></th>
+                        <td data-label="Behavior">Determines the delay (in milliseconds) following user input before a filtered <code>items</code> list is displayed</td>
+                        <td data-label="Values">Any number</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>500</code></td>
                     </tr>
                 </tbody>
             </table>

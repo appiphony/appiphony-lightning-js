@@ -144,14 +144,12 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             var self = e.data;
             
             if (searchTimer) {
-                if (self.settings.showDebugLog)
-                console.log ('Cancelling search ', searchTimer);
+                if (self.settings.showDebugLog) console.log ('Cancelling search ', searchTimer);
+                
                 clearTimeout(searchTimer);
             }
             
             searchTimer = setTimeout(function() {
-            
-                
                 var searchTerm = self.$el.val();
                 if (!self.isStringEmpty(searchTerm) && searchTerm.length > 2) {
                     self.getSearchTermResults(searchTerm);
@@ -159,8 +157,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 } else {
                     self.getDefaultResults();
                 }
-                              
-            }, (self.settings.searchDelayMs) ? self.settings.searchDelayMs : 500);   
+            }, (self.settings.searchDelay) ? self.settings.searchDelay : 500);   
         },
         setMultiSelect: function(selectedResults) {
         	var self = this;

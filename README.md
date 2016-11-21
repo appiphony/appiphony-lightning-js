@@ -1,4 +1,4 @@
-# Appiphony Lightning JS Beta
+# Appiphony Lightning JS
 ### Your JS Solution for the Lightning Design System
 Current release: 3.0.0  
 Supported SLDS release: 2.1.4  
@@ -15,7 +15,7 @@ See it in action here: <a href="http://aljs.appiphony.com" target="_blank">http:
 * Notifications
 * Picklists
 * Pills
-* Popovers
+* Popovers/Tooltips
 * Tabs
 
 ---

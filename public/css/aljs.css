@@ -54,18 +54,17 @@ pre {
 }
 .aljs-pre-container[type]:before {
     font-family: 'Salesforce Sans', Arial, sans-serif;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 12px;
     display: block;
     position: absolute;
     top: 0;
     right: 0;
     padding: 0.5rem 1rem;
-    background-color: #16325c;
+    background-color: #29586d;
     color: #fff;
     min-width: 100px;
     width: 100%;
-    opacity: 0.5;
 }
 .aljs-pre-container[type="html"]:before {
     content: 'Code Sample (HTML)';

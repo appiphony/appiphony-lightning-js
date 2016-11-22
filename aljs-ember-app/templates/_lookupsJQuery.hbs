@@ -75,68 +75,52 @@ $(document).ready(function() {
         items: [
             {
                 id: 'result-1',
-                label: 'Result 1'
+                label: 'Result 1',
+                metaLabel: 'Optional meta description'
             },
             {
                 id: 'result-2',
-                label: 'Result 2'
+                label: 'Result 2',
+                metaLabel: 'Optional meta description'
             },
             {
                 id: 'result-3',
-                label: 'Result 3'
+                label: 'Result 3',
+                metaLabel: 'Optional meta description'
             },
             {
                 id: 'result-4',
-                label: 'Result 4'
+                label: 'Result 4',
+                metaLabel: 'Optional meta description'
             }
         ],
     });
 
-    <!--var results = [
+    var resultsForSecondLookup = [
         {
             id: 'ajax-result-1',
-            label: 'ajaxResult1'
+            label: 'AJAX Result 1',
+            metaLabel: 'Optional meta description'
         },
         {
             id: 'ajax-result-2',
-            label: 'ajaxResult2'
+            label: 'AJAX Result 2',
+            metaLabel: 'Optional meta description'
         },
         {
             id: 'ajax-result-3',
-            label: 'ajaxResult3'
+            label: 'AJAX Result 3',
+            metaLabel: 'Optional meta description'
         },
         {
             id: 'ajax-result-4',
-            label: 'ajaxResult4'
-        }
-    ];-->
-
-    var results = [
-        {
-            groupLabel: 'Recent Accounts',
-            groupItems: [
-                {
-                    id: 'ajax-result-1',
-                    label: 'ajaxResult1'
-                },
-                {
-                    id: 'ajax-result-2',
-                    label: 'ajaxResult2'
-                },
-                {
-                    id: 'ajax-result-3',
-                    label: 'ajaxResult3'
-                },
-                {
-                    id: 'ajax-result-4',
-                    label: 'ajaxResult4'
-                }
-            ]
+            label: 'AJAX Result 4',
+            metaLabel: 'Optional meta description'
         }
     ];
 
     $('#lookup-02').lookup({
-        items: results,
+        items: resultsForSecondLookup,
         objectPluralLabel: 'Things',
         objectLabel: 'Thing',
         useImgTag: false,
@@ -150,9 +134,9 @@ $(document).ready(function() {
                 return result.label.match(searchTerm) !== null;
             }));
         },
-        initialSelection: { id: 'ajax-result-1', label: 'ajaxResult1' },
-        clickAddFunction: function() {
-            console.log('redirect or do something to add something');
+        initialSelection: { id: 'ajax-result-1', label: 'AJAX Result 1' },
+        onClickNew: function() {
+            console.log('redirect or run something');
         }
     });{{!--
     
@@ -190,8 +174,7 @@ $(document).ready(function() {
                     <tr>
                         <th scope="row"><code>items</code></th>
                         <td data-label="Behavior">Populates the list of lookup items on page load</td>
-<!--                        <td data-label="Values">An array of objects with <code>id</code> (unique) and <code>label</code> properties</td>-->
-                        <td data-label="Values">An array of objects with <code>id</code> (unique string) and <code>label</code> (string) properties, or groups of said objects with <code>groupLabel</code> (optional string) and <code>groupItmes</code> (array of objects) properties</td>
+                        <td data-label="Values">An array of objects with <code>id</code> (required unique string), <code>label</code> (required string), and <code>metaLabel</code> (optional string) properties</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>[]</code></td>
                     </tr>
                     <tr>
@@ -250,8 +233,8 @@ $(document).ready(function() {
                     </tr>
                     <tr>
                         <th scope="row"><code>onChange</code></th>
-                        <td data-label="Behavior">A function that runs when a user selects or clears a search result. It can receive two parameters - <code>currentSelection</code>: the current item object that is passed in, and <code>isAdd</code>: a boolean that is true on addition of a selection and false on removal.</td>
-                        <td data-label="Values">Any callback function</td>
+                        <td data-label="Behavior">A function that runs when a user selects a search result or clears a selection.</td>
+                        <td data-label="Values">Any callback function, which can receive two parameters &mdash; <code>currentSelection</code>: the current item object that is passed in, and <code>isAdd</code>: a boolean that is true on addition of a selection and false on removal.</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>function(currentSelection, isAdd) {}</code></td>
                     </tr>
                     <tr>

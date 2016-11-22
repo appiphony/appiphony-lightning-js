@@ -5107,45 +5107,55 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     	'</span>';
 
 	var lookupSearchContainerMarkup = 
-		'<div class="slds-lookup__menu" role="listbox">' +
-			'<ul class="slds-lookup__list" role="presentation">' +
+		'<div class="slds-lookup__menu">' +
+			'<ul class="slds-lookup__list" role="listbox">' +
 			'</ul>' +
 		'</div>';
 
 	var searchMarkup = 
-		'<div>' +
-			'<a href="javascript:void(0);" class="slds-lookup__item-action slds-lookup__item-action--label">' +
-				'<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default slds-m-right--small{{hasIcon}}">' +
+		'<li role="presentation">' +
+			'<span class="slds-lookup__item-action slds-lookup__item-action--label" role="option">' +
+				'<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">' +
 					'<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#search"></use>' +
-				'</svg>&quot;{{searchTerm}}&quot; in {{objectPluralLabel}}' +
-			'</a>' +
-		'</div>';
+				'</svg>' +
+                '<span class="slds-truncate">&quot;{{searchTerm}}&quot; in {{objectPluralLabel}}</span>' +
+			'</span>' +
+		'</li>';
 
 	var newItemMarkup = 
-		'<div>' +
-			'<a href="javascript:void(0);" class="slds-lookup__item-action slds-lookup__item-action--label">' +
-				'<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default slds-m-right--small{{hasIcon}}">' +
+		'<li role="presentation">' +
+			'<span class="slds-lookup__item-action slds-lookup__item-action--label" role="option">' +
+				'<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">' +
 					'<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#add"></use>' +
-				'</svg>New {{objectLabel}}' +
-			'</a>' +
-		'</div>';
+				'</svg>' +
+                '<span class="slds-truncate">New {{objectLabel}}</span>' +
+			'</span>' +
+		'</li>';
 
 	var lookupResultItemMarkup = 
-		'<li class="slds-lookup__item">' +
-			'<a id="{{resultId}}" href="javascript:void(0)" role="option">' +
-				'<span title="{{objectLabel}}"><svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-icon--small{{hasIcon}}">' +
+		'<li role="presentation">' +
+			'<span class="slds-lookup__item-action slds-media slds-media--center" id="{{resultId}}" role="option" tabindex="1">' +
+				'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-icon--small slds-media__figure{{hasIcon}}">' +
 					'<use xlink:href="{{objectIconUrl}}"></use>' +
-				'</svg></span>{{resultLabel}}' +
-			'</a>' +
+				'</svg>' +
+                '<div class="slds-media__body">' +
+                    '<div class="slds-lookup__result-text">{{resultLabel}}</div>' +
+                    '{{metaLabel}}' +
+                '</div>' +
+			'</span>' +
 		'</li>';
 
 	var customLookupResultItemMarkup = 
-		'<li class="slds-lookup__item">' +
-			'<a id="{{resultId}}" href="javascript:void(0)" role="option">' +
-                '<span title="{{objectLabel}}"><img class="{{objectIconClass}} slds-icon slds-icon--small{{hasIcon}}" src="{{objectIconUrl}}"/></span>{{resultLabel}}' +
-			'</a>' +
+		'<li role="presentation">' +
+			'<span class="slds-lookup__item-action slds-media slds-media--center" id="{{resultId}}" role="option" tabindex="1">' +
+                '<img class="{{objectIconClass}} slds-icon slds-icon--small slds-media__figure{{hasIcon}}" src="{{objectIconUrl}}"/>' +
+                '<div class="slds-media__body">' +
+                    '<div class="slds-lookup__result-text">{{resultLabel}}</div>' +
+                    '{{metaLabel}}' +
+                '</div>' +
+			'</span>' +
 		'</li>';
-
+    
     var Lookup = function(el, options) {
         this.$el = $(el);
         this.$lookupContainer = this.$el.closest('.slds-lookup');
@@ -5158,17 +5168,19 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
        		this.$multiSelect = $(selectContainerMarkup).appendTo(this.$lookupContainer.find('.slds-form-element'));
        		this.selectedResults = []; // We'll have to initialize.
        	}
-
+        
         if (!this.isStringEmpty(options.searchTerm)) {
     		this.$el.val(options.searchTerm);
     		this.setSingleSelect();
     	} else if (options.initialSelection) {
     		this.setSelection(options.initialSelection);
     	}
-
+        
         this.initLookup();
     };
+    
 	var searchTimer;
+    
     Lookup.prototype = {
         constructor: Lookup,
         isStringEmpty: function(stringVal) {
@@ -5178,36 +5190,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	var self = this;
 
         	this.$el.on('focus', this, this.runSearch)
-                .on('keyup', this, this.runSearch)
-                .on('blur', this, this.handleBlur);
-
-			this.$lookupContainer.on('keyup', function(e) {
-				e.stopPropagation();
-
-				var $focusedA = $(this).find('a:focus');
-
-				if (e.keyCode === 27) {
-		        	self.$el.blur();
-		        }
-
-		        if (e.keyCode === 40) {
-		            // DOWN
-		            if ($focusedA.length > 0) {
-		            	$focusedA.parent().next().find('a').focus();
-		            } else {
-		            	$(this).find('.slds-lookup__list').find('a:first').focus();
-		            }
-		        }
-
-		        if (e.keyCode === 38) {
-		            // UP
-		            if ($focusedA.length > 0) {
-		            	$focusedA.parent().prev().find('a').focus();
-		            } else {
-		            	$(this).find('.slds-lookup__list').find('a:last').focus();
-		            }
-		        }
-			});
+                .on('blur', this, this.handleBlur)
+                .on('keyup', this, this.runSearch);
         },
         runSearch: function(e) {
             var self = e.data;
@@ -5220,20 +5204,19 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             
             searchTimer = setTimeout(function() {
                 var searchTerm = self.$el.val();
-                if (!self.isStringEmpty(searchTerm) && searchTerm.length > 2) {
+                if (!self.isStringEmpty(searchTerm)) {
                     self.getSearchTermResults(searchTerm);
-                    
                 } else {
                     self.getDefaultResults();
                 }
-            }, (self.settings.searchDelay) ? self.settings.searchDelay : 500);   
+            }, (self.settings.searchDelay) ? self.settings.searchDelay : 500);
         },
         setMultiSelect: function(selectedResults) {
         	var self = this;
         	var $multiSelect = this.$multiSelect.html('');
         	var $lookupContainer = this.$lookupContainer;
             var conditionalPillMarkup = (self.settings.useImgTag) ? customPillMarkup : pillMarkup;
-
+            
         	if (selectedResults.length > 0) {
         		selectedResults.forEach(function(result) {
         			var $pill = $(conditionalPillMarkup.replace('{{objectIconUrl}}', self.settings.objectIconUrl)
@@ -5247,7 +5230,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         .on('click', 'a, button', self, self.clearMultiSelectResult);
         			$multiSelect.append($pill);
         		});
-
+                
         		$multiSelect.addClass('slds-show')
                     .removeClass('slds-hide');
         		$lookupContainer.addClass('slds-has-selection');
@@ -5262,30 +5245,30 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	var self = this;
         	var newResultLabel = selectedResultLabel || '';
             var conditionalPillMarkup = (self.settings.useImgTag) ? customPillMarkup : pillMarkup;
-
+            
         	this.$singleSelect.html(conditionalPillMarkup.replace('{{objectIconUrl}}', this.settings.objectIconUrl)
                 .replace('{{objectIconClass}}', self.settings.objectIconClass)
                 .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
                 .replace('{{assetsLocation}}', this.settings.assetsLocation)
                 .replace(/{{objectLabel}}/g, self.settings.objectLabel)
                 .replace(/{{selectedResultLabel}}/g, newResultLabel));
-
+            
         	if (selectedResultLabel) {
         		this.$singleSelect.addClass('slds-show')
                     .removeClass('slds-hide');
-
+                
     			this.$el.addClass('slds-hide')
         		this.$lookupContainer.addClass('slds-has-selection');
-
+                
         		this.$singleSelect.one('click', 'button', this, this.clearSingleSelect);//'a, button', this, this.clearSingleSelect);
         	} else {
         		this.$singleSelect.addClass('slds-hide')
                     .removeClass('slds-show');
-
+                
         		this.$el.val('')
         			.removeClass('slds-hide')
         		this.$lookupContainer.removeClass('slds-has-selection');
-
+                
         		window.setTimeout(function() {
         			self.$el.focus();
         		}, 100);
@@ -5293,7 +5276,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         },
         getSearchTermResults: function(searchTerm) {
         	var self = this;
-
+            
         	if (this.settings.items.length > 0) {
         		this.searchResults = this.settings.items.filter(function(item) {
         			return item.label.toLowerCase().match(searchTerm.toLowerCase()) !== null;
@@ -5304,13 +5287,13 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	        		self.searchResults = searchResults;
 	        		self.renderSearchResults();
 	        	};
-
+                
 	        	this.settings.filledSearchTermQuery(searchTerm, callback);
 	        }
         },
         getDefaultResults: function() {
         	var self = this;
-
+            
         	if (this.settings.items.length > 0) {
         		this.searchResults = this.settings.items;
         		this.renderSearchResults();
@@ -5319,13 +5302,13 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         			self.searchResults = searchResults;
         			self.renderSearchResults();
         		};
-
+                
         		this.settings.emptySearchTermQuery(callback);
         	}
         },
         renderSearchResults: function() {
         	this.closeSearchDropdown();
-
+            
         	var $lookupSearchContainer = $(lookupSearchContainerMarkup);
         	var $resultsListContainer = $lookupSearchContainer.find('ul.slds-lookup__list');
         	var searchTerm = this.$el.val();
@@ -5336,11 +5319,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	if (!this.isStringEmpty(searchTerm) && searchTerm.length > 1 && this.settings.showSearch === true) {
                 showUseSection = true;
                 
-        		$resultsListContainer.before(searchMarkup.replace('{{searchTerm}}', searchTerm)
+        		$resultsListContainer.prepend(searchMarkup.replace('{{searchTerm}}', searchTerm)
                     .replace('{{objectPluralLabel}}', this.settings.objectPluralLabel)
                     .replace('{{assetsLocation}}', $.aljs.assetsLocation));
         	}
-
+            
         	this.searchResults.forEach(function(result) {
         		var $lookupResultItem;
                 var conditionalLookupMarkup = (self.settings.useImgTag) ? customLookupResultItemMarkup : lookupResultItemMarkup;
@@ -5352,40 +5335,39 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         .replace('{{resultId}}', result.id)
                         .replace('{{objectIconUrl}}', self.settings.objectIconUrl)
                         .replace('{{objectIconClass}}', self.settings.objectIconClass)
-                        .replace(/{{objectLabel}}/g, self.settings.objectLabel));
+                        .replace('{{metaLabel}}', (result.metaLabel) ? '<span class="slds-lookup__result-meta slds-text-body--small">' + result.metaLabel + '</span>' : ''));
         		} else if (self.selectedResults) {
         			var selectedResultsIds = self.selectedResults.map(function(result) { return result.id; });
-
+                    
         			if (selectedResultsIds.length === 0 || selectedResultsIds.indexOf(result.id) === -1) {
         				$lookupResultItem = $resultsListContainer.append(conditionalLookupMarkup.replace('{{resultLabel}}', markedResultLabel)
                             .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
                             .replace('{{resultId}}', result.id)
                             .replace('{{objectIconUrl}}', self.settings.objectIconUrl)
                             .replace('{{objectIconClass}}', self.settings.objectIconClass)
-                            .replace(/{{objectLabel}}/g, self.settings.objectLabel));
+                            .replace('{{metaLabel}}', (result.metaLabel) ? '<span class="slds-lookup__result-meta slds-text-body--small">' + result.metaLabel + '</span>' : ''));
         			}
         		}
-
+                
         		if ($lookupResultItem) {
-        			$lookupResultItem.find('a').on('focus', function() {
+        			$lookupResultItem.find('.slds-lookup__item-action[id]').on('focus', function() {
 	        			self.$el.attr('aria-activedescendant', $(this).attr('id'));
 	        		}).on('blur', self, self.handleBlur);
         		}
         	});
-
+            
         	if (this.settings.onClickNew) {
-        		var $newItem = $resultsListContainer.after(newItemMarkup
-                    .replace('{{hasIcon}}', ' slds-icon')
+        		var $newItem = $resultsListContainer.append(newItemMarkup
                     .replace('{{objectLabel}}', this.settings.objectLabel)
                     .replace('{{assetsLocation}}', $.aljs.assetsLocation));
                 $newItem.next().on('click', function() {
                     $newItem.off('click');
-
+                    
                     self.settings.onClickNew();
                 });
         	}
-
-        	$resultsListContainer.one('click', 'a', this, this.clickResult)
+            
+        	$resultsListContainer.one('click', '.slds-lookup__item-action[id]', this, this.clickResult)
             
             var shouldAppendSearchContainer = this.searchResults.length > 0 || this.settings.onClickNew || showUseSection;
             
@@ -5409,10 +5391,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 .removeClass('slds-is-open');
         },
         handleBlur: function(e) {
+            var event = e;
         	var self = e.data;
-
+            
             window.setTimeout(function() {
-            	if ($(e.relatedTarget).closest('.slds-lookup__menu').length === 0 && self.$lookupSearchContainer) {
+            	if ($(event.relatedTarget).closest('.slds-lookup.slds-is-open').length === 0 && self.$lookupSearchContainer) {
             		self.closeSearchDropdown();
             	}
             }, 250);
@@ -5420,36 +5403,35 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         clickResult: function(e) {
         	var self = e.data;
         	var selectedId = $(this).attr('id');
-
+            
         	self.selectResult(selectedId);
         },
         selectResult: function(selectedId) {
         	var selectedResultArray = this.searchResults.filter(function(result) {
         		return result.id == selectedId;
         	});
-
+            
         	this.closeSearchDropdown();
-
+            
         	if (this.isSingle) {
         		this.selectedResult = selectedResultArray.length > 0 ? selectedResultArray[0] : null;
         		this.setSingleSelect(this.selectedResult.label);
-        	} else if (selectedResultArray.length > 0) {
-        		this.selectedResults.push(selectedResultArray[0]);
-        		this.setMultiSelect(this.selectedResults);
-        		this.$el.val('');
-        	}
-
-            if (this.isSingle) {
                 this.settings.onChange(this.selectedResult, true);
-            } else {
+        	} else {
+                if (selectedResultArray.length > 0) {
+                    this.selectedResults.push(selectedResultArray[0]);
+                    this.setMultiSelect(this.selectedResults);
+                    this.$el.val('');
+                }
+                
                 this.settings.onChange(this.selectedResults, true);
-            }
+        	}
         },
         clearSingleSelect: function(e) {
         	var self = e.data;
             self.selectedResult = null;
         	self.setSingleSelect();
-
+            
             self.settings.onChange(self.selectedResult, false);
         },
         clearMultiSelectResult: function(e) {
@@ -5457,17 +5439,17 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	var $clickedPill = $(this).closest('span.slds-pill');
         	var resultId = $clickedPill.attr('id');
         	var indexToRemove;
-
+            
         	self.selectedResults.forEach(function(result, index) {
         		if (result.id == resultId) {
         			indexToRemove = index;
         		}
         	});
-
+            
         	if (typeof indexToRemove !== 'undefined' && indexToRemove !== null) {
         		self.selectedResults.splice(indexToRemove, 1);
         		self.setMultiSelect(self.selectedResults);
-
+                
                 self.settings.onChange(self.selectedResults, false);
         	}
         },
@@ -5511,12 +5493,12 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             }
         }
     };
-
+    
     $.fn.lookup = function(options) {
         var lookupArguments = arguments;
         var internalReturn;
        // var arguments = arguments;
-
+        
         var settings = $.extend({
             // These are the defaults
             assetsLocation: $.aljs.assetsLocation,
@@ -5534,11 +5516,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             initialSelection: null,
             showSearch: false
         }, typeof options === 'object' ? options : {});
-
+        
         this.each(function() {
             var $this = $(this),
                 data = $this.data('aljs-lookup');
-
+            
             if (!data) {
                 var lookupData = new Lookup(this, settings);
                 $this.data('aljs-lookup', (data = lookupData));
@@ -5548,11 +5530,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 internalReturn = data[options](lookupArguments[1], lookupArguments[2]);
             }
         });
-
+        
         if (internalReturn === undefined || internalReturn instanceof Lookup) {
             return this;
         }
-
+        
         if (this.length > 1) {
             throw new Error('Using only allowed for the collection of a single element (' + option + ' function)');
         } else {

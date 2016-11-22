@@ -56,10 +56,10 @@
         </div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!--<script src="./src/jquery.aljs-init.js"></script>
-    <script src="./src/jquery.aljs-lookup.js"></script>-->
-    <script src="./lib/moment/moment.js"></script>
-    <script src="./src/jquery.aljs-all.js"></script>
+    <script src="./src/jquery.aljs-init.js"></script>
+    <script src="./src/jquery.aljs-lookup.js"></script>
+    <!--<script src="./lib/moment/moment.js"></script>
+    <script src="./src/jquery.aljs-all.js"></script>-->
     <script>
     	$.aljsInit({
             assetsLocation: '.'
@@ -67,48 +67,56 @@
         $(document).ready(function() {
         	$('#lookup-01').lookup({
         		items: [
-        			{
-        				id: 'result-1',
-        				label: 'Result 1'
-        			},
-        			{
-        				id: 'result-2',
-        				label: 'Result 2'
-        			},
-        			{
-        				id: 'result-3',
-        				label: 'Result 3'
-        			},
-        			{
-        				id: 'result-4',
-        				label: 'Result 4'
-        			}
+                    {
+                        id: 'result-1',
+                        label: 'Result 1',
+                        metaLabel: 'Optional meta description'
+                    },
+                    {
+                        id: 'result-2',
+                        label: 'Result 2',
+                        metaLabel: 'Optional meta description'
+                    },
+                    {
+                        id: 'result-3',
+                        label: 'Result 3',
+                        metaLabel: 'Optional meta description'
+                    },
+                    {
+                        id: 'result-4',
+                        label: 'Result 4',
+                        metaLabel: 'Optional meta description'
+                    }
         		],
                 objectIconUrl: 'assets/icons/standard-sprite/svg/symbols.svg#account',
                 showSearch: true
         	});
             
-            var results = [
+            var resultsForSecondLookup = [
                 {
                     id: 'ajax-result-1',
-                    label: 'ajaxResult1'
+                    label: 'AJAX Result 1',
+                    metaLabel: 'Optional meta description'
                 },
                 {
                     id: 'ajax-result-2',
-                    label: 'ajaxResult2'
+                    label: 'AJAX Result 2',
+                    metaLabel: 'Optional meta description'
                 },
                 {
                     id: 'ajax-result-3',
-                    label: 'ajaxResult3'
+                    label: 'AJAX Result 3',
+                    metaLabel: 'Optional meta description'
                 },
                 {
                     id: 'ajax-result-4',
-                    label: 'ajaxResult4'
+                    label: 'AJAX Result 4',
+                    metaLabel: 'Optional meta description'
                 }
             ];
 
         	$('#lookup-02').lookup({
-                items: results,
+                items: resultsForSecondLookup,
         		objectPluralLabel: 'Things',
         		objectLabel: 'Thing',
         		objectIconUrl: 'assets/icons/standard-sprite/svg/symbols.svg#account',
@@ -121,8 +129,8 @@
         				return result.label.match(searchTerm) !== null;
         			}));
         		},
-                initialSelection: { id: 'ajax-result-1', label: 'ajaxResult1' },
-        		clickAddFunction: function() {
+                initialSelection: { id: 'ajax-result-1', label: 'AJAX Result 1' },
+        		onClickNew: function() {
         			console.log('redirect or run something');
         		}
         	});

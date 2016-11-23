@@ -74,7 +74,7 @@
     <script src="./src/jquery.aljs-modal.js"></script>-->
     <script src="./lib/moment/moment.js"></script>
     <script src="./src/jquery.aljs-all.js"></script>
-    <script>
+    <!--<script>
         $.aljsInit({
             scoped: true
         });
@@ -82,8 +82,8 @@
         $(document).ready(function() {
             $('[data-aljs="modal"]').modal();
         });
-    </script>
-    <!--<script>
+    </script>-->
+    <script>
         $.aljsInit({
             scoped: true
         });
@@ -92,12 +92,13 @@
             $('[data-aljs="modal"]').modal({
                 backdropDismiss: false,
                 dismissSelector: '[data-aljs-dismiss="modal"]',
-                onShow: function(obj) { console.log(obj); },
-                onDismiss: function(obj) { console.log(obj); },
+                onShow: function(obj) { console.log('show'); },
+                onShown: function(obj) { console.log('shown'); },
+                onDismiss: function(obj) { console.log('dismiss'); },
                 onDismissed: function(obj) { console.log('dismissed'); }
             });
         });
-    </script>-->
+    </script>
     <!--<script>
         $('body').modal({
             selector: '[data-aljs="modal"]',

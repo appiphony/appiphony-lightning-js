@@ -28,10 +28,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 } else {
                     if (options === 'show' || (options === 'toggle' && $node.hasClass('slds-hide'))) {
                         $node.removeClass('slds-hide');
-                        $notification.trigger('dismissed.aljs.notification'); // Custom aljs event
+                        $node.trigger('dismissed.aljs.notification'); // Custom aljs event
                     } else if (options === 'dismiss' || (options === 'toggle' && !($node.hasClass('slds-hide')))) {
                         $node.addClass('slds-hide');
-                        $notification.trigger('shown.aljs.notification'); // Custom aljs event
+                        $node.trigger('shown.aljs.notification'); // Custom aljs event
                     }
                 }
             }); 

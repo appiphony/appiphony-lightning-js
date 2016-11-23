@@ -5074,6 +5074,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
 (function($) {
 	var selectContainerMarkup = '<div class="slds-pill_container slds-hide"></div>';
+    
 	var pillMarkup = 
     	'<span class="slds-pill slds-size--1-of-1">' +
       		'<span class="slds-icon_container slds-icon-standard-account slds-pill__icon_container{{hasIcon}}" title="{{objectLabel}}">' +
@@ -5121,6 +5122,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 '<span class="slds-truncate">&quot;{{searchTerm}}&quot; in {{objectPluralLabel}}</span>' +
 			'</span>' +
 		'</li>';
+    
+    var recentMarkup = '<div class="slds-lookup__item--label slds-text-body--small">{{recentLabel}}</div>';
 
 	var newItemMarkup = 
 		'<li role="presentation">' +
@@ -5156,6 +5159,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 			'</span>' +
 		'</li>';
     
+	var searchTimer;
+    
     var Lookup = function(el, options) {
         this.$el = $(el);
         this.$lookupContainer = this.$el.closest('.slds-lookup');
@@ -5178,8 +5183,6 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         
         this.initLookup();
     };
-    
-	var searchTimer;
     
     Lookup.prototype = {
         constructor: Lookup,
@@ -5209,7 +5212,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 } else {
                     self.getDefaultResults();
                 }
-            }, (self.settings.searchDelay) ? self.settings.searchDelay : 500);
+            }, self.settings.searchDelay);
         },
         setMultiSelect: function(selectedResults) {
         	var self = this;
@@ -5269,7 +5272,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         			.removeClass('slds-hide')
         		this.$lookupContainer.removeClass('slds-has-selection');
                 
-        		window.setTimeout(function() {
+        		setTimeout(function() {
         			self.$el.focus();
         		}, 100);
         	}
@@ -5316,13 +5319,19 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	var self = this;
             var showUseSection = false;
             
-        	if (!this.isStringEmpty(searchTerm) && searchTerm.length > 1 && this.settings.showSearch === true) {
-                showUseSection = true;
-                
-        		$resultsListContainer.prepend(searchMarkup.replace('{{searchTerm}}', searchTerm)
-                    .replace('{{objectPluralLabel}}', this.settings.objectPluralLabel)
-                    .replace('{{assetsLocation}}', $.aljs.assetsLocation));
-        	}
+        	if (!self.isStringEmpty(searchTerm) && searchTerm.length) {
+                if (self.settings.showSearch) {
+                    showUseSection = true;
+                    
+                    $resultsListContainer.prepend(searchMarkup.replace('{{searchTerm}}', searchTerm)
+                        .replace('{{objectPluralLabel}}', self.settings.objectPluralLabel)
+                        .replace('{{assetsLocation}}', $.aljs.assetsLocation));
+                }
+        	} else {
+                if (self.settings.recentLabel) {
+                    $resultsListContainer.before(recentMarkup.replace('{{recentLabel}}', self.settings.recentLabel));
+                }
+            }
             
         	this.searchResults.forEach(function(result) {
         		var $lookupResultItem;
@@ -5394,7 +5403,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             var event = e;
         	var self = e.data;
             
-            window.setTimeout(function() {
+            setTimeout(function() {
             	if ($(event.relatedTarget).closest('.slds-lookup.slds-is-open').length === 0 && self.$lookupSearchContainer) {
             		self.closeSearchDropdown();
             	}
@@ -5514,7 +5523,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             onClickNew: null,
             onChange: function() {},
             initialSelection: null,
-            showSearch: false
+            recentLabel: 'Recent Objects',
+            showSearch: false,
+            searchDelay: 500
         }, typeof options === 'object' ? options : {});
         
         this.each(function() {

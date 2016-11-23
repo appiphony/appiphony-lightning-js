@@ -92,7 +92,9 @@ $(document).ready(function() {
                 id: 'result-4',
                 label: 'Result 4',
                 metaLabel: 'Optional meta description'
-            }
+            },
+            showSearch: true,
+            recentLabel: ''
         ],
     });
 
@@ -190,6 +192,12 @@ $(document).ready(function() {
                         <td data-label="Default value" class="slds-cell-shrink"><code>'Objects'</code></td>
                     </tr>
                     <tr>
+                        <th scope="row"><code>recentLabel</code></th>
+                        <td data-label="Behavior">Sets the label for the recent items header that appears on the dropdown when a search hasn't been performed</td>
+                        <td data-label="Values">Any string; use <code>''</code> (empty string) to exclude the header</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>'Recent Objects'</code></td>
+                    </tr>
+                    <tr>
                         <th scope="row"><code>useImgTag</code></th>
                         <td data-label="Behavior">Adjusts the generated markup accept images with transparent backgrounds for object icons</td>
                         <td data-label="Values"><code>true</code>, <code>false</code></td>
@@ -209,13 +217,13 @@ $(document).ready(function() {
                     </tr>
                     <tr>
                         <th scope="row"><code>emptySearchTermQuery</code></th>
-                        <td data-label="Behavior">A function that runs <code>callback</code> passing an array of items when an empty search is performed.</td>
+                        <td data-label="Behavior">A function that runs <code>callback</code> passing an array of items when an empty search is performed</td>
                         <td data-label="Values"><code>function(callback) { callback([{id: 1, label: 'One'}]); })</code></td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>function () { callback([]); }</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>filledSearchTermQuery</code></th>
-                        <td data-label="Behavior">A function that runs <code>callback</code> passing an array of items when a filled search is performed.</td>
+                        <td data-label="Behavior">A function that runs <code>callback</code> passing an array of items when a filled search is performed</td>
                         <td data-label="Values"><code>function(searchTerm, callback) { callback([{id: 1, label: 'One'}]); })</code></td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>function (searchTerm, callback) { callback([]); }</code></td>
                     </tr>
@@ -226,15 +234,15 @@ $(document).ready(function() {
                         <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
                     </tr>
                     <tr>
-                        <th scope="row"><code>clickAddFunction</code></th>
-                        <td data-label="Behavior">A function that runs when a user clicks the "Add" link in the search results</td>
+                        <th scope="row"><code>onClickNew</code></th>
+                        <td data-label="Behavior">A function that runs when a user clicks the "New" link in the dropdown</td>
                         <td data-label="Values">Any callback function</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>onChange</code></th>
                         <td data-label="Behavior">A function that runs when a user selects a search result or clears a selection.</td>
-                        <td data-label="Values">Any callback function, which can receive two parameters &mdash; <code>currentSelection</code>: the current item object that is passed in, and <code>isAdd</code>: a boolean that is true on addition of a selection and false on removal.</td>
+                        <td data-label="Values">Any callback function, which can receive two parameters &mdash; <code>currentSelection</code>: the current item object that is passed in, and <code>isAdd</code>: a boolean that is true on addition of a selection and false on removal</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>function(currentSelection, isAdd) {}</code></td>
                     </tr>
                     <tr>

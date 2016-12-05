@@ -9,5 +9,5 @@
 8. Merge `development` branch into `master` branch
 9. Checkout `master` branch
 10. Tag release on GitHub with version number
-11. Publish package on NPM with version number
+11. Publish package on NPM
 12. Checkout `development` branch for continued development

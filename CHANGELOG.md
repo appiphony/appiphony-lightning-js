@@ -1,5 +1,35 @@
 # Appiphony Lightning JS Beta
 
+### Release 3.0.0 — December 5, 2016
+
+#### General
+* Updated documentation for Multi Selects to reflect correct initialization <a href="https://github.com/appiphony/appiphony-lightning-js/issues/44">(GitHub Issue #44)</a>
+* Updated Getting Started with correct paths to ALJS resources <a href="https://github.com/appiphony/appiphony-lightning-js/issues/47">(GitHub Issue #47)</a>
+* Updated Getting Started with instructions for `jquery.aljs-all-with-moment.min.js`
+* Improvements to mobile navigation
+
+#### jQuery
+* **All**: Created the `jquery.aljs-all-with-moment.min.js` which includes all ALJS jQuery plugins with the Moment dependency
+* **Datepickers**: Updated plugin-generated markup to match SLDS 2.1.4's
+* **Datepickers**: Fixed an issue where the plugin would malfunction if an id of `month` already exists on the page
+* **Datepickers**: Default settings for the `abbr` properties of objects in the `dayLabels` array have been updated to match the Winter release
+* **Init**: The `scoped` property's default is now `false`
+* **Lookups**: Updated plugin-generated markup to match SLDS 2.1.4's
+* **Lookups**: Fixed an issue where passing empty string on objectIconUrl did not hide the icon for a currently selected pill
+* **Lookups**: Default settings now use the `assetsLocation` property from init
+* **Lookups**: The `clickAddFunction` property is now `onClickNew`; "Add" is now "New"
+* **Lookups**: The 'Add' options is now 'New'
+* **Lookups**: Added the `searchDelay` option <a href="https://github.com/appiphony/appiphony-lightning-js/pull/50">(GitHub Pull Request #50; credit: OlegForce)</a>
+* **Lookups**: Added the `recentLabel` option
+* **Modals**: Fixed an issue where `slds-show`/`slds-hide` classes would incorrectly be applied when using the `show` and `dismiss` methods
+* **Modals**: Fixed an issue where the `aria-hidden` attribute was not being updated properly
+* **Modals**: The `tabindex` attribute is now adjusted on the modal itself instead of its child elements
+* **Notifications**: Fixed an issue where notifications could not be dismissed due to an incorrect reference of the notification markup <a href="https://github.com/appiphony/appiphony-lightning-js/pull/55">(GitHub Pull Request #55; credit: vscuorzo)</a>
+* **Picklists**: Now makes use of the `slds-is-open` class to show/hide dropdowns
+* **Picklists**: Added documentation for the `getValueId` method
+
+---
+
 ### Release 2.0.0 — July 29, 2016
 
 #### jQuery

@@ -64,7 +64,8 @@ App.AljsView = Ember.View.extend({
             toggleDropdown = $('.aljs-toggle-dropdown'),
             hasDropdown = $('.aljs-has-nav-dropdown'),
             dropdown = $('.aljs-nav-dropdown'),
-            dropdownLink = $('.aljs-nav-dropdown > li a');
+            dropdownLink = $('.aljs-nav-dropdown > li a'),
+            documentBody = $('body');
         
         if ($('li.slds-is-active', dropdown).length > 0) {
             $('li.slds-is-active', dropdown).parent()
@@ -81,8 +82,18 @@ App.AljsView = Ember.View.extend({
             }, 1000);
         });
         
-        $('body').on('click', 'a[href="#"]', function(e) {
+        documentBody.on('click', 'a[href="#"]', function(e) {
             e.preventDefault();
+            return false;
+        });
+        
+        documentBody.on('click', 'a[href^="#"].scroll', function(e) {
+            e.preventDefault;
+            
+            $('html, body').animate({
+                scrollTop: $($(this).attr('href')).offset().top
+            }, 1000);
+            
             return false;
         });
         

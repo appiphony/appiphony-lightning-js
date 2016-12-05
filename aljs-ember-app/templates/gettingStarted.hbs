@@ -34,13 +34,13 @@
     <link rel="stylesheet" href="{!URLFOR($Resource.slds, '/assets/styles/salesforce-lightning-design-system.min.css')}"/>
 </apex:page>
 {{/aljs-pre-container}}
-    <p class="slds-m-top--large site-text-heading--small">Define the assets location for SLDS (this gives ALJS access to SLDS' fonts and icons)</p>
+    <p class="slds-m-top--large site-text-heading--small">Define the location of the SLDS assets directory (optional; see <a href="#override">Override Common Settings</a>)</p>
 {{#aljs-pre-container type="vf"}}
 <script>
     var assetsLocation = '{!URLFOR($Resource.slds}';
 </script>
 {{/aljs-pre-container}}
-    <p class="slds-m-top--large site-text-heading--small">Scope your page's content inside of the <code>slds</code> class (optional)</p>
+    <p class="slds-m-top--large site-text-heading--small">Scope your page's content inside of the <code>slds</code> class (optional; see <a href="#override">Override Common Settings</a>)</p>
 {{#aljs-pre-container type="vf"}}
 <div class="slds">Your content here</div>
 {{/aljs-pre-container}}

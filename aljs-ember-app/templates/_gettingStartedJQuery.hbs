@@ -5,8 +5,8 @@
             <h5 class="site-text-heading--small">Include the <code>jquery.aljs-all-with-moment.min.js</code> File</h5>
             <p class="slds-m-bottom--medium">The provided <code>all</code> file includes all ALJS plugins including Moment (required by the datepickers component) and must be included in your markup after jQuery.</p>
 {{#aljs-pre-container type="vf"}}
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="{!URLFOR($Resource.aljs, '/js/aljs-all.min.js')}"></script>
+<script src="path-to-jquery.js"></script>
+<script src="{!URLFOR($Resource.aljs, '/jquery.aljs-all-with-moment.min.js')}"></script>
 {{/aljs-pre-container}}
         </div>
         <h4 class="site-text-heading--medium">Method 2: Include All ALJS Plugins Without Included Moment Dependency</h4>
@@ -16,8 +16,8 @@
             <h5 class="site-text-heading--small">Include the <code>jquery.aljs-all.min.js</code> File</h5>
             <p class="slds-m-bottom--medium">The provided <code>all</code> file includes all ALJS plugins and must be included in your markup after jQuery.</p>
 {{#aljs-pre-container type="vf"}}
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="{!URLFOR($Resource.aljs, '/js/aljs-all.min.js')}"></script>
+<script src="path-to-jquery.js"></script>
+<script src="{!URLFOR($Resource.aljs, '/jquery.aljs-all.min.js')}"></script>
 {{/aljs-pre-container}}
         </div>
         <h4 class="site-text-heading--medium">Method 3: Include Individual ALJS Plugins</h4>
@@ -25,14 +25,14 @@
             <h5 class="site-text-heading--small">Include the <code>jquery.aljs-init.min.js</code> File</h5>
             <p class="slds-m-bottom--medium">The provided <code>init</code> file establishes common settings for each plugin to reference and must be included in your markup after jQuery.</p>
 {{#aljs-pre-container type="vf"}}
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="{!URLFOR($Resource.aljs, '/js/aljs-init.min.js')}"></script>
+<script src="path-to-jquery.js"></script>
+<script src="{!URLFOR($Resource.aljs, '/jquery.aljs-init.min.js')}"></script>
 {{/aljs-pre-container}}
         <h5 class="site-text-heading--small">Include the ALJS Plugins You Wish to Use</h5>
 {{#aljs-pre-container type="vf"}}
-<script src="{!URLFOR($Resource.aljs, '/js/aljs-modal.min.js')}"></script>
-<script src="{!URLFOR($Resource.aljs, '/js/aljs-pill.min.js')}"></script>
-<script src="{!URLFOR($Resource.aljs, '/js/aljs-tooltip.min.js')}"></script>
+<script src="{!URLFOR($Resource.aljs, '/jquery.aljs-modal.min.js')}"></script>
+<script src="{!URLFOR($Resource.aljs, '/jquery.aljs-pill.min.js')}"></script>
+<script src="{!URLFOR($Resource.aljs, '/jquery.aljs-tooltip.min.js')}"></script>
 {{/aljs-pre-container}}
         </div>
     <h4 class="site-text-heading--medium">Override Common Settings (Optional)</h4>
@@ -85,14 +85,14 @@
     <div class="slds">Your content here</div>
 
     <!-- jQuery & ALJS Init -->
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="{!URLFOR($Resource.aljs, '/js/aljs-init.min.js')}"></script>
+    <script src="path-to-jquery.js"></script>
+    <script src="{!URLFOR($Resource.aljs, '/jquery.aljs-init.min.js')}"></script>
             
     <!-- Page-Specific ALJS Plugins -->
-    <script src="{!URLFOR($Resource.aljs, '/js/aljs-datepicker.min.js')}"></script>
-    <script src="{!URLFOR($Resource.aljs, '/js/aljs-modal.min.js')}"></script>
-    <script src="{!URLFOR($Resource.aljs, '/js/aljs-pill.min.js')}"></script>
-    <script src="{!URLFOR($Resource.aljs, '/js/aljs-tooltip.min.js')}"></script>
+    <script src="{!URLFOR($Resource.aljs, '/jquery.aljs-datepicker.min.js')}"></script>
+    <script src="{!URLFOR($Resource.aljs, '/jquery.aljs-modal.min.js')}"></script>
+    <script src="{!URLFOR($Resource.aljs, '/jquery.aljs-pill.min.js')}"></script>
+    <script src="{!URLFOR($Resource.aljs, '/jquery.aljs-tooltip.min.js')}"></script>
             
     <!-- Common Settings Overrides -->
     <script>

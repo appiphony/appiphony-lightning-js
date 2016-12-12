@@ -354,7 +354,10 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             var oldDate = this.selectedFullDate;
 
             this.selectedFullDate = selectedFullDate;
-            this.$el.val(selectedFullDate.format(this.settings.format));
+            console.log(selectedFullDate)
+            if (selectedFullDate !== '' && selectedFullDate !== null && typeof selectedFullDate !== 'undefined') {
+                this.$el.val(selectedFullDate.format(this.settings.format));
+            }
 
             if (!oldDate || (!oldDate.isSame(selectedFullDate, 'day'))) {
                 this.settings.onChange(this);
@@ -398,7 +401,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             // }
         },
         processKeyup: function(e) {
-            if (e.keyCode === 13) {
+            if (e.keyCode === 13) { // Return key
                 $(this).blur();
                 // var self = e.data;
                 // var selectedDate = $(this).val();
@@ -432,7 +435,9 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     self.$selectedInput.off('keyup')
                                        .off('blur');
                     //$(this).blur();
-                } 
+                } else if (!selectedDate.length) {
+                    self.setSelectedFullDate('');
+                }
             }  
         },
         clickPrev: function(e) {

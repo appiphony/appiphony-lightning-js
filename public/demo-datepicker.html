@@ -60,7 +60,16 @@
             assetsLocation: '.'
         });
 
-        $('#date').datepicker();
+        $('#date').datepicker({
+            onChange: function(datepicker) {
+                console.log(datepicker.$el.val().length);
+                console.log(datepicker.$el.val());
+                if (!datepicker.$el.val().length) {
+                    console.log('empty');
+                    datepicker.$el.datepicker('setDate', '');
+                }
+            }
+        });
         $('#date2').datepicker();
 
     </script>

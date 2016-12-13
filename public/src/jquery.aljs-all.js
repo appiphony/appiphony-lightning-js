@@ -890,6 +890,50 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         this.initLookup();
     };
     
+    var handleLookupKeyup = function(e) {
+        var $currentTarget = $(e.currentTarget);
+        
+        $currentTarget.removeClass('slds-has-focus');
+
+        if (e.which === 38) { // Up arrow
+            var firstItemSelector;
+            
+            if (('.slds-lookup .slds-lookup__list > li:first-child').is('.slds-lookup__item--label')) firstItemSelector = '.slds-lookup .slds-lookup__list > li:nth-child(2) .slds-lookup__item-action'; // If there is a 'recent' label
+            else firstItemSelector = '.slds-lookup .slds-lookup__list > li:first-child .slds-lookup__item-action';
+            
+            if ($currentTarget.is(firstItemSelector)) {
+                $('.slds-lookup .slds-lookup__list > li:last-child .slds-lookup__item-action')
+                    .focus()
+                    .addClass('slds-has-focus');
+            } else {
+                $currentTarget.parent()
+                    .next()
+                    .find('.slds-lookup__item-action')
+                    .focus()
+                    .addClass('slds-has-focus');
+            }
+        } else if (e.which === 40) { // Down arrow
+            var firstItemSelector;
+            
+            if (('.slds-lookup .slds-lookup__list > li:first-child').is('.slds-lookup__item--label')) firstItemSelector = '.slds-lookup .slds-lookup__list > li:nth-child(2) .slds-lookup__item-action'; // If there is a 'recent' label
+            else firstItemSelector = '.slds-lookup .slds-lookup__list > li:first-child .slds-lookup__item-action';
+
+            if ($currentTarget.is('.slds-lookup .slds-lookup__list > li:last-child .slds-lookup__item-action')) {
+                $(firstItemSelector)
+                    .focus()
+                    .addClass('slds-has-focus');
+            } else {
+                $currentTarget.parent()
+                    .prev()
+                    .find('.slds-lookup__item-action')
+                    .focus()
+                    .addClass('slds-has-focus');
+            }
+        } else if (e.which === 13) { // Return key
+            $currentTarget.click();
+        }
+    }
+    
     Lookup.prototype = {
         constructor: Lookup,
         isStringEmpty: function(stringVal) {
@@ -900,7 +944,22 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         	this.$el.on('focus', this, this.runSearch)
                 .on('blur', this, this.handleBlur)
-                .on('keyup', this, this.runSearch);
+                .on('keyup', this, this.handleKeyup);
+            
+            // Prevent multiple bindings
+            $('body').off('keyup', '.slds-lookup .slds-lookup__list .slds-lookup__item-action', handleLookupKeyup);
+            $('body').on('keyup', '.slds-lookup .slds-lookup__list .slds-lookup__item-action', handleLookupKeyup);
+        },
+        handleKeyup: function(e) {
+            if (e.which === 40) { // Down arrow
+                e.currentTarget.blur();
+                
+                $('.slds-lookup .slds-lookup__list .slds-lookup__item-action').first()
+                    .focus()
+                    .addClass('slds-has-focus');
+            } else {
+                e.data.runSearch(e);
+            }
         },
         runSearch: function(e) {
             var self = e.data;

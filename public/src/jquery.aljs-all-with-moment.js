@@ -5123,7 +5123,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
 	var searchMarkup = 
 		'<li role="presentation">' +
-			'<span class="slds-lookup__item-action slds-lookup__item-action--label" role="option">' +
+			'<span class="slds-lookup__item-action slds-lookup__item-action--label" role="option" tabindex="1">' +
 				'<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">' +
 					'<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#search"></use>' +
 				'</svg>' +
@@ -5135,7 +5135,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
 	var newItemMarkup = 
 		'<li role="presentation">' +
-			'<span class="slds-lookup__item-action slds-lookup__item-action--label" role="option">' +
+			'<span class="slds-lookup__item-action slds-lookup__item-action--label" role="option" tabindex="1">' +
 				'<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">' +
 					'<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#add"></use>' +
 				'</svg>' +
@@ -5192,41 +5192,51 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         this.initLookup();
     };
     
-    var handleLookupKeyup = function(e) {
+    var handleResultsKeyup = function(e) {
         var $currentTarget = $(e.currentTarget);
         
         $currentTarget.removeClass('slds-has-focus');
 
         if (e.which === 38) { // Up arrow
+            e.preventDefault();
+            
             var firstItemSelector;
             
-            if (('.slds-lookup .slds-lookup__list > li:first-child').is('.slds-lookup__item--label')) firstItemSelector = '.slds-lookup .slds-lookup__list > li:nth-child(2) .slds-lookup__item-action'; // If there is a 'recent' label
-            else firstItemSelector = '.slds-lookup .slds-lookup__list > li:first-child .slds-lookup__item-action';
+            if ($('.slds-lookup .slds-lookup__list > li:first-child').is('.slds-lookup__item--label')) { // If there is a 'recent' label
+                firstItemSelector = '.slds-lookup .slds-lookup__list > li:nth-child(2) .slds-lookup__item-action';
+            } else {
+                firstItemSelector = '.slds-lookup .slds-lookup__list > li:first-child .slds-lookup__item-action';
+            }
             
             if ($currentTarget.is(firstItemSelector)) {
                 $('.slds-lookup .slds-lookup__list > li:last-child .slds-lookup__item-action')
                     .focus()
                     .addClass('slds-has-focus');
             } else {
-                $currentTarget.parent()
-                    .next()
+                $currentTarget.closest('li')
+                    .prev()
                     .find('.slds-lookup__item-action')
                     .focus()
                     .addClass('slds-has-focus');
             }
         } else if (e.which === 40) { // Down arrow
+            e.preventDefault();
+            
             var firstItemSelector;
             
-            if (('.slds-lookup .slds-lookup__list > li:first-child').is('.slds-lookup__item--label')) firstItemSelector = '.slds-lookup .slds-lookup__list > li:nth-child(2) .slds-lookup__item-action'; // If there is a 'recent' label
-            else firstItemSelector = '.slds-lookup .slds-lookup__list > li:first-child .slds-lookup__item-action';
+            if ($('.slds-lookup .slds-lookup__list > li:first-child').is('.slds-lookup__item--label')) { // If there is a 'recent' label
+                firstItemSelector = '.slds-lookup .slds-lookup__list > li:nth-child(2) .slds-lookup__item-action';
+            } else {
+                firstItemSelector = '.slds-lookup .slds-lookup__list > li:first-child .slds-lookup__item-action';
+            }
 
             if ($currentTarget.is('.slds-lookup .slds-lookup__list > li:last-child .slds-lookup__item-action')) {
                 $(firstItemSelector)
                     .focus()
                     .addClass('slds-has-focus');
             } else {
-                $currentTarget.parent()
-                    .prev()
+                $currentTarget.closest('li')
+                    .next()
                     .find('.slds-lookup__item-action')
                     .focus()
                     .addClass('slds-has-focus');
@@ -5249,13 +5259,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 .on('keyup', this, this.handleKeyup);
             
             // Prevent multiple bindings
-            $('body').off('keyup', '.slds-lookup .slds-lookup__list .slds-lookup__item-action', handleLookupKeyup);
-            $('body').on('keyup', '.slds-lookup .slds-lookup__list .slds-lookup__item-action', handleLookupKeyup);
+            $('body').off('keyup', '.slds-lookup .slds-lookup__list .slds-lookup__item-action', handleResultsKeyup);
+            $('body').on('keyup', '.slds-lookup .slds-lookup__list .slds-lookup__item-action', handleResultsKeyup);
         },
         handleKeyup: function(e) {
             if (e.which === 40) { // Down arrow
-                e.currentTarget.blur();
-                
                 $('.slds-lookup .slds-lookup__list .slds-lookup__item-action').first()
                     .focus()
                     .addClass('slds-has-focus');
@@ -5467,14 +5475,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 .removeClass('slds-is-open');
         },
         handleBlur: function(e) {
-            var event = e;
         	var self = e.data;
             
-            setTimeout(function() {
-            	if ($(event.relatedTarget).closest('.slds-lookup.slds-is-open').length === 0 && self.$lookupSearchContainer) {
-            		self.closeSearchDropdown();
-            	}
-            }, 250);
+            if ($(e.relatedTarget).closest('.slds-lookup.slds-is-open').length === 0 && self.$lookupSearchContainer) {
+                self.closeSearchDropdown();
+            }
         },
         clickResult: function(e) {
         	var self = e.data;

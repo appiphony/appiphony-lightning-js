@@ -894,50 +894,36 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         var $currentTarget = $(e.currentTarget);
         
         $currentTarget.removeClass('slds-has-focus');
-
-        if (e.which === 38) { // Up arrow
+        
+        if (e.which === 38 || e.which === 40) { // Up or down arrow, respectively
             e.preventDefault();
             
-            var firstItemSelector;
+            var firstItemSelector = ($('.slds-lookup .slds-lookup__list > li:first-child').is('.slds-lookup__item--label')) ? '.slds-lookup .slds-lookup__list > li:nth-child(2) .slds-lookup__item-action' : '.slds-lookup .slds-lookup__list > li:first-child .slds-lookup__item-action';
             
-            if ($('.slds-lookup .slds-lookup__list > li:first-child').is('.slds-lookup__item--label')) { // If there is a 'recent' label
-                firstItemSelector = '.slds-lookup .slds-lookup__list > li:nth-child(2) .slds-lookup__item-action';
-            } else {
-                firstItemSelector = '.slds-lookup .slds-lookup__list > li:first-child .slds-lookup__item-action';
-            }
-            
-            if ($currentTarget.is(firstItemSelector)) {
-                $('.slds-lookup .slds-lookup__list > li:last-child .slds-lookup__item-action')
-                    .focus()
-                    .addClass('slds-has-focus');
-            } else {
-                $currentTarget.closest('li')
-                    .prev()
-                    .find('.slds-lookup__item-action')
-                    .focus()
-                    .addClass('slds-has-focus');
-            }
-        } else if (e.which === 40) { // Down arrow
-            e.preventDefault();
-            
-            var firstItemSelector;
-            
-            if ($('.slds-lookup .slds-lookup__list > li:first-child').is('.slds-lookup__item--label')) { // If there is a 'recent' label
-                firstItemSelector = '.slds-lookup .slds-lookup__list > li:nth-child(2) .slds-lookup__item-action';
-            } else {
-                firstItemSelector = '.slds-lookup .slds-lookup__list > li:first-child .slds-lookup__item-action';
-            }
-
-            if ($currentTarget.is('.slds-lookup .slds-lookup__list > li:last-child .slds-lookup__item-action')) {
-                $(firstItemSelector)
-                    .focus()
-                    .addClass('slds-has-focus');
-            } else {
-                $currentTarget.closest('li')
-                    .next()
-                    .find('.slds-lookup__item-action')
-                    .focus()
-                    .addClass('slds-has-focus');
+            if (e.which === 38) { // Up arrow
+                if ($currentTarget.is(firstItemSelector)) { // Pressing up on the first item, loop over
+                    $('.slds-lookup .slds-lookup__list > li:last-child .slds-lookup__item-action')
+                        .focus()
+                        .addClass('slds-has-focus');
+                } else {
+                    $currentTarget.closest('li')
+                        .prev()
+                        .find('.slds-lookup__item-action')
+                        .focus()
+                        .addClass('slds-has-focus');
+                }
+            } else { // Down arrow
+                if ($currentTarget.is('.slds-lookup .slds-lookup__list > li:last-child .slds-lookup__item-action')) { // Pressing down on the last item, loop over
+                    $(firstItemSelector)
+                        .focus()
+                        .addClass('slds-has-focus');
+                } else {
+                    $currentTarget.closest('li')
+                        .next()
+                        .find('.slds-lookup__item-action')
+                        .focus()
+                        .addClass('slds-has-focus');
+                }
             }
         } else if (e.which === 13) { // Return key
             $currentTarget.click();
@@ -1142,6 +1128,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         		var $newItem = $resultsListContainer.append(newItemMarkup
                     .replace('{{objectLabel}}', this.settings.objectLabel)
                     .replace('{{assetsLocation}}', $.aljs.assetsLocation));
+                
                 $newItem.next().on('click', function() {
                     $newItem.off('click');
                     

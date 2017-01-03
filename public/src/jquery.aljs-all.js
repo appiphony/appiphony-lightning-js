@@ -1225,6 +1225,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         	var resultId = $clickedPill.attr('id');
         	var indexToRemove;
             
+            self.closeSearchDropdown();
+            
         	self.selectedResults.forEach(function(result, index) {
         		if (result.id == resultId) {
         			indexToRemove = index;

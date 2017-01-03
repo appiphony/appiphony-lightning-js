@@ -5178,8 +5178,15 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
        	if (this.isSingle) {
        		this.$singleSelect = $(selectContainerMarkup).insertBefore(this.$el);
        	} else {
-       		this.$multiSelect = $(selectContainerMarkup).appendTo(this.$lookupContainer.find('.slds-form-element'));
+       		this.$multiSelect = $(selectContainerMarkup).insertAfter(this.$lookupContainer.find('.slds-form-element__label'));
        		this.selectedResults = []; // We'll have to initialize.
+            
+            this.$multiSelect.css({
+                'padding': 0,
+                'margin-top': '-2px',
+                'margin-left': '-2px',
+                'border': 'none'
+            });
        	}
         
         if (!this.isStringEmpty(options.searchTerm)) {
@@ -5289,20 +5296,29 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         .replace('{{assetsLocation}}', self.settings.assetsLocation)
                         .replace(/{{objectLabel}}/g, self.settings.objectLabel)
                         .replace(/{{selectedResultLabel}}/g, result.label));
-        			$pill.removeClass('slds-pill--bare')
+                    
+        			$pill.removeClass('slds-size--1-of-1')
                         .attr('id', result.id)
-                        .on('click', 'a, button', self, self.clearMultiSelectResult);
+                        .on('click', 'a, button', self, self.clearMultiSelectResult)
+                        .css({
+                            'margin': '2px',
+                            'display': 'inline-flex'
+                        })
+                        .find('.slds-pill__remove')
+                        .css({
+                            'vertical-align': '1px',
+                            'margin-left': '0.25rem'
+                        });
+                    
         			$multiSelect.append($pill);
         		});
                 
         		$multiSelect.addClass('slds-show')
                     .removeClass('slds-hide');
-        		$lookupContainer.addClass('slds-has-selection');
         	} else {
         		$multiSelect.html('');
         		$multiSelect.addClass('slds-hide')
                     .removeClass('slds-show');
-        		$lookupContainer.removeClass('slds-has-selection');
         	}
         },
         setSingleSelect: function(selectedResultLabel) {
@@ -5330,7 +5346,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     .removeClass('slds-show');
                 
         		this.$el.val('')
-        			.removeClass('slds-hide')
+        			.removeClass('slds-hide');
+                
         		this.$lookupContainer.removeClass('slds-has-selection');
                 
         		setTimeout(function() {
@@ -5440,14 +5457,16 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             
         	$resultsListContainer.one('click', '.slds-lookup__item-action[id]', this, this.clickResult)
             
-            var shouldAppendSearchContainer = this.searchResults.length > 0 || this.settings.onClickNew || showUseSection;
+            this.$lookupSearchContainer = $lookupSearchContainer.appendTo(this.$lookupContainer);
             
-            if (shouldAppendSearchContainer) {
-                this.$lookupSearchContainer = $lookupSearchContainer;
-                $lookupSearchContainer.appendTo(this.$lookupContainer);
+            var shouldShowSearchContainer = (this.searchResults.length > 0 && this.$el.closest('.slds-form-element').find('.slds-lookup__list > li').length > 0) || this.settings.onClickNew || showUseSection;
+            
+            if (shouldShowSearchContainer) {
                 this.$el.attr('aria-expanded', 'true')
                     .closest('.slds-lookup')
                     .addClass('slds-is-open');
+            } else {
+                this.$lookupSearchContainer.remove();
             }
         },
         closeSearchDropdown: function() {

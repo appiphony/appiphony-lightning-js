@@ -4449,7 +4449,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 if ((e.target === $el[0] && ($el.val() !== null && $el.val() !== '')) || (e.target === $elEndDate[0] && ($elEndDate.val() !== null && $elEndDate.val() !== ''))) {
                     self.$selectedInput = $(this).parent().find('input');
                     self.$selectedInput.on('keyup', self, self.processKeyup)
-                                       .on('blur', self, self.processBlur);
+                                       .one('blur', self, self.processBlur);
                     self.closeDatepicker();
                 } else {
                     var initDate = self.selectedFullDate || moment();
@@ -4678,9 +4678,11 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             var oldDate = this.selectedFullDate;
 
             this.selectedFullDate = selectedFullDate;
-            console.log(selectedFullDate)
+            
             if (selectedFullDate !== '' && selectedFullDate !== null && typeof selectedFullDate !== 'undefined') {
                 this.$el.val(selectedFullDate.format(this.settings.format));
+            } else { // Start here
+                this.$el.val('');
             }
 
             if (!oldDate || (!oldDate.isSame(selectedFullDate, 'day'))) {
@@ -4726,7 +4728,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
         },
         processKeyup: function(e) {
             if (e.keyCode === 13) { // Return key
-                $(this).blur();
+                $(this).blur().off('keyup');
                 // var self = e.data;
                 // var selectedDate = $(this).val();
 
@@ -4740,7 +4742,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 //     self.closeDatepicker(e);
                 //     $(this).blur();
                 // } 
-            }  
+            }
         },
         processBlur: function(e) {
             if (e) {

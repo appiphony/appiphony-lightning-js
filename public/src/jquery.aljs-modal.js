@@ -10,7 +10,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     var isShowing, aljsScope;
     
     function initModals() {
-        aljsScope = ($.aljs.scoped) ? '.fielosf' : aljsBodyTag;
+        aljsScope = ($.aljs.scoped) ? '.slds' : aljsBodyTag;
         
         $('.slds-backdrop').remove(); // Remove any existing backdrops
         $(aljsScope).append('<div class="aljs-modal-container"></div>');
@@ -35,7 +35,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         }
     }
     
-    $.fn.modal = function(args, options, e) {
+    $.fn.modal = function(args, options, callerEvent) {
         var modalObj = {};
         modalObj.$el = this;
         modalObj.hasSelector = (args && args.hasOwnProperty('selector')) ? true : false;
@@ -109,7 +109,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                             .addClass('slds-backdrop--open');
                         modalObj.$el.addClass('slds-fade-in-open')
                             .trigger('show.aljs.modal'); // Custom aljs event
-                        settings.onShow(modalObj, e);
+                        settings.onShow(modalObj, callerEvent);
                     }, 25);
                     break;
                     

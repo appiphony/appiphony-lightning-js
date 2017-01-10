@@ -112,7 +112,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         settings.onShow(modalObj, sourceObj);
                     }
                     var sourceObj = callerEvent.currentTarget;
-                    system.debug(sourceObj.id);
+                    console.log(sourceObj.id);
                     setTimeout( function() { modalHandler(sourceObj); } , 25);
                     break;
                     

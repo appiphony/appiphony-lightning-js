@@ -97,11 +97,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         modalElements.click(function(e) { e.stopPropagation(); });
                     }
 
-                    function modalHandler(sourceId) { // Ensure elements are displayed and rendered before adding classes
+                    function modalHandler(sourceObj) { // Ensure elements are displayed and rendered before adding classes
                         var backdrop = $('.slds-backdrop');
                         var handleTransitionEnd = function() {
                             modalObj.$el.trigger('shown.aljs.modal'); // Custom aljs event
-                            settings.onShown(modalObj, sourceId);
+                            settings.onShown(modalObj, sourceObj);
                             isShowing = false;
                         };
                         
@@ -109,11 +109,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                             .addClass('slds-backdrop--open');
                         modalObj.$el.addClass('slds-fade-in-open')
                             .trigger('show.aljs.modal'); // Custom aljs event
-                        settings.onShow(modalObj, sourceId);
+                        settings.onShow(modalObj, sourceObj);
                     }
-                    var sourceId = callerEvent.currentTarget.id;
-                    console.log(sourceId);
-                    setTimeout( function() { modalHandler(sourceId); } , 25);
+                    var sourceObj = callerEvent.currentTarget;
+                    system.debug(sourceObj.id);
+                    setTimeout( function() { modalHandler(sourceObj); } , 25);
                     break;
                     
                 case 'dismiss':

@@ -35,9 +35,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         }
     }
     
-    $.fn.modal = function(args, options, e) {
+    $.fn.modal = function(args, options, callerEvent) {
         var modalObj = {};
-        var callerEvent = e;
         modalObj.$el = this;
         modalObj.hasSelector = (args && args.hasOwnProperty('selector')) ? true : false;
         
@@ -98,11 +97,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         modalElements.click(function(e) { e.stopPropagation(); });
                     }
 
-                    function modalHandler(callerEvent) { // Ensure elements are displayed and rendered before adding classes
+                    function modalHandler(sourceId) { // Ensure elements are displayed and rendered before adding classes
                         var backdrop = $('.slds-backdrop');
                         var handleTransitionEnd = function() {
                             modalObj.$el.trigger('shown.aljs.modal'); // Custom aljs event
-                            settings.onShown(modalObj, callerEvent);
+                            settings.onShown(modalObj, sourceId);
                             isShowing = false;
                         };
                         
@@ -110,9 +109,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                             .addClass('slds-backdrop--open');
                         modalObj.$el.addClass('slds-fade-in-open')
                             .trigger('show.aljs.modal'); // Custom aljs event
-                        settings.onShow(modalObj, callerEvent);
+                        settings.onShow(modalObj, sourceId);
                     }                    
-                    setTimeout( function() { modalHandler(callerEvent); } , 25);
+                    setTimeout( function() { modalHandler(callerEvent.currentTarget.id); } , 25);
                     break;
                     
                 case 'dismiss':

@@ -39,7 +39,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                             '</div>';
 
         if ($target.next('.slds-popover').length === 0) {
-            var $popoverNode = ($.aljs.scoped) ? $(popoverMarkup).appendTo('.slds') : $(popoverMarkup).appendTo('body');
+            var $popoverNode = ($.aljs.scoped) ? $(popoverMarkup).appendTo('.fielosf') : $(popoverMarkup).appendTo('body');
 
             var actualWidth  = $popoverNode[0].offsetWidth;
             var actualHeight = $popoverNode[0].offsetHeight;// + 15;

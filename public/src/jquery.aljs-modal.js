@@ -23,19 +23,19 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             .addClass('slds-hide');
     }
     
-    function showModal(obj, args) {
+    function showModal(obj, args, e) {
         var modalId = obj.data('aljs-show');
         var targetModal = $('#' + modalId);
         
         if (modalId === undefined) console.error('No "data-aljs-show" attribute has been set');
         else {
-            targetModal.modal('show', args);
+            targetModal.modal('show', args, e);
             obj.blur();
             aljsRefocusTarget = obj;
         }
     }
     
-    $.fn.modal = function(args, options) {
+    $.fn.modal = function(args, options, e) {
         var modalObj = {};
         modalObj.$el = this;
         modalObj.hasSelector = (args && args.hasOwnProperty('selector')) ? true : false;
@@ -109,7 +109,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                             .addClass('slds-backdrop--open');
                         modalObj.$el.addClass('slds-fade-in-open')
                             .trigger('show.aljs.modal'); // Custom aljs event
-                        settings.onShow(modalObj, args.selector);
+                        settings.onShow(modalObj, e);
                     }, 25);
                     break;
                     
@@ -152,13 +152,14 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     console.error('The method you entered does not exist');
             }
         } else if (modalObj.hasSelector && this.length === 1) { // If allowing for selector to trigger modals post-init
-            function clickEvent(e) { showModal($(this), args); }
+            function clickEvent(e) { showModal($(this), args, e); }
             
             initModals();
             this.on('click', args.selector, clickEvent);
         } else { // If initializing plugin with options
+
             initModals();
-            modalObj.$el.click(function() { showModal($(this), args); });
+            modalObj.$el.click(function(e) { showModal($(this), args, e); });
         }
         
         return this;

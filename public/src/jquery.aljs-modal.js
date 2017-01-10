@@ -96,8 +96,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         aljsModals.click(dismissModal);
                         modalElements.click(function(e) { e.stopPropagation(); });
                     }
-                    
-                    setTimeout( function(callerEvent) { // Ensure elements are displayed and rendered before adding classes
+
+                    function modalHandler(callerEvent) { // Ensure elements are displayed and rendered before adding classes
                         var backdrop = $('.slds-backdrop');
                         var handleTransitionEnd = function() {
                             modalObj.$el.trigger('shown.aljs.modal'); // Custom aljs event
@@ -110,7 +110,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         modalObj.$el.addClass('slds-fade-in-open')
                             .trigger('show.aljs.modal'); // Custom aljs event
                         settings.onShow(modalObj, callerEvent);
-                    }.bind(callerEvent), 25);
+                    }
+                    modalHandler.bind(callerEvent);
+                    setTimeout( modalHandler , 25);
                     break;
                     
                 case 'dismiss':

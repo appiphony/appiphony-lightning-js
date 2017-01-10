@@ -10,7 +10,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     var isShowing, aljsScope;
     
     function initModals() {
-        aljsScope = ($.aljs.scoped) ? '.slds' : aljsBodyTag;
+        aljsScope = ($.aljs.scoped) ? '.fielosf' : aljsBodyTag;
         
         $('.slds-backdrop').remove(); // Remove any existing backdrops
         $(aljsScope).append('<div class="aljs-modal-container"></div>');
@@ -23,19 +23,19 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             .addClass('slds-hide');
     }
     
-    function showModal(obj, args) {
+    function showModal(obj, args, e) {
         var modalId = obj.data('aljs-show');
         var targetModal = $('#' + modalId);
         
         if (modalId === undefined) console.error('No "data-aljs-show" attribute has been set');
         else {
-            targetModal.modal('show', args);
+            targetModal.modal('show', args, e);
             obj.blur();
             aljsRefocusTarget = obj;
         }
     }
     
-    $.fn.modal = function(args, options) {
+    $.fn.modal = function(args, options, callerEvent) {
         var modalObj = {};
         modalObj.$el = this;
         modalObj.hasSelector = (args && args.hasOwnProperty('selector')) ? true : false;
@@ -96,12 +96,12 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         aljsModals.click(dismissModal);
                         modalElements.click(function(e) { e.stopPropagation(); });
                     }
-                    
-                    setTimeout(function() { // Ensure elements are displayed and rendered before adding classes
+
+                    function modalHandler(sourceObj) { // Ensure elements are displayed and rendered before adding classes
                         var backdrop = $('.slds-backdrop');
                         var handleTransitionEnd = function() {
                             modalObj.$el.trigger('shown.aljs.modal'); // Custom aljs event
-                            settings.onShown(modalObj);
+                            settings.onShown(modalObj, sourceObj);
                             isShowing = false;
                         };
                         
@@ -109,8 +109,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                             .addClass('slds-backdrop--open');
                         modalObj.$el.addClass('slds-fade-in-open')
                             .trigger('show.aljs.modal'); // Custom aljs event
-                        settings.onShow(modalObj);
-                    }, 25);
+                        settings.onShow(modalObj, sourceObj);
+                    }
+                    var sourceObj = callerEvent.currentTarget;
+                    setTimeout( function() { modalHandler(sourceObj); } , 25);
                     break;
                     
                 case 'dismiss':
@@ -152,13 +154,14 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     console.error('The method you entered does not exist');
             }
         } else if (modalObj.hasSelector && this.length === 1) { // If allowing for selector to trigger modals post-init
-            function clickEvent(e) { showModal($(this), args); }
+            function clickEvent(e) { showModal($(this), args, e); }
             
             initModals();
             this.on('click', args.selector, clickEvent);
         } else { // If initializing plugin with options
+
             initModals();
-            modalObj.$el.click(function() { showModal($(this), args); });
+            modalObj.$el.click(function(e) { showModal($(this), args, e); });
         }
         
         return this;

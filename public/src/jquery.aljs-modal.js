@@ -35,8 +35,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         }
     }
     
-    $.fn.modal = function(args, options, callerEvent) {
+    $.fn.modal = function(args, options, e) {
         var modalObj = {};
+        var callerEvent = e;
         modalObj.$el = this;
         modalObj.hasSelector = (args && args.hasOwnProperty('selector')) ? true : false;
         
@@ -110,9 +111,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         modalObj.$el.addClass('slds-fade-in-open')
                             .trigger('show.aljs.modal'); // Custom aljs event
                         settings.onShow(modalObj, callerEvent);
-                    }
-                    modalHandler.bind(callerEvent);
-                    setTimeout( modalHandler , 25);
+                    }                    
+                    setTimeout( function() { modalHandler(callerEvent); } , 25);
                     break;
                     
                 case 'dismiss':

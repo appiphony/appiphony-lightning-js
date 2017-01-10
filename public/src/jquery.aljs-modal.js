@@ -110,7 +110,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         modalObj.$el.addClass('slds-fade-in-open')
                             .trigger('show.aljs.modal'); // Custom aljs event
                         settings.onShow(modalObj, callerEvent);
-                    }(callerEvent), 25);
+                    }.bind(callerEvent), 25);
                     break;
                     
                 case 'dismiss':

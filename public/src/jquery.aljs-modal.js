@@ -35,8 +35,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         }
     }
     
-    $.fn.modal = function(args, options, callerEvent) {
+    $.fn.modal = function(args, options, e) {
         var modalObj = {};
+        var callerEvent = e;
         modalObj.$el = this;
         modalObj.hasSelector = (args && args.hasOwnProperty('selector')) ? true : false;
         
@@ -97,11 +98,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         modalElements.click(function(e) { e.stopPropagation(); });
                     }
                     
-                    setTimeout(function() { // Ensure elements are displayed and rendered before adding classes
+                    setTimeout( function() { // Ensure elements are displayed and rendered before adding classes
                         var backdrop = $('.slds-backdrop');
                         var handleTransitionEnd = function() {
                             modalObj.$el.trigger('shown.aljs.modal'); // Custom aljs event
-                            settings.onShown(modalObj);
+                            settings.onShown(modalObj, callerEvent);
                             isShowing = false;
                         };
                         

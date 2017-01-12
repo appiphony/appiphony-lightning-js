@@ -10,7 +10,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     var isShowing, aljsScope;
     
     function initModals() {
-        aljsScope = ($.aljs.scoped) ? '.slds' : aljsBodyTag;
+        aljsScope = ($.aljs.scoped) ? '.' + $.aljs.scopingClass : aljsBodyTag;
         
         $('.slds-backdrop').remove(); // Remove any existing backdrops
         $(aljsScope).append('<div class="aljs-modal-container"></div>');

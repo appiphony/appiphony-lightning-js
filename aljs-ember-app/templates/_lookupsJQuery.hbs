@@ -128,14 +128,6 @@ $(document).ready(function() {
         useImgTag: false,
         objectIconUrl: '/assets/icons/standard-sprite/svg/symbols.svg#account',
         objectIconClass: 'slds-icon-standard-account',
-        emptySearchTermQuery: function(callback) {
-            callback(results);
-        },
-        filledSearchTermQuery: function(searchTerm, callback) {
-            callback(results.filter(function(result) {
-                return result.label.match(searchTerm) !== null;
-            }));
-        },
         initialSelection: { id: 'ajax-result-1', label: 'AJAX Result 1' },
         onClickNew: function() {
             console.log('redirect or run something');
@@ -175,7 +167,7 @@ $(document).ready(function() {
                 <tbody>
                     <tr>
                         <th scope="row"><code>items</code></th>
-                        <td data-label="Behavior">Populates the list of lookup items on page load</td>
+                        <td data-label="Behavior">Populates the list of lookup items; used as a static list (see <code>emptySearchTermQuery</code> and <code>filledSearchTermQuery</code> for dynamic results)</td>
                         <td data-label="Values">An array of objects with <code>id</code> (required unique string), <code>label</code> (required string), and <code>metaLabel</code> (optional string) properties</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>[]</code></td>
                     </tr>
@@ -217,13 +209,13 @@ $(document).ready(function() {
                     </tr>
                     <tr>
                         <th scope="row"><code>emptySearchTermQuery</code></th>
-                        <td data-label="Behavior">A function that runs <code>callback</code> passing an array of items when an empty search is performed</td>
+                        <td data-label="Behavior">A function that runs <code>callback</code>, which passes an array of results, when an empty search (initial focus) is performed; only used when <code>items</code> is empty</td>
                         <td data-label="Values"><code>function(callback) { callback([{id: 1, label: 'One'}]); })</code></td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>function () { callback([]); }</code></td>
                     </tr>
                     <tr>
                         <th scope="row"><code>filledSearchTermQuery</code></th>
-                        <td data-label="Behavior">A function that runs <code>callback</code> passing an array of items when a filled search is performed</td>
+                        <td data-label="Behavior">A function that runs <code>callback</code>, which passes an array of results, when a filled search is performed; only used when <code>items</code> is empty</td>
                         <td data-label="Values"><code>function(searchTerm, callback) { callback([{id: 1, label: 'One'}]); })</code></td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>function (searchTerm, callback) { callback([]); }</code></td>
                     </tr>

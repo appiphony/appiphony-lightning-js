@@ -122,14 +122,6 @@
         		objectLabel: 'Thing',
         		objectIconUrl: 'assets/icons/standard-sprite/svg/symbols.svg#account',
                 objectIconClass: 'slds-icon-standard-account',
-        		emptySearchTermQuery: function(callback) {
-        			callback(results);
-        		},
-        		filledSearchTermQuery: function(searchTerm, callback) {
-        			callback(results.filter(function(result) {
-        				return result.label.match(searchTerm) !== null;
-        			}));
-        		},
                 initialSelection: { id: 'ajax-result-1', label: 'AJAX Result 1' },
         		onClickNew: function() {
         			console.log('redirect or run something');

@@ -4471,7 +4471,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     $datepickerEl.on('click', self, self.processClick);
                     //}  
                     //if ()
-                    //self.$selectedInput.blur();
+                    self.$selectedInput.blur(); // Mimic Salesforce functionality
 
                     $('body').on('click', self, self.closeDatepicker);
                 }  

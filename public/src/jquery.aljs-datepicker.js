@@ -146,7 +146,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     $datepickerEl.on('click', self, self.processClick);
                     //}  
                     //if ()
-                    self.$selectedInput.blur();
+                    //self.$selectedInput.blur();
 
                     $('body').on('click', self, self.closeDatepicker);
                 }  
@@ -357,6 +357,10 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             
             if (selectedFullDate !== '' && selectedFullDate !== null && typeof selectedFullDate !== 'undefined') {
                 this.$el.val(selectedFullDate.format(this.settings.format));
+                
+                if (navigator.userAgent.indexOf('Safari') !== -1 && navigator.userAgent.indexOf('Chrome') === -1) { // Addresses bug where Safari does not clear out visible placeholders on first value update ¯\_(ツ)_/¯
+                    this.$el.val(selectedFullDate.format(this.settings.format));     
+                }
             } else { // Start here
                 this.$el.val('');
             }

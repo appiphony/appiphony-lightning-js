@@ -4315,7 +4315,7 @@ if (typeof jQuery === "undefined") { throw new Error("Appiphony Lightning JS req
         $.aljs = {
             assetsLocation: '',
             scoped: false,
-            scopingClass: 'slds'
+            scopingClass: '.slds'
         };
         
         $.aljsInit = function(options) {
@@ -5652,8 +5652,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     var aljsRefocusTarget = null; // Element to refocus on modal dismiss
     var isShowing, aljsScope;
     
-    function initModals() {
-        aljsScope = ($.aljs.scoped) ? '.' + $.aljs.scopingClass : aljsBodyTag;
+    function initModals() {        
+        aljsScope = ($.aljs.scoped) ? (typeof($.aljs.scopingClass) === 'string') ? $.aljs.scopingClass : '.slds' :  aljsBodyTag;
         
         $('.slds-backdrop').remove(); // Remove any existing backdrops
         $(aljsScope).append('<div class="aljs-modal-container"></div>');
@@ -6331,7 +6331,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                             '</div>';
 
         if ($target.next('.slds-popover').length === 0) {
-            var $popoverNode = ($.aljs.scoped) ? $(popoverMarkup).appendTo('.' + $.aljs.scopingClass) : $(popoverMarkup).appendTo('body');
+            var $popoverNode = ($.aljs.scoped) ? (typeof($.aljs.scopingClass) === 'string') ? $(popoverMarkup).appendTo($.aljs.scopingClass) : $(popoverMarkup).appendTo('.slds') : $(popoverMarkup).appendTo('body');
 
             var actualWidth  = $popoverNode[0].offsetWidth;
             var actualHeight = $popoverNode[0].offsetHeight;// + 15;

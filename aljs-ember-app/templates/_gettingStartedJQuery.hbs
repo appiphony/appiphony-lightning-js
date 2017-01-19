@@ -41,7 +41,8 @@
 <script>
     $.aljsInit({
         assetsLocation: assetsLocation,
-        scoped: false
+        scoped: false,
+        scopingClass: '.slds'
     });
 </script>
 {{/aljs-pre-container}}
@@ -70,7 +71,14 @@
                     <td data-label="Behavior">Specifies whether or not the page is scoped using the <code>slds</code> class</td>
                     <td data-label="Accepted values"><code>true</code>, <code>false</code></td>
                     <td data-label="Default value" class="slds-cell-shrink"><code>false</code></td>
-                    <td data-label="Comments" class="slds-cell-shrink"</td>
+                    <td data-label="Comments" class="slds-cell-shrink"></td>
+                </tr>
+                <tr>
+                    <th scope="row"><code>scopingClass</code></th>
+                    <td data-label="Behavior">Specifies the class of the scoping element</td>
+                    <td data-label="Accepted values"><code>true</code>, <code>false</code></td>
+                    <td data-label="Default value" class="slds-cell-shrink"><code>false</code></td>
+                    <td data-label="Comments" class="slds-cell-shrink">Used as a selector; requires '.' as the first character</td>
                 </tr>
             </tbody>
         </table>

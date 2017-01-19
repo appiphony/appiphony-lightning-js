@@ -9,8 +9,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     var aljsRefocusTarget = null; // Element to refocus on modal dismiss
     var isShowing, aljsScope;
     
-    function initModals() {
-        aljsScope = ($.aljs.scoped) ? '.' + $.aljs.scopingClass : aljsBodyTag;
+    function initModals() {        
+        aljsScope = ($.aljs.scoped) ? (typeof($.aljs.scopingClass) === 'string') ? $.aljs.scopingClass : '.slds' :  aljsBodyTag;
         
         $('.slds-backdrop').remove(); // Remove any existing backdrops
         $(aljsScope).append('<div class="aljs-modal-container"></div>');

@@ -28,10 +28,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         init: function() {
             this.renderPicklists();
 
-            this.$el.find('[data-aljs-multi-select="unselect"]').on('click', this, this.unselectOption);
-            this.$el.find('[data-aljs-multi-select="select"]').on('click', this, this.selectOption);
-            this.$el.find('[data-aljs-multi-select="move-up"]').on('click', this, this.moveOptionUp);
-            this.$el.find('[data-aljs-multi-select="move-down"]').on('click', this, this.moveOptionDown);
+            this.$el.find('[data-aljs-multi-select="unselect"]').on('click', this, this.unselectItem);
+            this.$el.find('[data-aljs-multi-select="select"]').on('click', this, this.selectItem);
+            this.$el.find('[data-aljs-multi-select="move-up"]').on('click', this, this.moveItemUp);
+            this.$el.find('[data-aljs-multi-select="move-down"]').on('click', this, this.moveItemDown);
         },
         renderPicklists: function() {
             var self = this;            
@@ -51,6 +51,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 })
                 .on('dragstart', 'li', function(e) {
                     self.itemToSelect = $(this).data('aljs-picklist-obj');
+                
+                    e.originalEvent.dataTransfer.setData('text/plain', null);
                 })
                 .on('dragover', function(e) {
                     e.preventDefault();
@@ -81,6 +83,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 })
                 .on('dragstart', 'li', function(e) {
                     self.itemToUnselect = $(this).data('aljs-picklist-obj');
+                    
+                    e.originalEvent.dataTransfer.setData('text/plain', null);
                 })
                 .on('dragover', function(e) {
                     e.preventDefault();
@@ -96,33 +100,39 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     self.$el.find('[data-aljs-multi-select="select"]').click();
                 });
         },
-        selectOption: function(e) {
+        selectItem: function(e) {
             var self = e.data;
 
             if (self.itemToSelect) {
-                self.$unselectedContainer.find('#' + self.itemToSelect.id)
+                var item = self.$unselectedContainer.find('#' + self.itemToSelect.id)
                     .removeClass('slds-is-selected')
                     .attr('aria-selected', 'false')
                     .appendTo(self.$selectedContainer);
+                
                 self.unselectedItems.splice(self.unselectedItems.indexOf(self.itemToSelect), 1);
                 self.selectedItems.push(self.itemToSelect);
                 self.itemToSelect = null;
+                
+                self.settings.onSelectItem(self);
             }
         },
-        unselectOption: function(e) {
+        unselectItem: function(e) {
             var self = e.data;
 
             if (!self.itemToUnselect) { return; }
 
-            self.$selectedContainer.find('#' + self.itemToUnselect.id)
+            var item = self.$selectedContainer.find('#' + self.itemToUnselect.id)
                 .removeClass('slds-is-selected')
                 .attr('aria-selected', 'false')
                 .appendTo(self.$unselectedContainer);
+            
             self.selectedItems.splice(self.selectedItems.indexOf(self.itemToUnselect), 1);
             self.unselectedItems.push(self.itemToUnselect);
             self.itemToUnselect = null;
+            
+            self.settings.onUnselectItem(self);
         },
-        moveOptionUp: function(e) {
+        moveItemUp: function(e) {
             var self = e.data;
 
             if (!self.itemToUnselect) { return; }
@@ -140,9 +150,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                            .insertBefore($itemToMove.prev('li'));
 
                 self.itemToUnselect = null;
+                
+                self.settings.onMoveItem(self, 'up');
             }
         },
-        moveOptionDown: function(e) {
+        moveItemDown: function(e) {
             var self = e.data;
 
             if (!self.itemToUnselect) { return; }
@@ -160,6 +172,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                            .insertAfter($itemToMove.next('li'));
 
                 self.itemToUnselect = null;
+                
+                self.settings.onMoveItem(self, 'down');
             }
         },
         createPicklistDomItem: function(item) {
@@ -214,6 +228,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             // These are the defaults
             selectedItems: [],
             unselectedItems: [],
+            onSelectItem: function(obj) {},
+            onUnselectItem: function(obj) {},
+            onMoveItem: function(obj, direction) {},
             assetsLocation: $.aljs.assetsLocation
         }, typeof options === 'object' ? options : {});
 

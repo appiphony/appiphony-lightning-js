@@ -91,10 +91,26 @@
     		}
     	];
 
-        $(document).ready(function() {
+        /*$(document).ready(function() {
             $('[data-aljs="multi-select"]').multiSelect({
                 unselectedItems: unselectedItems,
                 selectedItems: selectedItems
+            });
+        });*/
+
+        $(document).ready(function() {
+            $('[data-aljs="multi-select"]').multiSelect({
+                unselectedItems: unselectedItems,
+                selectedItems: selectedItems,
+                onSelectItem: function(obj) {
+                    console.log(obj);
+                },
+                onUnselectItem: function(obj) {
+                    console.log(obj);
+                },
+                onMoveItem: function(obj, direction) {
+                    console.log(obj, direction);
+                }
             });
         });
     </script>

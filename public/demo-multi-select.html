@@ -103,15 +103,13 @@
                 unselectedItems: unselectedItems,
                 selectedItems: selectedItems,
                 onSelectItem: function(obj) {
-//                    console.log(obj);
-                    
-                    obj.$el.multiSelect('setSelectedItems', ['option-3', 'option-2', 'option-4']);
+                    console.log(obj);
                 },
                 onUnselectItem: function(obj) {
-//                    console.log(obj.getUnselectedItems());
+                    console.log(obj.getUnselectedItems());
                 },
                 onMoveItem: function(obj, direction) {
-//                    console.log(obj, direction);
+                    console.log(obj, direction);
                 }
             });
         });

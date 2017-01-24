@@ -6000,8 +6000,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
                 itemsToSelect.forEach(function(item) {
                     self.itemToSelect = item;
-
-                    self.$el.find('[data-aljs-multi-select="select"]').click();
+                    self.$el.find('[data-aljs-multi-select="select"]').click(); // Use click to pass the obj to event.data
                 });
             }
         },
@@ -6015,8 +6014,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
                 itemsToUnselect.forEach(function(item) {
                     self.itemToUnselect = item;
-
-                    self.$el.find('[data-aljs-multi-select="unselect"]').click();
+                    self.$el.find('[data-aljs-multi-select="unselect"]').click(); // Use click to pass the obj to event.data
                 });
             }
         },

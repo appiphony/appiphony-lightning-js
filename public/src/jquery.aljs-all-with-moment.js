@@ -6326,7 +6326,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             left: 'right',
             right: 'left'
         };
-        var popoverPositioningCSS = 'overflow: visible; display: inline-block; position: absolute;';
+        var popoverPositioningCSS = 'overflow: visible; display: block; position: absolute;';
         var modifier = (settings.modifier != '') ? ' slds-popover--' + settings.modifier : '';
         var theme = (settings.theme != '') ? ' slds-theme--' + settings.theme : '';
 

@@ -13,7 +13,7 @@ if (typeof jQuery === "undefined") { throw new Error("Appiphony Lightning JS req
         $.aljs = {
             assetsLocation: '',
             scoped: false,
-            scopingClass: '.slds'
+            scopingClass: '.slds-scope'
         };
         
         $.aljsInit = function(options) {

@@ -193,8 +193,27 @@ $(document).ready(function() {
         </div>
         <h4 class="site-text-heading--medium">Methods</h4>
 {{#aljs-pre-container type="js"}}
-var idsToSelect = ['option-1', 'option-2'];
-var idsToUnselect = ['option-3', 'option-4'];
+var idsToSelect = [
+    {
+        id: 'option-1',
+        label: 'Option 1'
+    },
+    {
+        id: 'option-3',
+        label: 'Option 3'
+    }
+];
+
+var idsToUnselect = [
+    {
+        id: 'option-4',
+        label: 'Option 4'
+    },
+    {
+        id: 'option-2',
+        label: 'Option 2'
+    }
+];
 
 $('[data-aljs="multi-select"]').multiSelect('setSelectedItems', idsToSelect);
 $('[data-aljs="multi-select"]').multiSelect('setUnselectedItems', idsToUnselect);
@@ -216,26 +235,26 @@ $('[data-aljs="multi-select"]').multiSelect('getUnselectedItems');
                     <tr>
                         <th scope="row"><code>setSelectedItems</code></th>
                         <td data-label="jQuery object">The multiSelect</td>
-                        <td data-label="Parameters">An array of strings that are option Ids to select</td>
-                        <td data-label="Outcome">The items that match the passed in ids are selected</td>
+                        <td data-label="Parameters">An array of objects with <code>id</code> (unique) and <code>label</code> properties to set as selected</td>
+                        <td data-label="Outcome">The objects are converted into entries within the selected list in the order they are passed in</td>
                     </tr>
                     <tr>
                         <th scope="row"><code>setUnselectedItems</code></th>
                         <td data-label="jQuery object">The multiSelect</td>
-                        <td data-label="Parameters">An array of strings that are option Ids to unselect</td>
-                        <td data-label="Outcome">The items that match the passed in ids are unselected</td>
+                        <td data-label="Parameters">An array of objects with <code>id</code> (unique) and <code>label</code> properties to set as unselected</td>
+                        <td data-label="Outcome">The objects are converted into entries within the unselected list in the order they are passed in</td>
                     </tr>
                     <tr>
                         <th scope="row"><code>getSelectedItems</code></th>
                         <td data-label="jQuery object">The multiSelect</td>
                         <td data-label="Parameters">N/A</td>
-                        <td data-label="Outcome">An array of objects that represent the selected items is returned</td>
+                        <td data-label="Outcome">An array of objects with <code>id</code> (unique) and <code>label</code> properties that represent the selected items is returned</td>
                     </tr>
                     <tr>
                         <th scope="row"><code>getUnselectedItems</code></th>
                         <td data-label="jQuery object">The multiSelect</td>
                         <td data-label="Parameters">N/A</td>
-                        <td data-label="Outcome">An array of objects that represent the unselected items is returned</td>
+                        <td data-label="Outcome">An array of objects with <code>id</code> (unique) and <code>label</code> properties that represent the unselected items is returned</td>
                     </tr>
                 </tbody>
             </table>

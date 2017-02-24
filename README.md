@@ -1,12 +1,12 @@
 # Appiphony Lightning JS
-### Your JS Solution for the Lightning Design System
+### Your JS solution for the Lightning Design System
 Current release: 3.0.0  
 Supported SLDS release: 2.1.4  
 See it in action here: <a href="http://aljs.appiphony.com" target="_blank">http://aljs.appiphony.com</a>
 
 ---
 
-### Available as jQuery Plugins
+### Available jQuery Plugins
 * Datepickers
 * Icon Groups
 * Lookups

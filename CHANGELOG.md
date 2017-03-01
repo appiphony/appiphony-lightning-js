@@ -1,4 +1,4 @@
-# Appiphony Lightning JS Beta
+# Appiphony Lightning JS
 
 ### Release 3.0.0 — December 5, 2016
 

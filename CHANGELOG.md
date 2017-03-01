@@ -183,6 +183,6 @@
 
 ---
 
-### Release 0.1 — October 30, 2015
+### Release 0.1.0 — October 30, 2015
 * Initial release
 * Open sourced: <a href="https://github.com/appiphony/appiphony-lightning-js" target="_blank">https://github.com/appiphony/appiphony-lightning-js</a>

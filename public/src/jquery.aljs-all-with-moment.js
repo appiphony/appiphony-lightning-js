@@ -6119,9 +6119,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             var self = this;
             var $el = this.$el;
             
-            this.obj.$trigger = $('.slds-button', $el);
-            this.obj.$dropdown = $('.slds-dropdown', $el);
-            this.obj.$choices = $('.slds-dropdown__item a', $el);
+            this.obj.$trigger = $('.slds-form-element__label, .slds-lookup__search-input, .slds-button', $el);
+            this.obj.$dropdown = $('.slds-dropdown__list', $el);
+            this.obj.$choices = $('.slds-dropdown__list > li > span', $el).prop('tabindex', 1);
                         
             this.obj.$trigger.unbind() // Prevent multiple bindings
                 .click(function(e) {
@@ -6187,21 +6187,21 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         },
         bindChoices: function() {
             var self = this;
-            this.obj.$valueContainer = $('> span', this.obj.$trigger);
+            this.obj.$valueContainer = $('.slds-lookup__search-input', this.$el);
             
             this.obj.$choices.unbind() // Prevent multiple bindings
                 .click(function(e) {
                     e.stopPropagation();
                 
-                    var optionId = $(this).closest('li').attr('id');
+                    var optionId = $(this).closest('span').attr('id');
                 
                     self.setValueAndUpdateDom(optionId);
                     self.settings.onChange(self.obj);
                 });
         },
         setValueAndUpdateDom: function(optionId) {
-            var $li = this.$el.find('#' + optionId);
-            this.obj.value = $li.find('a').text();
+            var $span = this.$el.find('#' + optionId);
+            this.obj.value = $span.text().trim();
             this.obj.valueId = optionId;
             this.$el.removeClass('slds-is-open');
             this.obj.$dropdown.unbind('keyup', this.processKeypress);
@@ -6209,18 +6209,16 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             this.obj.$trigger.trigger('change.aljs.picklist') // Custom aljs event
                 .focus();
         
-            this.obj.$valueContainer.text(this.obj.value);
-            this.obj.$choices.parent()
-                .removeClass('slds-is-selected');
+            this.obj.$valueContainer.val(this.obj.value);
+            this.obj.$choices.removeClass('slds-is-selected');
             
-            $li.addClass('slds-is-selected');
+            $span.addClass('slds-is-selected');
         },
         setValue: function(optionId, callOnChange) {
             this.setValueAndUpdateDom(optionId);
             if (callOnChange) {
                 this.settings.onChange(this.obj);
             }
-            
         },
         getValueId: function() {
             return this.obj.valueId;

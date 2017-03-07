@@ -1820,6 +1820,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             this.obj.$trigger = $('.slds-lookup__search-input', $el);
             this.obj.$dropdown = $('.slds-dropdown__list', $el);
             this.obj.$choices = $('.slds-dropdown__list > li > span', $el).prop('tabindex', 1);
+            
+            this.$el.on('keyup', self, self.processKeypress);
                         
             this.obj.$trigger.unbind() // Prevent multiple bindings
                 .click(function(e) {
@@ -1843,17 +1845,12 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         }
                         
                         self.focusOnElement();
-                        self.$el.on('keyup', self, self.processKeypress);
                     }
                 return false; // Prevent scrolling on keypress
                 });
             
             $('body').click(function() { 
                 self.$el.removeClass('slds-is-open');
-            }).keyup(function(e) {
-                if (e.keyCode === 27) { // Esc
-                    $('[data-aljs="picklist"]').picklist('close');
-                }
             });
             
         },

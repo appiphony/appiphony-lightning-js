@@ -18,7 +18,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             var self = this;
             var $el = this.$el;
             
-            this.obj.$trigger = $('.slds-form-element__label, .slds-lookup__search-input, .slds-button', $el);
+            this.obj.$trigger = $('.slds-lookup__search-input', $el);
             this.obj.$dropdown = $('.slds-dropdown__list', $el);
             this.obj.$choices = $('.slds-dropdown__list > li > span', $el).prop('tabindex', 1);
                         
@@ -40,18 +40,17 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         if (self.obj.valueId === null || typeof self.obj.valueId === 'undefined') {
                             self.focusedIndex = null;
                         } else {
-                            self.focusedIndex = self.obj.$dropdown.find('li').index(self.obj.$dropdown.find('#' + self.obj.valueId));
+                            self.focusedIndex = self.obj.$dropdown.find('li > span').index(self.obj.$dropdown.find('#' + self.obj.valueId));
                         }
                         
                         self.focusOnElement();
-                        self.obj.$dropdown.on('keyup', self, self.processKeypress);
+                        self.$el.on('keyup', self, self.processKeypress);
                     }
                 return false; // Prevent scrolling on keypress
                 });
             
             $('body').click(function() { 
                 self.$el.removeClass('slds-is-open');
-                self.obj.$dropdown.unbind('keyup', self.processKeypress);
             }).keyup(function(e) {
                 if (e.keyCode === 27) { // Esc
                     $('[data-aljs="picklist"]').picklist('close');
@@ -63,18 +62,39 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             var self = e.data;
             var optionsLength = self.obj.$choices.length;
             
-            switch (e.keyCode) {
-                case (40): // Down
-                    self.focusedIndex = self.focusedIndex === optionsLength - 1 ? 0 : self.focusedIndex + 1;
-                    self.focusOnElement();
-                    break;
-                case (38): // Up
-                    self.focusedIndex = self.focusedIndex === 0 ? optionsLength - 1 : self.focusedIndex - 1;
-                    self.focusOnElement();
-                    break;
-                case (27): // Esc
-                    self.$el.picklist('close');
-                    break;
+            
+            if (self.$el.hasClass('slds-is-open')) {
+                switch (e.keyCode) {
+                    case (40): // Down
+                        if (self.focusedIndex === null) {
+                            self.focusedIndex = 0;
+                        } else {
+                            self.focusedIndex = self.focusedIndex === optionsLength - 1 ? 0 : self.focusedIndex + 1;
+                        }
+                        
+                        self.focusOnElement();
+                        break;
+                    case (38): // Up
+                        if (self.focusedIndex === null) {
+                            self.focusedIndex = optionsLength - 1;
+                        } else {
+                            self.focusedIndex = self.focusedIndex === 0 ? optionsLength - 1 : self.focusedIndex - 1;
+                        }
+                        
+                        self.focusOnElement();
+                        break;
+                    case (27): // Esc
+                        self.$el.picklist('close');
+                        break;
+                    case (13): // Return
+                        var focusedId = self.obj.$choices.eq(self.focusedIndex).attr('id');
+                        
+                        self.setValueAndUpdateDom(focusedId);
+                        break;
+                }
+            } else if (e.keyCode === 13) { // Return
+                self.$el.addClass('slds-is-open');
+                self.focusOnElement();
             }
             
             return false; // Prevents scrolling
@@ -103,7 +123,6 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             this.obj.value = $span.text().trim();
             this.obj.valueId = optionId;
             this.$el.removeClass('slds-is-open');
-            this.obj.$dropdown.unbind('keyup', this.processKeypress);
             
             this.obj.$trigger.trigger('change.aljs.picklist') // Custom aljs event
                 .focus();
@@ -127,7 +146,6 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         },
         close: function() {
             this.$el.removeClass('slds-is-open');
-            this.obj.$dropdown.unbind('keyup', this.processKeypress);
         }
     };
     

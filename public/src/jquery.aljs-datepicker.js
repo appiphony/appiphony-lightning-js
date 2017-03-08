@@ -104,7 +104,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             }
         }
         
-        this.initInteractivity();  
+        this.initInteractivity();
     };
 
     Datepicker.prototype = {
@@ -135,17 +135,12 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     self.$selectedInput = $(this).parent().find('input');
                     self.$selectedInput.off('keyup')
                                        .off('blur');
-                    // if ($el.closest('.slds-form-element').next('.slds-datepicker').length > 0) {
-                    //     $datepickerEl.show();
-                    // } else {
                     self.$selectedInput.closest('.slds-form-element').append($datepickerEl);   
                     self.initYearDropdown();
                     $([$el, $datepickerEl, $elEndDate, $el.prev('svg')]).each(function() {
                         $(this).on('click', self.blockClose);
                     });         
                     $datepickerEl.on('click', self, self.processClick);
-                    //}  
-                    //if ()
                     self.$selectedInput.blur(); // Mimic Salesforce functionality
 
                     $('body').on('click', self, self.closeDatepicker);
@@ -162,17 +157,24 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 $($elEndDate.prev('svg')).on('click', openDatepicker);
                 $elEndDate.prev('svg').css('cursor', 'pointer');
             }
+        },
+        closeDatepicker: function(e) {
+            var self = this; 
+            var $target = $('body');
+            
+            if (e) {
+                self = e.data;
+                $target = $(this);
+            }
 
-            /* focus out?
-            $([$el, $datepickerEl.find('button')]).each(function() {
-                $(this).on('blur', function(e) {
-                    if ($(e.relatedTarget).closest('.slds-form--stacked').find($el).length === 0) {
-                        self.closeDatepicker();
-                    }
-                    //self.closeDatepicker();
-                });
-            });
-            */
+            var $datepickerEl = self.$datepickerEl;
+            var $selectedInput = self.$selectedInput;
+
+            if ($target.closest(self.$el.parent()).length === 0 && $selectedInput) {
+                $selectedInput.closest('.slds-form-element').find('.slds-datepicker').remove();
+                $('body').unbind('click', self.closeDatepicker);
+                $datepickerEl.unbind('click', self.processClick);
+            }
         },
         fillMonth: function() {
             var self = this;
@@ -240,13 +242,8 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 var $yearDropdown = $('<label></label>')
 
                 $yearSelect = $('<select class="slds-select select picklist__label">').appendTo($yearDropdown);
-
-             //   var $yearContainer = $('<div id="aljs-yearDropdown" class="slds-dropdown slds-dropdown--menu">');
-             //   var $yearDropdown = $('<ul class="slds-dropdown__list" style="max-height: 13.5rem; overflow-y:auto;"></ul>').appendTo($yearContainer);
+                
                 var currentYear = moment().year();
-                // var selectedIconMarkup = ('<svg aria-hidden="true" class="slds-icon slds-icon--small slds-icon--left">' +
-                //                         '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{assetsLocation}}/assets/icons/standard-sprite/svg/symbols.svg#task2" data-reactid=".46.0.0.1:$=10:0.0.$=11:0.0.0.0"></use>' +
-                //                     '</svg>').replace(/{{assetsLocation}}/g, this.settings.assetsLocation);
 
                 for (var i = currentYear - this.settings.numYearsBefore; i <= currentYear + this.settings.numYearsAfter; i++) {
                     var $yearOption = $('<option value="' + i + '">' + i + '</option>').appendTo($yearSelect);
@@ -316,8 +313,6 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             allDays.forEach(function(day, index, allDays) {
                 if (index % 7 === 0) {
                     var hasMultiRowSelection = (index >= 7 && allDays[index - 1].isSelectedMulti && day.isSelectedMulti);
-                                                //|| (allDays[index + 6] && allDays[index + 6].isSelectedMulti === true 
-                                                //    && allDays[index + 7] && allDays[index + 7].isSelectedMulti === true);
                     
                     if (hasMultiRowSelection) {
                         calendarRows[calendarRows.length - 1].hasMultiRowSelection = true;
@@ -399,29 +394,10 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             if ($target.closest('li[data-aljs-year]').length > 0) {
                 self.clickYear(e);
             }
-
-            // if ($target.closest('#year').length > 0) {
-            //     self.clickYearDropdown(e);
-            // } else {
-            //     self.hideYearDropdown();
-            // }
         },
         processKeyup: function(e) {
             if (e.keyCode === 13) { // Return key
                 $(this).blur().off('keyup');
-                // var self = e.data;
-                // var selectedDate = $(this).val();
-
-                // if (moment(selectedDate).isValid()) {
-                //     if (self.$elEndDate && self.$elEndDate.length > 0 && self.$elEndDate[0] === self.$selectedInput[0]) {
-                //         self.setSelectedEndDate(moment(selectedDate, self.settings.format));
-                //     } else {
-                //         self.setSelectedFullDate(moment(selectedDate, self.settings.format));
-                //     }
-
-                //     self.closeDatepicker(e);
-                //     $(this).blur();
-                // } 
             }
         },
         processBlur: function(e) {
@@ -511,24 +487,6 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 self.closeDatepicker(e); 
 
             }     
-        },
-        closeDatepicker: function(e) {
-            var self = this; 
-            var $target = $('body');
-            
-            if (e) {
-                self = e.data;
-                $target = $(this);
-            }
-
-            var $datepickerEl = self.$datepickerEl;
-            var $selectedInput = self.$selectedInput;
-
-            if ($target.closest(self.$el.parent()).length === 0 && $selectedInput) {
-                $selectedInput.closest('.slds-form-element').find('.slds-datepicker').remove();
-                $('body').unbind('click', self.closeDatepicker);
-                $datepickerEl.unbind('click', self.processClick);
-            }
         },
         blockClose: function(e) {
             e.stopPropagation();
@@ -671,7 +629,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
         }
 
         if (this.length > 1) {
-            throw new Error('Using only allowed for the collection of a single element (' + option + ' function)');
+            throw new Error('Usage only allowed for the collection of a single element (' + option + ' function)');
         } else {
             return internalReturn;
         }

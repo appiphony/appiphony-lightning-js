@@ -1395,16 +1395,16 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             var dismissModalElement = $(settings.dismissSelector);
             var modalElements = $('.slds-modal__header, .slds-modal__content, .slds-modal__footer');
             
-            function keyUpCheck(e) {
-                if (e.keyCode == 27 && aljsModals.is(':visible')) dismissModal(); // Esc key
+            function processKeyup(e) {
+                if (e.which == 27 && aljsModals.is(':visible')) dismissModal(); // Esc key
             }
             
             function dismissModal() {
                 modalObj.$el.modal('dismiss', settings)
                     .unbind('click');
-                $(aljsBodyTag).unbind('keyup', keyUpCheck);
                 aljsModals.unbind('click');
                 dismissModalElement.unbind('click');
+                $(aljsBodyTag).unbind('keyup', processKeyup);
             }
             
             switch (args) {
@@ -1422,21 +1422,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     $('.slds-backdrop').remove(); // Remove any existing backdrops
                     $('.aljs-modal-container').append('<div class="slds-backdrop"></div>');
                     
-                    $(aljsBodyTag).keyup(keyUpCheck);
                     modalObj.$el.addClass('slds-show')
                         .removeClass('slds-hide')
                         .attr('aria-hidden', 'false')
                         .attr('tabindex', 1);
-                    
-                    dismissModalElement.click(function(e) { // Bind events based on options
-                        e.preventDefault();
-                        dismissModal();
-                    });
-                    
-                    if (settings.backdropDismiss) {
-                        aljsModals.click(dismissModal);
-                        modalElements.click(function(e) { e.stopPropagation(); });
-                    }
                     
                     setTimeout(function() { // Ensure elements are displayed and rendered before adding classes
                         var backdrop = $('.slds-backdrop');
@@ -1444,6 +1433,18 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                             modalObj.$el.trigger('shown.aljs.modal'); // Custom aljs event
                             settings.onShown(modalObj);
                             isShowing = false;
+                            $(aljsBodyTag).unbind('keyup', processKeyup)
+                                .bind('keyup', processKeyup);
+                            
+                            dismissModalElement.click(function(e) { // Bind events based on options
+                                e.preventDefault();
+                                dismissModal();
+                            });
+                            
+                            if (settings.backdropDismiss) {
+                                aljsModals.click(dismissModal);
+                                modalElements.click(function(e) { e.stopPropagation(); });
+                            }
                         };
                         
                         backdrop.one('transitionend', handleTransitionEnd)
@@ -1458,9 +1459,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     if (!isShowing) {
                         var backdrop = $('.slds-backdrop');
                         var handleTransitionEnd = function() {
-                            if (!isShowing) {
-                                backdrop.remove();
-                            }
+                            if (!isShowing) backdrop.remove();
                             
                             aljsRefocusTarget = null;
                             modalObj.$el.addClass('slds-hide')
@@ -1479,6 +1478,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         .attr('tabindex', -1);
                     
                     if (aljsRefocusTarget !== null) aljsRefocusTarget.focus();
+                    
                     modalObj.$el.trigger('dismiss.aljs.modal'); // Custom aljs event
                     break;
                     

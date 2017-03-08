@@ -22,7 +22,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             this.obj.$dropdown = $('.slds-dropdown__list', $el);
             this.obj.$choices = $('.slds-dropdown__list > li > span', $el).prop('tabindex', 1);
             
-            this.$el.on('keyup', self, self.processKeypress);
+            this.$el.on('keyup', self, self.processKeypress)
+                .find('.slds-lookup__search-input + .slds-button')
+                .css('pointer-events', 'none');
                         
             this.obj.$trigger.unbind() // Prevent multiple bindings
                 .click(function(e) {
@@ -61,7 +63,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             
             
             if (self.$el.hasClass('slds-is-open')) {
-                switch (e.keyCode) {
+                switch (e.which) {
                     case (40): // Down
                         if (self.focusedIndex === null) {
                             self.focusedIndex = 0;
@@ -84,12 +86,14 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         self.$el.picklist('close');
                         break;
                     case (13): // Return
-                        var focusedId = self.obj.$choices.eq(self.focusedIndex).attr('id');
-                        
-                        self.setValueAndUpdateDom(focusedId);
+                        if (self.focusedIndex !== null) {
+                            var focusedId = self.obj.$choices.eq(self.focusedIndex).attr('id');
+                            
+                            self.setValueAndUpdateDom(focusedId);
+                        }
                         break;
                 }
-            } else if (e.keyCode === 13) { // Return
+            } else if (e.which === 13) { // Return
                 self.$el.addClass('slds-is-open');
                 self.focusOnElement();
             }
@@ -112,22 +116,26 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     var optionId = $(this).closest('span').attr('id');
                 
                     self.setValueAndUpdateDom(optionId);
-                    self.settings.onChange(self.obj);
                 });
         },
         setValueAndUpdateDom: function(optionId) {
-            var $span = this.$el.find('#' + optionId);
+            var self = this;
+            var $span = self.$el.find('#' + optionId);
+            var index = self.obj.$choices.index($span);
+            
             this.obj.value = $span.text().trim();
             this.obj.valueId = optionId;
             this.$el.removeClass('slds-is-open');
             
             this.obj.$trigger.trigger('change.aljs.picklist') // Custom aljs event
                 .focus();
-        
+            
             this.obj.$valueContainer.val(this.obj.value);
             this.obj.$choices.removeClass('slds-is-selected');
             
             $span.addClass('slds-is-selected');
+            self.focusedIndex = index;
+            self.settings.onChange(self.obj);
         },
         setValue: function(optionId, callOnChange) {
             this.setValueAndUpdateDom(optionId);

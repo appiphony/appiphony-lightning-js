@@ -104,7 +104,7 @@
     <script>
         $(document).ready(function() {
             $('[data-aljs="picklist"]').picklist({
-                onChange: function(obj) { console.log(obj); }
+                onChange: function(obj) { console.log(obj); console.log($('[data-aljs="picklist"]').picklist('getValueId')); }
             });
         });
     </script>

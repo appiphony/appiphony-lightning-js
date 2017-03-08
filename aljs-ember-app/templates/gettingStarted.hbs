@@ -2,7 +2,7 @@
 {{#aljs-main-content}}
     <p class="site-text-introduction slds-m-bottom--xx-large">Enabling Appiphony Lightning JS on your Visualforce pages is simple.</p>
     <div class="slds-m-bottom--xx-large slds-text-longform">
-        <h4 class="site-text-heading--medium">Import the SLDS Library as a Static Resource</h4>
+        {{!--<h4 class="site-text-heading--medium">Import the SLDS Library as a Static Resource</h4>
         <ol>
             <li><a href="http://www.lightningdesignsystem.com/resources/downloads" target="_blank">Download</a> the SLDS Library from their website.</li>
             <li>Create a zip that contains the assets folder in its root.</li>
@@ -44,7 +44,18 @@
 {{#aljs-pre-container type="vf"}}
 <div class="slds">Your content here</div>
 {{/aljs-pre-container}}
+        --}}
         
+    <h4 class="site-text-heading--medium">Include the Lightning Design System (SLDS)</h4>
+    <p>You can apply the latest version of SLDS to your page by including the <code>&lt;apex:slds /&gt;</code> element at the head.</p>
+    {{#aljs-pre-container type="vf"}}
+<apex:page sidebar="false" standardStylesheets="false" showHeader="false" docType="html-5.0">
+    &lt;head&gt;
+        <title>My Visualforce Page</title>
+        &lt;apex:slds /&gt;
+    &lt;/head&gt;
+</apex:page>
+{{/aljs-pre-container}}
     </div>
     {{aljs-code-container routeName="gettingStarted" selectedSection=selectedSection}}
 

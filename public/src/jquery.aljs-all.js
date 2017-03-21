@@ -1983,45 +1983,45 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     var nubbinWidth = 15;
 
     var showPopover = function(e) {
+        
         var settings = e.data;
         var $target = $(e.target).is($(settings.selector)) ? $(e.target) : $(e.target).closest(settings.selector || '[data-aljs="popover"]');
-
         var isMarkup = ($target.attr('data-aljs-show')) ? true : false;
-
-        if (!$target.attr('data-aljs-title')) {
+        
+        if (!$target.attr('data-aljs-title') && !isMarkup) {
             $target.attr('data-aljs-title', $target.attr('title'));
             $target.attr('title', '');
-            //$target.css('position', 'relative');
         }
-        var lineHeightFix = ($target.parent().hasClass('slds-button')) ? ' style="line-height: normal;"' : ''; // Adjust line height if popover is inside a button
-        var popoverId = $target.attr('data-aljs-id') || 'aljs-' + (new Date()).valueOf();
-        var popoverContent = (!isMarkup) ? htmlEncode($target.data('aljs-title')) : $('#' + $target.data('aljs-show')).html();
-        var popoverPosition = $target.attr('data-aljs-placement') || 'top';
-        var popoverNubbins = {
-            top: 'bottom',
-            bottom: 'top',
-            left: 'right',
-            right: 'left'
-        };
-        var popoverPositioningCSS = 'overflow: visible; display: block; position: absolute;';
-        var modifier = (settings.modifier != '') ? ' slds-popover--' + settings.modifier : '';
-        var theme = (settings.theme != '') ? ' slds-theme--' + settings.theme : '';
+        
+        var popoverContent = (!isMarkup) ? htmlEncode($target.attr('data-aljs-title')) : $('#' + $target.data('aljs-show')).html();
+        
+        if (popoverContent.length > 0) {            
+            var lineHeightFix = ($target.parent().hasClass('slds-button')) ? ' style="line-height: normal;"' : ''; // Adjust line height if popover is inside a button
+            var popoverId = $target.attr('data-aljs-id') || 'aljs-' + (new Date()).valueOf();
+            var popoverPosition = $target.attr('data-aljs-placement') || 'top';
+            var popoverNubbins = {
+                top: 'bottom',
+                bottom: 'top',
+                left: 'right',
+                right: 'left'
+            };
+            var popoverPositioningCSS = 'overflow: visible; display: block; position: absolute;';
+            var modifier = (settings.modifier != '') ? ' slds-popover--' + settings.modifier : '';
+            var theme = (settings.theme != '') ? ' slds-theme--' + settings.theme : '';
+            var popoverMarkup = '<div id="' + popoverId + '" aria-describedby="' + popoverId + '" class="slds-popover' + modifier + theme + ' slds-nubbin--' + (popoverNubbins[popoverPosition] || 'top') + '" style="' + popoverPositioningCSS +'">' +
+                                    '<div class="slds-popover__body"' + lineHeightFix + '>' +
+                                    popoverContent +
+                                    '</div>' +
+                                '</div>';
 
-        var popoverMarkup = '<div id="' + popoverId + '" aria-describedby="' + popoverId + '" class="slds-popover' + modifier + theme + ' slds-nubbin--' + (popoverNubbins[popoverPosition] || 'top') + '" style="' + popoverPositioningCSS +'">' +
-                                '<div class="slds-popover__body"' + lineHeightFix + '>' +
-                                popoverContent +
-                                '</div>' +
-                            '</div>';
-
-        if ($target.next('.slds-popover').length === 0) {
-            var $popoverNode = ($.aljs.scoped) ? (typeof($.aljs.scopingClass) === 'string') ? $(popoverMarkup).appendTo($.aljs.scopingClass) : $(popoverMarkup).appendTo('.slds') : $(popoverMarkup).appendTo('body');
-
-            var actualWidth  = $popoverNode[0].offsetWidth;
-            var actualHeight = $popoverNode[0].offsetHeight;// + 15;
-
-            var targetPos = getPosition($target)
-            var calculatedOffset = getCalculatedOffset(popoverPosition, targetPos, actualWidth, actualHeight);
-            applyPlacement(calculatedOffset, popoverPosition, actualWidth, actualHeight, $popoverNode);
+            if ($target.next('.slds-popover').length === 0) {
+                var $popoverNode = ($.aljs.scoped) ? (typeof($.aljs.scopingClass) === 'string') ? $(popoverMarkup).appendTo($.aljs.scopingClass) : $(popoverMarkup).appendTo('.slds') : $(popoverMarkup).appendTo('body');
+                var actualWidth  = $popoverNode[0].offsetWidth;
+                var actualHeight = $popoverNode[0].offsetHeight;// + 15;
+                var targetPos = getPosition($target)
+                var calculatedOffset = getCalculatedOffset(popoverPosition, targetPos, actualWidth, actualHeight);
+                applyPlacement(calculatedOffset, popoverPosition, actualWidth, actualHeight, $popoverNode);
+            }
         }
     };
 
@@ -2047,7 +2047,6 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
         popover.offset(offset);
     }
-
 
     var getCalculatedOffset = function (placement, pos, actualWidth, actualHeight) {
         var posObj = {}
@@ -2129,7 +2128,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             // These are the defaults
         }, options );
 
-        this.each(function() {
+        this.each(function() {            
             $('#' + $(this).data('aljs-show')).addClass('slds-hide'); // Hide custom popover markup on init
         });
 
@@ -2152,6 +2151,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             return this.each(function() {
                 var thisSettings = JSON.parse(JSON.stringify(settings));
                 thisSettings.selector = this;
+                
                 $(this).on('mouseenter', thisSettings, showPopover)
                        .on('focusin', thisSettings, showPopover)
                        .on('mouseleave', thisSettings, hidePopover)

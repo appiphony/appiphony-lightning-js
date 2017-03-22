@@ -9,7 +9,7 @@
             <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
                 <use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#event"></use>
             </svg>
-            <input id="startDate" class="slds-input" type="text" placeholder="Pick a Start Date" label="Date Picker Label" />
+            <input id="start-date" class="slds-input" type="text" placeholder="Pick a Start Date" label="Date Picker Label" />
         </div>
     </div>
     <div class="slds-form-element">
@@ -17,7 +17,7 @@
             <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
                 <use xlink:href="assets/icons/utility-sprite/svg/symbols.svg#event"></use>
             </svg>
-            <input id="endDate" class="slds-input" type="text" placeholder="Pick a End Date" label="Date Picker Label" />
+            <input id="end-date" class="slds-input" type="text" placeholder="Pick a End Date" label="Date Picker Label" />
         </div>
     </div>
 </div>
@@ -25,8 +25,8 @@
         <h4 class="site-text-heading--medium">Initialize</h4>
 {{#aljs-pre-container type="js"}}
 $(document).ready(function() {
-    $('#date').datepicker({
-        endDateInputId: 'endDate'
+    $('#start-date').datepicker({
+        endDateInputId: 'end-date'
     });
 });
 {{/aljs-pre-container}}
@@ -135,18 +135,24 @@ $(document).ready(function() {
                 </thead>
                 <tbody>
                     <tr>
+                        <th scope="row"><code>endDateInputId</code></th>
+                        <td data-label="Behavior">Specifies the id of the input for the multi-select datepicker's end date</td>
+                        <td data-label="Accepted values">Any input id</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
+                    </tr>
+                    <tr>
                         <th scope="row"><code>endDate</code></th>
                         <td data-label="Behavior">Sets the multi-select datepicker's end date to a specified date</td>
                         <td data-label="Accepted values">A moment.js object</td>
-                        <td data-label="Default value" class="slds-cell-shrink"><code>moment()</code></td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>null</code></td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <h4 class="site-text-heading--medium">Methods</h4>
 {{#aljs-pre-container type="js"}}
-var endDate = $('#date').datepicker('getEndDate');
-$('#date').datepicker('setEndDate', moment());
+var endDate = $('#start-date').datepicker('getEndDate');
+$('#start-date').datepicker('setEndDate', moment());
 {{/aljs-pre-container}}
         <p class="slds-m-top--medium">This table details the methods available for the jQuery function.</p>
         <div class="slds-scrollable--x">
@@ -161,12 +167,12 @@ $('#date').datepicker('setEndDate', moment());
                 <tbody>
                     <tr>
                         <th scope="row"><code>getEndDate</code></th>
-                        <td data-label="jQuery object">The datepicker's input node</td>
+                        <td data-label="jQuery object">The datepicker's start date input node</td>
                         <td data-label="Outcome">A moment.js object representing the selected end date is returned</td>
                     </tr>
                     <tr>
                         <th scope="row"><code>setEndDate</code></th>
-                        <td data-label="jQuery object">The datepicker's input node</td>
+                        <td data-label="jQuery object">The datepicker's start date input node</td>
                         <td data-label="Outcome">The datepicker's end date is set to the date of the passed in moment.js object</td>
                     </tr>
                 </tbody>

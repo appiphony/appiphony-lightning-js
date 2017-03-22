@@ -100,7 +100,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             this.$elEndDate = $('#' + endDateId);
 
             if (options.endDate) {
-                this.setEndFullDate(endDate);
+                this.setSelectedEndDate(options.endDate);
             }
         }
         

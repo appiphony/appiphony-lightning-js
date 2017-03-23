@@ -4588,7 +4588,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
         getMMDDYYYY: function(month, date, year) {
             return (month > 9 ? month : '0' + month) + '/' + (date > 9 ? date : '0' + date) + '/' + year;
         },
-        getMonthArray: function() {
+        getMonthArray: function() { // To do: fix going out of year range
             var self = this;
             var selectedFullDate = this.selectedFullDate;
             var selectedEndDate = this.selectedEndDate;
@@ -4730,14 +4730,14 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 var self = e.data;
                 var selectedDate = $(this).val();
                 var momentSelectedDate = moment(selectedDate, self.settings.format);
-
+                
                 if (momentSelectedDate.isValid()) {
                     if (self.$elEndDate && self.$elEndDate.length > 0 && self.$elEndDate[0] === self.$selectedInput[0]) {
                         self.setSelectedEndDate(momentSelectedDate);
                     } else {
                         self.setSelectedFullDate(momentSelectedDate);
                     }
-
+                    
                     self.closeDatepicker(e);
                     self.$selectedInput.off('keyup')
                                        .off('blur');
@@ -4749,40 +4749,61 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
         },
         clickPrev: function(e) {
             var self = e.data;
+            var currentYear = moment().year();
+            
             if (self.viewedMonth === 0) {
                 self.viewedMonth = 11;
-                self.viewedYear--;
                 
-                self.$datepickerEl.find('.slds-select option:selected')
-                    .prop('selected', false)
-                    .prev()
-                    .prop('selected', 'selected');
+                if (self.viewedYear === (currentYear - self.settings.numYearsBefore)) {
+                    self.viewedYear = currentYear + self.settings.numYearsAfter;
+                    self.$datepickerEl.find('.slds-select option:selected')
+                        .prop('selected', false);
+                    self.$datepickerEl.find('.slds-select option')
+                        .last()
+                        .prop('selected', 'selected');
+                } else {
+                    self.viewedYear--;
+                    self.$datepickerEl.find('.slds-select option:selected')
+                        .prop('selected', false)
+                        .prev()
+                        .prop('selected', 'selected');
+                }
             } else {
                 self.viewedMonth--;
             }
-
+            
             self.fillMonth();
         },
         clickNext: function(e) {
             var self = e.data;
-
+            var currentYear = moment().year();
+            
             if (self.viewedMonth === 11) {
                 self.viewedMonth = 0;
-                self.viewedYear++;
                 
-                self.$datepickerEl.find('.slds-select option:selected')
-                    .prop('selected', false)
-                    .next()
-                    .prop('selected', 'selected');
+                if (self.viewedYear === (currentYear + self.settings.numYearsAfter)) {
+                    self.viewedYear = currentYear - self.settings.numYearsBefore;
+                    self.$datepickerEl.find('.slds-select option:selected')
+                        .prop('selected', false);
+                    self.$datepickerEl.find('.slds-select option')
+                        .first()
+                        .prop('selected', 'selected');
+                } else {
+                    self.viewedYear++;
+                    self.$datepickerEl.find('.slds-select option:selected')
+                        .prop('selected', false)
+                        .next()
+                        .prop('selected', 'selected');
+                }
             } else {
                 self.viewedMonth++;
             }
-
+            
             self.fillMonth();
         },
         clickYear: function(e) {
             var self = e.data;
-
+            
             var $clickedYear = $(e.target).closest('li[data-aljs-year]');
             self.viewedYear = parseInt($clickedYear.data('aljs-year'));
             self.fillMonth();

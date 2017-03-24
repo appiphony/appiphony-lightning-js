@@ -40,7 +40,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                                 '</div>';
 
             if ($target.next('.slds-popover').length === 0) {
-                var $popoverNode = ($.aljs.scoped) ? (typeof($.aljs.scopingClass) === 'string') ? $(popoverMarkup).appendTo($.aljs.scopingClass) : $(popoverMarkup).appendTo('.slds') : $(popoverMarkup).appendTo('body');
+                var $popoverNode = ($.aljs.scoped) ? (typeof($.aljs.scopingClass) === 'string') ? $(popoverMarkup).appendTo('.' + $.aljs.scopingClass) : $(popoverMarkup).appendTo('.slds-scope') : $(popoverMarkup).appendTo('body');
                 var actualWidth  = $popoverNode[0].offsetWidth;
                 var actualHeight = $popoverNode[0].offsetHeight;// + 15;
                 var targetPos = getPosition($target)

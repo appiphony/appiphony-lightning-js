@@ -12,8 +12,8 @@ if (typeof jQuery === "undefined") { throw new Error("Appiphony Lightning JS req
     if (typeof $.aljs === 'undefined') {
         $.aljs = {
             assetsLocation: '',
-            scoped: false,
-            scopingClass: '.slds-scope'
+            scoped: true,
+            scopingClass: 'slds-scope'
         };
         
         $.aljsInit = function(options) {
@@ -1332,7 +1332,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     var isShowing, aljsScope;
     
     function initModals() {        
-        aljsScope = ($.aljs.scoped) ? (typeof($.aljs.scopingClass) === 'string') ? $.aljs.scopingClass : '.slds' :  aljsBodyTag;
+        aljsScope = ($.aljs.scoped) ? (typeof($.aljs.scopingClass) === 'string') ? '.' + $.aljs.scopingClass : '.slds-scope' :  aljsBodyTag;
         
         $('.slds-backdrop').remove(); // Remove any existing backdrops
         $(aljsScope).append('<div class="aljs-modal-container"></div>');
@@ -2038,7 +2038,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                                 '</div>';
 
             if ($target.next('.slds-popover').length === 0) {
-                var $popoverNode = ($.aljs.scoped) ? (typeof($.aljs.scopingClass) === 'string') ? $(popoverMarkup).appendTo($.aljs.scopingClass) : $(popoverMarkup).appendTo('.slds') : $(popoverMarkup).appendTo('body');
+                var $popoverNode = ($.aljs.scoped) ? (typeof($.aljs.scopingClass) === 'string') ? $(popoverMarkup).appendTo('.' + $.aljs.scopingClass) : $(popoverMarkup).appendTo('.slds-scope') : $(popoverMarkup).appendTo('body');
                 var actualWidth  = $popoverNode[0].offsetWidth;
                 var actualHeight = $popoverNode[0].offsetHeight;// + 15;
                 var targetPos = getPosition($target)

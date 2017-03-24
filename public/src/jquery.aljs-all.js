@@ -278,7 +278,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             }
 
             $yearSelect.on('change', function(e) {
-                self.viewedYear = $(e.target).val();
+                self.viewedYear = parseInt($(e.target).val());
                 self.fillMonth();
             });
             
@@ -286,7 +286,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
         getMMDDYYYY: function(month, date, year) {
             return (month > 9 ? month : '0' + month) + '/' + (date > 9 ? date : '0' + date) + '/' + year;
         },
-        getMonthArray: function() { // To do: fix going out of year range
+        getMonthArray: function() {
             var self = this;
             var selectedFullDate = this.selectedFullDate;
             var selectedEndDate = this.selectedEndDate;
@@ -310,6 +310,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             // Fill previous month
             for (var i = numDaysInPrevMonth - (firstDayOfMonth - 1); i <= numDaysInPrevMonth; i++) {
                 var iDate = moment(new Date(previousMonth === 11 ? viewedYear - 1 : viewedYear, previousMonth, i));
+                
                 allDays.push({
                     value: i,
                     dateValue: this.getMMDDYYYY(previousMonth + 1, i, viewedYear),
@@ -321,6 +322,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             // Fill current month
             for (var i = 1; i <= numDaysInMonth; i++) {
                 var iDate = moment(new Date(viewedYear, viewedMonth, i));
+                
                 allDays.push({
                     value: i,
                     dateValue: this.getMMDDYYYY(viewedMonth + 1, i, viewedYear),
@@ -340,7 +342,6 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     if (hasMultiRowSelection) {
                         calendarRows[calendarRows.length - 1].hasMultiRowSelection = true;
                     }
-
                     calendarRows.push({
                         data: [],
                         hasMultiRowSelection: hasMultiRowSelection
@@ -452,7 +453,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             if (self.viewedMonth === 0) {
                 self.viewedMonth = 11;
                 
-                if (self.viewedYear === (currentYear - self.settings.numYearsBefore)) {
+                if (self.viewedYear === (currentYear - self.settings.numYearsBefore)) { // Allow looping
                     self.viewedYear = currentYear + self.settings.numYearsAfter;
                     self.$datepickerEl.find('.slds-select option:selected')
                         .prop('selected', false);
@@ -479,7 +480,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             if (self.viewedMonth === 11) {
                 self.viewedMonth = 0;
                 
-                if (self.viewedYear === (currentYear + self.settings.numYearsAfter)) {
+                if (self.viewedYear === (currentYear + self.settings.numYearsAfter)) { // Allow looping
                     self.viewedYear = currentYear - self.settings.numYearsBefore;
                     self.$datepickerEl.find('.slds-select option:selected')
                         .prop('selected', false);

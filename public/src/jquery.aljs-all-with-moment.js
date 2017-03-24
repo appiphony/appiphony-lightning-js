@@ -4872,6 +4872,8 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             format: 'MM/DD/YYYY',
             endDateInputId: null,
             onChange: function(datepicker) {},
+            onShow: function(datepicker) {}, // To do: wire this up
+            onDismissed: function(datepicker) {}, // To do: wire this up
             dayLabels: [
                 {
                     full: 'Sunday',
@@ -4954,7 +4956,6 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             ],
             todayLabel: 'Today'
         }, typeof options === 'object' ? options : {});
-
 
         this.each(function() {
             var $this = $(this),

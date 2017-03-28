@@ -61,8 +61,8 @@
         });
 
         $(document).ready(function() {
-            $('#date').datepicker();
-            /*$('#date').datepicker({
+            /*$('#date').datepicker();*/
+            $('#date').datepicker({
                 numYearsBefore: 2,
                 numYearsAfter: 2,
                 format: 'MM/DD/YYYY',
@@ -148,9 +148,18 @@
                     }
                 ],
                 onChange: function(datepicker) {
-                    console.log(datepicker);
+                    console.log('changed', datepicker);
+                },
+                onShow: function(datepicker) {
+                    console.log('shown', datepicker);
+                },
+                onDismiss: function(datepicker) {
+                    console.log('dismissed', datepicker);
+                },
+                onSelect: function(datepicker, selectedDate) {
+                    console.log('selected', datepicker, selectedDate);
                 }
-            });*/
+            });
         });
     </script>
     <!--<script>

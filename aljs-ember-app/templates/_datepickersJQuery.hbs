@@ -109,7 +109,16 @@ $(document).ready(function() {
             }
         ],
         onChange: function(datepicker) {
-            console.log(datepicker);
+            console.log('changed', datepicker);
+        },
+        onShow: function(datepicker) {
+            console.log('shown', datepicker);
+        },
+        onDismiss: function(datepicker) {
+            console.log('dismissed', datepicker);
+        },
+        onSelect: function(datepicker, selectedDate) {
+            console.log('selected', datepicker, selectedDate);
         }
     });
 });
@@ -173,6 +182,24 @@ $(document).ready(function() {
                         <td data-label="Behavior">Calls a function when a datepicker's date is set by user interaction or programmatically</td>
                         <td data-label="Values">Any callback function with a passed in datepicker object parameter</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>function(datepicker) {}</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>onShow</code></th>
+                        <td data-label="Behavior">Calls a function when a datepicker is shown</td>
+                        <td data-label="Values">Any callback function with a passed in datepicker object parameter</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>function(datepicker) {}</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>onDismiss</code></th>
+                        <td data-label="Behavior">Calls a function when a datepicker is dismissed</td>
+                        <td data-label="Values">Any callback function with a passed in datepicker object parameter</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>function(datepicker) {}</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>onSelect</code></th>
+                        <td data-label="Behavior">Calls a function when a date is selected from a datepicker</td>
+                        <td data-label="Values">Any callback function with passed in datepicker object and moment object (representing the selected date) parameters</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>function(datepicker, selectedDate) {}</code></td>
                     </tr>
                 </tbody>
             </table>

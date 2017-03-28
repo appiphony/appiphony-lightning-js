@@ -140,6 +140,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
             var openDatepicker = function(e) {
                 e.stopPropagation();
+                
                 // Close other datepickers
                 $('[data-aljs-datepicker-id]').not(this).each(function() {
                     $(this).data('datepicker').closeDatepicker();
@@ -158,20 +159,22 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     self.$selectedInput = $(this).parent().find('input');
                     self.$selectedInput.off('keyup')
                                        .off('blur');
-                    self.$selectedInput.closest('.slds-form-element').append($datepickerEl);   
+                    self.$selectedInput.closest('.slds-form-element').append($datepickerEl);
+                    self.settings.onShow(self);
                     self.initYearDropdown();
                     $([$el, $datepickerEl, $elEndDate, $el.prev('svg')]).each(function() {
                         $(this).on('click', self.blockClose);
                     });         
                     $datepickerEl.on('click', self, self.processClick);
                     self.$selectedInput.blur(); // Mimic Salesforce functionality
-
+                    
                     $('body').on('click', self, self.closeDatepicker);
                 }  
             };
 
             // Opening datepicker
-            $el.on('focus', openDatepicker);
+            //$el.on('focus', openDatepicker); // This is now unsupported
+            $el.on('click', openDatepicker);
             $($el.prev('svg')).on('click', openDatepicker);
             $el.prev('svg').css('cursor', 'pointer');
 
@@ -194,7 +197,12 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             var $selectedInput = self.$selectedInput;
 
             if ($target.closest(self.$el.parent()).length === 0 && $selectedInput) {
-                $selectedInput.closest('.slds-form-element').find('.slds-datepicker').remove();
+                var $selectedDatepickerEl = $selectedInput.closest('.slds-form-element').find('.slds-datepicker');
+                
+                if ($selectedDatepickerEl.length > 0) {
+                    self.settings.onDismiss(self);
+                    $selectedInput.closest('.slds-form-element').find('.slds-datepicker').remove();
+                }
                 $('body').unbind('click', self.closeDatepicker);
                 $datepickerEl.unbind('click', self.processClick);
             }
@@ -529,8 +537,8 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     self.setSelectedFullDate(moment(selectedDate, 'MM/DD/YYYY'));
                 }
                 
-                self.closeDatepicker(e); 
-
+                self.settings.onSelect(self, moment(selectedDate, 'MM/DD/YYYY'));
+                self.closeDatepicker(e);
             }     
         },
         blockClose: function(e) {
@@ -570,8 +578,9 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             format: 'MM/DD/YYYY',
             endDateInputId: null,
             onChange: function(datepicker) {},
-            onShow: function(datepicker) {}, // To do: wire this up
-            onDismissed: function(datepicker) {}, // To do: wire this up
+            onShow: function(datepicker) {},
+            onDismiss: function(datepicker) {},
+            onSelect: function(datepicker, selectedDate) {},
             dayLabels: [
                 {
                     full: 'Sunday',

@@ -142,7 +142,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 e.stopPropagation();
                 
                 // Close other datepickers
-                $('[data-aljs-datepicker-id]').not(this).each(function() {
+                $('[data-aljs-datepicker-id]').each(function() {
                     $(this).data('datepicker').closeDatepicker();
                 });
 
@@ -444,21 +444,29 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
         processBlur: function(e) {
             if (e) {
                 var self = e.data;
-                var selectedDate = $(this).val();
-                var momentSelectedDate = moment(selectedDate, self.settings.format);
                 
-                if (momentSelectedDate.isValid()) {
-                    if (self.$elEndDate && self.$elEndDate.length > 0 && self.$elEndDate[0] === self.$selectedInput[0]) {
-                        self.setSelectedEndDate(momentSelectedDate);
-                    } else {
-                        self.setSelectedFullDate(momentSelectedDate);
-                    }
+                if (self.$elEndDate && self.$elEndDate.length > 0 && self.$elEndDate[0] === self.$selectedInput[0]) { // Check if current input is for an end date
+                    var selectedEndDate = self.$elEndDate.val();
+                    var momentSelectedEndDate = moment(selectedEndDate, self.settings.format);
                     
-                    self.closeDatepicker(e);
-                    self.$selectedInput.off('keyup');
-                    //$(this).blur();
-                } else if (!selectedDate.length) {
-                    self.setSelectedFullDate('');
+                    if (momentSelectedEndDate.isValid()) {
+                        self.setSelectedEndDate(momentSelectedEndDate);
+                        self.closeDatepicker(e);
+                        self.$selectedInput.off('keyup');
+                    } else if (!selectedEndDate.length) {
+                        self.setSelectedEndDate('');
+                    }
+                } else {
+                    var selectedFullDate = self.$el.val();
+                    var momentSelectedFullDate = moment(selectedFullDate, self.settings.format);
+                    
+                    if (momentSelectedFullDate.isValid()) {
+                        self.setSelectedFullDate(momentSelectedFullDate);
+                        self.closeDatepicker(e);
+                        self.$selectedInput.off('keyup');
+                    } else if (!selectedFullDate.length) {
+                        self.setSelectedFullDate('');
+                    }
                 }
             }  
         },

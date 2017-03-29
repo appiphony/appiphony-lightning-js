@@ -125,8 +125,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
                 if ((e.target === $el[0] && ($el.val() !== null && $el.val() !== '')) || (e.target === $elEndDate[0] && ($elEndDate.val() !== null && $elEndDate.val() !== ''))) {
                     self.$selectedInput = $(this).parent().find('input');
-                    self.$selectedInput.on('keyup', self, self.processKeyup)
-                                       .one('blur', self, self.processBlur);
+                    self.$selectedInput.on('keyup', self, self.processKeyup);
                     self.closeDatepicker();
                 } else {
                     var initDate = self.selectedFullDate || moment();
@@ -134,8 +133,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     self.viewedYear = initDate.year();
                     self.fillMonth();
                     self.$selectedInput = $(this).parent().find('input');
-                    self.$selectedInput.off('keyup')
-                                       .off('blur');
+                    self.$selectedInput.off('keyup');
                     self.$selectedInput.closest('.slds-form-element').append($datepickerEl);
                     self.settings.onShow(self);
                     self.initYearDropdown();
@@ -143,21 +141,23 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                         $(this).on('click', self.blockClose);
                     });         
                     $datepickerEl.on('click', self, self.processClick);
-                    self.$selectedInput.blur(); // Mimic Salesforce functionality
+                    //self.$selectedInput.blur(); // Mimic Salesforce functionality
                     
                     $('body').on('click', self, self.closeDatepicker);
                 }  
             };
 
             // Opening datepicker
-            //$el.on('focus', openDatepicker); // This is now unsupported
+            //$el.on('focus', openDatepicker); // Removed by request of the Salesforce design team
+            $el.on('blur', self, self.processBlur);
             $el.on('click', openDatepicker);
             $($el.prev('svg')).on('click', openDatepicker);
             $el.prev('svg').css('cursor', 'pointer');
 
             if ($elEndDate.length > 0) {
-                $($elEndDate).on('focus', openDatepicker);
-                $($elEndDate.prev('svg')).on('click', openDatepicker);
+                $elEndDate.on('blur', self, self.processBlur); // To do: fix this to pass in the correct end date datepicker
+                $elEndDate.on('focus', openDatepicker);
+                $elEndDate.prev('svg').on('click', openDatepicker);
                 $elEndDate.prev('svg').css('cursor', 'pointer');
             }
         },
@@ -362,14 +362,14 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             if (selectedFullDate !== '' && selectedFullDate !== null && typeof selectedFullDate !== 'undefined') {
                 this.$el.val(selectedFullDate.format(this.settings.format));
                 
-                if (navigator.userAgent.indexOf('Safari') !== -1 && navigator.userAgent.indexOf('Chrome') === -1) { // Addresses bug where Safari does not clear out visible placeholders on first value update ¯\_(ツ)_/¯
+                if (navigator.userAgent.indexOf('Safari') !== -1 && navigator.userAgent.indexOf('Chrome') === -1) { // Addresses bug where Safari does not clear out visible placeholders on first value update
                     this.$el.val(selectedFullDate.format(this.settings.format));     
                 }
-            } else { // Start here
+            } else {
                 this.$el.val('');
             }
 
-            if (!oldDate || (!oldDate.isSame(selectedFullDate, 'day'))) {
+            if ((!oldDate && selectedFullDate != '') || (typeof(oldDate) === 'object' && !oldDate.isSame(selectedFullDate, 'day'))) {
                 this.settings.onChange(this);
             }
         },
@@ -377,9 +377,18 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             var oldDate = this.selectedEndDate;
 
             this.selectedEndDate = selectedEndDate;
-            this.$elEndDate.val(selectedEndDate.format(this.settings.format));
+            
+            if (selectedEndDate !== '' && selectedEndDate !== null && typeof selectedEndDate !== 'undefined') {
+                this.$elEndDate.val(selectedEndDate.format(this.settings.format));
+                
+                if (navigator.userAgent.indexOf('Safari') !== -1 && navigator.userAgent.indexOf('Chrome') === -1) { // Addresses bug where Safari does not clear out visible placeholders on first value update
+                    this.$elEndDate.val(selectedEndDate.format(this.settings.format));     
+                }
+            } else {
+                this.$elEndDate.val('');
+            }
 
-            if (!oldDate || (!oldDate.isSame(selectedEndDate, 'day'))) {
+            if ((!oldDate && selectedEndDate != '') || (typeof(oldDate) === 'object' && !oldDate.isSame(selectedEndDate, 'day'))) {
                 this.settings.onChange(this);
             }
         },
@@ -423,8 +432,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     }
                     
                     self.closeDatepicker(e);
-                    self.$selectedInput.off('keyup')
-                                       .off('blur');
+                    self.$selectedInput.off('keyup');
                     //$(this).blur();
                 } else if (!selectedDate.length) {
                     self.setSelectedFullDate('');

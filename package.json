@@ -1,6 +1,6 @@
 {
   "name": "appiphony-lightning-js",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Your JS solution for the Lightning Design System",
   "main": "gulpfile.js",
   "scripts": {

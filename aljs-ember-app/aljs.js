@@ -80,7 +80,7 @@ App.AljsView = Ember.View.extend({
             
             setTimeout(function() {
                 notification.addClass('show');
-            }, 2000);
+            }, 1500);
             
             closeButton.click(function() {
                 notification.removeClass('show');

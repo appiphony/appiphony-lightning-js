@@ -75,19 +75,15 @@ App.AljsView = Ember.View.extend({
                 .addClass('selected');
         }
         
-        if (notification.length) {
-            notification.removeClass('show');
-            
-            var closeButton = $('.js-close-button', notification);
-            
-            setTimeout(function() {
-                notification.addClass('show');
-            }, 1000);
-            
-            closeButton.click(function() {
-                notification.removeClass('show');
-            });
-        }
+        notification.removeClass('show');
+
+        setTimeout(function() {
+            notification.addClass('show');
+        }, 1000);
+
+        $('body').on('click', '.js-notification .js-close-button', function() {
+            $('.js-notification').removeClass('show');
+        });
 
         mobileNavLink.click(function(e) {
             e.preventDefault();

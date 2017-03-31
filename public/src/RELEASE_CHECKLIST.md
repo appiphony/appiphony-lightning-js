@@ -10,6 +10,7 @@
 10. Checkout `master` branch
 11. Merge `development` branch into `master` branch
 12. Tag release on GitHub with version number
-13. Publish package on NPM
-14. Deploy public site to host
-15. Checkout `development` branch for continued development
+13. Close GitHub issues
+14. Publish package on NPM
+15. Deploy public site to host
+16. Checkout `development` branch for continued development

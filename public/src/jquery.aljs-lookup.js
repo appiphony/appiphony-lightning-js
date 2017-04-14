@@ -26,8 +26,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	var customPillMarkup = 
     	'<span class="slds-pill slds-size--1-of-1">' +
       		'<span class="slds-icon_container slds-icon-standard-account slds-pill__icon_container{{hasIcon}}" title="{{objectLabel}}">' +
-                '<img class="{{objectIconClass}} slds-icon slds-pill__icon" src="{{objectLabel}}"/>' +
-                '<span class="slds-assistive-text">{{objectLabel}}</span>' + 
+                '<img class="{{objectIconClass}} slds-icon slds-pill__icon" src="{{objectIconUrl}}"/>' +
+                '<span class="slds-assistive-text">{{objectLabel}}</span>' +
             '</span>' +
             '<span class="slds-pill__label" title="{{selectedResultLabel}}">{{selectedResultLabel}}</span>' +
             '<button class="slds-button slds-button--icon-bare slds-pill__remove">' +

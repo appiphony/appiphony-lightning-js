@@ -64,7 +64,7 @@
                     <td data-label="Behavior">Specifies the directory containing SLDS's <code>assets</code> directory</td>
                     <td data-label="Accepted values">Any string</td>
                     <td data-label="Default value" class="slds-cell-shrink"><code>''</code></td>
-                    <td data-label="Comments" class="slds-cell-shrink">The default value represents the root of the site; use '.' to select the same directory as the current page</td>
+                    <td data-label="Comments" class="slds-cell-shrink">The default value represents the root of the site; use <code>'.'</code> to select the same directory as the current page; use <code>'{!URLFOR($Asset.SLDS)}'</code> to utilize the <code>$Asset</code> global variable</td>
                 </tr>
                 <tr>
                     <th scope="row"><code>scoped</code></th>
@@ -73,6 +73,7 @@
                     <td data-label="Default value" class="slds-cell-shrink"><code>true</code></td>
                     <td data-label="Comments" class="slds-cell-shrink"></td>
                 </tr>
+                <tr>
                 <tr>
                     <th scope="row"><code>scopingClass</code></th>
                     <td data-label="Behavior">Specifies the class of the scope</td>

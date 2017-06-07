@@ -40,6 +40,16 @@
                         <td data-label="Applied to" class="slds-cell-shrink"><code>[data-aljs="popover"]</code></td>
                         <td data-label="Comments">Defaults to <code>top</code> if the attribute does not exist</td>
                     </tr>
+                    <tr>
+                        <th scope="row"><code>data-aljs-dismiss="popover"</code></th>
+                        <td data-label="Outcome">Assigns the role of dismissing popovers on click</td>
+                        <td data-label="Required" class="slds-cell-shrink">
+                            <!--<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                            </svg><span class="slds-assistive-text">Required</span>--></td>
+                        <td data-label="Applied to" class="slds-cell-shrink">Any element</td>
+                        <td data-label="Comments">This attribute may be useful when overriding the standard <code>hideTrigger</code> value</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -54,7 +64,9 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('[data-aljs="popover"]').popover({
         modifier: '',
-        theme: ''
+        theme: '',
+        showTrigger: 'mouseenter focusin',
+        hideTrigger: 'mouseleave blur'
     });
 });
 {{/aljs-pre-container}}<p class="slds-m-top--medium">This table details the options available for the jQuery function.</p>
@@ -80,6 +92,18 @@ $(document).ready(function() {
                         <td data-label="Behavior">Includes the specified SLDS theme to the popover</td>
                         <td data-label="Accepted values">Any string representing an SLDS theme class modifier (e.g., <code>'error'</code>)</td>
                         <td data-label="Default value" class="slds-cell-shrink"><code>''</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>showTrigger</code></th>
+                        <td data-label="Behavior">Determines the event(s) handled by the trigger element to show its popover</td>
+                        <td data-label="Accepted values">Any string representing one or more standard event names</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>'mouseenter focusin'</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><code>hideTrigger</code></th>
+                        <td data-label="Behavior">Determines the event(s) handled by the trigger element to hide its popover</td>
+                        <td data-label="Accepted values">Any string representing one or more standard event names</td>
+                        <td data-label="Default value" class="slds-cell-shrink"><code>'mouseleave blur'</code></td>
                     </tr>
                 </tbody>
             </table>
@@ -107,7 +131,7 @@ $(document).ready(function() {
                 <tbody>
                     <tr>
                         <th scope="row"><code>selector</code></th>
-                        <td data-label="Behavior">Allows elements matching the selector to show popovers on hover, regardless of whether or not they were present during initialization</td>
+                        <td data-label="Behavior">Allows elements matching the selector to show popovers on the <code>showTrigger</code> event(s), regardless of whether or not they were present during initialization</td>
                         <td data-label="Values">Any selector</td>
                         <td data-label="Required" class="slds-cell-shrink">
                             <svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">

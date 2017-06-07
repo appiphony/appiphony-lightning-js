@@ -2025,6 +2025,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     var nubbinWidth = 15;
 
     var showPopover = function(e) {
+        hidePopover(); // Hide existing popovers if default triggers are disabled
         
         var settings = e.data;
         var $target = $(e.target).is($(settings.selector)) ? $(e.target) : $(e.target).closest(settings.selector || '[data-aljs="popover"]');
@@ -2166,52 +2167,35 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         var settings = $.extend({
             assetsLocation: $.aljs.assetsLocation,
             modifier: '',
-            theme: ''
+            theme: '',
+            showTrigger: 'mouseenter focusin',
+            hideTrigger: 'mouseleave blur'
             // These are the defaults
         }, options );
-
-        this.each(function() {            
+        
+        this.each(function() {
             $('#' + $(this).data('aljs-show')).addClass('slds-hide'); // Hide custom popover markup on init
         });
-
+        
+        $('body').click(hidePopover);
+        $('body').on('click', '[data-aljs-dismiss="popover"]', hidePopover);
+        
+        $('body').on('click', '.slds-popover, .slds-popover .slds-form-element__label, [data-aljs="popover"]', function(e) {
+            e.stopPropagation();
+        });
+        
         if (settings.selector && this.length === 1) {
-            return this.on('mouseenter', settings.selector, settings, showPopover)
-                .on('focusin', settings.selector, settings, showPopover)
-                .on('mouseleave', settings.selector, settings, hidePopover)
-                .on('blur', settings.selector, settings, hidePopover)
-                .on('touchstart', settings.selector, settings, function(e) {
-                    e.stopPropagation();
-                    var selector = (settings.modifier == 'tooltip') ? '.slds-popover_tooltip' : '.slds-popover';
-
-                    if ($(selector).length == 0) {
-                        showPopover();
-                    } else {
-                        hidePopover();
-                    }
-                });
+            return this.on(settings.showTrigger, settings.selector, settings, showPopover)
+                .on(settings.hideTrigger, settings.selector, settings, hidePopover)
         } else {
             return this.each(function() {
                 var thisSettings = JSON.parse(JSON.stringify(settings));
                 thisSettings.selector = this;
                 
-                $(this).on('mouseenter', thisSettings, showPopover)
-                       .on('focusin', thisSettings, showPopover)
-                       .on('mouseleave', thisSettings, hidePopover)
-                       .on('blur', thisSettings, hidePopover)
-                       .on('touchstart', thisSettings, function(e) {
-                            e.stopPropagation();
-                            var selector = (thisSettings.modifier == 'tooltip') ? '.slds-popover_tooltip' : '.slds-popover';
-
-                            if ($(selector).length == 0) {
-                                showPopover();
-                            } else {
-                                hidePopover();
-                            }
-                        });
+                $(this).on(thisSettings.showTrigger, thisSettings, showPopover)
+                    .on(thisSettings.hideTrigger, thisSettings, hidePopover);
             });
         }
-
-        $('body').on('touchstart', hidePopover);
     };
 }(jQuery));
 

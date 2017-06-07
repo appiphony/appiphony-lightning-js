@@ -28,6 +28,7 @@
             <div class="slds-text-longform">
                 <h3 class="slds-text-heading--small">Right here!</h3> 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <!--<button class="slds-button slds-button--brand" data-aljs-dismiss="popover">Close Popover</button>-->
             </div>
         </div>
     </div>
@@ -53,7 +54,9 @@
     	$('body').popover({
             selector: '[data-aljs="popover"]',
             modifier: 'tooltip',
-            theme: 'error'
+            theme: 'error',
+            showTrigger: 'click',
+            hideTrigger: ''
         });
     </script>-->
     <script>

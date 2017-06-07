@@ -107,7 +107,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         };
                         
                         backdrop.one('transitionend', handleTransitionEnd)
-                            .addClass('slds-backdrop--open');
+                            .addClass('slds-backdrop_open');
                         modalObj.$el.addClass('slds-fade-in-open')
                             .trigger('show.aljs.modal'); // Custom aljs event
                         settings.onShow(modalObj);
@@ -128,7 +128,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         };
                         
                         backdrop.one('transitionend', handleTransitionEnd)
-                            .removeClass('slds-backdrop--open');
+                            .removeClass('slds-backdrop_open');
                     }
                     
                     settings.onDismiss(modalObj);

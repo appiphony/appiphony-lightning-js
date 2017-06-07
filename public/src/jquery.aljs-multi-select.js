@@ -5,7 +5,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
 (function($) {
     var picklistItemMarkup = 
-    '<li draggable="true" id="{{optionId}}" class="slds-picklist__item slds-has-icon slds-has-icon--left" aria-selected="false" tabindex="0" role="option">' +
+    '<li draggable="true" id="{{optionId}}" class="slds-picklist__item slds-has-icon slds-has-icon_left" aria-selected="false" tabindex="0" role="option">' +
         '<span class="slds-truncate">' +
             '<span>{{optionLabel}}</span>' +
         '</span>' +

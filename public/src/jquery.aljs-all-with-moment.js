@@ -4488,15 +4488,14 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
 // Based on bootstrap-datepicker.js 
 
-
 (function($) {
     var datepickerMenuMarkup = 
-    '<div class="slds-datepicker slds-dropdown slds-dropdown--left" aria-hidden="false">' +
+    '<div class="slds-datepicker slds-dropdown slds-dropdown_left" aria-hidden="false">' +
         '<div class="slds-datepicker__filter slds-grid">' +
-            '<div class="slds-datepicker__filter--month slds-grid slds-grid--align-spread slds-grow">' +
+            '<div class="slds-datepicker__filter_month slds-grid slds-grid_align-spread slds-grow">' +
                 '<div class="slds-align-middle">' +
-                    '<button id="aljs-prevButton" class="slds-button slds-button--icon-container">' +
-                        '<svg aria-hidden="true" class="slds-button__icon slds-button__icon--small">' +
+                    '<button id="aljs-prevButton" class="slds-button slds-button_icon-container">' +
+                        '<svg aria-hidden="true" class="slds-button__icon slds-button__icon_small">' +
                             '<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#left"></use>' +
                         '</svg>' +
                         '<span class="slds-assistive-text">Previous Month</span>' +
@@ -4504,7 +4503,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 '</div>' +
                 '<h2 id="aljs-month" class="slds-align-middle" aria-live="assertive" aria-atomic="true"></h2>' +
                 '<div class="slds-align-middle">' +
-                    '<button id="aljs-nextButton" class="slds-button slds-button--icon-container" title="Next Month">' +
+                    '<button id="aljs-nextButton" class="slds-button slds-button_icon-container" title="Next Month">' +
                         '<svg aria-hidden="true" class="slds-button__icon">' +
                             '<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#right"></use>' +
                         '</svg>' +
@@ -4552,7 +4551,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
     
     var todayLinkMarkup = 
       '<tr>' + 
-        '<td colspan="7" role="gridcell" data-aljs-date="{{todaysDate}}"><a href="javascript:void(0);" class="slds-show--inline-block slds-p-bottom--x-small">{{todayLabel}}</a></td>' +
+        '<td colspan="7" role="gridcell" data-aljs-date="{{todaysDate}}"><a href="javascript:void(0);" class="slds-show_inline-block slds-p-bottom_x-small">{{todayLabel}}</a></td>' +
       '</tr>';
 
     var Datepicker = function(el, options) {
@@ -5254,7 +5253,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	var selectContainerMarkup = '<div class="slds-pill_container slds-hide"></div>';
     
 	var pillMarkup = 
-    	'<span class="slds-pill slds-size--1-of-1">' +
+    	'<span class="slds-pill slds-size_1-of-1">' +
       		'<span class="slds-icon_container slds-icon-standard-account slds-pill__icon_container{{hasIcon}}" title="{{objectLabel}}">' +
         		'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-pill__icon">' +
           			'<use xlink:href="{{objectIconUrl}}"></use>' +
@@ -5262,7 +5261,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 '<span class="slds-assistive-text">{{objectLabel}}</span>' + 
             '</span>' +
             '<span class="slds-pill__label" title="{{selectedResultLabel}}">{{selectedResultLabel}}</span>' +
-            '<button class="slds-button slds-button--icon-bare slds-pill__remove">' +
+            '<button class="slds-button slds-button_icon-bare slds-pill__remove">' +
                 '<svg aria-hidden="true" class="slds-button__icon">' +
                     '<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#close"></use>' +
                 '</svg>' +
@@ -5271,13 +5270,13 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     	'</span>';
 
 	var customPillMarkup = 
-    	'<span class="slds-pill slds-size--1-of-1">' +
+    	'<span class="slds-pill slds-size_1-of-1">' +
       		'<span class="slds-icon_container slds-icon-standard-account slds-pill__icon_container{{hasIcon}}" title="{{objectLabel}}">' +
                 '<img class="{{objectIconClass}} slds-icon slds-pill__icon" src="{{objectLabel}}"/>' +
                 '<span class="slds-assistive-text">{{objectLabel}}</span>' + 
             '</span>' +
             '<span class="slds-pill__label" title="{{selectedResultLabel}}">{{selectedResultLabel}}</span>' +
-            '<button class="slds-button slds-button--icon-bare slds-pill__remove">' +
+            '<button class="slds-button slds-button_icon-bare slds-pill__remove">' +
                 '<svg aria-hidden="true" class="slds-button__icon">' +
                     '<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#close"></use>' +
                 '</svg>' +
@@ -5293,20 +5292,20 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
 	var searchMarkup = 
 		'<li role="presentation">' +
-			'<span class="slds-lookup__item-action slds-lookup__item-action--label" role="option" tabindex="1">' +
-				'<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">' +
+			'<span class="slds-lookup__item-action slds-lookup__item-action_label" role="option" tabindex="1">' +
+				'<svg aria-hidden="true" class="slds-icon slds-icon_x-small slds-icon-text-default">' +
 					'<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#search"></use>' +
 				'</svg>' +
                 '<span class="slds-truncate">&quot;{{searchTerm}}&quot; in {{objectPluralLabel}}</span>' +
 			'</span>' +
 		'</li>';
     
-    var recentMarkup = '<div class="slds-lookup__item--label slds-text-body--small">{{recentLabel}}</div>';
+    var recentMarkup = '<div class="slds-lookup__item_label slds-text-body_small">{{recentLabel}}</div>';
 
 	var newItemMarkup = 
 		'<li role="presentation">' +
-			'<span class="slds-lookup__item-action slds-lookup__item-action--label" role="option" tabindex="1">' +
-				'<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">' +
+			'<span class="slds-lookup__item-action slds-lookup__item-action_label" role="option" tabindex="1">' +
+				'<svg aria-hidden="true" class="slds-icon slds-icon_x-small slds-icon-text-default">' +
 					'<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#add"></use>' +
 				'</svg>' +
                 '<span class="slds-truncate">New {{objectLabel}}</span>' +
@@ -5316,7 +5315,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	var lookupResultItemMarkup = 
 		'<li role="presentation">' +
 			'<span class="slds-lookup__item-action slds-media" id="{{resultId}}" role="option" tabindex="1">' +
-				'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-icon--small slds-media__figure{{hasIcon}}">' +
+				'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-icon_small slds-media__figure{{hasIcon}}">' +
 					'<use xlink:href="{{objectIconUrl}}"></use>' +
 				'</svg>' +
                 '<div class="slds-media__body">' +
@@ -5329,7 +5328,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	var customLookupResultItemMarkup = 
 		'<li role="presentation">' +
 			'<span class="slds-lookup__item-action slds-media" id="{{resultId}}" role="option" tabindex="1">' +
-                '<img class="{{objectIconClass}} slds-icon slds-icon--small slds-media__figure{{hasIcon}}" src="{{objectIconUrl}}"/>' +
+                '<img class="{{objectIconClass}} slds-icon slds-icon_small slds-media__figure{{hasIcon}}" src="{{objectIconUrl}}"/>' +
                 '<div class="slds-media__body">' +
                     '<div class="slds-lookup__result-text">{{resultLabel}}</div>' +
                     '{{metaLabel}}' +
@@ -5377,7 +5376,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         if (e.which === 38 || e.which === 40) { // Up or down arrow, respectively
             e.preventDefault();
             
-            var firstItemSelector = ($('.slds-lookup .slds-lookup__list > li:first-child').is('.slds-lookup__item--label')) ? '.slds-lookup .slds-lookup__list > li:nth-child(2) .slds-lookup__item-action' : '.slds-lookup .slds-lookup__list > li:first-child .slds-lookup__item-action';
+            var firstItemSelector = ($('.slds-lookup .slds-lookup__list > li:first-child').is('.slds-lookup__item_label')) ? '.slds-lookup .slds-lookup__list > li:nth-child(2) .slds-lookup__item-action' : '.slds-lookup .slds-lookup__list > li:first-child .slds-lookup__item-action';
             
             if (e.which === 38) { // Up arrow
                 if ($currentTarget.is(firstItemSelector)) { // Pressing up on the first item, loop over
@@ -5467,7 +5466,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         .replace(/{{objectLabel}}/g, self.settings.objectLabel)
                         .replace(/{{selectedResultLabel}}/g, result.label));
                     
-        			$pill.removeClass('slds-size--1-of-1')
+        			$pill.removeClass('slds-size_1-of-1')
                         .attr('id', result.id)
                         .on('click', 'a, button', self, self.clearMultiSelectResult)
                         .css({
@@ -5592,7 +5591,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         .replace('{{resultId}}', result.id)
                         .replace('{{objectIconUrl}}', self.settings.objectIconUrl)
                         .replace('{{objectIconClass}}', self.settings.objectIconClass)
-                        .replace('{{metaLabel}}', (result.metaLabel) ? '<span class="slds-lookup__result-meta slds-text-body--small">' + result.metaLabel + '</span>' : ''));
+                        .replace('{{metaLabel}}', (result.metaLabel) ? '<span class="slds-lookup__result-meta slds-text-body_small">' + result.metaLabel + '</span>' : ''));
         		} else if (self.selectedResults) {
         			var selectedResultsIds = self.selectedResults.map(function(result) { return result.id; });
                     
@@ -5602,7 +5601,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                             .replace('{{resultId}}', result.id)
                             .replace('{{objectIconUrl}}', self.settings.objectIconUrl)
                             .replace('{{objectIconClass}}', self.settings.objectIconClass)
-                            .replace('{{metaLabel}}', (result.metaLabel) ? '<span class="slds-lookup__result-meta slds-text-body--small">' + result.metaLabel + '</span>' : ''));
+                            .replace('{{metaLabel}}', (result.metaLabel) ? '<span class="slds-lookup__result-meta slds-text-body_small">' + result.metaLabel + '</span>' : ''));
         			}
         		}
                 
@@ -5913,7 +5912,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         };
                         
                         backdrop.one('transitionend', handleTransitionEnd)
-                            .addClass('slds-backdrop--open');
+                            .addClass('slds-backdrop_open');
                         modalObj.$el.addClass('slds-fade-in-open')
                             .trigger('show.aljs.modal'); // Custom aljs event
                         settings.onShow(modalObj);
@@ -5934,7 +5933,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         };
                         
                         backdrop.one('transitionend', handleTransitionEnd)
-                            .removeClass('slds-backdrop--open');
+                            .removeClass('slds-backdrop_open');
                     }
                     
                     settings.onDismiss(modalObj);
@@ -5977,7 +5976,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
 (function($) {
     var picklistItemMarkup = 
-    '<li draggable="true" id="{{optionId}}" class="slds-picklist__item slds-has-icon slds-has-icon--left" aria-selected="false" tabindex="0" role="option">' +
+    '<li draggable="true" id="{{optionId}}" class="slds-picklist__item slds-has-icon slds-has-icon_left" aria-selected="false" tabindex="0" role="option">' +
         '<span class="slds-truncate">' +
             '<span>{{optionLabel}}</span>' +
         '</span>' +
@@ -6513,9 +6512,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 right: 'left'
             };
             var popoverPositioningCSS = 'overflow: visible; display: block; position: absolute;';
-            var modifier = (settings.modifier != '') ? ' slds-popover--' + settings.modifier : '';
-            var theme = (settings.theme != '') ? ' slds-theme--' + settings.theme : '';
-            var popoverMarkup = '<div id="' + popoverId + '" aria-describedby="' + popoverId + '" class="slds-popover' + modifier + theme + ' slds-nubbin--' + (popoverNubbins[popoverPosition] || 'top') + '" style="' + popoverPositioningCSS +'">' +
+            var modifier = (settings.modifier != '') ? ' slds-popover_' + settings.modifier : '';
+            var theme = (settings.theme != '') ? ' slds-theme_' + settings.theme : '';
+            var popoverMarkup = '<div id="' + popoverId + '" aria-describedby="' + popoverId + '" class="slds-popover' + modifier + theme + ' slds-nubbin_' + (popoverNubbins[popoverPosition] || 'top') + '" style="' + popoverPositioningCSS +'">' +
                                     '<div class="slds-popover__body"' + lineHeightFix + '>' +
                                     popoverContent +
                                     '</div>' +
@@ -6646,7 +6645,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 .on('blur', settings.selector, settings, hidePopover)
                 .on('touchstart', settings.selector, settings, function(e) {
                     e.stopPropagation();
-                    var selector = (settings.modifier == 'tooltip') ? '.slds-popover--tooltip' : '.slds-popover';
+                    var selector = (settings.modifier == 'tooltip') ? '.slds-popover_tooltip' : '.slds-popover';
 
                     if ($(selector).length == 0) {
                         showPopover();
@@ -6665,7 +6664,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                        .on('blur', thisSettings, hidePopover)
                        .on('touchstart', thisSettings, function(e) {
                             e.stopPropagation();
-                            var selector = (thisSettings.modifier == 'tooltip') ? '.slds-popover--tooltip' : '.slds-popover';
+                            var selector = (thisSettings.modifier == 'tooltip') ? '.slds-popover_tooltip' : '.slds-popover';
 
                             if ($(selector).length == 0) {
                                 showPopover();
@@ -6697,8 +6696,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         initTabs: function() {
             // Bind buttons
             var self = this;
-            var $tabButtons = this.$el.find('> .slds-tabs--default__nav > .slds-tabs--default__item > .slds-tabs--default__link, > .slds-tabs--scoped__nav > .slds-tabs--scoped__item > .slds-tabs--scoped__link');
-            var children = this.$el.find('> .slds-tabs--default__nav > .slds-tabs--default__item, > .slds-tabs--scoped__nav > .slds-tabs--scoped__item');
+            var $tabButtons = this.$el.find('> .slds-tabs_efault__nav > .slds-tabs_efault__item > .slds-tabs_efault__link, > .slds-tabs_coped__nav > .slds-tabs_coped__item > .slds-tabs_coped__link');
+            var children = this.$el.find('> .slds-tabs_efault__nav > .slds-tabs_efault__item, > .slds-tabs_coped__nav > .slds-tabs_coped__item');
             var tabsObj = {
                 self: self,
                 children: children
@@ -6721,19 +6720,19 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             children.keyup(tabsObj, this.processKeypress);
         },
         selectTab: function(tabId) {
-            this.$el.find('> .slds-tabs--default__nav > .slds-tabs--default__item, > .slds-tabs--scoped__nav > .slds-tabs--scoped__item')
+            this.$el.find('> .slds-tabs_efault__nav > .slds-tabs_efault__item, > .slds-tabs_coped__nav > .slds-tabs_coped__item')
                 .removeClass('slds-active')
                 .blur()
-                .find('> .slds-tabs--default__link, > .slds-tabs--scoped__link')
+                .find('> .slds-tabs_efault__link, > .slds-tabs_coped__link')
                 .attr('tabindex', '-1')
                 .attr('aria-selected', 'false');
-            this.$el.find('> .slds-tabs--default__content, > .slds-tabs--scoped__content')
+            this.$el.find('> .slds-tabs_efault__content, > .slds-tabs_coped__content')
                 .hide();
             this.$el.find('[data-aljs-show="' + tabId + '"]')
                 .focus()
                 .closest('li')
                 .addClass('slds-active')
-                .find('> .slds-tabs--default__link, > .slds-tabs--scoped__link')
+                .find('> .slds-tabs_efault__link, > .slds-tabs_coped__link')
                 .attr('tabindex', '0')
                 .attr('aria-selected', 'true');
             this.$el.find('#' + tabId).show()

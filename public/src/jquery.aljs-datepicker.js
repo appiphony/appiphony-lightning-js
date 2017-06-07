@@ -6,15 +6,14 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
 // Based on bootstrap-datepicker.js 
 
-
 (function($) {
     var datepickerMenuMarkup = 
-    '<div class="slds-datepicker slds-dropdown slds-dropdown--left" aria-hidden="false">' +
+    '<div class="slds-datepicker slds-dropdown slds-dropdown_left" aria-hidden="false">' +
         '<div class="slds-datepicker__filter slds-grid">' +
-            '<div class="slds-datepicker__filter--month slds-grid slds-grid--align-spread slds-grow">' +
+            '<div class="slds-datepicker__filter_month slds-grid slds-grid_align-spread slds-grow">' +
                 '<div class="slds-align-middle">' +
-                    '<button id="aljs-prevButton" class="slds-button slds-button--icon-container">' +
-                        '<svg aria-hidden="true" class="slds-button__icon slds-button__icon--small">' +
+                    '<button id="aljs-prevButton" class="slds-button slds-button_icon-container">' +
+                        '<svg aria-hidden="true" class="slds-button__icon slds-button__icon_small">' +
                             '<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#left"></use>' +
                         '</svg>' +
                         '<span class="slds-assistive-text">Previous Month</span>' +
@@ -22,7 +21,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 '</div>' +
                 '<h2 id="aljs-month" class="slds-align-middle" aria-live="assertive" aria-atomic="true"></h2>' +
                 '<div class="slds-align-middle">' +
-                    '<button id="aljs-nextButton" class="slds-button slds-button--icon-container" title="Next Month">' +
+                    '<button id="aljs-nextButton" class="slds-button slds-button_icon-container" title="Next Month">' +
                         '<svg aria-hidden="true" class="slds-button__icon">' +
                             '<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#right"></use>' +
                         '</svg>' +
@@ -70,7 +69,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
     
     var todayLinkMarkup = 
       '<tr>' + 
-        '<td colspan="7" role="gridcell" data-aljs-date="{{todaysDate}}"><a href="javascript:void(0);" class="slds-show--inline-block slds-p-bottom--x-small">{{todayLabel}}</a></td>' +
+        '<td colspan="7" role="gridcell" data-aljs-date="{{todaysDate}}"><a href="javascript:void(0);" class="slds-show_inline-block slds-p-bottom_x-small">{{todayLabel}}</a></td>' +
       '</tr>';
 
     var Datepicker = function(el, options) {

@@ -7,7 +7,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	var selectContainerMarkup = '<div class="slds-pill_container slds-hide"></div>';
     
 	var pillMarkup = 
-    	'<span class="slds-pill slds-size--1-of-1">' +
+    	'<span class="slds-pill slds-size_1-of-1">' +
       		'<span class="slds-icon_container slds-icon-standard-account slds-pill__icon_container{{hasIcon}}" title="{{objectLabel}}">' +
         		'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-pill__icon">' +
           			'<use xlink:href="{{objectIconUrl}}"></use>' +
@@ -15,7 +15,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 '<span class="slds-assistive-text">{{objectLabel}}</span>' + 
             '</span>' +
             '<span class="slds-pill__label" title="{{selectedResultLabel}}">{{selectedResultLabel}}</span>' +
-            '<button class="slds-button slds-button--icon-bare slds-pill__remove">' +
+            '<button class="slds-button slds-button_icon-bare slds-pill__remove">' +
                 '<svg aria-hidden="true" class="slds-button__icon">' +
                     '<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#close"></use>' +
                 '</svg>' +
@@ -24,13 +24,13 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     	'</span>';
 
 	var customPillMarkup = 
-    	'<span class="slds-pill slds-size--1-of-1">' +
+    	'<span class="slds-pill slds-size_1-of-1">' +
       		'<span class="slds-icon_container slds-icon-standard-account slds-pill__icon_container{{hasIcon}}" title="{{objectLabel}}">' +
                 '<img class="{{objectIconClass}} slds-icon slds-pill__icon" src="{{objectLabel}}"/>' +
                 '<span class="slds-assistive-text">{{objectLabel}}</span>' + 
             '</span>' +
             '<span class="slds-pill__label" title="{{selectedResultLabel}}">{{selectedResultLabel}}</span>' +
-            '<button class="slds-button slds-button--icon-bare slds-pill__remove">' +
+            '<button class="slds-button slds-button_icon-bare slds-pill__remove">' +
                 '<svg aria-hidden="true" class="slds-button__icon">' +
                     '<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#close"></use>' +
                 '</svg>' +
@@ -46,20 +46,20 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
 	var searchMarkup = 
 		'<li role="presentation">' +
-			'<span class="slds-lookup__item-action slds-lookup__item-action--label" role="option" tabindex="1">' +
-				'<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">' +
+			'<span class="slds-lookup__item-action slds-lookup__item-action_label" role="option" tabindex="1">' +
+				'<svg aria-hidden="true" class="slds-icon slds-icon_x-small slds-icon-text-default">' +
 					'<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#search"></use>' +
 				'</svg>' +
                 '<span class="slds-truncate">&quot;{{searchTerm}}&quot; in {{objectPluralLabel}}</span>' +
 			'</span>' +
 		'</li>';
     
-    var recentMarkup = '<div class="slds-lookup__item--label slds-text-body--small">{{recentLabel}}</div>';
+    var recentMarkup = '<div class="slds-lookup__item_label slds-text-body_small">{{recentLabel}}</div>';
 
 	var newItemMarkup = 
 		'<li role="presentation">' +
-			'<span class="slds-lookup__item-action slds-lookup__item-action--label" role="option" tabindex="1">' +
-				'<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">' +
+			'<span class="slds-lookup__item-action slds-lookup__item-action_label" role="option" tabindex="1">' +
+				'<svg aria-hidden="true" class="slds-icon slds-icon_x-small slds-icon-text-default">' +
 					'<use xlink:href="{{assetsLocation}}/assets/icons/utility-sprite/svg/symbols.svg#add"></use>' +
 				'</svg>' +
                 '<span class="slds-truncate">New {{objectLabel}}</span>' +
@@ -69,7 +69,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	var lookupResultItemMarkup = 
 		'<li role="presentation">' +
 			'<span class="slds-lookup__item-action slds-media" id="{{resultId}}" role="option" tabindex="1">' +
-				'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-icon--small slds-media__figure{{hasIcon}}">' +
+				'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-icon_small slds-media__figure{{hasIcon}}">' +
 					'<use xlink:href="{{objectIconUrl}}"></use>' +
 				'</svg>' +
                 '<div class="slds-media__body">' +
@@ -82,7 +82,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 	var customLookupResultItemMarkup = 
 		'<li role="presentation">' +
 			'<span class="slds-lookup__item-action slds-media" id="{{resultId}}" role="option" tabindex="1">' +
-                '<img class="{{objectIconClass}} slds-icon slds-icon--small slds-media__figure{{hasIcon}}" src="{{objectIconUrl}}"/>' +
+                '<img class="{{objectIconClass}} slds-icon slds-icon_small slds-media__figure{{hasIcon}}" src="{{objectIconUrl}}"/>' +
                 '<div class="slds-media__body">' +
                     '<div class="slds-lookup__result-text">{{resultLabel}}</div>' +
                     '{{metaLabel}}' +
@@ -130,7 +130,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         if (e.which === 38 || e.which === 40) { // Up or down arrow, respectively
             e.preventDefault();
             
-            var firstItemSelector = ($('.slds-lookup .slds-lookup__list > li:first-child').is('.slds-lookup__item--label')) ? '.slds-lookup .slds-lookup__list > li:nth-child(2) .slds-lookup__item-action' : '.slds-lookup .slds-lookup__list > li:first-child .slds-lookup__item-action';
+            var firstItemSelector = ($('.slds-lookup .slds-lookup__list > li:first-child').is('.slds-lookup__item_label')) ? '.slds-lookup .slds-lookup__list > li:nth-child(2) .slds-lookup__item-action' : '.slds-lookup .slds-lookup__list > li:first-child .slds-lookup__item-action';
             
             if (e.which === 38) { // Up arrow
                 if ($currentTarget.is(firstItemSelector)) { // Pressing up on the first item, loop over
@@ -220,7 +220,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         .replace(/{{objectLabel}}/g, self.settings.objectLabel)
                         .replace(/{{selectedResultLabel}}/g, result.label));
                     
-        			$pill.removeClass('slds-size--1-of-1')
+        			$pill.removeClass('slds-size_1-of-1')
                         .attr('id', result.id)
                         .on('click', 'a, button', self, self.clearMultiSelectResult)
                         .css({
@@ -345,7 +345,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         .replace('{{resultId}}', result.id)
                         .replace('{{objectIconUrl}}', self.settings.objectIconUrl)
                         .replace('{{objectIconClass}}', self.settings.objectIconClass)
-                        .replace('{{metaLabel}}', (result.metaLabel) ? '<span class="slds-lookup__result-meta slds-text-body--small">' + result.metaLabel + '</span>' : ''));
+                        .replace('{{metaLabel}}', (result.metaLabel) ? '<span class="slds-lookup__result-meta slds-text-body_small">' + result.metaLabel + '</span>' : ''));
         		} else if (self.selectedResults) {
         			var selectedResultsIds = self.selectedResults.map(function(result) { return result.id; });
                     
@@ -355,7 +355,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                             .replace('{{resultId}}', result.id)
                             .replace('{{objectIconUrl}}', self.settings.objectIconUrl)
                             .replace('{{objectIconClass}}', self.settings.objectIconClass)
-                            .replace('{{metaLabel}}', (result.metaLabel) ? '<span class="slds-lookup__result-meta slds-text-body--small">' + result.metaLabel + '</span>' : ''));
+                            .replace('{{metaLabel}}', (result.metaLabel) ? '<span class="slds-lookup__result-meta slds-text-body_small">' + result.metaLabel + '</span>' : ''));
         			}
         		}
                 

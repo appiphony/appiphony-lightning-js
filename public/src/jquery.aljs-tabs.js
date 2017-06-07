@@ -15,8 +15,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         initTabs: function() {
             // Bind buttons
             var self = this;
-            var $tabButtons = this.$el.find('> .slds-tabs--default__nav > .slds-tabs--default__item > .slds-tabs--default__link, > .slds-tabs--scoped__nav > .slds-tabs--scoped__item > .slds-tabs--scoped__link');
-            var children = this.$el.find('> .slds-tabs--default__nav > .slds-tabs--default__item, > .slds-tabs--scoped__nav > .slds-tabs--scoped__item');
+            var $tabButtons = this.$el.find('> .slds-tabs_efault__nav > .slds-tabs_efault__item > .slds-tabs_efault__link, > .slds-tabs_coped__nav > .slds-tabs_coped__item > .slds-tabs_coped__link');
+            var children = this.$el.find('> .slds-tabs_efault__nav > .slds-tabs_efault__item, > .slds-tabs_coped__nav > .slds-tabs_coped__item');
             var tabsObj = {
                 self: self,
                 children: children
@@ -39,19 +39,19 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             children.keyup(tabsObj, this.processKeypress);
         },
         selectTab: function(tabId) {
-            this.$el.find('> .slds-tabs--default__nav > .slds-tabs--default__item, > .slds-tabs--scoped__nav > .slds-tabs--scoped__item')
+            this.$el.find('> .slds-tabs_efault__nav > .slds-tabs_efault__item, > .slds-tabs_coped__nav > .slds-tabs_coped__item')
                 .removeClass('slds-active')
                 .blur()
-                .find('> .slds-tabs--default__link, > .slds-tabs--scoped__link')
+                .find('> .slds-tabs_efault__link, > .slds-tabs_coped__link')
                 .attr('tabindex', '-1')
                 .attr('aria-selected', 'false');
-            this.$el.find('> .slds-tabs--default__content, > .slds-tabs--scoped__content')
+            this.$el.find('> .slds-tabs_efault__content, > .slds-tabs_coped__content')
                 .hide();
             this.$el.find('[data-aljs-show="' + tabId + '"]')
                 .focus()
                 .closest('li')
                 .addClass('slds-active')
-                .find('> .slds-tabs--default__link, > .slds-tabs--scoped__link')
+                .find('> .slds-tabs_efault__link, > .slds-tabs_coped__link')
                 .attr('tabindex', '0')
                 .attr('aria-selected', 'true');
             this.$el.find('#' + tabId).show()

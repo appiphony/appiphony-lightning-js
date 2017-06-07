@@ -31,9 +31,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 right: 'left'
             };
             var popoverPositioningCSS = 'overflow: visible; display: block; position: absolute;';
-            var modifier = (settings.modifier != '') ? ' slds-popover--' + settings.modifier : '';
-            var theme = (settings.theme != '') ? ' slds-theme--' + settings.theme : '';
-            var popoverMarkup = '<div id="' + popoverId + '" aria-describedby="' + popoverId + '" class="slds-popover' + modifier + theme + ' slds-nubbin--' + (popoverNubbins[popoverPosition] || 'top') + '" style="' + popoverPositioningCSS +'">' +
+            var modifier = (settings.modifier != '') ? ' slds-popover_' + settings.modifier : '';
+            var theme = (settings.theme != '') ? ' slds-theme_' + settings.theme : '';
+            var popoverMarkup = '<div id="' + popoverId + '" aria-describedby="' + popoverId + '" class="slds-popover' + modifier + theme + ' slds-nubbin_' + (popoverNubbins[popoverPosition] || 'top') + '" style="' + popoverPositioningCSS +'">' +
                                     '<div class="slds-popover__body"' + lineHeightFix + '>' +
                                     popoverContent +
                                     '</div>' +
@@ -164,7 +164,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 .on('blur', settings.selector, settings, hidePopover)
                 .on('touchstart', settings.selector, settings, function(e) {
                     e.stopPropagation();
-                    var selector = (settings.modifier == 'tooltip') ? '.slds-popover--tooltip' : '.slds-popover';
+                    var selector = (settings.modifier == 'tooltip') ? '.slds-popover_tooltip' : '.slds-popover';
 
                     if ($(selector).length == 0) {
                         showPopover();
@@ -183,7 +183,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                        .on('blur', thisSettings, hidePopover)
                        .on('touchstart', thisSettings, function(e) {
                             e.stopPropagation();
-                            var selector = (thisSettings.modifier == 'tooltip') ? '.slds-popover--tooltip' : '.slds-popover';
+                            var selector = (thisSettings.modifier == 'tooltip') ? '.slds-popover_tooltip' : '.slds-popover';
 
                             if ($(selector).length == 0) {
                                 showPopover();

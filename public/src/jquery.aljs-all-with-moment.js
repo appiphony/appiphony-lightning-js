@@ -4463,12 +4463,7 @@ return hooks;
 })));
 
 /* ------------------------------------------------------------
-Appiphony Lightning JS Beta
-
-Version: 2.0.0
-Website: http://aljs.appiphony.com
-GitHub: https://github.com/appiphony/appiphony-lightning-js
-License: BSD 2-Clause License
+ALJS Init
 ------------------------------------------------------------ */
 if (typeof jQuery === "undefined") { throw new Error("Appiphony Lightning JS requires jQuery") }
 

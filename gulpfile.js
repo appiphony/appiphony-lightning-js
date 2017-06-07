@@ -3,10 +3,13 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     neuter = require('gulp-neuter'),
     concat = require('gulp-concat'),
+    insert = require('gulp-insert'),
     emberTemplates = require('gulp-ember-templates'),
     zip = require('gulp-zip'),
     mergeStream = require('merge-stream'),
-    runSequence = require('run-sequence');
+    runSequence = require('run-sequence'),
+    versionNumber = '4.0.0 (Nightly)',
+    copyrightYear = '2017';
 
 gulp.task('build', function() {
     /* ----------------------------------------
@@ -77,6 +80,32 @@ gulp.task('uglify', function() {
         .pipe(gulp.dest('./dist'));
 });
 
+gulp.task('insert', function() {
+    var prependedComments = '';
+    prependedComments += '/* --------------------------------------------------\r\n';
+    prependedComments += 'Appiphony Lightning JS\r\n';
+    prependedComments += '\r\n';
+    prependedComments += 'Version: ' + versionNumber + '\r\n';
+    prependedComments += 'Website: http://aljs.appiphony.com\r\n';
+    prependedComments += 'GitHub: https://github.com/appiphony/appiphony-lightning-js\r\n';
+    prependedComments += 'License: BSD 2-Clause License\r\n';
+    prependedComments += '-------------------------------------------------- */\r\n';
+    
+    var appendedComments = '\r\n';
+    appendedComments += '/* --------------------------------------------------\r\n';
+    appendedComments += 'Copyright ' + copyrightYear + ' Appiphony, LLC\r\n\r\n';
+    appendedComments += 'Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\r\n\r\n';
+    appendedComments += '1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\r\n';
+    appendedComments += '2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\r\n\r\n';
+    appendedComments += 'THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\r\n';
+    appendedComments += '-------------------------------------------------- */\r\n';
+        
+    return gulp.src(['./dist/**/*', '!./dist/**/*.zip'])
+        .pipe(insert.prepend(prependedComments))
+        .pipe(insert.append(appendedComments))
+        .pipe(gulp.dest('./dist'));
+});
+
 gulp.task('zip', function() {
     return gulp.src(['./dist/**/*', '!./dist/**/*.zip'])
         .pipe(zip('aljs.zip'))
@@ -84,7 +113,7 @@ gulp.task('zip', function() {
 });
 
 gulp.task('dist', function() {
-    return runSequence('concat', 'concatWithMoment', 'uglify', 'zip');
+    return runSequence('concat', 'concatWithMoment', 'uglify', 'insert', 'zip');
 });
 
 gulp.task('watch', function() {

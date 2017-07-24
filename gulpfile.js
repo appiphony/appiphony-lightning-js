@@ -15,13 +15,13 @@ gulp.task('build', function() {
     /* ----------------------------------------
     Salesforce Lightning Design System
     ---------------------------------------- */
-    var slds = gulp.src('node_modules/@salesforce-ux/design-system/assets/**/*')
+    var slds = gulp.src('./node_modules/@salesforce-ux/design-system/assets/**/*')
         .pipe(gulp.dest('./public/assets'));
     
     /* ----------------------------------------
     Moment.js
     ---------------------------------------- */
-    var moment = gulp.src('node_modules/moment/moment.js')
+    var moment = gulp.src('./node_modules/moment/moment.js')
         .pipe(gulp.dest('./public/lib/moment'));
     
     return mergeStream(slds, moment);
@@ -35,7 +35,7 @@ gulp.task('emberTemplates', function() {
 });
 
 gulp.task('neuter', function() {
-    gulp.src('aljs-ember-app/aljs-compiler.js')
+    gulp.src('./aljs-ember-app/aljs-compiler.js')
         .pipe(neuter('aljs.pck.js', null, {
             basePath: 'aljs-ember-app/'
         }))

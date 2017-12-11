@@ -1,5 +1,5 @@
 # Appiphony Lightning JS
-#### Note: Appiphony is discontinuing development of this library in order to direct efforts toward <a href="https://github.com/appiphony/Strike-Components">Strike Components</a> for the Lightning component framework. We want to thank the members of the Salesforce development community who have utilized and contributed to this library.
+#### Note: Appiphony is discontinuing development of this library in order to direct efforts toward <a href="https://github.com/appiphony/Strike-Components">Strike Components</a> for the Lightning component framework. We want to thank the members of the Salesforce development community who have utilized and contributed to this library in the past, and we apologize for any inconvenience this has caused.
 Current release: 3.1.0  
 Supported SLDS release: 2.2.2  
 See it in action here: <a href="http://aljs.appiphony.com" target="_blank">http://aljs.appiphony.com</a>

@@ -5076,14 +5076,14 @@ ALJS Lookup
 if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the ALJS initializer file") }
 
 (function($) {
-	var selectContainerMarkup = '<div class="slds-pill_container slds-hide"></div>';
+    var selectContainerMarkup = '<div class="slds-pill_container slds-hide"></div>';
 
-	var pillMarkup =
-    	'<span class="slds-pill slds-size--1-of-1">' +
-      		'<span class="slds-icon_container slds-icon-standard-account slds-pill__icon_container{{hasIcon}}" title="{{objectLabel}}">' +
-        		'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-pill__icon">' +
-          			'<use xlink:href="{{objectIconUrl}}"></use>' +
-        		'</svg>' +
+    var pillMarkup =
+        '<span class="slds-pill slds-size--1-of-1">' +
+            '<span class="slds-icon_container slds-icon-standard-account slds-pill__icon_container{{hasIcon}}" title="{{objectLabel}}">' +
+                '<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-pill__icon">' +
+                    '<use xlink:href="{{objectIconUrl}}"></use>' +
+                '</svg>' +
                 '<span class="slds-assistive-text">{{objectLabel}}</span>' +
             '</span>' +
             '<span class="slds-pill__label" title="{{selectedResultLabel}}">{{selectedResultLabel}}</span>' +
@@ -5093,11 +5093,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 '</svg>' +
                 '<span class="slds-assistive-text">Remove</span>' +
             '</button>' +
-    	'</span>';
+        '</span>';
 
-	var customPillMarkup =
-    	'<span class="slds-pill slds-size--1-of-1">' +
-      		'<span class="slds-icon_container slds-icon-standard-account slds-pill__icon_container{{hasIcon}}" title="{{objectLabel}}">' +
+    var customPillMarkup =
+        '<span class="slds-pill slds-size--1-of-1">' +
+            '<span class="slds-icon_container slds-icon-standard-account slds-pill__icon_container{{hasIcon}}" title="{{objectLabel}}">' +
                 '<img class="{{objectIconClass}} slds-icon slds-pill__icon" src="{{objectLabel}}"/>' +
                 '<span class="slds-assistive-text">{{objectLabel}}</span>' +
             '</span>' +
@@ -5108,61 +5108,61 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 '</svg>' +
                 '<span class="slds-assistive-text">Remove</span>' +
             '</button>' +
-    	'</span>';
+        '</span>';
 
-	var lookupSearchContainerMarkup =
-		'<div class="slds-lookup__menu">' +
-			'<ul class="slds-lookup__list" role="listbox">' +
-			'</ul>' +
-		'</div>';
+    var lookupSearchContainerMarkup =
+        '<div class="slds-lookup__menu">' +
+            '<ul class="slds-lookup__list" role="listbox">' +
+            '</ul>' +
+        '</div>';
 
-	var searchMarkup =
-		'<li role="presentation">' +
-			'<span class="slds-lookup__item-action slds-lookup__item-action--label" role="option">' +
-				'<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">' +
-					'<use xlink:href="{{assetsLocation}}/icons/utility-sprite/svg/symbols.svg#search"></use>' +
-				'</svg>' +
+    var searchMarkup =
+        '<li role="presentation">' +
+            '<span class="slds-lookup__item-action slds-lookup__item-action--label" role="option">' +
+                '<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">' +
+                    '<use xlink:href="{{assetsLocation}}/icons/utility-sprite/svg/symbols.svg#search"></use>' +
+                '</svg>' +
                 '<span class="slds-truncate">&quot;{{searchTerm}}&quot; in {{objectPluralLabel}}</span>' +
-			'</span>' +
-		'</li>';
+            '</span>' +
+        '</li>';
 
     var recentMarkup = '<div class="slds-lookup__item--label slds-text-body--small">{{recentLabel}}</div>';
 
-	var newItemMarkup =
-		'<li role="presentation">' +
-			'<span class="slds-lookup__item-action slds-lookup__item-action--label" role="option">' +
-				'<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">' +
-					'<use xlink:href="{{assetsLocation}}/icons/utility-sprite/svg/symbols.svg#add"></use>' +
-				'</svg>' +
+    var newItemMarkup =
+        '<li role="presentation">' +
+            '<span class="slds-lookup__item-action slds-lookup__item-action--label" role="option">' +
+                '<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default">' +
+                    '<use xlink:href="{{assetsLocation}}/icons/utility-sprite/svg/symbols.svg#add"></use>' +
+                '</svg>' +
                 '<span class="slds-truncate">New {{objectLabel}}</span>' +
-			'</span>' +
-		'</li>';
+            '</span>' +
+        '</li>';
 
-	var lookupResultItemMarkup =
-		'<li role="presentation">' +
-			'<span class="slds-lookup__item-action slds-media slds-media--center" id="{{resultId}}" role="option" tabindex="1">' +
-				'<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-icon--small slds-media__figure{{hasIcon}}">' +
-					'<use xlink:href="{{objectIconUrl}}"></use>' +
-				'</svg>' +
+    var lookupResultItemMarkup =
+        '<li role="presentation">' +
+            '<span title="{{resultTitle}}" class="slds-lookup__item-action slds-media slds-media--center" id="{{resultId}}" role="option" tabindex="1">' +
+                '<svg aria-hidden="true" class="{{objectIconClass}} slds-icon slds-icon--small slds-media__figure{{hasIcon}}">' +
+                    '<use xlink:href="{{objectIconUrl}}"></use>' +
+                '</svg>' +
                 '<div class="slds-media__body">' +
                     '<div class="slds-lookup__result-text">{{resultLabel}}</div>' +
                     '{{metaLabel}}' +
                 '</div>' +
-			'</span>' +
-		'</li>';
+            '</span>' +
+        '</li>';
 
-	var customLookupResultItemMarkup =
-		'<li role="presentation">' +
-			'<span class="slds-lookup__item-action slds-media slds-media--center" id="{{resultId}}" role="option" tabindex="1">' +
+    var customLookupResultItemMarkup =
+        '<li role="presentation">' +
+            '<span  title="{{resultTitle}}" class="slds-lookup__item-action slds-media slds-media--center" id="{{resultId}}" role="option" tabindex="1">' +
                 '<img class="{{objectIconClass}} slds-icon slds-icon--small slds-media__figure{{hasIcon}}" src="{{objectIconUrl}}"/>' +
                 '<div class="slds-media__body">' +
-                    '<div class="slds-lookup__result-text">{{resultLabel}}</div>' +
+                    '<div class="slds-lookup__result-text" >{{resultLabel}}</div>' +
                     '{{metaLabel}}' +
                 '</div>' +
-			'</span>' +
-		'</li>';
+            '</span>' +
+        '</li>';
 
-	var searchTimer;
+    var searchTimer;
 
     var Lookup = function(el, options) {
         this.$el = $(el);
@@ -5170,19 +5170,19 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         this.isSingle = this.$lookupContainer.data('select') === 'single';
         this.settings = options;
 
-       	if (this.isSingle) {
-       		this.$singleSelect = $(selectContainerMarkup).insertBefore(this.$el);
-       	} else {
-       		this.$multiSelect = $(selectContainerMarkup).appendTo(this.$lookupContainer.find('.slds-form-element'));
-       		this.selectedResults = []; // We'll have to initialize.
-       	}
+        if (this.isSingle) {
+            this.$singleSelect = $(selectContainerMarkup).insertBefore(this.$el);
+        } else {
+            this.$multiSelect = $(selectContainerMarkup).appendTo(this.$lookupContainer.find('.slds-form-element'));
+            this.selectedResults = []; // We'll have to initialize.
+        }
 
         if (!this.isStringEmpty(options.searchTerm)) {
-    		this.$el.val(options.searchTerm);
-    		this.setSingleSelect();
-    	} else if (options.initialSelection) {
-    		this.setSelection(options.initialSelection);
-    	}
+            this.$el.val(options.searchTerm);
+            this.setSingleSelect();
+        } else if (options.initialSelection) {
+            this.setSelection(options.initialSelection);
+        }
 
         this.initLookup();
     };
@@ -5190,12 +5190,12 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
     Lookup.prototype = {
         constructor: Lookup,
         isStringEmpty: function(stringVal) {
-        	return stringVal === null || typeof stringVal === 'undefined' || stringVal.trim() === '';
+            return stringVal === null || typeof stringVal === 'undefined' || stringVal.trim() === '';
         },
         initLookup: function() {
-        	var self = this;
+            var self = this;
 
-        	this.$el.on('focus', this, this.runSearch)
+            this.$el.on('focus', this, this.runSearch)
                 .on('blur', this, this.handleBlur)
                 .on('keyup', this, this.runSearch);
         },
@@ -5218,111 +5218,111 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             }, self.settings.searchDelay);
         },
         setMultiSelect: function(selectedResults) {
-        	var self = this;
-        	var $multiSelect = this.$multiSelect.html('');
-        	var $lookupContainer = this.$lookupContainer;
+            var self = this;
+            var $multiSelect = this.$multiSelect.html('');
+            var $lookupContainer = this.$lookupContainer;
             var conditionalPillMarkup = (self.settings.useImgTag) ? customPillMarkup : pillMarkup;
 
-        	if (selectedResults.length > 0) {
-        		selectedResults.forEach(function(result) {
-        			var $pill = $(conditionalPillMarkup.replace('{{objectIconUrl}}', self.settings.objectIconUrl)
+            if (selectedResults.length > 0) {
+                selectedResults.forEach(function(result) {
+                    var $pill = $(conditionalPillMarkup.replace('{{objectIconUrl}}', self.settings.objectIconUrl)
                         .replace('{{objectIconClass}}', self.settings.objectIconClass)
                         .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
                         .replace('{{assetsLocation}}', self.settings.assetsLocation)
                         .replace(/{{objectLabel}}/g, self.settings.objectLabel)
                         .replace(/{{selectedResultLabel}}/g, result.label));
-        			$pill.removeClass('slds-pill--bare')
+                    $pill.removeClass('slds-pill--bare')
                         .attr('id', result.id)
                         .on('click', 'a, button', self, self.clearMultiSelectResult);
-        			$multiSelect.append($pill);
-        		});
+                    $multiSelect.append($pill);
+                });
 
-        		$multiSelect.addClass('slds-show')
+                $multiSelect.addClass('slds-show')
                     .removeClass('slds-hide');
-        		$lookupContainer.addClass('slds-has-selection');
-        	} else {
-        		$multiSelect.html('');
-        		$multiSelect.addClass('slds-hide')
+                $lookupContainer.addClass('slds-has-selection');
+            } else {
+                $multiSelect.html('');
+                $multiSelect.addClass('slds-hide')
                     .removeClass('slds-show');
-        		$lookupContainer.removeClass('slds-has-selection');
-        	}
+                $lookupContainer.removeClass('slds-has-selection');
+            }
         },
         setSingleSelect: function(selectedResultLabel) {
-        	var self = this;
-        	var newResultLabel = selectedResultLabel || '';
+            var self = this;
+            var newResultLabel = selectedResultLabel || '';
             var conditionalPillMarkup = (self.settings.useImgTag) ? customPillMarkup : pillMarkup;
 
-        	this.$singleSelect.html(conditionalPillMarkup.replace('{{objectIconUrl}}', this.settings.objectIconUrl)
+            this.$singleSelect.html(conditionalPillMarkup.replace('{{objectIconUrl}}', this.settings.objectIconUrl)
                 .replace('{{objectIconClass}}', self.settings.objectIconClass)
                 .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
                 .replace('{{assetsLocation}}', this.settings.assetsLocation)
                 .replace(/{{objectLabel}}/g, self.settings.objectLabel)
                 .replace(/{{selectedResultLabel}}/g, newResultLabel));
 
-        	if (selectedResultLabel) {
-        		this.$singleSelect.addClass('slds-show')
+            if (selectedResultLabel) {
+                this.$singleSelect.addClass('slds-show')
                     .removeClass('slds-hide');
 
-    			this.$el.addClass('slds-hide')
-        		this.$lookupContainer.addClass('slds-has-selection');
+                this.$el.addClass('slds-hide')
+                this.$lookupContainer.addClass('slds-has-selection');
 
-        		this.$singleSelect.one('click', 'button', this, this.clearSingleSelect);//'a, button', this, this.clearSingleSelect);
-        	} else {
-        		this.$singleSelect.addClass('slds-hide')
+                this.$singleSelect.one('click', 'button', this, this.clearSingleSelect);//'a, button', this, this.clearSingleSelect);
+            } else {
+                this.$singleSelect.addClass('slds-hide')
                     .removeClass('slds-show');
 
-        		this.$el.val('')
-        			.removeClass('slds-hide')
-        		this.$lookupContainer.removeClass('slds-has-selection');
+                this.$el.val('')
+                    .removeClass('slds-hide')
+                this.$lookupContainer.removeClass('slds-has-selection');
 
-        		setTimeout(function() {
-        			self.$el.focus();
-        		}, 100);
-        	}
+                setTimeout(function() {
+                    self.$el.focus();
+                }, 100);
+            }
         },
         getSearchTermResults: function(searchTerm) {
-        	var self = this;
+            var self = this;
 
-        	if (this.settings.items.length > 0) {
-        		this.searchResults = this.settings.items.filter(function(item) {
-        			return item.label.toLowerCase().match(searchTerm.toLowerCase()) !== null;
-        		});
-        		this.renderSearchResults();
-        	} else {
-	        	var callback = function(searchResults) {
-	        		self.searchResults = searchResults;
-	        		self.renderSearchResults();
-	        	};
+            if (this.settings.items.length > 0) {
+                this.searchResults = this.settings.items.filter(function(item) {
+                    return item.label.toLowerCase().match(searchTerm.toLowerCase()) !== null;
+                });
+                this.renderSearchResults();
+            } else {
+                var callback = function(searchResults) {
+                    self.searchResults = searchResults;
+                    self.renderSearchResults();
+                };
 
-	        	this.settings.filledSearchTermQuery(searchTerm, callback);
-	        }
+                this.settings.filledSearchTermQuery(searchTerm, callback);
+            }
         },
         getDefaultResults: function() {
-        	var self = this;
+            var self = this;
 
-        	if (this.settings.items.length > 0) {
-        		this.searchResults = this.settings.items;
-        		this.renderSearchResults();
-        	} else {
-        		var callback = function(searchResults) {
-        			self.searchResults = searchResults;
-        			self.renderSearchResults();
-        		};
+            if (this.settings.items.length > 0) {
+                this.searchResults = this.settings.items;
+                this.renderSearchResults();
+            } else {
+                var callback = function(searchResults) {
+                    self.searchResults = searchResults;
+                    self.renderSearchResults();
+                };
 
-        		this.settings.emptySearchTermQuery(callback);
-        	}
+                this.settings.emptySearchTermQuery(callback);
+            }
         },
         renderSearchResults: function() {
-        	this.closeSearchDropdown();
+            this.closeSearchDropdown();
 
-        	var $lookupSearchContainer = $(lookupSearchContainerMarkup);
-        	var $resultsListContainer = $lookupSearchContainer.find('ul.slds-lookup__list');
-        	var searchTerm = this.$el.val();
+            var $lookupSearchContainer = $(lookupSearchContainerMarkup);
+            var $resultsListContainer = $lookupSearchContainer.find('ul.slds-lookup__list');
+            var searchTerm = this.$el.val();
             var regexSearchTerm = new RegExp('(' + searchTerm + ')', 'gi');
-        	var self = this;
+            var self = this;
             var showUseSection = false;
 
-        	if (!self.isStringEmpty(searchTerm) && searchTerm.length) {
+            if (!self.isStringEmpty(searchTerm) && searchTerm.length) {
                 if (self.settings.showSearch) {
                     showUseSection = true;
 
@@ -5330,46 +5330,47 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         .replace('{{objectPluralLabel}}', self.settings.objectPluralLabel)
                         .replace('{{assetsLocation}}', $.aljs.assetsLocation));
                 }
-        	} else {
+            } else {
                 if (self.settings.recentLabel) {
                     $resultsListContainer.before(recentMarkup.replace('{{recentLabel}}', self.settings.recentLabel));
                 }
             }
 
-        	this.searchResults.forEach(function(result) {
-        		var $lookupResultItem;
+            this.searchResults.forEach(function(result) {
+                var $lookupResultItem;
                 var conditionalLookupMarkup = (self.settings.useImgTag) ? customLookupResultItemMarkup : lookupResultItemMarkup;
-                var markedResultLabel = result.label.replace(regexSearchTerm, '<mark>$1</mark>');
+                var markedResultLabel = result.label.replace(regexSearchTerm, '<mark>$1</mark>');                
 
-        		if (self.isSingle) {
-        			$lookupResultItem = $resultsListContainer.append(conditionalLookupMarkup.replace('{{resultLabel}}', markedResultLabel)
+                if (self.isSingle) {
+                    $lookupResultItem = $resultsListContainer.append(conditionalLookupMarkup.replace('{{resultLabel}}', markedResultLabel)
+                        .replace('{{resultTitle}}', result.label)
                         .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
                         .replace('{{resultId}}', result.id)
                         .replace('{{objectIconUrl}}', self.settings.objectIconUrl)
                         .replace('{{objectIconClass}}', self.settings.objectIconClass)
                         .replace('{{metaLabel}}', (result.metaLabel) ? '<span class="slds-lookup__result-meta slds-text-body--small">' + result.metaLabel + '</span>' : ''));
-        		} else if (self.selectedResults) {
-        			var selectedResultsIds = self.selectedResults.map(function(result) { return result.id; });
+                } else if (self.selectedResults) {
+                    var selectedResultsIds = self.selectedResults.map(function(result) { return result.id; });
 
-        			if (selectedResultsIds.length === 0 || selectedResultsIds.indexOf(result.id) === -1) {
-        				$lookupResultItem = $resultsListContainer.append(conditionalLookupMarkup.replace('{{resultLabel}}', markedResultLabel)
+                    if (selectedResultsIds.length === 0 || selectedResultsIds.indexOf(result.id) === -1) {
+                        $lookupResultItem = $resultsListContainer.append(conditionalLookupMarkup.replace('{{resultLabel}}', markedResultLabel)
                             .replace('{{hasIcon}}', (self.settings.objectIconUrl !== '') ? '' : ' slds-hide')
                             .replace('{{resultId}}', result.id)
                             .replace('{{objectIconUrl}}', self.settings.objectIconUrl)
                             .replace('{{objectIconClass}}', self.settings.objectIconClass)
                             .replace('{{metaLabel}}', (result.metaLabel) ? '<span class="slds-lookup__result-meta slds-text-body--small">' + result.metaLabel + '</span>' : ''));
-        			}
-        		}
+                    }
+                }                
 
-        		if ($lookupResultItem) {
-        			$lookupResultItem.find('.slds-lookup__item-action[id]').on('focus', function() {
-	        			self.$el.attr('aria-activedescendant', $(this).attr('id'));
-	        		}).on('blur', self, self.handleBlur);
-        		}
-        	});
+                if ($lookupResultItem) {
+                    $lookupResultItem.find('.slds-lookup__item-action[id]').on('focus', function() {
+                        self.$el.attr('aria-activedescendant', $(this).attr('id'));
+                    }).on('blur', self, self.handleBlur);
+                }
+            });
 
-        	if (this.settings.onClickNew) {
-        		var $newItem = $resultsListContainer.append(newItemMarkup
+            if (this.settings.onClickNew) {
+                var $newItem = $resultsListContainer.append(newItemMarkup
                     .replace('{{objectLabel}}', this.settings.objectLabel)
                     .replace('{{assetsLocation}}', $.aljs.assetsLocation));
                 $newItem.next().on('click', function() {
@@ -5377,9 +5378,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
                     self.settings.onClickNew();
                 });
-        	}
+            }
 
-        	$resultsListContainer.one('click', '.slds-lookup__item-action[id]', this, this.clickResult)
+            $resultsListContainer.one('click', '.slds-lookup__item-action[id]', this, this.clickResult)
 
             var shouldAppendSearchContainer = this.searchResults.length > 0 || this.settings.onClickNew || showUseSection;
 
@@ -5392,10 +5393,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             }
         },
         closeSearchDropdown: function() {
-        	if (this.$lookupSearchContainer) {
-        		this.$lookupSearchContainer.remove();
-        		this.$lookupSearchContainer = null;
-        	}
+            if (this.$lookupSearchContainer) {
+                this.$lookupSearchContainer.remove();
+                this.$lookupSearchContainer = null;
+            }
 
             this.$el.attr('aria-expanded', 'false')
                 .attr('aria-activedescendant', null)
@@ -5404,32 +5405,32 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         },
         handleBlur: function(e) {
             var event = e;
-        	var self = e.data;
+            var self = e.data;
 
             setTimeout(function() {
-            	if ($(event.relatedTarget).closest('.slds-lookup.slds-is-open').length === 0 && self.$lookupSearchContainer) {
-            		self.closeSearchDropdown();
-            	}
+                if ($(event.relatedTarget).closest('.slds-lookup.slds-is-open').length === 0 && self.$lookupSearchContainer) {
+                    self.closeSearchDropdown();
+                }
             }, 250);
         },
         clickResult: function(e) {
-        	var self = e.data;
-        	var selectedId = $(this).attr('id');
+            var self = e.data;
+            var selectedId = $(this).attr('id');
 
-        	self.selectResult(selectedId);
+            self.selectResult(selectedId);
         },
         selectResult: function(selectedId) {
-        	var selectedResultArray = this.searchResults.filter(function(result) {
-        		return result.id == selectedId;
-        	});
+            var selectedResultArray = this.searchResults.filter(function(result) {
+                return result.id == selectedId;
+            });
 
-        	this.closeSearchDropdown();
+            this.closeSearchDropdown();
 
-        	if (this.isSingle) {
-        		this.selectedResult = selectedResultArray.length > 0 ? selectedResultArray[0] : null;
-        		this.setSingleSelect(this.selectedResult.label);
+            if (this.isSingle) {
+                this.selectedResult = selectedResultArray.length > 0 ? selectedResultArray[0] : null;
+                this.setSingleSelect(this.selectedResult.label);
                 this.settings.onChange(this.selectedResult, true);
-        	} else {
+            } else {
                 if (selectedResultArray.length > 0) {
                     this.selectedResults.push(selectedResultArray[0]);
                     this.setMultiSelect(this.selectedResults);
@@ -5437,33 +5438,33 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 }
 
                 this.settings.onChange(this.selectedResults, true);
-        	}
+            }
         },
         clearSingleSelect: function(e) {
-        	var self = e.data;
+            var self = e.data;
             self.selectedResult = null;
-        	self.setSingleSelect();
+            self.setSingleSelect();
 
             self.settings.onChange(self.selectedResult, false);
         },
         clearMultiSelectResult: function(e) {
-        	var self = e.data;
-        	var $clickedPill = $(this).closest('span.slds-pill');
-        	var resultId = $clickedPill.attr('id');
-        	var indexToRemove;
+            var self = e.data;
+            var $clickedPill = $(this).closest('span.slds-pill');
+            var resultId = $clickedPill.attr('id');
+            var indexToRemove;
 
-        	self.selectedResults.forEach(function(result, index) {
-        		if (result.id == resultId) {
-        			indexToRemove = index;
-        		}
-        	});
+            self.selectedResults.forEach(function(result, index) {
+                if (result.id == resultId) {
+                    indexToRemove = index;
+                }
+            });
 
-        	if (typeof indexToRemove !== 'undefined' && indexToRemove !== null) {
-        		self.selectedResults.splice(indexToRemove, 1);
-        		self.setMultiSelect(self.selectedResults);
+            if (typeof indexToRemove !== 'undefined' && indexToRemove !== null) {
+                self.selectedResults.splice(indexToRemove, 1);
+                self.setMultiSelect(self.selectedResults);
 
                 self.settings.onChange(self.selectedResults, false);
-        	}
+            }
         },
         getSelection: function() {
             if (this.isSingle) {
@@ -5582,19 +5583,19 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             .addClass('slds-hide');
     }
     
-    function showModal(obj, args) {
+    function showModal(obj, args, e) {
         var modalId = obj.data('aljs-show');
         var targetModal = $('#' + modalId);
         
         if (modalId === undefined) console.error('No "data-aljs-show" attribute has been set');
         else {
-            targetModal.modal('show', args);
+            targetModal.modal('show', args, e);
             obj.blur();
             aljsRefocusTarget = obj;
         }
     }
     
-    $.fn.modal = function(args, options) {
+    $.fn.modal = function(args, options, callerEvent) {
         var modalObj = {};
         modalObj.$el = this;
         modalObj.hasSelector = (args && args.hasOwnProperty('selector')) ? true : false;
@@ -5655,12 +5656,12 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         aljsModals.click(dismissModal);
                         modalElements.click(function(e) { e.stopPropagation(); });
                     }
-                    
-                    setTimeout(function() { // Ensure elements are displayed and rendered before adding classes
+
+                    function modalHandler(sourceObj) { // Ensure elements are displayed and rendered before adding classes
                         var backdrop = $('.slds-backdrop');
                         var handleTransitionEnd = function() {
                             modalObj.$el.trigger('shown.aljs.modal'); // Custom aljs event
-                            settings.onShown(modalObj);
+                            settings.onShown(modalObj, sourceObj);
                             isShowing = false;
                         };
                         
@@ -5668,8 +5669,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                             .addClass('slds-backdrop--open');
                         modalObj.$el.addClass('slds-fade-in-open')
                             .trigger('show.aljs.modal'); // Custom aljs event
-                        settings.onShow(modalObj, args.selector);
-                    }, 25);
+                        settings.onShow(modalObj, sourceObj);
+                    }
+                    var sourceObj = callerEvent.currentTarget;
+                    setTimeout( function() { modalHandler(sourceObj); } , 25);
                     break;
                     
                 case 'dismiss':
@@ -5711,13 +5714,14 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                     console.error('The method you entered does not exist');
             }
         } else if (modalObj.hasSelector && this.length === 1) { // If allowing for selector to trigger modals post-init
-            function clickEvent(e) { showModal($(this), args); }
+            function clickEvent(e) { showModal($(this), args, e); }
             
             initModals();
             this.on('click', args.selector, clickEvent);
         } else { // If initializing plugin with options
+
             initModals();
-            modalObj.$el.click(function() { showModal($(this), args); });
+            modalObj.$el.click(function(e) { showModal($(this), args, e); });
         }
         
         return this;

@@ -5671,8 +5671,9 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                             .trigger('show.aljs.modal'); // Custom aljs event
                         settings.onShow(modalObj, sourceObj);
                     }
-                    var sourceObj = callerEvent.currentTarget;
-                    setTimeout( function() { modalHandler(sourceObj); } , 25);
+
+                    var sourceObj = null;
+                    callerEvent && (sourceObj = callerEvent.currentTarget), setTimeout( function() { modalHandler(sourceObj); } , 25);
                     break;
                     
                 case 'dismiss':

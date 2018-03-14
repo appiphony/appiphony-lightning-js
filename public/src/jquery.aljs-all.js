@@ -1015,6 +1015,10 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
 
             var $lookupSearchContainer = $(lookupSearchContainerMarkup);
             var $resultsListContainer = $lookupSearchContainer.find('ul.slds-lookup__list');
+            // Prevents blur event on scrollbar click
+            $resultsListContainer[0].onmousedown = function(e){
+                return false;
+            }
             var searchTerm = this.$el.val();
             var regexSearchTerm = new RegExp('(' + searchTerm + ')', 'gi');
             var self = this;

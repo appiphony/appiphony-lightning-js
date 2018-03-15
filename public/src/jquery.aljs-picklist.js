@@ -37,7 +37,6 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         $('[data-aljs="picklist"]').not(self.$el).picklist('close');
                         
                         self.$el.addClass('slds-is-open');
-                        self.obj.$filter.focus();
                         
                         if (self.obj.valueId === null || typeof self.obj.valueId === 'undefined') {
                             self.focusedIndex = null;
@@ -47,6 +46,8 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         
                         self.focusOnElement();
                         self.obj.$dropdown.on('keyup', self, self.processKeypress);
+                        
+                        self.obj.$filter.focus();
                     }
                 return false; // Prevent scrolling on keypress
                 });

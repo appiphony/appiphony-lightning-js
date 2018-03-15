@@ -69,10 +69,19 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
         handleFilter: function(e) {            
             var self = e.data;
             var filterRegexp = new RegExp(this.value.trim(), 'i');
-            var match;
+            var replaceRegexp = new RegExp(this.value.trim(), 'gi');
+            var match, choiceElem, choiceValue;
             [].forEach.call(self.obj.$choices, function(choice){                
-                match = choice.getAttribute('data-label-value').toLowerCase().match(filterRegexp);
-                choice.style.display = match ? null : 'none';
+                choiceValue = choice.getAttribute('data-label-value');
+                match = choiceValue.toLowerCase().match(filterRegexp);                
+                choiceElem = choice.querySelector('.option-text');
+                if (match) {
+                    choice.style.display = null;
+                    choiceElem.innerHTML = choiceValue.replace(replaceRegexp, function(str) {return '<b>' + str + '</b>'});
+                } else {
+                    choice.style.display = 'none';
+                    choiceElem.innerHTML = choiceValue;
+                }               
             });
         },
         processKeypress: function(e) {

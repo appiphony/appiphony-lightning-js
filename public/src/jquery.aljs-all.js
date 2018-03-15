@@ -1740,13 +1740,14 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
             this.obj.$trigger = $('.slds-button', $el);
             this.obj.$dropdown = $('.slds-dropdown', $el);
             this.obj.$choices = $('.slds-dropdown__item a', $el);
+            this.obj.$filter = $('#slds-filter', $el);
                         
             this.obj.$trigger.unbind() // Prevent multiple bindings
                 .click(function(e) {
                     e.stopPropagation();
                 
                     self.obj.id = $(this).attr('id');
-                
+
                     if (self.$el.hasClass('slds-is-open')) {
                         self.$el.removeClass('slds-is-open');
                         self.obj.$dropdown.unbind('keyup', self.processKeypress);
@@ -1755,6 +1756,7 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                         $('[data-aljs="picklist"]').not(self.$el).picklist('close');
                         
                         self.$el.addClass('slds-is-open');
+                        self.obj.$filter.focus();
                         
                         if (self.obj.valueId === null || typeof self.obj.valueId === 'undefined') {
                             self.focusedIndex = null;
@@ -1777,6 +1779,20 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 }
             });
             
+            this.obj.$filter.on('click', function(){
+                return false;                
+            })
+            this.obj.$filter.on('keyup', self, self.handleFilter);
+
+        },
+        handleFilter: function(e) {            
+            var self = e.data;
+            var filterRegexp = new RegExp(this.value.trim(), 'i');
+            var match;
+            [].forEach.call(self.obj.$choices, function(choice){                
+                match = choice.getAttribute('data-label-value').toLowerCase().match(filterRegexp);
+                choice.style.display = match ? null : 'none';
+            });
         },
         processKeypress: function(e) {
             var self = e.data;

@@ -6098,11 +6098,11 @@ if (typeof jQuery.aljs === "undefined") { throw new Error("Please include the AL
                 match = choiceValue.toLowerCase().match(filterRegexp);                
                 choiceElem = choice.querySelector('.option-text');
                 if (match) {
-                    choice.style.display = null;
-                    choiceElem.innerHTML = choiceValue.replace(replaceRegexp, function(str) {return '<b>' + str + '</b>'});
+                    choice.style.display = null;                    
+                    //choiceElem.innerHTML = choiceValue.replace(replaceRegexp, function(str) {return '<b>' + str + '</b>'});
                 } else {
                     choice.style.display = 'none';
-                    choiceElem.innerHTML = choiceValue;
+                    //choiceElem.innerHTML = choiceValue;
                 }               
             });
         },

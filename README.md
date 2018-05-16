@@ -1,5 +1,5 @@
 # Appiphony Lightning JS
-#### Note: Appiphony is discontinuing development of this library. All of current projects are completely development using lightning components. We want to thank the members of the Salesforce development community who have utilized and contributed to this library in the past, and we apologize for any inconvenience this has caused.
+#### Note: Appiphony is discontinuing development of this library as all current projects are solely developed using the Lightning Component framework. We want to thank the members of the Salesforce development community who have utilized and contributed to this library in the past, and we apologize for any inconvenience this has caused.  
 Current release: 3.1.0  
 Supported SLDS release: 2.2.2  
 

@@ -144,12 +144,6 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     $(this).data('datepicker').closeDatepicker();
                 });
 
-                if ((e.target === $el[0] && ($el.val() !== null && $el.val() !== '')) || (e.target === $elEndDate[0] && ($elEndDate.val() !== null && $elEndDate.val() !== ''))) {
-                    self.$selectedInput = $(this).parent().find('input');
-                    self.$selectedInput.on('keyup', self, self.processKeyup)
-                                       .on('blur', self, self.processBlur);
-                    self.closeDatepicker();
-                } else {
                     var initDate = self.selectedFullDate || moment();
                     self.viewedMonth = initDate.month();
                     self.viewedYear = initDate.year();
@@ -171,7 +165,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     self.$selectedInput.blur();
 
                     $('body').on('click', self, self.closeDatepicker);
-                }
+
             };
 
             // Opening datepicker

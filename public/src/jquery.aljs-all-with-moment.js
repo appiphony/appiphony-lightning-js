@@ -4536,73 +4536,73 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 // Based on bootstrap-datepicker.js
 
 
-(function($) {
+(function ($) {
     var datepickerMenuMarkup =
-    '<div class="slds-datepicker slds-dropdown slds-dropdown--left" aria-hidden="false">' +
+        '<div class="slds-datepicker slds-dropdown slds-dropdown--left" aria-hidden="false">' +
         '<div class="slds-datepicker__filter slds-grid">' +
-            '<div class="slds-datepicker__filter--month slds-grid slds-grid--align-spread slds-grow">' +
-                '<div class="slds-align-middle">' +
-                    '<button id="aljs-prevButton" class="slds-button slds-button--icon-container">' +
-                        '<svg aria-hidden="true" class="slds-button__icon slds-button__icon--small">' +
-                            '<use xlink:href="{{assetsLocation}}/icons/utility-sprite/svg/symbols.svg#left"></use>' +
-                        '</svg>' +
-                        '<span class="slds-assistive-text">Previous Month</span>' +
-                    '</button>' +
-                '</div>' +
-                '<h2 id="aljs-month" class="slds-align-middle" aria-live="assertive" aria-atomic="true"></h2>' +
-                '<div class="slds-align-middle">' +
-                    '<button id="aljs-nextButton" class="slds-button slds-button--icon-container" title="Next Month">' +
-                        '<svg aria-hidden="true" class="slds-button__icon">' +
-                            '<use xlink:href="{{assetsLocation}}/icons/utility-sprite/svg/symbols.svg#right"></use>' +
-                        '</svg>' +
-                        '<span class="slds-assistive-text">Next Month</span>' +
-                    '</button>' +
-                '</div>' +
-            '</div>' +
-            '<div class="slds-shrink-none">' +
-                '<div class="slds-select_container">' +
-                '</div>' +
-            '</div>' +
+        '<div class="slds-datepicker__filter--month slds-grid slds-grid--align-spread slds-grow">' +
+        '<div class="slds-align-middle">' +
+        '<button id="aljs-prevButton" class="slds-button slds-button--icon-container">' +
+        '<svg aria-hidden="true" class="slds-button__icon slds-button__icon--small">' +
+        '<use xlink:href="{{assetsLocation}}/icons/utility-sprite/svg/symbols.svg#left"></use>' +
+        '</svg>' +
+        '<span class="slds-assistive-text">Previous Month</span>' +
+        '</button>' +
+        '</div>' +
+        '<h2 id="aljs-month" class="slds-align-middle" aria-live="assertive" aria-atomic="true"></h2>' +
+        '<div class="slds-align-middle">' +
+        '<button id="aljs-nextButton" class="slds-button slds-button--icon-container" title="Next Month">' +
+        '<svg aria-hidden="true" class="slds-button__icon">' +
+        '<use xlink:href="{{assetsLocation}}/icons/utility-sprite/svg/symbols.svg#right"></use>' +
+        '</svg>' +
+        '<span class="slds-assistive-text">Next Month</span>' +
+        '</button>' +
+        '</div>' +
+        '</div>' +
+        '<div class="slds-shrink-none">' +
+        '<div class="slds-select_container">' +
+        '</div>' +
+        '</div>' +
         '</div>';
 
     var datepickerTableMarkup =
         '<table class="datepicker__month" role="grid" aria-labelledby="month">' +
-            '<thead>' +
-                '<tr id="weekdays">' +
-                    '<th id="{{label0Full}}" scope="col">' +
-                        '<abbr title="{{label0Full}}">{{label0Abbr}}</abbr>' +
-                    '</th>' +
-                    '<th id="{{label1Full}}" scope="col">' +
-                        '<abbr title="{{label1Full}}">{{label1Abbr}}</abbr>' +
-                    '</th>' +
-                    '<th id="{{label2Full}}" scope="col">' +
-                        '<abbr title="{{label2Full}}">{{label2Abbr}}</abbr>' +
-                    '</th>' +
-                    '<th id="{{label3Full}}" scope="col">' +
-                        '<abbr title="{{label3Full}}">{{label3Abbr}}</abbr>' +
-                    '</th>' +
-                    '<th id="{{label4Full}}" scope="col">' +
-                        '<abbr title="{{label4Full}}">{{label4Abbr}}</abbr>' +
-                    '</th>' +
-                    '<th id="{{label5Full}}" scope="col">' +
-                        '<abbr title="{{label5Full}}">{{label5Abbr}}</abbr>' +
-                    '</th>' +
-                    '<th id="{{label6Full}}" scope="col">' +
-                        '<abbr title="{{label6Full}}">{{label6Abbr}}</abbr>' +
-                    '</th>' +
-                '</tr>' +
-            '</thead>' +
-            '<tbody>' +
-            '</tbody>' +
+        '<thead>' +
+        '<tr id="weekdays">' +
+        '<th id="{{label0Full}}" scope="col">' +
+        '<abbr title="{{label0Full}}">{{label0Abbr}}</abbr>' +
+        '</th>' +
+        '<th id="{{label1Full}}" scope="col">' +
+        '<abbr title="{{label1Full}}">{{label1Abbr}}</abbr>' +
+        '</th>' +
+        '<th id="{{label2Full}}" scope="col">' +
+        '<abbr title="{{label2Full}}">{{label2Abbr}}</abbr>' +
+        '</th>' +
+        '<th id="{{label3Full}}" scope="col">' +
+        '<abbr title="{{label3Full}}">{{label3Abbr}}</abbr>' +
+        '</th>' +
+        '<th id="{{label4Full}}" scope="col">' +
+        '<abbr title="{{label4Full}}">{{label4Abbr}}</abbr>' +
+        '</th>' +
+        '<th id="{{label5Full}}" scope="col">' +
+        '<abbr title="{{label5Full}}">{{label5Abbr}}</abbr>' +
+        '</th>' +
+        '<th id="{{label6Full}}" scope="col">' +
+        '<abbr title="{{label6Full}}">{{label6Abbr}}</abbr>' +
+        '</th>' +
+        '</tr>' +
+        '</thead>' +
+        '<tbody>' +
+        '</tbody>' +
         '</table>' +
-    '</div>';
+        '</div>';
 
     var todayLinkMarkup =
-      '<tr>' +
+        '<tr>' +
         '<td colspan="7" role="gridcell" data-aljs-date="{{todaysDate}}"><a href="javascript:void(0);" class="slds-show--inline-block slds-p-bottom--x-small">{{todayLabel}}</a></td>' +
-      '</tr>';
+        '</tr>';
 
-    var Datepicker = function(el, options) {
+    var Datepicker = function (el, options) {
         this.$el = $(el);
         this.settings = options;
 
@@ -4638,32 +4638,38 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
     Datepicker.prototype = {
         constructor: Datepicker,
-        initInteractivity: function() {
+        initInteractivity: function () {
             var self = this;
             var $datepickerEl = this.$datepickerEl;
             var $el = this.$el;
             var $elEndDate = this.$elEndDate || [];
 
-            var openDatepicker = function(e) {
+            var openDatepicker = function (e) {
                 e.stopPropagation();
                 // Close other datepickers
-                $('[data-aljs-datepicker-id]').not(this).each(function() {
+                $('[data-aljs-datepicker-id]').not(this).each(function () {
                     $(this).data('datepicker').closeDatepicker();
                 });
 
+                if ((e.target === $el[0] && ($el.val() !== null && $el.val() !== '')) || (e.target === $elEndDate[0] && ($elEndDate.val() !== null && $elEndDate.val() !== ''))) {
+                    self.$selectedInput = $(this).parent().find('input');
+                    self.$selectedInput.on('keyup', self, self.processKeyup)
+                        .on('blur', self, self.processBlur);
+                    self.closeDatepicker();
+                } else {
                     var initDate = self.selectedFullDate || moment();
                     self.viewedMonth = initDate.month();
                     self.viewedYear = initDate.year();
                     self.fillMonth();
                     self.$selectedInput = $(this).parent().find('input');
                     self.$selectedInput.off('keyup')
-                                       .off('blur');
+                        .off('blur');
                     // if ($el.closest('.slds-form-element').next('.slds-datepicker').length > 0) {
                     //     $datepickerEl.show();
                     // } else {
                     self.$selectedInput.closest('.slds-form-element').append($datepickerEl);
                     self.initYearDropdown();
-                    $([$el, $datepickerEl, $elEndDate, $el.prev('svg')]).each(function() {
+                    $([$el, $datepickerEl, $elEndDate, $el.prev('svg')]).each(function () {
                         $(this).on('click', self.blockClose);
                     });
                     $datepickerEl.on('click', self, self.processClick);
@@ -4672,7 +4678,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     self.$selectedInput.blur();
 
                     $('body').on('click', self, self.closeDatepicker);
-
+                }
             };
 
             // Opening datepicker
@@ -4697,7 +4703,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             });
             */
         },
-        fillMonth: function() {
+        fillMonth: function () {
             var self = this;
             var dayLabels = this.settings.dayLabels;
             var monthArray = this.getMonthArray();
@@ -4706,14 +4712,14 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             var selectedFullDate = this.selectedFullDate;
             var selectedEndDate = this.selectedEndDate;
 
-            monthArray.forEach(function(rows) {
+            monthArray.forEach(function (rows) {
                 var $weekRow = $('<tr>').appendTo($monthTableBody);
 
                 if (rows.hasMultiRowSelection) {
                     $weekRow.addClass('slds-has-multi-row-selection');
                 }
 
-                rows.data.forEach(function(col, colIndex) {
+                rows.data.forEach(function (col, colIndex) {
                     var $dayCol = $('<td data-aljs-date="' + col.dateValue + '">').appendTo($weekRow);
 
                     $dayCol.prop({
@@ -4729,8 +4735,8 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                     }
 
                     if (col.isSelected || col.isSelectedEndDate || col.isSelectedMulti) {// ||
-                                //(!isMultiSelect && !selectedFullDate && col.isToday) ||
-                                //(isMultiSelect && !selectedEndDate && col.isToday)) {
+                        //(!isMultiSelect && !selectedFullDate && col.isToday) ||
+                        //(isMultiSelect && !selectedEndDate && col.isToday)) {
                         $dayCol.addClass(isMultiSelect ? 'slds-is-selected-multi slds-is-selected' : 'slds-is-selected')
                             .attr('aria-selected', 'true');
                     } else {
@@ -4751,7 +4757,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             this.$datepickerEl.find('#aljs-month').text(this.settings.monthLabels[this.viewedMonth].full);
             this.$datepickerEl.find('#aljs-year').text(this.viewedYear);
         },
-        initYearDropdown: function() {
+        initYearDropdown: function () {
             var self = this;
             var $yearSelect = this.$datepickerEl.find('select');
             var viewedYear = this.viewedYear;
@@ -4764,8 +4770,8 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
                 $yearSelect = $('<select class="slds-select select picklist__label">').appendTo($yearDropdown);
 
-             //   var $yearContainer = $('<div id="aljs-yearDropdown" class="slds-dropdown slds-dropdown--menu">');
-             //   var $yearDropdown = $('<ul class="slds-dropdown__list" style="max-height: 13.5rem; overflow-y:auto;"></ul>').appendTo($yearContainer);
+                //   var $yearContainer = $('<div id="aljs-yearDropdown" class="slds-dropdown slds-dropdown--menu">');
+                //   var $yearDropdown = $('<ul class="slds-dropdown__list" style="max-height: 13.5rem; overflow-y:auto;"></ul>').appendTo($yearContainer);
                 var currentYear = moment().year();
                 // var selectedIconMarkup = ('<svg aria-hidden="true" class="slds-icon slds-icon--small slds-icon--left">' +
                 //                         '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{assetsLocation}}/icons/standard-sprite/svg/symbols.svg#task2" data-reactid=".46.0.0.1:$=10:0.0.$=11:0.0.0.0"></use>' +
@@ -4780,16 +4786,16 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 this.$datepickerEl.find('.slds-select_container').append($yearDropdown);
             }
 
-            $yearSelect.on('change', function(e) {
+            $yearSelect.on('change', function (e) {
                 self.viewedYear = $(e.target).val();
                 self.fillMonth();
             });
 
         },
-        getMMDDYYYY: function(month, date, year) {
+        getMMDDYYYY: function (month, date, year) {
             return (month > 9 ? month : '0' + month) + '/' + (date > 9 ? date : '0' + date) + '/' + year;
         },
-        getMonthArray: function() {
+        getMonthArray: function () {
             var self = this;
             var selectedFullDate = this.selectedFullDate;
             var selectedEndDate = this.selectedEndDate;
@@ -4836,11 +4842,11 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             }
 
             // Split array into rows of 7
-            allDays.forEach(function(day, index, allDays) {
+            allDays.forEach(function (day, index, allDays) {
                 if (index % 7 === 0) {
                     var hasMultiRowSelection = (index >= 7 && allDays[index - 1].isSelectedMulti && day.isSelectedMulti);
-                                                //|| (allDays[index + 6] && allDays[index + 6].isSelectedMulti === true
-                                                //    && allDays[index + 7] && allDays[index + 7].isSelectedMulti === true);
+                    //|| (allDays[index + 6] && allDays[index + 6].isSelectedMulti === true
+                    //    && allDays[index + 7] && allDays[index + 7].isSelectedMulti === true);
 
                     if (hasMultiRowSelection) {
                         calendarRows[calendarRows.length - 1].hasMultiRowSelection = true;
@@ -4873,7 +4879,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
             return calendarRows;
         },
-        setSelectedFullDate: function(selectedFullDate) {
+        setSelectedFullDate: function (selectedFullDate) {
             var oldDate = this.selectedFullDate;
 
             this.selectedFullDate = selectedFullDate;
@@ -4883,7 +4889,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 this.settings.onChange(this);
             }
         },
-        setSelectedEndDate: function(selectedEndDate) {
+        setSelectedEndDate: function (selectedEndDate) {
             var oldDate = this.selectedEndDate;
 
             this.selectedEndDate = selectedEndDate;
@@ -4893,7 +4899,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 this.settings.onChange(this);
             }
         },
-        processClick: function(e) {
+        processClick: function (e) {
             e.preventDefault();
             var self = e.data;
             var $target = $(e.target);
@@ -4920,7 +4926,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             //     self.hideYearDropdown();
             // }
         },
-        processKeyup: function(e) {
+        processKeyup: function (e) {
             if (e.keyCode === 13) {
                 $(this).blur();
                 // var self = e.data;
@@ -4938,7 +4944,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 // }
             }
         },
-        processBlur: function(e) {
+        processBlur: function (e) {
             if (e) {
                 var self = e.data;
                 var selectedDate = $(this).val();
@@ -4953,12 +4959,12 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
                     self.closeDatepicker(e);
                     self.$selectedInput.off('keyup')
-                                       .off('blur');
+                        .off('blur');
                     //$(this).blur();
                 }
             }
         },
-        clickPrev: function(e) {
+        clickPrev: function (e) {
             var self = e.data;
             if (self.viewedMonth === 0) {
                 self.viewedMonth = 11;
@@ -4974,7 +4980,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
             self.fillMonth();
         },
-        clickNext: function(e) {
+        clickNext: function (e) {
             var self = e.data;
 
             if (self.viewedMonth === 11) {
@@ -4991,14 +4997,14 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
             self.fillMonth();
         },
-        clickYear: function(e) {
+        clickYear: function (e) {
             var self = e.data;
 
             var $clickedYear = $(e.target).closest('li[data-aljs-year]');
             self.viewedYear = parseInt($clickedYear.data('aljs-year'));
             self.fillMonth();
         },
-        clickYearDropdown: function(e) {
+        clickYearDropdown: function (e) {
             var self = e.data;
 
             if (self.$datepickerEl.find('#aljs-yearDropdown').length > 0) {
@@ -5007,7 +5013,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 self.showYearDropdown();
             }
         },
-        clickDate: function(e) {
+        clickDate: function (e) {
             var self = e.data;
             var $clickedDate = $(e.target).closest('td[data-aljs-date]');
 
@@ -5024,7 +5030,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
 
             }
         },
-        closeDatepicker: function(e) {
+        closeDatepicker: function (e) {
             var self = this;
             var $target = $('body');
 
@@ -5042,34 +5048,34 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
                 $datepickerEl.unbind('click', self.processClick);
             }
         },
-        blockClose: function(e) {
+        blockClose: function (e) {
             e.stopPropagation();
         },
         isLeapYear: function (year) {
             return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0))
         },
-        getNumDaysInMonth: function(year, month) {
+        getNumDaysInMonth: function (year, month) {
             return [31, (this.isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
         },
-        getDate: function(format) {
+        getDate: function (format) {
             return format ? this.selectedFullDate.format(format) : this.selectedFullDate;
         },
-        setDate: function(date) {
+        setDate: function (date) {
             this.setSelectedFullDate(moment(date));
         },
-        getEndDate: function(format) {
+        getEndDate: function (format) {
             if (this.$elEndDate && this.selectedEndDate) {
                 return format ? this.selectedEndDate.format(format) : this.selectedEndDate;
             }
         },
-        setEndDate: function(date) {
+        setEndDate: function (date) {
             if (this.$elEndDate) {
                 this.setSelectedEndDate(moment(date));
             }
         }
     };
 
-    $.fn.datepicker = function(options, val) {
+    $.fn.datepicker = function (options, val) {
         var internalReturn;
         var settings = $.extend({
             // These are the defaults
@@ -5078,7 +5084,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
             numYearsAfter: 10,
             format: 'MM/DD/YYYY',
             endDateInputId: null,
-            onChange: function(datepicker) {},
+            onChange: function (datepicker) { },
             dayLabels: [
                 {
                     full: 'Sunday',
@@ -5163,7 +5169,7 @@ if (typeof moment === "undefined") { throw new Error("The ALJS datepicker plugin
         }, typeof options === 'object' ? options : {});
 
 
-        this.each(function() {
+        this.each(function () {
             var $this = $(this),
                 data = $this.data('datepicker');
 
